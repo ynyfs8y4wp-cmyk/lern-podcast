@@ -1,0 +1,84 @@
+# Lern-Podcast: macht aus jedem neuen Lernschnipsel eine MP3-Folge
+# und veröffentlicht einen Podcast-Feed, den du in deiner Podcast-App abonnierst.
+name: Lern-Podcast
+
+on:
+  push:                      # WANN: sobald eine neue Folge als Text ins Repo kommt
+    branches: [main]
+    paths: ["episodes/**.md"]
+  workflow_dispatch:         # oder per Hand über den Button "Run workflow"
+
+permissions:
+  contents: write            # MP3 als Release ablegen, Metadaten speichern
+  pages: write               # Feed auf GitHub Pages veröffentlichen
+  id-token: write
+
+concurrency:
+  group: lern-podcast
+  cancel-in-progress: false
+
+jobs:
+  podcast:
+    runs-on: ubuntu-latest   # WO: eine frische Linux-VM von GitHub
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: Python einrichten
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: ffmpeg installieren
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+
+      - name: Deutsche Stimme aus dem Zwischenspeicher holen
+        uses: actions/cache@v4
+        with:
+          path: voice
+          key: piper-voice-${{ vars.PIPER_VOICE || 'de_DE-thorsten-high' }}
+
+      - name: Deutsche Stimme herunterladen (nur beim ersten Mal)
+        env:
+          VOICE: ${{ vars.PIPER_VOICE || 'de_DE-thorsten-high' }}
+        run: |
+          mkdir -p voice
+          if [ ! -f "voice/$VOICE.onnx" ]; then
+            IFS='-' read -r LANG NAME QUALITY <<< "$VOICE"
+            BASE="https://huggingface.co/rhasspy/piper-voices/resolve/main/${LANG%%_*}/$LANG/$NAME/$QUALITY"
+            curl -sSfL -o "voice/$VOICE.onnx" "$BASE/$VOICE.onnx"
+            curl -sSfL -o "voice/$VOICE.onnx.json" "$BASE/$VOICE.onnx.json"
+          fi
+
+      - name: Sprachsoftware installieren
+        run: pip install -q "piper-tts==1.3.0"
+
+      - name: Neue Folgen einsprechen und Feed bauen
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PIPER_VOICE: ${{ vars.PIPER_VOICE || 'de_DE-thorsten-high' }}
+          PODCAST_TITLE: ${{ vars.PODCAST_TITLE || 'Lernroute Agentifizierung' }}
+        run: python scripts/build.py
+
+      - name: Metadaten der neuen Folgen speichern
+        run: |
+          git config user.name "lern-podcast-bot"
+          git config user.email "lern-podcast-bot@users.noreply.github.com"
+          git add episodes/*.json || true
+          git diff --cached --quiet || git commit -m "Neue Podcast-Folgen [skip ci]"
+          git push || true
+
+      - name: GitHub Pages vorbereiten
+        uses: actions/configure-pages@v5
+
+      - name: Feed hochladen
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Feed veröffentlichen
+        id: deploy
+        uses: actions/deploy-pages@v4
