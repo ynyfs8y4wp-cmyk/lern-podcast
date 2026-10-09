@@ -230,8 +230,10 @@ def publish_audio(ep: dict, work: Path) -> bool:
     return True
 
 
-def audio_url(ep: dict) -> str:
-    return f"{BASE_URL}/episodes/{ep['id']}.mp3"
+def audio_url(ep: dict, info: dict | None = None) -> str:
+    # Versionszusatz, damit Podcast-Apps eine neu eingesprochene Folge neu laden
+    version = re.sub(r"\D", "", (info or {}).get("created", ""))[:14]
+    return f"{BASE_URL}/episodes/{ep['id']}.mp3" + (f"?v={version}" if version else "")
 
 
 # ---------- Feed bauen ----------
@@ -268,8 +270,8 @@ def build_site(items: list[tuple[dict, dict]]) -> None:
       <title>{e(ep['title'])}</title>
       <description>{e(summary(ep))}</description>
       <itunes:subtitle>{e(ep['kind'])}</itunes:subtitle>
-      <enclosure url="{e(audio_url(ep))}" length="{info['bytes']}" type="audio/mpeg"/>
-      <guid isPermaLink="false">{e(ep['id'])}</guid>
+      <enclosure url="{e(audio_url(ep, info))}" length="{info['bytes']}" type="audio/mpeg"/>
+      <guid isPermaLink="false">{e(ep['id'] + '-' + info.get('created', '')[:19])}</guid>
       <pubDate>{rfc2822(ep['date'])}</pubDate>
       <itunes:duration>{hms(info['seconds'])}</itunes:duration>
       <itunes:explicit>false</itunes:explicit>
@@ -296,7 +298,7 @@ def build_site(items: list[tuple[dict, dict]]) -> None:
 
     rows = "\n".join(
         f'<li><p class="m">{e(ep["kind"])} · {e(ep["date"][:10])}</p><h2>{e(ep["title"])}</h2>'
-        f'<audio controls preload="none" src="{e(audio_url(ep))}"></audio></li>'
+        f'<audio controls preload="none" src="{e(audio_url(ep, info))}"></audio></li>'
         for ep, info in items
     )
     page = f"""<!doctype html><html lang="de"><head><meta charset="utf-8">
