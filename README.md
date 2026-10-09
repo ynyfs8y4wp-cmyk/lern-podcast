@@ -22,6 +22,18 @@ Kosten: keine. GitHub Actions ist für öffentliche Repositories kostenlos, Pipe
 
 Für kostenloses GitHub Pages muss das Repository öffentlich sein. Die Lerninhalte sind allgemeines Wissen ohne Firmeninterna. Der Feed ist so markiert, dass er nicht in Podcast-Verzeichnissen gelistet wird, und Suchmaschinen sollen die Seite nicht aufnehmen. Wer die Adresse kennt, kann ihn aber abrufen. Deshalb gehören hier **keine vertraulichen Inhalte** hinein. Mit einem bezahlten GitHub-Plan geht Pages auch für private Repositories.
 
+## Stimmen: ElevenLabs mit zwei Moderatoren
+
+Folgen, deren Text aus Zeilen wie `ANNA: ...` und `BEN: ...` besteht, werden als Gespräch mit zwei Stimmen von **ElevenLabs** eingesprochen. Dafür braucht das Repository einen Schlüssel:
+
+1. Bei elevenlabs.io ein Konto anlegen und einen Tarif wählen, der zum Umfang passt (rund 100.000 Zeichen im Monat).
+2. Dort unter **API Keys** einen Schlüssel erzeugen.
+3. Hier im Repository: Settings → Secrets and variables → Actions → **New repository secret**, Name `ELEVENLABS_API_KEY`, Wert der Schlüssel.
+
+Ohne Schlüssel spricht weiterhin Piper, damit der Podcast nie ausfällt.
+
+Stimmen wechseln: Unter **Variables** `ELEVEN_VOICE_ANNA` und `ELEVEN_VOICE_BEN` mit der Voice-ID aus der ElevenLabs-Stimmbibliothek setzen. Eine bestehende Folge neu einsprechen: Actions → „Lern-Podcast“ → Run workflow → bei „Folgen-IDs“ die ID eintragen, z. B. `2026-10-09_G-01`.
+
 ## Anpassen (optional)
 
 Unter Settings → Secrets and variables → Actions → **Variables**:
