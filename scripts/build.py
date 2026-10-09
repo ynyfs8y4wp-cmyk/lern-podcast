@@ -34,6 +34,15 @@ OWNER, REPO_NAME = REPO.split("/", 1)
 BASE_URL = os.environ.get("PODCAST_BASE_URL", f"https://{OWNER.lower()}.github.io/{REPO_NAME}")
 TITLE = os.environ.get("PODCAST_TITLE", "Lernroute Agentifizierung")
 VOICE = os.environ.get("PIPER_VOICE", "de_DE-thorsten-high")
+
+# ElevenLabs: zwei Moderatoren. Ohne Schlüssel fällt das Skript auf Piper zurück.
+ELEVEN_KEY = os.environ.get("ELEVENLABS_API_KEY", "").strip()
+ELEVEN_MODEL = os.environ.get("ELEVEN_MODEL") or "eleven_multilingual_v2"
+HOSTS = {
+    "ANNA": os.environ.get("ELEVEN_VOICE_ANNA") or "EXAVITQu4vr4xnSDxMaL",
+    "BEN": os.environ.get("ELEVEN_VOICE_BEN") or "JBFqnCBsd6RMkjVDRZzb",
+}
+TURN = re.compile(r"^\s*\**(ANNA|BEN)\**\s*:\s*(.+)$", re.I)
 DESCRIPTION = (
     "Private Lernfolgen zu KI-Agenten, Softwareentwicklung und Agentifizierung "
     "im indirekten Bereich, einfach erklärt. Dazu der wöchentliche Markt-Radar."
@@ -122,12 +131,75 @@ def upload(mp3_path: Path, ep: dict) -> str:
     return f"https://github.com/{REPO}/releases/download/{tag}/{mp3_path.name}"
 
 
+def dialog_turns(ep: dict) -> list[tuple[str, str]]:
+    """Zeilen der Form 'ANNA: ...' / 'BEN: ...' als Gesprächsbeiträge."""
+    turns = []
+    for line in ep["body"].splitlines():
+        m = TURN.match(line)
+        if m:
+            text = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", m.group(2))
+            text = re.sub(r"https?://\S+|[*_`#>|]", "", text).strip()
+            if text:
+                turns.append((m.group(1).upper(), text))
+    return turns
+
+
+def eleven_tts(text: str, voice_id: str, prev: str, nxt: str, out: Path) -> None:
+    import urllib.request
+
+    body = {
+        "text": text,
+        "model_id": ELEVEN_MODEL,
+        "previous_text": prev[-500:],
+        "next_text": nxt[:500],
+        "voice_settings": {"stability": 0.4, "similarity_boost": 0.8, "style": 0.35,
+                           "use_speaker_boost": True},
+    }
+    req = urllib.request.Request(
+        f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}?output_format=mp3_44100_128",
+        data=json.dumps(body).encode("utf-8"),
+        headers={"xi-api-key": ELEVEN_KEY, "Content-Type": "application/json",
+                 "Accept": "audio/mpeg"},
+        method="POST",
+    )
+    with urllib.request.urlopen(req, timeout=180) as r:
+        out.write_bytes(r.read())
+
+
+def produce_dialog(ep: dict, turns: list[tuple[str, str]], work: Path, mp3: Path) -> None:
+    """Spricht das Gespräch Satz für Satz mit zwei Stimmen ein und fügt es zusammen."""
+    parts = []
+    for i, (who, text) in enumerate(turns):
+        part = work / f"{ep['id']}_{i:03d}.mp3"
+        prev = turns[i - 1][1] if i else ""
+        nxt = turns[i + 1][1] if i + 1 < len(turns) else ""
+        eleven_tts(text, HOSTS[who], prev, nxt, part)
+        parts.append(part)
+    # kurze Atempause zwischen den Sprechern, dann alles zu einer Datei
+    args = ["ffmpeg", "-y", "-loglevel", "error"]
+    for p in parts:
+        args += ["-i", str(p)]
+    chain = "".join(f"[{i}:a]aresample=44100,aformat=channel_layouts=mono,apad=pad_dur=0.25[a{i}];"
+                    for i in range(len(parts)))
+    chain += "".join(f"[a{i}]" for i in range(len(parts))) + f"concat=n={len(parts)}:v=0:a=1[out]"
+    args += ["-filter_complex", chain, "-map", "[out]", "-ac", "1", "-b:a", "96k",
+             "-metadata", f"title={ep['title']}", "-metadata", f"artist={TITLE}", str(mp3)]
+    subprocess.run(args, check=True)
+
+
 def produce(ep: dict, work: Path) -> dict:
     print(f"Spreche ein: {ep['id']} – {ep['title']}", flush=True)
     wav = work / f"{ep['id']}.wav"
     mp3 = work / f"{ep['id']}.mp3"
-    synthesize(speech_text(ep), wav)
-    to_mp3(wav, mp3, ep)
+    turns = dialog_turns(ep)
+    if turns and ELEVEN_KEY:
+        produce_dialog(ep, turns, work, mp3)
+    else:
+        if turns:  # Gespräch, aber kein ElevenLabs-Schlüssel: mit Piper vorlesen
+            ep = dict(ep, body="\n\n".join(t for _, t in turns))
+            print("::warning::Kein ELEVENLABS_API_KEY gesetzt, nutze Piper als Ersatz.")
+        synthesize(speech_text(ep), wav)
+        to_mp3(wav, mp3, ep)
     info = {
         "url": upload(mp3, ep),
         "bytes": mp3.stat().st_size,
@@ -180,6 +252,7 @@ def hms(seconds: int) -> str:
 
 def summary(ep: dict, limit: int = 600) -> str:
     plain = re.sub(r"\s+", " ", speech_text(ep).split("\n\n", 1)[-1])
+    plain = re.sub(r"\b(ANNA|BEN)\s*:\s*", "", plain, flags=re.I)
     return plain[:limit].rsplit(" ", 1)[0] + " …" if len(plain) > limit else plain
 
 
@@ -247,7 +320,8 @@ def main() -> int:
     for path in sorted(EPISODES.glob("*.md")):
         ep = parse_episode(path)
         meta_path = EPISODES / f"{ep['id']}.json"
-        if meta_path.exists():
+        redo = ep["id"] in os.environ.get("REDO", "").split()
+        if meta_path.exists() and not redo:
             info = json.loads(meta_path.read_text(encoding="utf-8"))
         else:
             try:

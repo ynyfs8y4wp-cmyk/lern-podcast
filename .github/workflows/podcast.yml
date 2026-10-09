@@ -7,6 +7,11 @@ on:
     branches: [main]
     paths: ["episodes/**.md"]
   workflow_dispatch:         # oder per Hand über den Button "Run workflow"
+    inputs:
+      neu:
+        description: "Folgen-IDs, die neu eingesprochen werden sollen (mit Leerzeichen getrennt)"
+        required: false
+        default: ""
 
 permissions:
   contents: write            # MP3 als Release ablegen, Metadaten speichern
@@ -61,6 +66,11 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           PIPER_VOICE: ${{ vars.PIPER_VOICE || 'de_DE-thorsten-high' }}
           PODCAST_TITLE: ${{ vars.PODCAST_TITLE || 'Lernroute Agentifizierung' }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVEN_MODEL: ${{ vars.ELEVEN_MODEL }}
+          ELEVEN_VOICE_ANNA: ${{ vars.ELEVEN_VOICE_ANNA }}
+          ELEVEN_VOICE_BEN: ${{ vars.ELEVEN_VOICE_BEN }}
+          REDO: ${{ github.event.inputs.neu }}
         run: python scripts/build.py
 
       - name: Metadaten der neuen Folgen speichern
