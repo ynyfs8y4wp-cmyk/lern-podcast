@@ -7,7 +7,7 @@ Dieses Repository macht aus jedem Lernschnipsel und jedem Markt-Radar automatisc
 1. **Text kommt rein:** Der Lern-Coach (eine geplante Claude-Aufgabe) legt jeden neuen Schnipsel als Datei in den Ordner `episodes/`, zum Beispiel `episodes/2026-10-12_G-03.md`.
 2. **GitHub Actions startet:** Sobald dort eine neue Datei ankommt, startet der Workflow `.github/workflows/podcast.yml` auf einer frischen Linux-VM von GitHub.
 3. **Einsprechen:** Das Skript `scripts/build.py` bereitet den Text zum Vorlesen auf und lässt ihn von der freien Sprachsoftware **Piper** mit einer deutschen Stimme einsprechen. Daraus wird eine MP3-Datei.
-4. **Ablegen:** Die MP3 wird als Datei an ein GitHub-Release gehängt. So bleibt das Repository selbst klein.
+4. **Ablegen:** Die MP3 wird als Datei an ein GitHub-Release gehängt. Das ist der Speicher, so bleibt das Repository selbst klein. Ausgeliefert wird sie über GitHub Pages, weil Podcast-Apps sie dort zuverlässig abspielen.
 5. **Feed veröffentlichen:** Aus allen Folgen entsteht ein Podcast-Feed (`feed.xml`), der über GitHub Pages erreichbar ist. Deine Podcast-App fragt ihn regelmäßig ab und lädt neue Folgen.
 
 Kosten: keine. GitHub Actions ist für öffentliche Repositories kostenlos, Piper ist Open Source und läuft direkt auf der GitHub-VM, ohne API-Schlüssel.
