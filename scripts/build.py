@@ -138,6 +138,30 @@ def produce(ep: dict, work: Path) -> dict:
     return info
 
 
+def publish_audio(ep: dict, work: Path) -> bool:
+    """Legt die MP3 in den Pages-Ordner, damit Podcast-Apps sie direkt laden können.
+
+    Die Releases sind nur der Speicher. Ausgeliefert wird über GitHub Pages,
+    weil Apple Podcasts die Weiterleitungen der Release-Downloads nicht abspielt.
+    """
+    target = SITE / "episodes" / f"{ep['id']}.mp3"
+    target.parent.mkdir(parents=True, exist_ok=True)
+    local = work / f"{ep['id']}.mp3"
+    if local.exists():
+        shutil.copy(local, target)
+        return True
+    got = subprocess.run(["gh", "release", "download", f"ep-{ep['id']}", "--repo", REPO,
+                          "--pattern", "*.mp3", "--dir", str(target.parent), "--clobber"])
+    if got.returncode != 0 or not target.exists():
+        print(f"::warning::Audio für {ep['id']} nicht gefunden, Folge vorerst nicht im Feed.")
+        return False
+    return True
+
+
+def audio_url(ep: dict) -> str:
+    return f"{BASE_URL}/episodes/{ep['id']}.mp3"
+
+
 # ---------- Feed bauen ----------
 
 def rfc2822(iso: str) -> str:
@@ -171,7 +195,7 @@ def build_site(items: list[tuple[dict, dict]]) -> None:
       <title>{e(ep['title'])}</title>
       <description>{e(summary(ep))}</description>
       <itunes:subtitle>{e(ep['kind'])}</itunes:subtitle>
-      <enclosure url="{e(info['url'])}" length="{info['bytes']}" type="audio/mpeg"/>
+      <enclosure url="{e(audio_url(ep))}" length="{info['bytes']}" type="audio/mpeg"/>
       <guid isPermaLink="false">{e(ep['id'])}</guid>
       <pubDate>{rfc2822(ep['date'])}</pubDate>
       <itunes:duration>{hms(info['seconds'])}</itunes:duration>
@@ -199,7 +223,7 @@ def build_site(items: list[tuple[dict, dict]]) -> None:
 
     rows = "\n".join(
         f'<li><p class="m">{e(ep["kind"])} · {e(ep["date"][:10])}</p><h2>{e(ep["title"])}</h2>'
-        f'<audio controls preload="none" src="{e(info["url"])}"></audio></li>'
+        f'<audio controls preload="none" src="{e(audio_url(ep))}"></audio></li>'
         for ep, info in items
     )
     page = f"""<!doctype html><html lang="de"><head><meta charset="utf-8">
@@ -234,6 +258,7 @@ def main() -> int:
                 continue
         items.append((ep, info))
     items.sort(key=lambda x: x[0]["date"], reverse=True)
+    items = [(ep, info) for ep, info in items if publish_audio(ep, work)]
     build_site(items)
     print(f"Feed mit {len(items)} Folgen gebaut: {BASE_URL}/feed.xml")
     if failed:
