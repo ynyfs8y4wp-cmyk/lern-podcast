@@ -51,3 +51,19 @@ Dieses kleine Projekt zeigt die Bausteine, über die dein Team täglich spricht:
 - **Permissions und Token:** welche Rechte der Workflow bekommt, und nicht mehr als nötig.
 - **Release und Pages:** wie Ergebnisse veröffentlicht werden.
 - **Cache:** die Stimme wird einmal geladen und danach wiederverwendet.
+
+## Zweite Sendung: Hörspielwerkstatt
+
+Im Ordner `hoerspiele/` landen persönliche Kinder-Hörspiele aus der Eltern-App „Hörspielwerkstatt“. Sie bekommen einen eigenen Feed:
+
+`https://<github-name>.github.io/<repo-name>/hoerspiele/feed.xml`
+
+In Apple Podcasts: Mediathek → „…“ → **Sendung per URL folgen** und diese Adresse einfügen.
+
+**Rollen und Stimmen.** Jede Zeile beginnt mit einer Rolle: `ERZÄHLER`, die vier Hauptfiguren `LOTTA` (Löwin), `FINN` (Fuchs), `PIP` (Pinguin), `BRUNO` (Bär), dazu `MAMA`, `PAPA`, `OMA`, `OPA`, `FRAU` und `MANN` (weitere Erwachsene) und `KIND` (andere Kinder). Zeilen mit `GERÄUSCH:` und einer kurzen englischen Beschreibung werden zu einem Soundeffekt (höchstens sechs pro Folge).
+
+**Stimmen tauschen** (empfohlen, z. B. echte Kinderstimmen aus der ElevenLabs-Stimmbibliothek): Settings → Secrets and variables → Actions → Variables → `HOERSPIEL_VOICES` mit JSON, z. B. `{"LOTTA": "<voice-id>", "PIP": "<voice-id>"}`. Nicht genannte Rollen behalten ihre Standardstimme.
+
+Weitere Variablen: `HOERSPIEL_MODEL` (z. B. `eleven_v3`), `HOERSPIEL_SFX` = `aus` schaltet Geräusche ab, `HOERSPIEL_TITLE` ändert den Namen.
+
+**Datenschutz.** Das Repository ist öffentlich. Deshalb stehen in den Hörspiel-Dateien keine echten Namen, Orte oder Familiendetails, es sei denn, die Eltern schalten den Namen in der App ausdrücklich frei. Das Kinderprofil liegt nur in der privaten App.
