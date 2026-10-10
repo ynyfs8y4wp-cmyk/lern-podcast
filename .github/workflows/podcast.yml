@@ -5,7 +5,7 @@ name: Lern-Podcast
 on:
   push:                      # WANN: sobald eine neue Folge als Text ins Repo kommt
     branches: [main]
-    paths: ["episodes/**.md", "hoerspiele/**.md", "app/**"]
+    paths: ["episodes/**.md", "hoerspiele/**.enc", "app/**"]
   workflow_dispatch:         # oder per Hand über den Button "Run workflow"
     inputs:
       neu:
@@ -72,6 +72,7 @@ jobs:
           ELEVEN_VOICE_BEN: ${{ vars.ELEVEN_VOICE_BEN }}
           HOERSPIEL_TITLE: ${{ vars.HOERSPIEL_TITLE || 'Hörspielwerkstatt' }}
           HOERSPIEL_VOICES: ${{ vars.HOERSPIEL_VOICES }}
+          HOERSPIEL_GEHEIMNIS: ${{ secrets.HOERSPIEL_GEHEIMNIS }}   # Schlüssel für Skripte und Audio, ergibt auch den Feed-Pfad
           HOERSPIEL_MODEL: ${{ vars.HOERSPIEL_MODEL }}
           HOERSPIEL_SFX: ${{ vars.HOERSPIEL_SFX }}
           REDO: ${{ github.event.inputs.neu }}

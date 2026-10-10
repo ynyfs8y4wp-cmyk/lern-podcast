@@ -48,6 +48,9 @@ ELEVEN_MODEL = os.environ.get("ELEVEN_MODEL") or "eleven_multilingual_v2"
 HOERSPIEL_MODEL = os.environ.get("HOERSPIEL_MODEL") or ELEVEN_MODEL
 SFX_ON = (os.environ.get("HOERSPIEL_SFX") or "an").strip().lower() not in ("aus", "off", "0", "false", "nein")
 SFX_MAX = 6
+# Schlüssel der Hörspiele und daraus abgeleiteter, nicht erratbarer Feed-Pfad (siehe Verschlüsselung unten)
+GEHEIMNIS = os.environ.get("HOERSPIEL_GEHEIMNIS", "").strip()
+HS_PFAD = ("h-" + hashlib.sha256(("pfad:" + GEHEIMNIS).encode()).hexdigest()[:32]) if GEHEIMNIS else ""
 
 # Stimmen der Lern-Sendung (zwei Moderatoren)
 HOSTS = {
@@ -114,6 +117,7 @@ class Show:
     model: str = ELEVEN_MODEL
     voice_settings: dict = field(default_factory=dict)
     pause: float = 0.25
+    verschluesselt: bool = False   # Skripte und Audio nur verschlüsselt im Repository
 
 
 SHOWS = [
@@ -135,8 +139,8 @@ SHOWS = [
     Show(
         key="hoerspiele",
         src=ROOT / "hoerspiele",
-        out=SITE / "hoerspiele",
-        base=f"{BASE_URL}/hoerspiele",
+        out=SITE / (HS_PFAD or "_gesperrt"),
+        base=f"{BASE_URL}/{HS_PFAD}",
         title=os.environ.get("HOERSPIEL_TITLE", "Hörspielwerkstatt"),
         description=("Persönliche Mutmach-Hörspiele für Kinder: Lotta, Finn, Pip, Bruno und Prinzessin Mira erleben "
                      "Kita-Start, Schwimmkurs, Abschiede und große Gefühle."),
@@ -149,15 +153,37 @@ SHOWS = [
         model=HOERSPIEL_MODEL,
         voice_settings={"stability": 0.35, "similarity_boost": 0.75, "style": 0.5, "use_speaker_boost": True},
         pause=0.35,
+        verschluesselt=True,
     ),
 ]
+
+
+# ---------- Verschlüsselung der Hörspiele ----------
+# Das Repository ist öffentlich. Skripte (hoerspiele/<id>.md.enc) und Audio im Release-Speicher (<id>.mp3.enc)
+# liegen deshalb nur verschlüsselt vor (AES-256, openssl, PBKDF2). Der Schlüssel steht im Repository-Secret
+# HOERSPIEL_GEHEIMNIS. Aus ihm wird auch der nicht erratbare Pfad des Feeds abgeleitet. Ohne Secret wird
+# nichts veröffentlicht.
+OPENSSL = ["openssl", "enc", "-aes-256-cbc", "-pbkdf2", "-iter", "200000", "-salt", "-pass", "env:HOERSPIEL_GEHEIMNIS"]
+
+
+def entschluesseln_text(path: Path) -> str:
+    r = subprocess.run([*OPENSSL, "-d", "-a", "-A", "-in", str(path)], capture_output=True, check=True)
+    return r.stdout.decode("utf-8")
+
+
+def verschluesseln_datei(quelle: Path, ziel: Path) -> None:
+    subprocess.run([*OPENSSL, "-in", str(quelle), "-out", str(ziel)], check=True)
+
+
+def entschluesseln_datei(quelle: Path, ziel: Path) -> None:
+    subprocess.run([*OPENSSL, "-d", "-in", str(quelle), "-out", str(ziel)], check=True)
 
 
 # ---------- Folgen lesen ----------
 
 def parse_episode(path: Path, show: Show) -> dict:
     """Liest Kopfdaten (zwischen ---) und Text einer Folge."""
-    raw = path.read_text(encoding="utf-8")
+    raw = entschluesseln_text(path) if path.name.endswith(".enc") else path.read_text(encoding="utf-8")
     meta: dict = {}
     body = raw
     m = re.match(r"^---\s*\n(.*?)\n---\s*\n(.*)$", raw, re.S)
@@ -170,7 +196,7 @@ def parse_episode(path: Path, show: Show) -> dict:
     meta.setdefault("title", path.stem)
     meta.setdefault("kind", show.default_kind)
     meta.setdefault("date", datetime.now(timezone.utc).isoformat())
-    meta["id"] = path.stem
+    meta["id"] = path.name.removesuffix(".enc").removesuffix(".md")
     meta["body"] = body.strip()
     stimmen: dict = {}
     if meta.get("stimmen"):
@@ -293,6 +319,14 @@ def duration_seconds(mp3_path: Path) -> int:
 
 def upload(mp3_path: Path, ep: dict, show: Show) -> str:
     tag = f"{show.tag_prefix}{ep['id']}"
+    if show.verschluesselt:   # im öffentlichen Release-Speicher nur verschlüsselt, ohne Titel
+        enc = mp3_path.with_name(mp3_path.name + ".enc")
+        verschluesseln_datei(mp3_path, enc)
+        created = subprocess.run(["gh", "release", "create", tag, str(enc), "--repo", REPO,
+                                  "--title", tag, "--notes", "verschlüsselt"])
+        if created.returncode != 0:
+            subprocess.run(["gh", "release", "upload", tag, str(enc), "--repo", REPO, "--clobber"], check=True)
+        return f"https://github.com/{REPO}/releases/download/{tag}/{enc.name}"
     created = subprocess.run(["gh", "release", "create", tag, str(mp3_path), "--repo", REPO,
                               "--title", ep["title"], "--notes", f"{ep['kind']} vom {ep['date'][:10]}"])
     if created.returncode != 0:  # Release gibt es schon (z. B. nach Abbruch): Datei ersetzen
@@ -383,7 +417,7 @@ def produce_dialog(ep: dict, turns: list[tuple[str, str]], work: Path, mp3: Path
 
 
 def produce(ep: dict, work: Path, show: Show) -> dict:
-    print(f"[{show.key}] Spreche ein: {ep['id']} – {ep['title']}", flush=True)
+    print(f"[{show.key}] Spreche ein: {ep['id']}" + ("" if show.verschluesselt else f" – {ep['title']}"), flush=True)   # öffentliche Logs: keine Titel
     wav = work / f"{ep['id']}.wav"
     mp3 = work / f"{ep['id']}.mp3"
     turns = dialog_turns(ep, show)
@@ -404,12 +438,13 @@ def produce(ep: dict, work: Path, show: Show) -> dict:
         "seconds": duration_seconds(mp3),
         "created": datetime.now(timezone.utc).isoformat(),
         "hash": ep["hash"],
+        **({"verschluesselt": True} if show.verschluesselt else {}),
     }
     (show.src / f"{ep['id']}.json").write_text(json.dumps(info, indent=2), encoding="utf-8")
     return info
 
 
-def publish_audio(ep: dict, work: Path, show: Show) -> bool:
+def publish_audio(ep: dict, work: Path, show: Show, info: dict | None = None) -> bool:
     """Legt die MP3 in den Pages-Ordner, damit Podcast-Apps sie direkt laden können.
 
     Die Releases sind nur der Speicher. Ausgeliefert wird über GitHub Pages,
@@ -420,6 +455,30 @@ def publish_audio(ep: dict, work: Path, show: Show) -> bool:
     local = work / f"{ep['id']}.mp3"
     if local.exists():
         shutil.copy(local, target)
+        return True
+    if show.verschluesselt:
+        tag = f"{show.tag_prefix}{ep['id']}"
+        enc = work / f"{ep['id']}.mp3.enc"
+        got = subprocess.run(["gh", "release", "download", tag, "--repo", REPO,
+                              "--pattern", "*.mp3.enc", "--dir", str(work), "--clobber"])
+        ok = got.returncode == 0 and enc.exists()
+        uebernahme = show.src / f"{ep['id']}.mp3.enc"   # einmalige Übernahme: verschlüsselte Datei im Repository
+        if not ok and uebernahme.exists():
+            shutil.copy(uebernahme, enc)
+            if subprocess.run(["gh", "release", "upload", tag, str(enc), "--repo", REPO, "--clobber"]).returncode != 0:
+                subprocess.run(["gh", "release", "create", tag, str(enc), "--repo", REPO, "--title", tag, "--notes", "verschlüsselt"])
+            ok = True
+        if not ok:
+            print("::warning::Audio für eine Folge nicht gefunden, vorerst nicht im Feed.")
+            return False
+        entschluesseln_datei(enc, target)
+        if info is not None and not info.get("verschluesselt"):
+            # Altbestand aufräumen: unverschlüsselte MP3 und Titel aus dem öffentlichen Release entfernen
+            subprocess.run(["gh", "release", "delete-asset", tag, f"{ep['id']}.mp3", "--repo", REPO, "-y"], capture_output=True)
+            subprocess.run(["gh", "release", "edit", tag, "--repo", REPO, "--title", tag, "--notes", "verschlüsselt"], capture_output=True)
+            info["verschluesselt"] = True
+            info["url"] = f"https://github.com/{REPO}/releases/download/{tag}/{enc.name}"
+            (show.src / f"{ep['id']}.json").write_text(json.dumps(info, indent=2), encoding="utf-8")
         return True
     got = subprocess.run(["gh", "release", "download", f"{show.tag_prefix}{ep['id']}", "--repo", REPO,
                           "--pattern", "*.mp3", "--dir", str(target.parent), "--clobber"])
@@ -520,7 +579,7 @@ def run_show(show: Show, work: Path, redo: set[str]) -> int:
     show.src.mkdir(exist_ok=True)
     items: list[tuple[dict, dict]] = []
     failed = 0
-    for path in sorted(show.src.glob("*.md")):
+    for path in sorted(show.src.glob("*.md.enc" if show.verschluesselt else "*.md")):
         if path.name.lower() == "readme.md":
             continue
         ep = parse_episode(path, show)
@@ -540,9 +599,9 @@ def run_show(show: Show, work: Path, redo: set[str]) -> int:
                 continue
         items.append((ep, info))
     items.sort(key=lambda x: x[0]["date"], reverse=True)
-    items = [(ep, info) for ep, info in items if publish_audio(ep, work, show)]
+    items = [(ep, info) for ep, info in items if publish_audio(ep, work, show, info)]
     build_site(show, items)
-    print(f"[{show.key}] Feed mit {len(items)} Folgen gebaut: {show.base}/feed.xml")
+    print(f"[{show.key}] Feed mit {len(items)} Folgen gebaut" + ("" if show.verschluesselt else f": {show.base}/feed.xml"))
     if failed:
         print(f"[{show.key}] {failed} Folge(n) beim nächsten Lauf erneut versuchen.")
     return failed
@@ -553,6 +612,14 @@ def main() -> int:
     work.mkdir(exist_ok=True)
     redo = set(os.environ.get("REDO", "").split())
     for show in SHOWS:
+        if show.verschluesselt:
+            if not GEHEIMNIS:
+                print(f"::warning::[{show.key}] Secret HOERSPIEL_GEHEIMNIS fehlt: Hörspiele werden nicht veröffentlicht.")
+                continue
+            print(f"::add-mask::{HS_PFAD}")
+            klartext = [p.name for p in show.src.glob("*.md") if p.name.lower() != "readme.md"]
+            if klartext:
+                print(f"::warning::[{show.key}] {len(klartext)} unverschlüsselte Datei(en) in {show.src.name}/ werden ignoriert.")
         run_show(show, work, redo)
     app = ROOT / "app"   # App-Starter für den Home-Bildschirm
     if app.is_dir():

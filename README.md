@@ -54,9 +54,9 @@ Dieses kleine Projekt zeigt die Bausteine, über die dein Team täglich spricht:
 
 ## Zweite Sendung: Hörspielwerkstatt
 
-Im Ordner `hoerspiele/` landen persönliche Kinder-Hörspiele aus der Eltern-App „Hörspielwerkstatt“. Sie bekommen einen eigenen Feed:
+Im Ordner `hoerspiele/` landen persönliche Kinder-Hörspiele aus der Eltern-App „Hörspielwerkstatt“. Weil dieses Repository öffentlich ist, liegen Skripte (`<id>.md.enc`) und Audio im Release-Speicher (`<id>.mp3.enc`) **nur verschlüsselt** vor (AES-256 mit openssl). Der Schlüssel steht im Repository-Secret `HOERSPIEL_GEHEIMNIS`. Aus ihm leitet der Workflow auch den nicht erratbaren Pfad des Feeds ab (`/h-<32 Zeichen>/feed.xml`) und blendet ihn in den öffentlichen Logs aus. Fehlt das Secret, veröffentlicht der Workflow keine Hörspiele. Unverschlüsselte `.md`-Dateien in `hoerspiele/` werden ignoriert.
 
-`https://<github-name>.github.io/<repo-name>/hoerspiele/feed.xml`
+Der Feed ist für Podcast-Verzeichnisse gesperrt (`itunes:block`) und nicht verlinkt. Wer die genaue Adresse kennt, kann ihn trotzdem abrufen. Für fremde Familien ist deshalb die Produktversion mit Anmeldung gedacht.
 
 In Apple Podcasts: Mediathek → „…“ → **Sendung per URL folgen** und diese Adresse einfügen.
 
