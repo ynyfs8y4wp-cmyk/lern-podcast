@@ -216,5 +216,7 @@ class Produktion:
         args += ["-filter_complex", k, "-map", "[mix]", "-ar", "44100", "-ac", "2", "-b:a", "128k", *metadaten, str(ziel_mp3)]
         subprocess.run(args, check=True)
         # Für den Player in der App: AAC im MP4-Container
-        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(ziel_mp3), "-map", "0:a", "-c:a", "aac", "-b:a", "96k",
-                        "-movflags", "+faststart", "-map_metadata", "0", str(ziel_m4a)], check=True)
+        # Fassung für den Player der App: AAC mit winziger Standbild-Videospur, weil der Speicher der App nur Videodateien annimmt.
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-f", "lavfi", "-i", "color=c=0xFFF4E0:s=16x16:r=1", "-i", str(ziel_mp3),
+                        "-map", "0:v", "-map", "1:a", "-shortest", "-c:v", "libx264", "-tune", "stillimage", "-pix_fmt", "yuv420p",
+                        "-c:a", "aac", "-b:a", "96k", "-movflags", "+faststart", "-map_metadata", "1", "-f", "mp4", str(ziel_m4a)], check=True)
