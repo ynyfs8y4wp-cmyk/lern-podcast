@@ -31,6 +31,13 @@ STUECKE = {
 }
 
 
+SFX_PROMPTS = {
+    "intro": "Gentle cheerful music box and glockenspiel melody, cozy magical children's story opening jingle, warm, soft ukulele, major key",
+    "outro": "Soft tender music box lullaby melody with warm strings, calm children's bedtime story ending, slowly fading out",
+    "bett": "Very soft calm ambient harp and felt piano background music, gentle and sparse, peaceful children's bedtime atmosphere, no drums",
+}
+
+
 def post(url: str, body: dict, ziel: Path) -> int:
     req = urllib.request.Request(url, data=json.dumps(body).encode(), method="POST",
                                  headers={"xi-api-key": KEY, "Content-Type": "application/json", "Accept": "audio/mpeg"})
@@ -43,6 +50,12 @@ def post(url: str, body: dict, ziel: Path) -> int:
         return exc.code
 
 
+def ffdauer(datei: Path) -> float:
+    out = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "default=nw=1:nk=1", str(datei)],
+                         capture_output=True, text=True).stdout
+    return float(out.strip() or 0)
+
+
 def main() -> int:
     if not KEY:
         print("::error::ELEVENLABS_API_KEY fehlt")
@@ -51,7 +64,7 @@ def main() -> int:
     ergebnis: dict = {"dialog": {}, "musik": {}}
     probe = [{"text": "[warmly] Es war einmal ein kleiner Pinguin.", "voice_id": "JBFqnCBsd6RMkjVDRZzb"},
              {"text": "[excited] Ich bin Pip! [giggles] Und ich traue mich heute ins Wasser!", "voice_id": "FGY2WhTYpPnrIDTdsKH5"}]
-    for modell in ("eleven_v4", "eleven_v3"):
+    for modell in ([] if os.environ.get("PROBE") == "0" else ["eleven_v4", "eleven_v3"]):
         ziel = OUT / f"probe-{modell}.mp3"
         ergebnis["dialog"][modell] = post("https://api.elevenlabs.io/v1/text-to-dialogue?output_format=mp3_44100_128",
                                           {"inputs": probe, "model_id": modell, "language_code": "de"}, ziel)
@@ -59,16 +72,29 @@ def main() -> int:
         ziel = OUT / f"{name}.mp3"
         if ziel.exists() and not NEU:
             continue
+        ziel.unlink(missing_ok=True)
         for modell in ("music_v2_5", "music_v1"):
             code = post("https://api.elevenlabs.io/v1/music",
                         {"prompt": prompt, "music_length_ms": ms, "model_id": modell, "force_instrumental": True}, ziel)
             ergebnis["musik"][f"{name}:{modell}"] = code
             if code == 200:
-                roh = ziel.with_suffix(".roh.mp3"); ziel.rename(roh)
-                subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(roh), "-ac", "2", "-ar", "44100", "-b:a", "160k",
-                                "-af", "loudnorm=I=-20:TP=-2", str(ziel)], check=True)
-                roh.unlink()
                 break
+        if not (ziel.exists() and ziel.stat().st_size > 2000):
+            # Ohne Zugriff auf die Musik-API: kurze Musikstücke über die Geräusch-API (bis 22 Sekunden)
+            code = post("https://api.elevenlabs.io/v1/sound-generation?output_format=mp3_44100_128",
+                        {"text": SFX_PROMPTS[name], "duration_seconds": min(22, ms / 1000), "prompt_influence": 0.7}, ziel)
+            ergebnis["musik"][f"{name}:sound-generation"] = code
+        if ziel.exists() and ziel.stat().st_size > 2000:
+            roh = ziel.with_suffix(".roh.mp3"); ziel.rename(roh)
+            subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(roh), "-ac", "2", "-ar", "44100", "-b:a", "160k",
+                            "-af", "loudnorm=I=-20:TP=-2", str(ziel)], check=True)
+            roh.unlink()
+            if name == "bett" and 0 < ffdauer(ziel) < 40:   # kurzes Stück: mit Überblendungen zu einem längeren Teppich verbinden
+                lang = ziel.with_suffix(".lang.mp3")
+                subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(ziel), "-i", str(ziel), "-i", str(ziel), "-filter_complex",
+                                "[0:a][1:a]acrossfade=d=4:c1=tri:c2=tri[a];[a][2:a]acrossfade=d=4:c1=tri:c2=tri[b]", "-map", "[b]",
+                                "-b:a", "160k", str(lang)], check=True)
+                lang.replace(ziel)
     (OUT / "modelle.json").write_text(json.dumps(ergebnis, indent=1), encoding="utf-8")
     print(json.dumps(ergebnis))
     return 0

@@ -26,6 +26,7 @@ jobs:
         env:
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
           NEU: ${{ github.event.inputs.neu }}
+          PROBE: "0"
         run: python scripts/musik.py
       - name: Speichern
         run: |
