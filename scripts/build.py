@@ -14,7 +14,8 @@ Ablauf je Sendung:
 
 Hörspiele bestehen aus Zeilen wie "ERZÄHLER: ...", "LOTTA: ...", "MAMA: ..."
 und "GERÄUSCH: <englische Beschreibung>". Jede Rolle hat eine eigene Stimme,
-Geräusche erzeugt ElevenLabs als kurze Soundeffekte.
+Geräusche erzeugt ElevenLabs als kurze Soundeffekte; steht dort
+"deutsche Beschreibung | english prompt", dient der englische Teil als Prompt.
 """
 
 from __future__ import annotations
@@ -290,7 +291,8 @@ def produce_dialog(ep: dict, turns: list[tuple[str, str]], work: Path, mp3: Path
     for i, (who, text) in enumerate(turns):
         part = work / f"{ep['id']}_{i:03d}.mp3"
         if who == "GERÄUSCH":
-            if SFX_ON and sfx_used < SFX_MAX and eleven_sfx(text, part):
+            sfx_prompt = text.split("|")[-1].strip()   # "deutsch | english": englischer Teil fürs Geräusch
+            if SFX_ON and sfx_used < SFX_MAX and sfx_prompt and eleven_sfx(sfx_prompt, part):
                 sfx_used += 1
                 parts.append((part, True))
             continue
