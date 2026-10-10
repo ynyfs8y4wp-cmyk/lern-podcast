@@ -4,13 +4,13 @@
   "produktion": {
     "dialog_bloecke": 4,
     "einzeln_bloecke": 0,
-    "geraeusche": 0,
+    "geraeusche": 3,
     "modell": "eleven_v4",
     "musik": true
   },
-  "bytes": 5434852,
-  "seconds": 339,
-  "created": "2026-10-10T18:29:21.454631+00:00",
+  "bytes": 5535162,
+  "seconds": 345,
+  "created": "2026-10-10T19:08:33.967955+00:00",
   "hash": "ac4915dc4035a961",
   "verschluesselt": true
 }
