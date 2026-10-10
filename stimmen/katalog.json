@@ -1,0 +1,251 @@
+{
+ "_info": "Stimmenkatalog der Hörspielwerkstatt (ElevenLabs-Standardstimmen, sprechen alle vier Sprachen mit eleven_multilingual_v2). Hörproben: stimmen/proben/<sprache>/<key>.mp3",
+ "stimmen": [
+  {
+   "key": "george",
+   "id": "JBFqnCBsd6RMkjVDRZzb",
+   "name": "George",
+   "g": "m",
+   "alter": "erwachsen",
+   "klang": [
+    "warm",
+    "erzaehlend",
+    "ruhig"
+   ]
+  },
+  {
+   "key": "brian",
+   "id": "nPczCjzI2devNBz1zQrb",
+   "name": "Brian",
+   "g": "m",
+   "alter": "erwachsen",
+   "klang": [
+    "tief",
+    "ruhig",
+    "erzaehlend"
+   ]
+  },
+  {
+   "key": "daniel",
+   "id": "onwK4e9ZLuTAKqWW03F9",
+   "name": "Daniel",
+   "g": "m",
+   "alter": "erwachsen",
+   "klang": [
+    "klar",
+    "ruhig"
+   ]
+  },
+  {
+   "key": "eric",
+   "id": "cjVigY5qzO86Huf0OWal",
+   "name": "Eric",
+   "g": "m",
+   "alter": "erwachsen",
+   "klang": [
+    "sanft",
+    "warm"
+   ]
+  },
+  {
+   "key": "chris",
+   "id": "iP95p4xoKVk53GoZ742B",
+   "name": "Chris",
+   "g": "m",
+   "alter": "erwachsen",
+   "klang": [
+    "froehlich",
+    "locker"
+   ]
+  },
+  {
+   "key": "roger",
+   "id": "CwhRBWXzGAHq8TQ4Fs17",
+   "name": "Roger",
+   "g": "m",
+   "alter": "erwachsen",
+   "klang": [
+    "gemuetlich",
+    "locker"
+   ]
+  },
+  {
+   "key": "callum",
+   "id": "N2lVS1w4EtoT3dr4eOWO",
+   "name": "Callum",
+   "g": "m",
+   "alter": "erwachsen",
+   "klang": [
+    "geheimnisvoll",
+    "kraeftig"
+   ]
+  },
+  {
+   "key": "bill",
+   "id": "pqHfZKP75CvOlQylNhV4",
+   "name": "Bill",
+   "g": "m",
+   "alter": "alt",
+   "klang": [
+    "weise",
+    "brummig",
+    "warm"
+   ]
+  },
+  {
+   "key": "will",
+   "id": "bIHbv24MWmeRgasZH58o",
+   "name": "Will",
+   "g": "m",
+   "alter": "jung",
+   "klang": [
+    "gemuetlich",
+    "froehlich"
+   ]
+  },
+  {
+   "key": "liam",
+   "id": "TX3LPaxmHKxFdv7VOQHJ",
+   "name": "Liam",
+   "g": "m",
+   "alter": "jung",
+   "klang": [
+    "klar",
+    "munter"
+   ]
+  },
+  {
+   "key": "charlie",
+   "id": "IKne3meq5aSn9XLyUdCD",
+   "name": "Charlie",
+   "g": "m",
+   "alter": "jung",
+   "klang": [
+    "quirlig",
+    "verspielt"
+   ]
+  },
+  {
+   "key": "river",
+   "id": "SAz9YHcvj6GT2YYXdXww",
+   "name": "River",
+   "g": "n",
+   "alter": "erwachsen",
+   "klang": [
+    "ruhig",
+    "klar"
+   ]
+  },
+  {
+   "key": "jessica",
+   "id": "cgSgspJ2msm6clMCkdW9",
+   "name": "Jessica",
+   "g": "w",
+   "alter": "jung",
+   "klang": [
+    "verspielt",
+    "hell"
+   ]
+  },
+  {
+   "key": "laura",
+   "id": "FGY2WhTYpPnrIDTdsKH5",
+   "name": "Laura",
+   "g": "w",
+   "alter": "jung",
+   "klang": [
+    "munter",
+    "hell",
+    "quirlig"
+   ]
+  },
+  {
+   "key": "lily",
+   "id": "pFZP5JQG7iQjIQuC4Bze",
+   "name": "Lily",
+   "g": "w",
+   "alter": "erwachsen",
+   "klang": [
+    "warm",
+    "sanft",
+    "erzaehlend"
+   ]
+  },
+  {
+   "key": "sarah",
+   "id": "EXAVITQu4vr4xnSDxMaL",
+   "name": "Sarah",
+   "g": "w",
+   "alter": "erwachsen",
+   "klang": [
+    "sanft",
+    "ruhig"
+   ]
+  },
+  {
+   "key": "matilda",
+   "id": "XrExE9yKIg1WjnnlVkGX",
+   "name": "Matilda",
+   "g": "w",
+   "alter": "erwachsen",
+   "klang": [
+    "warm",
+    "froehlich"
+   ]
+  },
+  {
+   "key": "aria",
+   "id": "9BWtsMINqrJLrRacOk9x",
+   "name": "Aria",
+   "g": "w",
+   "alter": "erwachsen",
+   "klang": [
+    "kraeftig",
+    "klar"
+   ]
+  },
+  {
+   "key": "alice",
+   "id": "Xb7hH8MSUJpSbSDYk0k2",
+   "name": "Alice",
+   "g": "w",
+   "alter": "erwachsen",
+   "klang": [
+    "klar",
+    "froehlich"
+   ]
+  },
+  {
+   "key": "rachel",
+   "id": "21m00Tcm4TlvDq8ikWAM",
+   "name": "Rachel",
+   "g": "w",
+   "alter": "erwachsen",
+   "klang": [
+    "ruhig",
+    "sanft"
+   ]
+  }
+ ],
+ "standard": {
+  "ERZÄHLER": "george",
+  "LOTTA": "jessica",
+  "FINN": "charlie",
+  "PIP": "laura",
+  "BRUNO": "will",
+  "MIRA": "lily",
+  "MAMA": "sarah",
+  "PAPA": "chris",
+  "OMA": "matilda",
+  "OPA": "bill",
+  "FRAU": "aria",
+  "MANN": "eric",
+  "KIND": "liam"
+ },
+ "probe": {
+  "de": "Hallo, ich bin {n}. Komm, wir erleben zusammen eine Geschichte!",
+  "en": "Hi, I'm {n}. Come on, let's go on a story adventure together!",
+  "es": "¡Hola, soy {n}! Ven, vamos a vivir juntos una historia.",
+  "pt": "Olá, eu me chamo {n}! Vem, vamos viver juntos uma história."
+ }
+}

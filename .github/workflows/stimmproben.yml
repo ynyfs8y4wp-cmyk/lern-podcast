@@ -1,0 +1,44 @@
+# Erzeugt Hörproben für die Stimmauswahl in der App (einmalig bzw. wenn der Stimmenkatalog wächst)
+name: Stimmproben
+
+on:
+  workflow_dispatch:
+    inputs:
+      neu:
+        description: "1 = alle Proben neu erzeugen"
+        required: false
+        default: "0"
+  push:
+    branches: [main]
+    paths: ["stimmen/katalog.json"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stimmproben
+  cancel-in-progress: false
+
+jobs:
+  proben:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: ffmpeg installieren
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - name: Hörproben erzeugen
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          HOERSPIEL_MODEL: ${{ vars.HOERSPIEL_MODEL }}
+          NEU: ${{ github.event.inputs.neu }}
+        run: python scripts/stimmproben.py
+      - name: Proben speichern
+        run: |
+          git config user.name "Claude"
+          git config user.email "noreply@anthropic.com"
+          git add stimmen/proben
+          git diff --cached --quiet || git commit -m "Stimmproben aktualisiert [skip ci]"
+          for i in 1 2 3; do git pull --rebase -q origin main && git push && break; sleep 5; done
