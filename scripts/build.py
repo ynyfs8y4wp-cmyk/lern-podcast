@@ -94,7 +94,7 @@ def voice_id(wert: str) -> str:
 
 ALIASES = {"ERZAEHLER": "ERZÄHLER", "ERZÄHLERIN": "ERZÄHLER", "GERAEUSCH": "GERÄUSCH", "SOUND": "GERÄUSCH"}
 
-LINE = re.compile(r"^\s*\**([A-ZÄÖÜa-zäöüß]+)\**\s*:\s*(.+)$")
+LINE = re.compile(r"^\s*\**([^\W\d_]+)\**\s*:\s*(.+)$")   # Rollen: nur Buchstaben, auch Á, É, Ñ
 
 
 @dataclass
@@ -177,7 +177,7 @@ def parse_episode(path: Path, show: Show) -> dict:
         try:
             roh = json.loads(meta["stimmen"])
             stimmen = {ALIASES.get(k.upper(), k.upper()): voice_id(v) for k, v in roh.items()
-                       if v and re.fullmatch(r"[A-Za-zÄÖÜäöüß]+", k) and re.fullmatch(r"[A-Za-z0-9]+", voice_id(v))}
+                       if v and re.fullmatch(r"[^\W\d_]+", k) and re.fullmatch(r"[A-Za-z0-9]+", voice_id(v))}
         except (ValueError, AttributeError):
             print(f"::warning::{path.name}: Kopfzeile 'stimmen' ist kein gültiges JSON, nehme Standardstimmen.")
     meta["stimmen"] = stimmen
