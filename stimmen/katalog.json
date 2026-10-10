@@ -160,18 +160,6 @@
    ]
   },
   {
-   "key": "lily",
-   "id": "pFZP5JQG7iQjIQuC4Bze",
-   "name": "Lily",
-   "g": "w",
-   "alter": "erwachsen",
-   "klang": [
-    "warm",
-    "sanft",
-    "erzaehlend"
-   ]
-  },
-  {
    "key": "sarah",
    "id": "EXAVITQu4vr4xnSDxMaL",
    "name": "Sarah",
@@ -233,8 +221,8 @@
   "FINN": "charlie",
   "PIP": "laura",
   "BRUNO": "will",
-  "MIRA": "lily",
-  "MAMA": "sarah",
+  "MIRA": "sarah",
+  "MAMA": "rachel",
   "PAPA": "chris",
   "OMA": "matilda",
   "OPA": "bill",

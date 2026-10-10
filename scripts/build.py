@@ -64,8 +64,8 @@ ROLE_VOICES = {
     "FINN": "IKne3meq5aSn9XLyUdCD",       # jung, quirlig
     "PIP": "FGY2WhTYpPnrIDTdsKH5",        # neugierig, ein bisschen schüchtern
     "BRUNO": "bIHbv24MWmeRgasZH58o",      # freundlich, gemütlich
-    "MIRA": "pFZP5JQG7iQjIQuC4Bze",       # kleine Prinzessin und Zauberin, hell und warm
-    "MAMA": "EXAVITQu4vr4xnSDxMaL",
+    "MIRA": "EXAVITQu4vr4xnSDxMaL",       # kleine Prinzessin und Zauberin, jung und sanft
+    "MAMA": "21m00Tcm4TlvDq8ikWAM",
     "PAPA": "iP95p4xoKVk53GoZ742B",
     "OMA": "XrExE9yKIg1WjnnlVkGX",
     "OPA": "pqHfZKP75CvOlQylNhV4",
@@ -356,7 +356,14 @@ def produce_dialog(ep: dict, turns: list[tuple[str, str]], work: Path, mp3: Path
         idx = [k for k, _ in spoken].index(i)
         prev = spoken[idx - 1][1] if idx else ""
         nxt = spoken[idx + 1][1] if idx + 1 < len(spoken) else ""
-        eleven_tts(text, voice, prev, nxt, part, show)
+        try:
+            eleven_tts(text, voice, prev, nxt, part, show)
+        except Exception as exc:  # unbekannte oder entfernte Stimme: Erzähler springt ein
+            fallback = show.voices.get("ERZÄHLER")
+            if voice == fallback or not fallback:
+                raise
+            print(f"::warning::Stimme {voice} für {who} nicht nutzbar ({exc}), spricht der Erzähler.")
+            eleven_tts(text, fallback, prev, nxt, part, show)
         parts.append((part, False))
     if not parts:
         raise RuntimeError("Keine sprechbaren Zeilen gefunden")
