@@ -211,7 +211,13 @@ def dialog_turns(ep: dict, show: Show) -> list[tuple[str, str]]:
 
 # ---------- KI-Kennzeichnung (EU AI Act, Art. 50) ----------
 
-KI_HINWEIS = "Dieses Hörspiel wurde mit künstlicher Intelligenz geschrieben und gesprochen."
+KI_HINWEISE = {
+    "de": "Dieses Hörspiel wurde mit künstlicher Intelligenz geschrieben und gesprochen.",
+    "en": "This story was written and voiced using artificial intelligence.",
+    "es": "Este cuento fue escrito y narrado con inteligencia artificial.",
+    "pt": "Esta história foi escrita e narrada com inteligência artificial.",
+}
+KI_HINWEIS = KI_HINWEISE["de"]
 KI_NOTIZ = "KI-generiert: Text von Claude (Anthropic), Stimmen und Geräusche von ElevenLabs."
 
 
@@ -348,8 +354,9 @@ def produce(ep: dict, work: Path, show: Show) -> dict:
     wav = work / f"{ep['id']}.wav"
     mp3 = work / f"{ep['id']}.mp3"
     turns = dialog_turns(ep, show)
-    if show.roles_any and turns and KI_HINWEIS not in turns[-1][1]:
-        turns.append(("ERZÄHLER", KI_HINWEIS))     # hörbarer KI-Hinweis, immer als letzte Zeile
+    hinweis = KI_HINWEISE.get(str(ep.get("sprache", "de")).lower()[:2], KI_HINWEIS)
+    if show.roles_any and turns and turns[-1][1] not in KI_HINWEISE.values():
+        turns.append(("ERZÄHLER", hinweis))        # hörbarer KI-Hinweis in der Sprache des Hörspiels, immer als letzte Zeile
     if turns and ELEVEN_KEY:
         produce_dialog(ep, turns, work, mp3, show)
     else:
