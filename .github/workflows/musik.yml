@@ -1,0 +1,36 @@
+# Erzeugt einmalig Erkennungsmelodie, Abschiedsmusik und Musikteppich der Hörspiele und prüft die verfügbaren Modelle
+name: Hörspielmusik
+
+on:
+  workflow_dispatch:
+    inputs:
+      neu:
+        description: "1 = Musik neu erzeugen"
+        required: false
+        default: "0"
+
+permissions:
+  contents: write
+
+jobs:
+  musik:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: ffmpeg installieren
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - name: Musik erzeugen
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          NEU: ${{ github.event.inputs.neu }}
+        run: python scripts/musik.py
+      - name: Speichern
+        run: |
+          git config user.name "Claude"
+          git config user.email "noreply@anthropic.com"
+          git add musik
+          git diff --cached --quiet || git commit -m "Hörspielmusik [skip ci]"
+          for i in 1 2 3; do git pull --rebase -q origin main && git push && break; sleep 5; done
