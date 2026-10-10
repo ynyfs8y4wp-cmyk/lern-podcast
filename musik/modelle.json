@@ -1,14 +1,14 @@
 {
- "dialog": {
-  "eleven_v4": 200,
-  "eleven_v3": 200
- },
+ "dialog": {},
  "musik": {
   "intro:music_v2_5": 401,
   "intro:music_v1": 401,
+  "intro:sound-generation": 401,
   "outro:music_v2_5": 401,
   "outro:music_v1": 401,
+  "outro:sound-generation": 401,
   "bett:music_v2_5": 401,
-  "bett:music_v1": 401
+  "bett:music_v1": 401,
+  "bett:sound-generation": 401
  }
 }
