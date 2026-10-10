@@ -34,6 +34,9 @@ from datetime import datetime, timezone
 from email.utils import format_datetime
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import hoerspiel_produktion as hp  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 SITE = ROOT / "site"
 VOICE_DIR = ROOT / "voice"
@@ -249,13 +252,13 @@ def dialog_turns(ep: dict, show: Show) -> list[tuple[str, str]]:
         role = ALIASES.get(role, role)
         if role == "GERÄUSCH":
             if show.roles_any:
-                desc = re.sub(r"[*_`#>|\[\]()]", "", m.group(2)).strip()
+                desc = re.sub(r"[*_`#>\[\]()]", "", m.group(2)).strip()   # "|" trennt Beschreibung und englischen Prompt
                 if desc:
                     turns.append((role, desc))
             continue
         if role not in show.voices and role not in (ep.get("stimmen") or {}) and not show.roles_any:
             continue
-        text = clean_spoken(m.group(2))
+        text = hp.text_mit_tags(m.group(2)) if show.roles_any else clean_spoken(m.group(2))   # Hörspiele: Audio-Tags behalten
         if text:
             turns.append((role, text))
     return turns
@@ -424,16 +427,40 @@ def produce(ep: dict, work: Path, show: Show) -> dict:
     hinweis = KI_HINWEISE.get(str(ep.get("sprache", "de")).lower()[:2], KI_HINWEIS)
     if show.roles_any and turns and turns[-1][1] not in KI_HINWEISE.values():
         turns.append(("ERZÄHLER", hinweis))        # hörbarer KI-Hinweis in der Sprache des Hörspiels, immer als letzte Zeile
-    if turns and ELEVEN_KEY:
+    m4a = work / f"{ep['id']}.m4a"
+    bericht = None
+    if turns and ELEVEN_KEY and show.roles_any:
+        # Hörspiele: Szenen am Stück mit dem Dialog-Modell, Musik und weiche Übergänge
+        def stimme_fuer(wer: str) -> str:
+            return (ep.get("stimmen") or {}).get(wer) or show.voices.get(wer) or show.voices["ERZÄHLER"]
+
+        def einzeln(text: str, stimme: str, vorher: str, nachher: str, ziel: Path) -> None:
+            try:
+                eleven_tts(text, stimme, vorher, nachher, ziel, show)
+            except Exception as exc:  # unbekannte Stimme: Erzähler springt ein
+                print(f"::warning::Stimme nicht nutzbar ({exc}), spricht der Erzähler.")
+                eleven_tts(text, show.voices["ERZÄHLER"], vorher, nachher, ziel, show)
+
+        prod = hp.Produktion(ELEVEN_KEY, work, ep["id"], str(ep.get("sprache", "de")).lower()[:2], einzeln, eleven_sfx, ROOT / "musik")
+        bericht = prod.erzeugen(turns, stimme_fuer, SFX_ON, SFX_MAX, mp3, m4a, ki_metadaten(ep, show))
+        print(f"[{show.key}] Produktion: {json.dumps(bericht)}")
+    elif turns and ELEVEN_KEY:
         produce_dialog(ep, turns, work, mp3, show)
     else:
         if turns:  # Rollenskript, aber kein ElevenLabs-Schlüssel: mit Piper vorlesen
-            ep = dict(ep, body="\n\n".join(t for who, t in turns if who != "GERÄUSCH"))
+            ep = dict(ep, body="\n\n".join(hp.ohne_tags(t) for who, t in turns if who != "GERÄUSCH"))
             print("::warning::Kein ELEVENLABS_API_KEY gesetzt, nutze Piper als Ersatz.")
         synthesize(speech_text(ep, show), wav)
         to_mp3(wav, mp3, ep, show)
+    url = upload(mp3, ep, show)
+    if m4a.exists() and show.verschluesselt:   # Fassung für den Player in der App, ebenfalls verschlüsselt
+        enc = m4a.with_name(m4a.name + ".enc")
+        verschluesseln_datei(m4a, enc)
+        subprocess.run(["gh", "release", "upload", f"{show.tag_prefix}{ep['id']}", str(enc), "--repo", REPO, "--clobber"], check=True)
     info = {
-        "url": upload(mp3, ep, show),
+        "url": url,
+        **({"app_audio": f"{ep['id']}.m4a.enc"} if m4a.exists() and show.verschluesselt else {}),
+        **({"produktion": bericht} if bericht else {}),
         "bytes": mp3.stat().st_size,
         "seconds": duration_seconds(mp3),
         "created": datetime.now(timezone.utc).isoformat(),

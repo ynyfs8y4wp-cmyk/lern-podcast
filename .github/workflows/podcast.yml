@@ -75,6 +75,8 @@ jobs:
           HOERSPIEL_GEHEIMNIS: ${{ secrets.HOERSPIEL_GEHEIMNIS }}   # Schlüssel für Skripte und Audio, ergibt auch den Feed-Pfad
           HOERSPIEL_MODEL: ${{ vars.HOERSPIEL_MODEL }}
           HOERSPIEL_SFX: ${{ vars.HOERSPIEL_SFX }}
+          HOERSPIEL_DIALOG_MODELLE: ${{ vars.HOERSPIEL_DIALOG_MODELLE }}   # Standard: eleven_v4,eleven_v3
+          HOERSPIEL_MUSIK: ${{ vars.HOERSPIEL_MUSIK }}                     # "aus" schaltet Erkennungsmelodie und Musikteppich ab
           REDO: ${{ github.event.inputs.neu }}
         run: python scripts/build.py
 
