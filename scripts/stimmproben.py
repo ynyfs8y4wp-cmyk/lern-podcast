@@ -55,6 +55,15 @@ def main() -> int:
                 fehler[v["key"]] = str(exc)
                 print(f"::warning::{lang}/{v['key']}: {exc}")
     (OUT / "fehler.json").write_text(json.dumps(fehler, indent=1), encoding="utf-8")
+    try:  # Überblick, welche Stimmen das Konto kennt (nur Name, ID und Merkmale)
+        req = urllib.request.Request("https://api.elevenlabs.io/v1/voices", headers={"xi-api-key": KEY})
+        with urllib.request.urlopen(req, timeout=60) as r:
+            daten = json.load(r)
+        liste = [{"id": v.get("voice_id"), "name": v.get("name"), "kategorie": v.get("category"),
+                  "merkmale": v.get("labels") or {}} for v in daten.get("voices", [])]
+        (OUT / "verfuegbar.json").write_text(json.dumps(liste, indent=1, ensure_ascii=False), encoding="utf-8")
+    except (urllib.error.HTTPError, urllib.error.URLError, ValueError) as exc:
+        print(f"::warning::Stimmenliste nicht abrufbar: {exc}")
     return 0
 
 
