@@ -67,3 +67,7 @@ In Apple Podcasts: Mediathek → „…“ → **Sendung per URL folgen** und di
 Weitere Variablen: `HOERSPIEL_MODEL` (z. B. `eleven_v3`), `HOERSPIEL_SFX` = `aus` schaltet Geräusche ab, `HOERSPIEL_TITLE` ändert den Namen.
 
 **Datenschutz.** Das Repository ist öffentlich. Deshalb stehen in den Hörspiel-Dateien keine echten Namen, Orte oder Familiendetails, es sei denn, die Eltern schalten den Namen in der App ausdrücklich frei. Das Kinderprofil liegt nur in der privaten App.
+
+## KI-Kennzeichnung (EU AI Act, Art. 50)
+
+Jede neu erzeugte MP3 trägt eine maschinenlesbare Kennzeichnung in den ID3-Tags (`comment`, `AI_GENERATED=true`, `AI_TEXT_MODEL`, `AI_VOICE_MODEL`, `AI_GENERATED_AT`). Jedes Hörspiel endet mit dem gesprochenen Satz „Dieses Hörspiel wurde mit künstlicher Intelligenz geschrieben und gesprochen.“ Die Beschreibungen im Feed tragen den Hinweis „KI-generiert“. Folgen von vor dem 2. August 2026 müssen nicht nachträglich gekennzeichnet werden.

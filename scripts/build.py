@@ -209,6 +209,24 @@ def dialog_turns(ep: dict, show: Show) -> list[tuple[str, str]]:
     return turns
 
 
+# ---------- KI-Kennzeichnung (EU AI Act, Art. 50) ----------
+
+KI_HINWEIS = "Dieses Hörspiel wurde mit künstlicher Intelligenz geschrieben und gesprochen."
+KI_NOTIZ = "KI-generiert: Text von Claude (Anthropic), Stimmen und Geräusche von ElevenLabs."
+
+
+def ki_metadaten(ep: dict, show: Show) -> list[str]:
+    """Maschinenlesbare Kennzeichnung als ID3-Tags (COMM und TXXX) in jeder MP3."""
+    stimmen = f"ElevenLabs {show.model}" if ELEVEN_KEY else f"Piper {VOICE}"
+    return ["-id3v2_version", "3",
+            "-metadata", f"title={ep['title']}", "-metadata", f"artist={show.title}",
+            "-metadata", f"comment={KI_NOTIZ}",
+            "-metadata", "AI_GENERATED=true",
+            "-metadata", f"AI_TEXT_MODEL=Claude (Anthropic)",
+            "-metadata", f"AI_VOICE_MODEL={stimmen}",
+            "-metadata", f"AI_GENERATED_AT={datetime.now(timezone.utc).isoformat(timespec='seconds')}"]
+
+
 # ---------- Einsprechen ----------
 
 def synthesize(text: str, wav_path: Path) -> None:
@@ -226,7 +244,7 @@ def to_mp3(wav_path: Path, mp3_path: Path, ep: dict, show: Show) -> None:
     subprocess.run(
         ["ffmpeg", "-y", "-loglevel", "error", "-i", str(wav_path),
          "-ac", "1", "-ar", "22050", "-b:a", "64k",
-         "-metadata", f"title={ep['title']}", "-metadata", f"artist={show.title}",
+         *ki_metadaten(ep, show),
          str(mp3_path)],
         check=True,
     )
@@ -321,7 +339,7 @@ def produce_dialog(ep: dict, turns: list[tuple[str, str]], work: Path, mp3: Path
                   f"apad=pad_dur={show.pause}[a{i}];")
     chain += "".join(f"[a{i}]" for i in range(len(parts))) + f"concat=n={len(parts)}:v=0:a=1[out]"
     args += ["-filter_complex", chain, "-map", "[out]", "-ac", "1", "-b:a", "96k",
-             "-metadata", f"title={ep['title']}", "-metadata", f"artist={show.title}", str(mp3)]
+             *ki_metadaten(ep, show), str(mp3)]
     subprocess.run(args, check=True)
 
 
@@ -330,6 +348,8 @@ def produce(ep: dict, work: Path, show: Show) -> dict:
     wav = work / f"{ep['id']}.wav"
     mp3 = work / f"{ep['id']}.mp3"
     turns = dialog_turns(ep, show)
+    if show.roles_any and turns and KI_HINWEIS not in turns[-1][1]:
+        turns.append(("ERZÄHLER", KI_HINWEIS))     # hörbarer KI-Hinweis, immer als letzte Zeile
     if turns and ELEVEN_KEY:
         produce_dialog(ep, turns, work, mp3, show)
     else:
@@ -411,7 +431,7 @@ def build_site(show: Show, items: list[tuple[dict, dict]]) -> None:
     for ep, info in items:
         rss_items.append(f"""    <item>
       <title>{e(ep['title'])}</title>
-      <description>{e(summary(ep, show))}</description>
+      <description>{e(summary(ep, show) + " · " + KI_NOTIZ)}</description>
       <itunes:subtitle>{e(ep['kind'])}</itunes:subtitle>
       <enclosure url="{e(audio_url(ep, show, info))}" length="{info['bytes']}" type="audio/mpeg"/>
       <guid isPermaLink="false">{e(ep['id'] + '-' + info.get('created', '')[:19])}</guid>
@@ -426,7 +446,7 @@ def build_site(show: Show, items: list[tuple[dict, dict]]) -> None:
     <link>{e(show.base)}/</link>
     <atom:link href="{e(show.base)}/feed.xml" rel="self" type="application/rss+xml"/>
     <language>de-de</language>
-    <description>{e(show.description)}</description>
+    <description>{e(show.description + " " + KI_NOTIZ)}</description>
     <itunes:author>{e(show.title)}</itunes:author>
     <itunes:summary>{e(show.description)}</itunes:summary>
     <itunes:image href="{e(show.base)}/cover.png"/>
