@@ -1,11 +1,11 @@
-# Lern-Podcast: macht aus jedem neuen Lernschnipsel eine MP3-Folge
-# und veröffentlicht einen Podcast-Feed, den du in deiner Podcast-App abonnierst.
+# Lern-Podcast: macht aus jedem neuen Lernschnipsel und jedem Hörspiel eine MP3-Folge
+# und veröffentlicht zwei Podcast-Feeds, den du in deiner Podcast-App abonnierst.
 name: Lern-Podcast
 
 on:
   push:                      # WANN: sobald eine neue Folge als Text ins Repo kommt
     branches: [main]
-    paths: ["episodes/**.md"]
+    paths: ["episodes/**.md", "hoerspiele/**.md"]
   workflow_dispatch:         # oder per Hand über den Button "Run workflow"
     inputs:
       neu:
@@ -70,6 +70,10 @@ jobs:
           ELEVEN_MODEL: ${{ vars.ELEVEN_MODEL }}
           ELEVEN_VOICE_ANNA: ${{ vars.ELEVEN_VOICE_ANNA }}
           ELEVEN_VOICE_BEN: ${{ vars.ELEVEN_VOICE_BEN }}
+          HOERSPIEL_TITLE: ${{ vars.HOERSPIEL_TITLE || 'Hörspielwerkstatt' }}
+          HOERSPIEL_VOICES: ${{ vars.HOERSPIEL_VOICES }}
+          HOERSPIEL_MODEL: ${{ vars.HOERSPIEL_MODEL }}
+          HOERSPIEL_SFX: ${{ vars.HOERSPIEL_SFX }}
           REDO: ${{ github.event.inputs.neu }}
         run: python scripts/build.py
 
@@ -77,7 +81,7 @@ jobs:
         run: |
           git config user.name "Claude"
           git config user.email "noreply@anthropic.com"
-          git add episodes/*.json || true
+          for f in episodes/*.json hoerspiele/*.json; do if [ -f "$f" ]; then git add "$f"; fi; done
           git diff --cached --quiet || git commit -m "Neue Podcast-Folgen [skip ci]"
           for i in 1 2 3; do git pull --rebase -q origin main && git push && break; sleep 5; done
 
