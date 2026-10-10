@@ -1,4 +1,8 @@
 {
  "dialog": {},
- "musik": {}
+ "musik": {
+  "intro:music_v2_5": 200,
+  "outro:music_v2_5": 200,
+  "bett:music_v2_5": 200
+ }
 }
