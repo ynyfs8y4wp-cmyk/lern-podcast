@@ -60,7 +60,7 @@ Im Ordner `hoerspiele/` landen persönliche Kinder-Hörspiele aus der Eltern-App
 
 In Apple Podcasts: Mediathek → „…“ → **Sendung per URL folgen** und diese Adresse einfügen.
 
-**Rollen und Stimmen.** Jede Zeile beginnt mit einer Rolle: `ERZÄHLER`, die vier Hauptfiguren `LOTTA` (Löwin), `FINN` (Fuchs), `PIP` (Pinguin), `BRUNO` (Bär), dazu `MAMA`, `PAPA`, `OMA`, `OPA`, `FRAU` und `MANN` (weitere Erwachsene) und `KIND` (andere Kinder). Zeilen mit `GERÄUSCH:` und einer kurzen englischen Beschreibung werden zu einem Soundeffekt (höchstens sechs pro Folge).
+**Rollen und Stimmen.** Jede Zeile beginnt mit einer Rolle: `ERZÄHLER`, die vier Hauptfiguren `LOTTA` (Löwin), `FINN` (Fuchs), `PIP` (Pinguin), `BRUNO` (Bär), `MIRA` (kleine Prinzessin und Zauberin), dazu `MAMA`, `PAPA`, `OMA`, `OPA`, `FRAU` und `MANN` (weitere Erwachsene) und `KIND` (andere Kinder). Zeilen mit `GERÄUSCH:` und einer kurzen englischen Beschreibung werden zu einem Soundeffekt (höchstens sechs pro Folge).
 
 **Stimmen tauschen** (empfohlen, z. B. echte Kinderstimmen aus der ElevenLabs-Stimmbibliothek): Settings → Secrets and variables → Actions → Variables → `HOERSPIEL_VOICES` mit JSON, z. B. `{"LOTTA": "<voice-id>", "PIP": "<voice-id>"}`. Nicht genannte Rollen behalten ihre Standardstimme.
 

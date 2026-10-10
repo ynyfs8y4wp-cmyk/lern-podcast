@@ -64,6 +64,7 @@ ROLE_VOICES = {
     "FINN": "IKne3meq5aSn9XLyUdCD",       # jung, quirlig
     "PIP": "FGY2WhTYpPnrIDTdsKH5",        # neugierig, ein bisschen schüchtern
     "BRUNO": "bIHbv24MWmeRgasZH58o",      # freundlich, gemütlich
+    "MIRA": "pFZP5JQG7iQjIQuC4Bze",       # kleine Prinzessin und Zauberin, hell und warm
     "MAMA": "EXAVITQu4vr4xnSDxMaL",
     "PAPA": "iP95p4xoKVk53GoZ742B",
     "OMA": "XrExE9yKIg1WjnnlVkGX",
@@ -122,7 +123,7 @@ SHOWS = [
         out=SITE / "hoerspiele",
         base=f"{BASE_URL}/hoerspiele",
         title=os.environ.get("HOERSPIEL_TITLE", "Hörspielwerkstatt"),
-        description=("Persönliche Mutmach-Hörspiele für Kinder: Lotta, Finn, Pip und Bruno erleben "
+        description=("Persönliche Mutmach-Hörspiele für Kinder: Lotta, Finn, Pip, Bruno und Prinzessin Mira erleben "
                      "Kita-Start, Schwimmkurs, Abschiede und große Gefühle."),
         cover="cover-hoerspiele.png",
         tag_prefix="hs-",
@@ -493,6 +494,9 @@ def main() -> int:
     redo = set(os.environ.get("REDO", "").split())
     for show in SHOWS:
         run_show(show, work, redo)
+    app = ROOT / "app"   # App-Starter für den Home-Bildschirm
+    if app.is_dir():
+        shutil.copytree(app, SITE / "app", dirs_exist_ok=True)
     return 0
 
 

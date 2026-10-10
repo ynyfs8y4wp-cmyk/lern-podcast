@@ -5,7 +5,7 @@ name: Lern-Podcast
 on:
   push:                      # WANN: sobald eine neue Folge als Text ins Repo kommt
     branches: [main]
-    paths: ["episodes/**.md", "hoerspiele/**.md"]
+    paths: ["episodes/**.md", "hoerspiele/**.md", "app/**"]
   workflow_dispatch:         # oder per Hand über den Button "Run workflow"
     inputs:
       neu:
