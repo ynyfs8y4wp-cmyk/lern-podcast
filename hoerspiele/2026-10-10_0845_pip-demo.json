@@ -1,8 +1,16 @@
 {
   "url": "https://github.com/ynyfs8y4wp-cmyk/lern-podcast/releases/download/hs-2026-10-10_0845_pip-demo/2026-10-10_0845_pip-demo.mp3.enc",
-  "bytes": 3298749,
-  "seconds": 274,
-  "created": "2026-10-10T06:50:52.415520+00:00",
+  "app_audio": "2026-10-10_0845_pip-demo.m4a.enc",
+  "produktion": {
+    "dialog_bloecke": 5,
+    "einzeln_bloecke": 0,
+    "geraeusche": 0,
+    "modell": "eleven_v4",
+    "musik": true
+  },
+  "bytes": 4913200,
+  "seconds": 307,
+  "created": "2026-10-10T18:27:45.915092+00:00",
   "hash": "71eea4ab050d4ed6",
   "verschluesselt": true
 }
