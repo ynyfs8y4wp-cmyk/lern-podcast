@@ -77,6 +77,21 @@ try:
     ROLE_VOICES.update({k.upper(): v for k, v in json.loads(os.environ.get("HOERSPIEL_VOICES") or "{}").items() if v})
 except ValueError:
     print("::warning::HOERSPIEL_VOICES ist kein gültiges JSON und wird ignoriert.")
+# Stimmenkatalog: Kurznamen ("george") oder Voice-IDs, je Hörspiel wählbar über die Kopfzeile
+# stimmen: {"ERZÄHLER": "george", "FUNKEL": "laura"}
+try:
+    KATALOG = json.loads((ROOT / "stimmen" / "katalog.json").read_text(encoding="utf-8"))
+except (OSError, ValueError):
+    KATALOG = {"stimmen": []}
+VOICE_KEYS = {v["key"]: v["id"] for v in KATALOG.get("stimmen", [])}
+
+
+def voice_id(wert: str) -> str:
+    """Kurzname aus dem Katalog oder direkt eine ElevenLabs-Voice-ID."""
+    wert = str(wert or "").strip()
+    return VOICE_KEYS.get(wert.lower(), wert)
+
+
 ALIASES = {"ERZAEHLER": "ERZÄHLER", "ERZÄHLERIN": "ERZÄHLER", "GERAEUSCH": "GERÄUSCH", "SOUND": "GERÄUSCH"}
 
 LINE = re.compile(r"^\s*\**([A-ZÄÖÜa-zäöüß]+)\**\s*:\s*(.+)$")
@@ -157,7 +172,18 @@ def parse_episode(path: Path, show: Show) -> dict:
     meta.setdefault("date", datetime.now(timezone.utc).isoformat())
     meta["id"] = path.stem
     meta["body"] = body.strip()
-    meta["hash"] = hashlib.sha256(meta["body"].encode("utf-8")).hexdigest()[:16]
+    stimmen: dict = {}
+    if meta.get("stimmen"):
+        try:
+            roh = json.loads(meta["stimmen"])
+            stimmen = {ALIASES.get(k.upper(), k.upper()): voice_id(v) for k, v in roh.items()
+                       if v and re.fullmatch(r"[A-Za-zÄÖÜäöüß]+", k) and re.fullmatch(r"[A-Za-z0-9]+", voice_id(v))}
+        except (ValueError, AttributeError):
+            print(f"::warning::{path.name}: Kopfzeile 'stimmen' ist kein gültiges JSON, nehme Standardstimmen.")
+    meta["stimmen"] = stimmen
+    # Der Fingerabdruck umfasst die Stimmwahl: neue Stimmen = neue Vertonung
+    basis = meta["body"] + ("\n" + json.dumps(stimmen, sort_keys=True, ensure_ascii=False) if stimmen else "")
+    meta["hash"] = hashlib.sha256(basis.encode("utf-8")).hexdigest()[:16]
     return meta
 
 
@@ -201,7 +227,7 @@ def dialog_turns(ep: dict, show: Show) -> list[tuple[str, str]]:
                 if desc:
                     turns.append((role, desc))
             continue
-        if role not in show.voices and not show.roles_any:
+        if role not in show.voices and role not in (ep.get("stimmen") or {}) and not show.roles_any:
             continue
         text = clean_spoken(m.group(2))
         if text:
@@ -323,7 +349,7 @@ def produce_dialog(ep: dict, turns: list[tuple[str, str]], work: Path, mp3: Path
                 sfx_used += 1
                 parts.append((part, True))
             continue
-        voice = show.voices.get(who)
+        voice = (ep.get("stimmen") or {}).get(who) or show.voices.get(who)
         if not voice:
             print(f"::warning::Unbekannte Rolle {who}, spricht der Erzähler.")
             voice = show.voices.get("ERZÄHLER") or next(iter(show.voices.values()))
@@ -495,7 +521,7 @@ def run_show(show: Show, work: Path, redo: set[str]) -> int:
         info = json.loads(meta_path.read_text(encoding="utf-8")) if meta_path.exists() else None
         changed = bool(info and info.get("hash") and info["hash"] != ep["hash"])
         if changed:
-            print(f"[{show.key}] Text von {ep['id']} wurde geändert, spreche neu ein.")
+            print(f"[{show.key}] Text oder Stimmen von {ep['id']} wurden geändert, spreche neu ein.")
         if info and ep["id"] not in redo and not changed:
             pass
         else:
@@ -524,6 +550,9 @@ def main() -> int:
     app = ROOT / "app"   # App-Starter für den Home-Bildschirm
     if app.is_dir():
         shutil.copytree(app, SITE / "app", dirs_exist_ok=True)
+    stimmen = ROOT / "stimmen"   # Katalog und Hörproben für die Stimmauswahl
+    if stimmen.is_dir():
+        shutil.copytree(stimmen, SITE / "stimmen", dirs_exist_ok=True)
     return 0
 
 
