@@ -1,0 +1,2886 @@
+{
+  "sprachen": [
+    {
+      "key": "de",
+      "name": "Deutsch"
+    },
+    {
+      "key": "en",
+      "name": "English"
+    },
+    {
+      "key": "es",
+      "name": "Español"
+    },
+    {
+      "key": "pt",
+      "name": "Português"
+    }
+  ],
+  "ui": {
+    "over": [
+      "Mutmach-Hörspiele für dein Kind",
+      "Brave little audio stories for your child",
+      "Audiocuentos que dan valor a tu hijo",
+      "Audiohistórias de coragem para seu filho"
+    ],
+    "titel": [
+      "Hörspielwerkstatt",
+      "Story Workshop",
+      "Taller de Audiocuentos",
+      "Oficina de Audiohistórias"
+    ],
+    "kiKopf": [
+      "Mit KI geschrieben (Claude) und gesprochen (ElevenLabs)",
+      "Written (Claude) and voiced (ElevenLabs) with AI",
+      "Escrito (Claude) y narrado (ElevenLabs) con IA",
+      "Escrito (Claude) e narrado (ElevenLabs) com IA"
+    ],
+    "appSprache": [
+      "App-Sprache",
+      "App language",
+      "Idioma de la app",
+      "Idioma do app"
+    ],
+    "tabNeu": [
+      "Neues Hörspiel",
+      "New story",
+      "Nuevo cuento",
+      "Nova história"
+    ],
+    "tabLib": [
+      "Bibliothek",
+      "Library",
+      "Biblioteca",
+      "Biblioteca"
+    ],
+    "tabHilfe": [
+      "Hilfe",
+      "Help",
+      "Ayuda",
+      "Ajuda"
+    ],
+    "tabKonto": [
+      "Konto",
+      "Account",
+      "Cuenta",
+      "Conta"
+    ],
+    "statHs1": [
+      "Hörspiel",
+      "story",
+      "cuento",
+      "história"
+    ],
+    "statHsN": [
+      "Hörspiele",
+      "stories",
+      "cuentos",
+      "histórias"
+    ],
+    "statArbeit": [
+      "in Arbeit",
+      "in progress",
+      "en proceso",
+      "em produção"
+    ],
+    "statKind1": [
+      "Kind",
+      "child",
+      "niño",
+      "criança"
+    ],
+    "statKindN": [
+      "Kinder",
+      "children",
+      "niños",
+      "crianças"
+    ],
+    "laden": [
+      "Lade …",
+      "Loading …",
+      "Cargando …",
+      "Carregando …"
+    ],
+    "schrittVon": [
+      "Schritt {n} von {m}",
+      "Step {n} of {m}",
+      "Paso {n} de {m}",
+      "Passo {n} de {m}"
+    ],
+    "neuAnfangen": [
+      "Neu anfangen",
+      "Start over",
+      "Empezar de nuevo",
+      "Recomeçar"
+    ],
+    "s1": [
+      "Kind",
+      "Child",
+      "Niño",
+      "Criança"
+    ],
+    "s2": [
+      "Situation",
+      "Situation",
+      "Situación",
+      "Situação"
+    ],
+    "s3": [
+      "Figur",
+      "Character",
+      "Personaje",
+      "Personagem"
+    ],
+    "s4": [
+      "Ansatz",
+      "Approach",
+      "Enfoque",
+      "Abordagem"
+    ],
+    "s5": [
+      "Fertig",
+      "Finish",
+      "Listo",
+      "Pronto"
+    ],
+    "weiter": [
+      "Weiter",
+      "Next",
+      "Siguiente",
+      "Próximo"
+    ],
+    "zurueck": [
+      "Zurück",
+      "Back",
+      "Atrás",
+      "Voltar"
+    ],
+    "weiterZu": [
+      "Weiter: {x}",
+      "Next: {x}",
+      "Siguiente: {x}",
+      "Próximo: {x}"
+    ],
+    "k1Titel": [
+      "Für wen ist das Hörspiel?",
+      "Who is the story for?",
+      "¿Para quién es el cuento?",
+      "Para quem é a história?"
+    ],
+    "k1Lead": [
+      "Erzähl uns ein bisschen von deinem Kind. Daraus entstehen kleine Wiedererkennungsmomente in der Geschichte.",
+      "Tell us a little about your child. These details become small moments of recognition in the story.",
+      "Cuéntanos un poco sobre tu hijo. Así la historia tendrá pequeños detalles que reconocerá.",
+      "Conte um pouco sobre seu filho. Assim a história terá pequenos detalhes que ele vai reconhecer."
+    ],
+    "vorname": [
+      "Vorname",
+      "First name",
+      "Nombre",
+      "Nome"
+    ],
+    "vornameHint": [
+      "Bleibt bei dir und kommt nur ins Hörspiel, wenn du es im letzten Schritt erlaubst.",
+      "Stays with you and is only used in the story if you allow it in the last step.",
+      "Se queda contigo y solo aparece en el cuento si lo permites en el último paso.",
+      "Fica com você e só aparece na história se você permitir no último passo."
+    ],
+    "vornamePh": [
+      "z. B. Emma",
+      "e.g. Emma",
+      "p. ej. Emma",
+      "p. ex. Emma"
+    ],
+    "alter": [
+      "Wie alt ist dein Kind?",
+      "How old is your child?",
+      "¿Cuántos años tiene?",
+      "Quantos anos tem?"
+    ],
+    "jahre": [
+      "{n} Jahre",
+      "{n} years",
+      "{n} años",
+      "{n} anos"
+    ],
+    "mag": [
+      "Was mag dein Kind?",
+      "What does your child love?",
+      "¿Qué le gusta a tu hijo?",
+      "Do que seu filho gosta?"
+    ],
+    "magHint": [
+      "Lieblingstier, Kuscheltier, Spiele, Familie, was tröstet",
+      "Favourite animal, cuddly toy, games, family, what comforts them",
+      "Animal favorito, peluche, juegos, familia, qué le consuela",
+      "Animal favorito, bichinho de pelúcia, brincadeiras, família, o que conforta"
+    ],
+    "magPh": [
+      "z. B. Liebt Dinos und Matschhosen. Kuschelhase heißt Hoppel.",
+      "e.g. Loves dinosaurs and muddy puddles. Cuddly bunny is called Hoppy.",
+      "p. ej. Le encantan los dinosaurios. Su conejito se llama Saltarín.",
+      "p. ex. Adora dinossauros. O coelhinho de pelúcia se chama Pulinho."
+    ],
+    "merken": [
+      "Als Kinderprofil merken",
+      "Save as child profile",
+      "Guardar como perfil",
+      "Salvar como perfil"
+    ],
+    "merkenHint": [
+      "Beim nächsten Mal genügt ein Tipp.",
+      "Next time a single tap is enough.",
+      "La próxima vez basta un toque.",
+      "Na próxima vez basta um toque."
+    ],
+    "anderesKind": [
+      "Anderes Kind",
+      "Another child",
+      "Otro niño",
+      "Outra criança"
+    ],
+    "k2Titel": [
+      "Aktuelle Situation: Was beschäftigt dein Kind gerade?",
+      "Current situation: what is on your child's mind?",
+      "Situación actual: ¿qué le preocupa ahora?",
+      "Situação atual: o que está ocupando a cabeça do seu filho?"
+    ],
+    "k2Lead": [
+      "Wähle bis zu drei Themen. Je genauer du unten erzählst, was ansteht, desto passender wird die Geschichte.",
+      "Pick up to three topics. The more you tell us below, the better the story will fit.",
+      "Elige hasta tres temas. Cuanto más nos cuentes abajo, mejor encajará la historia.",
+      "Escolha até três temas. Quanto mais você contar abaixo, melhor a história vai se encaixar."
+    ],
+    "gewaehlt": [
+      "{n} von 3 gewählt",
+      "{n} of 3 selected",
+      "{n} de 3 elegidos",
+      "{n} de 3 escolhidos"
+    ],
+    "konkret": [
+      "Was steht konkret an?",
+      "What exactly is coming up?",
+      "¿Qué va a pasar exactamente?",
+      "O que vai acontecer exatamente?"
+    ],
+    "konkretHint": [
+      "optional, aber sehr hilfreich",
+      "optional, but very helpful",
+      "opcional, pero muy útil",
+      "opcional, mas muito útil"
+    ],
+    "konkretPh": [
+      "z. B. Am Montag beginnt die Eingewöhnung in der Kita. Beim Abschied weint sie jedes Mal.",
+      "e.g. Nursery settling-in starts on Monday. She cries every time we say goodbye.",
+      "p. ej. El lunes empieza la adaptación a la guardería. Llora cada vez que nos despedimos.",
+      "p. ex. Na segunda começa a adaptação na creche. Ela chora toda vez que nos despedimos."
+    ],
+    "mitspielen": [
+      "Wer soll mitspielen?",
+      "Who should be in the story?",
+      "¿Quién debe aparecer?",
+      "Quem deve aparecer?"
+    ],
+    "optional": [
+      "optional",
+      "optional",
+      "opcional",
+      "opcional"
+    ],
+    "k3Titel": [
+      "Wer erlebt die Geschichte?",
+      "Who is the hero?",
+      "¿Quién vive la aventura?",
+      "Quem vive a aventura?"
+    ],
+    "k3Lead": [
+      "Such eine Heldin oder einen Helden aus. „passt gut“ zeigt, wer zu euren Themen passt.",
+      "Choose a hero. “Good fit” shows who suits your topics.",
+      "Elige un protagonista. «Encaja bien» muestra quién va con vuestros temas.",
+      "Escolha um protagonista. “Combina bem” mostra quem combina com seus temas."
+    ],
+    "passtGut": [
+      "passt gut",
+      "good fit",
+      "encaja bien",
+      "combina bem"
+    ],
+    "k4Titel": [
+      "Wie soll die Geschichte helfen?",
+      "How should the story help?",
+      "¿Cómo debe ayudar la historia?",
+      "Como a história deve ajudar?"
+    ],
+    "k4Lead": [
+      "Pädagogische Ansätze bestimmen, wie die Figur ihr Problem löst. Unsicher? Nimm einfach unsere Empfehlung.",
+      "Teaching approaches decide how the character solves the problem. Not sure? Just take our suggestion.",
+      "Los enfoques pedagógicos deciden cómo el personaje resuelve el problema. ¿Dudas? Usa nuestra recomendación.",
+      "As abordagens pedagógicas definem como o personagem resolve o problema. Na dúvida? Use nossa recomendação."
+    ],
+    "empfohlenFuer": [
+      "Empfohlen für eure Themen: {x}",
+      "Recommended for your topics: {x}",
+      "Recomendado para vuestros temas: {x}",
+      "Recomendado para seus temas: {x}"
+    ],
+    "uebernehmen": [
+      "Empfehlung übernehmen",
+      "Use suggestion",
+      "Usar recomendación",
+      "Usar recomendação"
+    ],
+    "empfohlen": [
+      "empfohlen",
+      "recommended",
+      "recomendado",
+      "recomendado"
+    ],
+    "und": [
+      "und",
+      "and",
+      "y",
+      "e"
+    ],
+    "k5Titel": [
+      "Fast geschafft!",
+      "Almost done!",
+      "¡Casi listo!",
+      "Quase pronto!"
+    ],
+    "laenge": [
+      "Wie lang?",
+      "How long?",
+      "¿Qué duración?",
+      "Qual duração?"
+    ],
+    "stimmung": [
+      "Welche Stimmung?",
+      "What mood?",
+      "¿Qué ambiente?",
+      "Qual clima?"
+    ],
+    "hsSprache": [
+      "Sprache des Hörspiels",
+      "Language of the story",
+      "Idioma del cuento",
+      "Idioma da história"
+    ],
+    "hsSpracheHint": [
+      "Text und Stimmen in dieser Sprache. Standard ist Deutsch.",
+      "Text and voices in this language. Default is German.",
+      "Texto y voces en este idioma. Por defecto, alemán.",
+      "Texto e vozes neste idioma. O padrão é alemão."
+    ],
+    "schlaf": [
+      "Einschlafgeschichte",
+      "Bedtime story",
+      "Cuento para dormir",
+      "História para dormir"
+    ],
+    "schlafHint": [
+      "Ruhiges Tempo und ein sanftes Ende mit kleiner Atemübung",
+      "Calm pace and a gentle ending with a little breathing exercise",
+      "Ritmo tranquilo y un final suave con un pequeño ejercicio de respiración",
+      "Ritmo calmo e um final suave com um pequeno exercício de respiração"
+    ],
+    "mitName": [
+      "Vornamen im Hörspiel verwenden",
+      "Use the first name in the story",
+      "Usar el nombre en el cuento",
+      "Usar o nome na história"
+    ],
+    "mitNameHint": [
+      "Hörspiele liegen verschlüsselt, die Hörspiel-Adresse ist nicht öffentlich gelistet.",
+      "Stories are stored encrypted and the audio address is not publicly listed.",
+      "Los cuentos se guardan cifrados y la dirección no aparece en listados públicos.",
+      "As histórias ficam criptografadas e o endereço não é listado publicamente."
+    ],
+    "erlebt": [
+      "{f} erlebt eine Geschichte für {k}",
+      "{f} has an adventure for {k}",
+      "{f} vive una historia para {k}",
+      "{f} vive uma história para {k}"
+    ],
+    "deinKind": [
+      "dein Kind",
+      "your child",
+      "tu hijo",
+      "seu filho"
+    ],
+    "thema": [
+      "Thema",
+      "Topic",
+      "Tema",
+      "Tema"
+    ],
+    "ansatz": [
+      "Ansatz",
+      "Approach",
+      "Enfoque",
+      "Abordagem"
+    ],
+    "rahmen": [
+      "Rahmen",
+      "Setting",
+      "Formato",
+      "Formato"
+    ],
+    "sprache": [
+      "Sprache",
+      "Language",
+      "Idioma",
+      "Idioma"
+    ],
+    "eureBeschreibung": [
+      "eure Beschreibung",
+      "your description",
+      "vuestra descripción",
+      "sua descrição"
+    ],
+    "zumEinschlafen": [
+      "zum Einschlafen",
+      "for bedtime",
+      "para dormir",
+      "para dormir"
+    ],
+    "kiBestellen": [
+      "Das Hörspiel wird von KI geschrieben und gesprochen und endet mit einem kurzen Hinweis darauf. Lies es vor dem Vorspielen kurz durch.",
+      "The story is written and voiced by AI and ends with a short note saying so. Please read it before playing it to your child.",
+      "El cuento lo escribe y narra una IA y termina con un breve aviso. Léelo antes de ponérselo a tu hijo.",
+      "A história é escrita e narrada por IA e termina com um breve aviso. Leia antes de mostrar ao seu filho."
+    ],
+    "bestellen": [
+      "Hörspiel bestellen",
+      "Order story",
+      "Pedir cuento",
+      "Pedir história"
+    ],
+    "fehltNoch": [
+      "Noch offen:",
+      "Still missing:",
+      "Falta:",
+      "Falta:"
+    ],
+    "fAlter": [
+      "Alter des Kindes",
+      "child's age",
+      "edad del niño",
+      "idade da criança"
+    ],
+    "fThema": [
+      "ein Thema oder eine Beschreibung",
+      "a topic or description",
+      "un tema o descripción",
+      "um tema ou descrição"
+    ],
+    "fFigur": [
+      "eine Figur",
+      "a character",
+      "un personaje",
+      "um personagem"
+    ],
+    "fAnsatz": [
+      "mindestens ein Ansatz",
+      "at least one approach",
+      "al menos un enfoque",
+      "pelo menos uma abordagem"
+    ],
+    "bestelle": [
+      "Bestelle …",
+      "Ordering …",
+      "Enviando …",
+      "Enviando …"
+    ],
+    "anDieArbeit": [
+      "{f} macht sich an die Arbeit!",
+      "{f} is getting to work!",
+      "¡{f} se pone manos a la obra!",
+      "{f} está começando a trabalhar!"
+    ],
+    "erfolgText": [
+      "In ein paar Minuten steht das Skript in der Bibliothek. Die vertonte Folge kommt kurz danach.",
+      "In a few minutes the script will be in your library. The audio follows shortly after.",
+      "En unos minutos el guion estará en la biblioteca. El audio llega poco después.",
+      "Em poucos minutos o roteiro estará na biblioteca. O áudio chega logo depois."
+    ],
+    "zurBib": [
+      "Zur Bibliothek",
+      "Go to library",
+      "Ir a la biblioteca",
+      "Ir para a biblioteca"
+    ],
+    "nochEins": [
+      "Noch ein Hörspiel",
+      "Another story",
+      "Otro cuento",
+      "Outra história"
+    ],
+    "gespeichert": [
+      "Bestellung gespeichert",
+      "Order saved",
+      "Pedido guardado",
+      "Pedido salvo"
+    ],
+    "inWerkstatt": [
+      "In der Werkstatt",
+      "In the workshop",
+      "En el taller",
+      "Na oficina"
+    ],
+    "wartet": [
+      "wartet",
+      "waiting",
+      "en espera",
+      "aguardando"
+    ],
+    "schreibt": [
+      "wird geschrieben",
+      "being written",
+      "escribiendo",
+      "sendo escrita"
+    ],
+    "problem": [
+      "Problem",
+      "problem",
+      "problema",
+      "problema"
+    ],
+    "nichtMoeglich": [
+      "nicht möglich",
+      "not possible",
+      "no es posible",
+      "não é possível"
+    ],
+    "vorMin": [
+      "Bestellt vor {n} Min.",
+      "Ordered {n} min ago",
+      "Pedido hace {n} min",
+      "Pedido há {n} min"
+    ],
+    "erneut": [
+      "Erneut starten",
+      "Start again",
+      "Reintentar",
+      "Tentar de novo"
+    ],
+    "verwerfen": [
+      "verwerfen",
+      "discard",
+      "descartar",
+      "descartar"
+    ],
+    "imPodcast": [
+      "Anhören",
+      "Listen",
+      "Escuchar",
+      "Ouvir"
+    ],
+    "anhoeren": [
+      "anhören",
+      "listen",
+      "escuchar",
+      "ouvir"
+    ],
+    "nurText": [
+      "nur Text",
+      "text only",
+      "solo texto",
+      "só texto"
+    ],
+    "wirdVertont": [
+      "wird vertont",
+      "being voiced",
+      "grabando",
+      "sendo gravada"
+    ],
+    "leerTitel": [
+      "Noch keine Hörspiele",
+      "No stories yet",
+      "Aún no hay cuentos",
+      "Ainda não há histórias"
+    ],
+    "leerText": [
+      "Hier sammeln sich eure Geschichten zum Anhören, Vorlesen und mit Tipps für das Gespräch danach.",
+      "Your stories collect here to listen to, read aloud, with tips for talking afterwards.",
+      "Aquí se reúnen vuestros cuentos para escuchar, leer y con ideas para hablar después.",
+      "Aqui ficam suas histórias para ouvir, ler e com dicas para conversar depois."
+    ],
+    "erstesBestellen": [
+      "Erstes Hörspiel bestellen",
+      "Order your first story",
+      "Pedir el primer cuento",
+      "Pedir a primeira história"
+    ],
+    "fuer": [
+      "für {k}",
+      "for {k}",
+      "para {k}",
+      "para {k}"
+    ],
+    "min": [
+      "{n} Min.",
+      "{n} min",
+      "{n} min",
+      "{n} min"
+    ],
+    "caMin": [
+      "ca. {n} Minuten",
+      "about {n} minutes",
+      "unos {n} minutos",
+      "cerca de {n} minutos"
+    ],
+    "vorlesen": [
+      "Vorlesen lassen",
+      "Read aloud",
+      "Leer en voz alta",
+      "Ler em voz alta"
+    ],
+    "imPodcastHoeren": [
+      "In der Podcast-App ›",
+      "In the podcast app ›",
+      "En la app de pódcast ›",
+      "No app de podcast ›"
+    ],
+    "neuMitEinst": [
+      "Neues mit diesen Einstellungen",
+      "New one with these settings",
+      "Otro con estos ajustes",
+      "Outra com estas opções"
+    ],
+    "audioFertig": [
+      "Bereit zum Anhören.",
+      "Ready to listen.",
+      "Listo para escuchar.",
+      "Pronto para ouvir."
+    ],
+    "audioFehler": [
+      "Die Vertonung hat nicht geklappt. Du kannst das Skript vorlesen lassen.",
+      "Voicing didn't work. You can have the script read aloud.",
+      "La grabación falló. Puedes hacer que se lea el guion.",
+      "A gravação falhou. Você pode ouvir o roteiro lido em voz alta."
+    ],
+    "audioWartet": [
+      "Die Folge wird gerade vertont und ist in 5 bis 10 Minuten da.",
+      "The episode is being voiced and will be ready in 5 to 10 minutes.",
+      "El episodio se está grabando y estará listo en 5 a 10 minutos.",
+      "O episódio está sendo gravado e fica pronto em 5 a 10 minutos."
+    ],
+    "kiHs": [
+      "KI-generiert · Text: Claude (Anthropic) · Stimmen und Geräusche: ElevenLabs. Lies das Skript kurz durch, bevor du es deinem Kind vorspielst.",
+      "AI-generated · Text: Claude (Anthropic) · Voices and sounds: ElevenLabs. Please read the script before playing it to your child.",
+      "Generado con IA · Texto: Claude (Anthropic) · Voces y sonidos: ElevenLabs. Lee el guion antes de ponérselo a tu hijo.",
+      "Gerado por IA · Texto: Claude (Anthropic) · Vozes e sons: ElevenLabs. Leia o roteiro antes de mostrar ao seu filho."
+    ],
+    "fuerEltern": [
+      "Für Eltern",
+      "For parents",
+      "Para padres",
+      "Para os pais"
+    ],
+    "fragen": [
+      "Fragen für das Gespräch danach",
+      "Questions to talk about afterwards",
+      "Preguntas para hablar después",
+      "Perguntas para conversar depois"
+    ],
+    "ritual": [
+      "Mutmach-Ritual:",
+      "Courage ritual:",
+      "Ritual de valor:",
+      "Ritual de coragem:"
+    ],
+    "skript": [
+      "Das ganze Skript lesen",
+      "Read the full script",
+      "Leer el guion completo",
+      "Ler o roteiro completo"
+    ],
+    "geraeusch": [
+      "Geräusch",
+      "Sound",
+      "Sonido",
+      "Som"
+    ],
+    "entfernen": [
+      "Aus der Bibliothek entfernen",
+      "Remove from library",
+      "Quitar de la biblioteca",
+      "Remover da biblioteca"
+    ],
+    "entfernenFrage": [
+      "Wirklich aus der Bibliothek entfernen?",
+      "Really remove from the library?",
+      "¿Quitar de la biblioteca?",
+      "Remover mesmo da biblioteca?"
+    ],
+    "ja": [
+      "Ja",
+      "Yes",
+      "Sí",
+      "Sim"
+    ],
+    "abbrechen": [
+      "Abbrechen",
+      "Cancel",
+      "Cancelar",
+      "Cancelar"
+    ],
+    "wirdVorgelesen": [
+      "Wird vorgelesen",
+      "Reading aloud",
+      "Leyendo",
+      "Lendo"
+    ],
+    "pause": [
+      "Pause",
+      "Pause",
+      "Pausa",
+      "Pausar"
+    ],
+    "weiterLesen": [
+      "Weiter",
+      "Resume",
+      "Seguir",
+      "Continuar"
+    ],
+    "stopp": [
+      "Stopp",
+      "Stop",
+      "Parar",
+      "Parar"
+    ],
+    "bibZurueck": [
+      "‹ Bibliothek",
+      "‹ Library",
+      "‹ Biblioteca",
+      "‹ Biblioteca"
+    ],
+    "sofHelp": [
+      "So funktioniert's",
+      "How it works",
+      "Cómo funciona",
+      "Como funciona"
+    ],
+    "sofText": [
+      "In fünf kurzen Schritten bestellst du ein Hörspiel. Nach wenigen Minuten steht es in der Bibliothek, kurz danach ist es vertont.",
+      "Order a story in five short steps. Within minutes it's in your library, voiced shortly after.",
+      "Pide un cuento en cinco pasos. En minutos estará en la biblioteca y poco después con voces.",
+      "Peça uma história em cinco passos. Em minutos ela está na biblioteca e logo depois com vozes."
+    ],
+    "introNochmal": [
+      "Einführung noch einmal ansehen",
+      "Show the introduction again",
+      "Ver la introducción otra vez",
+      "Ver a introdução de novo"
+    ],
+    "podcastEinrichten": [
+      "Zusätzlich in der Podcast-App hören (optional)",
+      "Also listen in a podcast app (optional)",
+      "Escuchar también en una app de pódcast (opcional)",
+      "Ouvir também num app de podcast (opcional)"
+    ],
+    "podcastHint": [
+      "Normalerweise hört ihr direkt hier in der App. Wer mag, kann die Hörspiele zusätzlich in Apple Podcasts abonnieren: Mediathek → „…“ → „Sendung per URL folgen“ → Adresse einfügen. Die Adresse bitte nicht weitergeben.",
+      "You normally listen right here in the app. If you like, you can also subscribe in Apple Podcasts: Library → “…” → “Follow a Show by URL” → paste the address. Please don't share it.",
+      "Normalmente escucháis aquí en la app. Si queréis, también podéis suscribiros en Apple Podcasts: Biblioteca → «…» → «Seguir un programa por URL» → pegar la dirección. No la compartáis.",
+      "Normalmente vocês ouvem aqui no app. Se quiserem, podem assinar também no Apple Podcasts: Biblioteca → “…” → “Seguir um programa por URL” → colar o endereço. Não compartilhem."
+    ],
+    "kopieren": [
+      "Kopieren",
+      "Copy",
+      "Copiar",
+      "Copiar"
+    ],
+    "kopiert": [
+      "Kopiert.",
+      "Copied.",
+      "Copiado.",
+      "Copiado."
+    ],
+    "markiert": [
+      "Adresse ist markiert. Tippe auf Kopieren.",
+      "Address selected. Tap Copy.",
+      "Dirección seleccionada. Toca Copiar.",
+      "Endereço selecionado. Toque em Copiar."
+    ],
+    "ueberspringen": [
+      "Überspringen",
+      "Skip",
+      "Saltar",
+      "Pular"
+    ],
+    "losGehts": [
+      "Los geht's",
+      "Let's go",
+      "¡Vamos!",
+      "Vamos lá"
+    ],
+    "nichtGeladen": [
+      "Deine Werkstatt kann hier nicht geladen werden. Öffne die Seite angemeldet in der Claude-App oder auf claude.ai.",
+      "Your workshop can't load here. Open the page signed in, in the Claude app or on claude.ai.",
+      "Tu taller no se puede cargar aquí. Abre la página con sesión iniciada en la app de Claude o en claude.ai.",
+      "Sua oficina não pode ser carregada aqui. Abra a página conectado no app Claude ou em claude.ai."
+    ],
+    "nurAngemeldet": [
+      "Speichern geht nur angemeldet in der Claude-App oder auf claude.ai.",
+      "Saving only works when signed in to the Claude app or claude.ai.",
+      "Solo se puede guardar con sesión iniciada en la app de Claude o en claude.ai.",
+      "Só é possível salvar conectado no app Claude ou em claude.ai."
+    ],
+    "nichtGespeichert": [
+      "Nicht gespeichert. Bitte erneut versuchen.",
+      "Not saved. Please try again.",
+      "No se guardó. Inténtalo de nuevo.",
+      "Não foi salvo. Tente novamente."
+    ],
+    "uebernommen": [
+      "Übernommen. Erzähl kurz, was diesmal ansteht.",
+      "Copied over. Tell us briefly what's coming up this time.",
+      "Copiado. Cuéntanos qué toca esta vez.",
+      "Copiado. Conte o que vem desta vez."
+    ],
+    "geheZu": [
+      "zu Schritt {n}",
+      "go to step {n}",
+      "ir al paso {n}",
+      "ir para o passo {n}"
+    ],
+    "willkommen": [
+      "Schön, dass du da bist!",
+      "Lovely to have you here!",
+      "¡Qué bien que estés aquí!",
+      "Que bom que você está aqui!"
+    ],
+    "loginText": [
+      "Melde dich mit deiner E-Mail-Adresse an. Du bekommst einen sechsstelligen Code, ein Passwort brauchst du nicht.",
+      "Sign in with your email address. You'll get a six-digit code, no password needed.",
+      "Inicia sesión con tu correo. Recibirás un código de seis cifras, sin contraseña.",
+      "Entre com seu e-mail. Você recebe um código de seis dígitos, sem senha."
+    ],
+    "email": [
+      "E-Mail",
+      "Email",
+      "Correo electrónico",
+      "E-mail"
+    ],
+    "codeSchicken": [
+      "Code schicken",
+      "Send code",
+      "Enviar código",
+      "Enviar código"
+    ],
+    "codeAusMail": [
+      "Code aus der E-Mail",
+      "Code from the email",
+      "Código del correo",
+      "Código do e-mail"
+    ],
+    "anmelden": [
+      "Anmelden",
+      "Sign in",
+      "Entrar",
+      "Entrar"
+    ],
+    "andereMail": [
+      "Andere E-Mail verwenden",
+      "Use a different email",
+      "Usar otro correo",
+      "Usar outro e-mail"
+    ],
+    "oder": [
+      "oder",
+      "or",
+      "o",
+      "ou"
+    ],
+    "mitApple": [
+      "Mit Apple anmelden",
+      "Sign in with Apple",
+      "Iniciar sesión con Apple",
+      "Entrar com a Apple"
+    ],
+    "mitGoogle": [
+      "Mit Google anmelden",
+      "Sign in with Google",
+      "Iniciar sesión con Google",
+      "Entrar com o Google"
+    ],
+    "sendeCode": [
+      "Sende Code …",
+      "Sending code …",
+      "Enviando código …",
+      "Enviando código …"
+    ],
+    "postfach": [
+      "Schau in dein Postfach. Der Code ist eine Stunde gültig.",
+      "Check your inbox. The code is valid for one hour.",
+      "Revisa tu correo. El código vale una hora.",
+      "Veja sua caixa de entrada. O código vale por uma hora."
+    ],
+    "codeFalsch": [
+      "Der Code passt nicht oder ist abgelaufen.",
+      "The code is wrong or has expired.",
+      "El código no es correcto o ha caducado.",
+      "O código está errado ou expirou."
+    ],
+    "einladung": [
+      "Dein Einladungscode",
+      "Your invitation code",
+      "Tu código de invitación",
+      "Seu código de convite"
+    ],
+    "einladungText": [
+      "Die Hörspielwerkstatt ist gerade in der Testphase für Freunde und Familie. Gib den Code ein, den du bekommen hast.",
+      "The Story Workshop is in a test phase for friends and family. Enter the code you received.",
+      "El taller está en fase de prueba para amigos y familia. Introduce el código que recibiste.",
+      "A oficina está em fase de testes para amigos e família. Digite o código que você recebeu."
+    ],
+    "code": [
+      "Code",
+      "Code",
+      "Código",
+      "Código"
+    ],
+    "freischalten": [
+      "Freischalten",
+      "Activate",
+      "Activar",
+      "Ativar"
+    ],
+    "pruefe": [
+      "Prüfe …",
+      "Checking …",
+      "Comprobando …",
+      "Verificando …"
+    ],
+    "abmelden": [
+      "Abmelden",
+      "Sign out",
+      "Cerrar sesión",
+      "Sair"
+    ],
+    "deinKonto": [
+      "Dein Konto",
+      "Your account",
+      "Tu cuenta",
+      "Sua conta"
+    ],
+    "genutzt": [
+      "{v} von {k} Hörspielen in diesem Monat genutzt.",
+      "{v} of {k} stories used this month.",
+      "{v} de {k} cuentos usados este mes.",
+      "{v} de {k} histórias usadas este mês."
+    ],
+    "frei": [
+      "Noch {f} von {k} Hörspielen in diesem Monat.",
+      "{f} of {k} stories left this month.",
+      "Quedan {f} de {k} cuentos este mes.",
+      "Restam {f} de {k} histórias este mês."
+    ],
+    "freiKurz": [
+      "frei diesen Monat",
+      "left this month",
+      "libres este mes",
+      "livres este mês"
+    ],
+    "kontingentWeg": [
+      "Dein Kontingent für diesen Monat ist aufgebraucht.",
+      "You've used all your stories for this month.",
+      "Has usado todos tus cuentos de este mes.",
+      "Você usou todas as histórias deste mês."
+    ],
+    "kinderprofile": [
+      "Kinderprofile",
+      "Child profiles",
+      "Perfiles de niños",
+      "Perfis das crianças"
+    ],
+    "keineProfile": [
+      "Noch keine Kinderprofile. Sie entstehen beim Bestellen.",
+      "No child profiles yet. They are created when you order.",
+      "Aún no hay perfiles. Se crean al pedir.",
+      "Ainda não há perfis. Eles são criados ao pedir."
+    ],
+    "loeschen": [
+      "löschen",
+      "delete",
+      "eliminar",
+      "excluir"
+    ],
+    "profilLoeschen": [
+      "Profil löschen?",
+      "Delete profile?",
+      "¿Eliminar perfil?",
+      "Excluir perfil?"
+    ],
+    "kontoLoeschen": [
+      "Konto löschen",
+      "Delete account",
+      "Eliminar cuenta",
+      "Excluir conta"
+    ],
+    "kontoLoeschenText": [
+      "Löscht dein Konto mit allen Kinderprofilen, Hörspielen und Audiodateien endgültig.",
+      "Permanently deletes your account with all child profiles, stories and audio files.",
+      "Elimina definitivamente tu cuenta con todos los perfiles, cuentos y audios.",
+      "Exclui definitivamente sua conta com todos os perfis, histórias e áudios."
+    ],
+    "kontoLoeschenKnopf": [
+      "Konto endgültig löschen",
+      "Delete account permanently",
+      "Eliminar cuenta definitivamente",
+      "Excluir conta definitivamente"
+    ],
+    "wirklichAlles": [
+      "Wirklich alles löschen?",
+      "Really delete everything?",
+      "¿Eliminar todo de verdad?",
+      "Excluir tudo mesmo?"
+    ],
+    "datenschutz": [
+      "Datenschutz",
+      "Privacy",
+      "Privacidad",
+      "Privacidade"
+    ],
+    "impressum": [
+      "Impressum",
+      "Legal notice",
+      "Aviso legal",
+      "Aviso legal"
+    ],
+    "homeTitel": [
+      "Als App auf den Home-Bildschirm",
+      "Add to your home screen",
+      "Añadir a la pantalla de inicio",
+      "Adicionar à tela inicial"
+    ],
+    "homeText": [
+      "iPhone: In Safari auf Teilen und dann „Zum Home-Bildschirm“ tippen. Android: im Chrome-Menü „App installieren“ wählen.",
+      "iPhone: in Safari tap Share, then “Add to Home Screen”. Android: choose “Install app” in the Chrome menu.",
+      "iPhone: en Safari toca Compartir y luego «Añadir a pantalla de inicio». Android: en el menú de Chrome elige «Instalar app».",
+      "iPhone: no Safari toque em Compartilhar e depois em “Adicionar à Tela de Início”. Android: no menu do Chrome escolha “Instalar app”."
+    ],
+    "spielerHint": [
+      "Die Folge wird gerade vertont. Gleich kannst du sie hier anhören.",
+      "The episode is being voiced. You can listen here shortly.",
+      "El episodio se está grabando. Pronto podrás escucharlo aquí.",
+      "O episódio está sendo gravado. Em breve você poderá ouvir aqui."
+    ],
+    "audioNichtGeladen": [
+      "Audio konnte nicht geladen werden.",
+      "Audio could not be loaded.",
+      "No se pudo cargar el audio.",
+      "Não foi possível carregar o áudio."
+    ],
+    "fehlgeschlagen": [
+      "fehlgeschlagen",
+      "failed",
+      "falló",
+      "falhou"
+    ],
+    "bestelltAm": [
+      "Bestellt am {d}",
+      "Ordered on {d}",
+      "Pedido el {d}",
+      "Pedido em {d}"
+    ],
+    "erfolgApp": [
+      "In ein paar Minuten steht das Skript in der Bibliothek, kurz danach ist es vertont. Du bekommst eine Nachricht.",
+      "In a few minutes the script is in your library, voiced shortly after. You'll get a notification.",
+      "En unos minutos el guion estará en la biblioteca y poco después con voces. Recibirás un aviso.",
+      "Em poucos minutos o roteiro estará na biblioteca e logo depois com vozes. Você receberá um aviso."
+    ],
+    "anhoerenHier": [
+      "Hört die Hörspiele direkt hier in der App, auch bei gesperrtem Bildschirm. Wenn ein neues fertig ist, bekommst du eine Nachricht.",
+      "Listen right here in the app, even with the screen locked. You'll be notified when a new one is ready.",
+      "Escuchad aquí mismo en la app, incluso con la pantalla bloqueada. Te avisaremos cuando haya uno nuevo.",
+      "Ouçam aqui no app, mesmo com a tela bloqueada. Você recebe um aviso quando uma nova estiver pronta."
+    ],
+    "konfig": [
+      "Bitte zuerst die Verbindung zu Supabase eintragen.",
+      "Please configure the Supabase connection first.",
+      "Configura primero la conexión con Supabase.",
+      "Configure primeiro a conexão com o Supabase."
+    ],
+    "eigeneFigur": [
+      "Eigene Figur",
+      "Own character",
+      "Personaje propio",
+      "Personagem próprio"
+    ],
+    "figNeu": [
+      "Eigene Figur erfinden",
+      "Invent a character",
+      "Inventar un personaje",
+      "Inventar um personagem"
+    ],
+    "figNeuHint": [
+      "Name, Aussehen, Charakter und Stimme – denkt euch zusammen eine Heldin oder einen Helden aus.",
+      "Name, look, personality and voice – dream up a hero together.",
+      "Nombre, aspecto, carácter y voz: inventad juntos un protagonista.",
+      "Nome, aparência, personalidade e voz: inventem juntos um protagonista."
+    ],
+    "feTitel": [
+      "Neue Figur",
+      "New character",
+      "Nuevo personaje",
+      "Novo personagem"
+    ],
+    "feBearbeiten": [
+      "Figur bearbeiten",
+      "Edit character",
+      "Editar personaje",
+      "Editar personagem"
+    ],
+    "bearbeiten": [
+      "bearbeiten",
+      "edit",
+      "editar",
+      "editar"
+    ],
+    "feName": [
+      "Name",
+      "Name",
+      "Nombre",
+      "Nome"
+    ],
+    "feNamePh": [
+      "z. B. Funkel",
+      "e.g. Sparky",
+      "p. ej. Chispa",
+      "ex.: Faísca"
+    ],
+    "feArt": [
+      "Was ist sie oder er?",
+      "What kind of creature?",
+      "¿Qué es?",
+      "O que é?"
+    ],
+    "feArtPh": [
+      "z. B. kleiner Drache, der Feuer niesen muss",
+      "e.g. a little dragon who sneezes fire",
+      "p. ej. un dragoncito que estornuda fuego",
+      "ex.: um dragãozinho que espirra fogo"
+    ],
+    "feAussehen": [
+      "Aussehen",
+      "Look",
+      "Aspecto",
+      "Aparência"
+    ],
+    "feForm": [
+      "Form",
+      "Shape",
+      "Forma",
+      "Forma"
+    ],
+    "feFarbe": [
+      "Farbe",
+      "Colour",
+      "Color",
+      "Cor"
+    ],
+    "feExtra": [
+      "Extra",
+      "Extra",
+      "Extra",
+      "Extra"
+    ],
+    "feEigenschaften": [
+      "Charakter",
+      "Personality",
+      "Carácter",
+      "Personalidade"
+    ],
+    "bisDrei": [
+      "bis zu drei",
+      "up to three",
+      "hasta tres",
+      "até três"
+    ],
+    "feBesonders": [
+      "Was ist besonders?",
+      "What makes it special?",
+      "¿Qué tiene de especial?",
+      "O que tem de especial?"
+    ],
+    "feBesondersPh": [
+      "z. B. leuchtet im Dunkeln, sammelt bunte Steine",
+      "e.g. glows in the dark, collects colourful stones",
+      "p. ej. brilla en la oscuridad, colecciona piedras de colores",
+      "ex.: brilha no escuro, coleciona pedrinhas coloridas"
+    ],
+    "feSprechweise": [
+      "Wie spricht sie oder er?",
+      "How does it talk?",
+      "¿Cómo habla?",
+      "Como fala?"
+    ],
+    "feSprechweisePh": [
+      "z. B. reimt gern, sagt oft „Potzblitz“",
+      "e.g. loves rhymes, often says “Jumping jellybeans!”",
+      "p. ej. le encanta rimar, dice a menudo «¡Recórcholis!»",
+      "ex.: adora rimar, sempre diz “Caramba!”"
+    ],
+    "feStimme": [
+      "Stimme",
+      "Voice",
+      "Voz",
+      "Voz"
+    ],
+    "feStimmeHint": [
+      "Die drei passendsten zuerst. Tippe ▶ für eine Hörprobe.",
+      "The three best matches first. Tap ▶ to hear a sample.",
+      "Primero las tres que mejor encajan. Toca ▶ para escuchar una muestra.",
+      "As três que mais combinam primeiro. Toque em ▶ para ouvir uma amostra."
+    ],
+    "feEigen": [
+      "Bitte keine bekannten Figuren aus Filmen, Serien oder Büchern – die Werkstatt erfindet lieber eigene.",
+      "Please no well-known characters from films, shows or books – the workshop prefers to invent its own.",
+      "Por favor, sin personajes conocidos de películas, series o libros: el taller prefiere inventar los suyos.",
+      "Por favor, sem personagens conhecidos de filmes, séries ou livros: a oficina prefere inventar os seus."
+    ],
+    "feSpeichern": [
+      "Figur speichern",
+      "Save character",
+      "Guardar personaje",
+      "Salvar personagem"
+    ],
+    "feLoeschen": [
+      "Figur löschen",
+      "Delete character",
+      "Eliminar personaje",
+      "Excluir personagem"
+    ],
+    "feFehlt": [
+      "Gib der Figur noch einen Namen und sag, was sie ist.",
+      "Give the character a name and say what kind of creature it is.",
+      "Ponle un nombre al personaje y di qué es.",
+      "Dê um nome ao personagem e diga o que ele é."
+    ],
+    "feNameBelegt": [
+      "Diesen Namen gibt es schon. Wähle bitte einen anderen.",
+      "That name is already taken. Please choose another.",
+      "Ese nombre ya existe. Elige otro, por favor.",
+      "Esse nome já existe. Escolha outro, por favor."
+    ],
+    "begleiter": [
+      "Wer ist noch mit dabei?",
+      "Who else comes along?",
+      "¿Quién más acompaña?",
+      "Quem mais vai junto?"
+    ],
+    "begleiterHint": [
+      "optional, bis zu zwei Freunde",
+      "optional, up to two friends",
+      "opcional, hasta dos amigos",
+      "opcional, até dois amigos"
+    ],
+    "automatisch": [
+      "Automatisch passend",
+      "Best match automatically",
+      "Automática, la que mejor encaje",
+      "Automática, a que mais combina"
+    ],
+    "stimmen": [
+      "Stimmen",
+      "Voices",
+      "Voces",
+      "Vozes"
+    ],
+    "stimmenHint": [
+      "Optional: Bestimme selbst, wer wie klingt. Sonst wählt die Werkstatt die passendsten Stimmen.",
+      "Optional: choose who sounds how. Otherwise the workshop picks the best-matching voices.",
+      "Opcional: elige cómo suena cada uno. Si no, el taller elige las voces que mejor encajan.",
+      "Opcional: escolha como cada um soa. Senão, a oficina escolhe as vozes que mais combinam."
+    ],
+    "stimmenAuto": [
+      "automatisch",
+      "automatic",
+      "automáticas",
+      "automáticas"
+    ],
+    "stimmenGewaehlt": [
+      "{n} selbst gewählt",
+      "{n} chosen by you",
+      "{n} elegidas por ti",
+      "{n} escolhidas por você"
+    ],
+    "stimmenAnpassen": [
+      "Stimmen anpassen",
+      "Change voices",
+      "Cambiar voces",
+      "Mudar vozes"
+    ],
+    "stimmenLead": [
+      "Für jede Rolle die drei passendsten Stimmen. Hör rein, wähle aus und lass das Hörspiel neu vertonen.",
+      "The three best voices for every role. Listen, choose and have the story recorded again.",
+      "Las tres voces que mejor encajan con cada papel. Escucha, elige y vuelve a grabar el cuento.",
+      "As três vozes que mais combinam com cada papel. Ouça, escolha e grave a história de novo."
+    ],
+    "jetzt": [
+      "jetzt",
+      "current",
+      "actual",
+      "atual"
+    ],
+    "vorschlag": [
+      "Vorschlag",
+      "Suggestion",
+      "Sugerencia",
+      "Sugestão"
+    ],
+    "alleStimmen": [
+      "Alle Stimmen",
+      "All voices",
+      "Todas las voces",
+      "Todas as vozes"
+    ],
+    "weniger": [
+      "Weniger",
+      "Less",
+      "Menos",
+      "Menos"
+    ],
+    "probe": [
+      "Hörprobe",
+      "Sample",
+      "Muestra",
+      "Amostra"
+    ],
+    "probeFehlt": [
+      "Die Hörproben werden gerade erstellt. Schau gleich noch mal.",
+      "Samples are being created. Check back shortly.",
+      "Las muestras se están creando. Vuelve en un momento.",
+      "As amostras estão sendo criadas. Volte daqui a pouco."
+    ],
+    "neuVertonen": [
+      "Mit neuen Stimmen vertonen",
+      "Record with new voices",
+      "Grabar con voces nuevas",
+      "Gravar com vozes novas"
+    ],
+    "neuVertonenLaeuft": [
+      "Wird mit neuen Stimmen vertont …",
+      "Recording with new voices …",
+      "Grabando con voces nuevas…",
+      "Gravando com vozes novas…"
+    ],
+    "neuVertonenText": [
+      "Das dauert ein paar Minuten. Danach spielt hier die neue Fassung.",
+      "This takes a few minutes. Then the new version plays here.",
+      "Tarda unos minutos. Después aquí suena la versión nueva.",
+      "Leva alguns minutos. Depois a nova versão toca aqui."
+    ],
+    "aenderungen": [
+      "{n} Änderung(en)",
+      "{n} change(s)",
+      "{n} cambio(s)",
+      "{n} alteração(ões)"
+    ],
+    "vertonungFehler": [
+      "Die neue Vertonung hat nicht geklappt. Versuch es später noch einmal.",
+      "The new recording didn't work. Please try again later.",
+      "La nueva grabación no ha funcionado. Inténtalo más tarde.",
+      "A nova gravação não deu certo. Tente mais tarde."
+    ],
+    "g_w": [
+      "weiblich",
+      "female",
+      "femenina",
+      "feminina"
+    ],
+    "g_m": [
+      "männlich",
+      "male",
+      "masculina",
+      "masculina"
+    ],
+    "g_n": [
+      "neutral",
+      "neutral",
+      "neutra",
+      "neutra"
+    ],
+    "a_jung": [
+      "jung",
+      "young",
+      "joven",
+      "jovem"
+    ],
+    "a_erwachsen": [
+      "erwachsen",
+      "adult",
+      "adulta",
+      "adulta"
+    ],
+    "a_alt": [
+      "älter",
+      "older",
+      "mayor",
+      "mais velha"
+    ],
+    "meineFiguren": [
+      "Eure Figuren",
+      "Your characters",
+      "Vuestros personajes",
+      "Seus personagens"
+    ],
+    "halloIch": [
+      "Hallo, ich bin {n}!",
+      "Hi, I'm {n}!",
+      "¡Hola, soy {n}!",
+      "Oi, eu sou {n}!"
+    ],
+    "mitDabei": [
+      "Mit dabei",
+      "Also there",
+      "También están",
+      "Também vão"
+    ],
+    "feLoeschenFrage": [
+      "Figur wirklich löschen? Fertige Hörspiele bleiben erhalten.",
+      "Really delete this character? Finished stories are kept.",
+      "¿Eliminar el personaje? Los cuentos terminados se conservan.",
+      "Excluir mesmo o personagem? As histórias prontas continuam salvas."
+    ],
+    "einwTitel": [
+      "Bevor es losgeht",
+      "Before you start",
+      "Antes de empezar",
+      "Antes de começar"
+    ],
+    "einwText": [
+      "Damit die Werkstatt Hörspiele für dein Kind schreiben darf, brauchen wir deine Zustimmung.",
+      "To write stories for your child, the workshop needs your consent.",
+      "Para que el taller pueda escribir cuentos para tu hijo o hija, necesitamos tu consentimiento.",
+      "Para que a oficina possa escrever histórias para seu filho ou filha, precisamos do seu consentimento."
+    ],
+    "einwNeu": [
+      "Wir haben unsere Bedingungen aktualisiert. Bitte stimme ihnen noch einmal zu.",
+      "We have updated our terms. Please agree to them again.",
+      "Hemos actualizado nuestras condiciones. Acéptalas de nuevo, por favor.",
+      "Atualizamos nossas condições. Aceite-as novamente, por favor."
+    ],
+    "einwAgb": [
+      "Ich akzeptiere die AGB.",
+      "I accept the terms of use.",
+      "Acepto las condiciones de uso.",
+      "Aceito os termos de uso."
+    ],
+    "einwDs": [
+      "Ich habe die Datenschutzerklärung gelesen.",
+      "I have read the privacy policy.",
+      "He leído la política de privacidad.",
+      "Li a política de privacidade."
+    ],
+    "einwSensibel": [
+      "Ich willige ein, dass Angaben zu meinem Kind – auch zu Gefühlen, Gesundheit oder Familiensituation – verarbeitet und dafür an die KI-Dienste Anthropic (Text) und ElevenLabs (Stimmen) übermittelt werden, um Hörspiele zu schreiben und zu vertonen (Art. 9 DSGVO). Widerruf jederzeit, z. B. durch Löschen des Kontos.",
+      "I consent to information about my child – including feelings, health or family situation – being processed and shared with the AI services Anthropic (text) and ElevenLabs (voices) to write and voice stories (Art. 9 GDPR). I can withdraw at any time, e.g. by deleting my account.",
+      "Consiento que se traten datos sobre mi hijo o hija – también sobre sentimientos, salud o situación familiar – y que se envíen a los servicios de IA Anthropic (texto) y ElevenLabs (voces) para escribir y narrar cuentos (art. 9 RGPD). Puedo retirarlo cuando quiera, p. ej. borrando la cuenta.",
+      "Autorizo o tratamento de informações sobre meu filho ou filha – inclusive sentimentos, saúde ou situação familiar – e o envio aos serviços de IA Anthropic (texto) e ElevenLabs (vozes) para escrever e narrar histórias (art. 9 RGPD/LGPD). Posso revogar a qualquer momento, por exemplo excluindo a conta."
+    ],
+    "einwEltern": [
+      "Ich bin volljährig und Elternteil oder sorgeberechtigt für die Kinder, für die ich Hörspiele bestelle.",
+      "I am an adult and a parent or legal guardian of the children I order stories for.",
+      "Soy mayor de edad y madre, padre o tutor legal de los niños para los que pido cuentos.",
+      "Sou maior de idade e mãe, pai ou responsável legal das crianças para quem peço histórias."
+    ],
+    "einwKnopf": [
+      "Zustimmen und weiter",
+      "Agree and continue",
+      "Aceptar y continuar",
+      "Aceitar e continuar"
+    ],
+    "agb": [
+      "AGB",
+      "Terms",
+      "Condiciones",
+      "Termos"
+    ],
+    "keinErsatz": [
+      "Die Hörspiele sind pädagogisch inspirierte Geschichten, kein Ersatz für ärztliche, psychologische oder therapeutische Hilfe. Hör jedes Hörspiel am besten zuerst selbst an.",
+      "The stories are educationally inspired, not a substitute for medical, psychological or therapeutic help. It's best to listen to each story yourself first.",
+      "Los cuentos tienen inspiración pedagógica y no sustituyen la ayuda médica, psicológica ni terapéutica. Lo mejor es escuchar cada cuento primero tú.",
+      "As histórias têm inspiração pedagógica e não substituem ajuda médica, psicológica ou terapêutica. O ideal é ouvir cada história primeiro."
+    ],
+    "melden": [
+      "Inhalt melden",
+      "Report content",
+      "Informar de un problema",
+      "Denunciar conteúdo"
+    ],
+    "meldenTitel": [
+      "Was stimmt mit diesem Hörspiel nicht?",
+      "What's wrong with this story?",
+      "¿Qué le pasa a este cuento?",
+      "O que há de errado com esta história?"
+    ],
+    "m_unpassend": [
+      "Unpassend für Kinder",
+      "Not suitable for children",
+      "No apto para niños",
+      "Inadequado para crianças"
+    ],
+    "m_angst": [
+      "Macht Angst",
+      "Frightening",
+      "Da miedo",
+      "Dá medo"
+    ],
+    "m_falsch": [
+      "Inhaltlich falsch",
+      "Factually wrong",
+      "Contenido incorrecto",
+      "Conteúdo errado"
+    ],
+    "m_technik": [
+      "Technisches Problem",
+      "Technical problem",
+      "Problema técnico",
+      "Problema técnico"
+    ],
+    "m_sonstiges": [
+      "Etwas anderes",
+      "Something else",
+      "Otra cosa",
+      "Outra coisa"
+    ],
+    "meldenPh": [
+      "Was ist dir aufgefallen? (optional)",
+      "What did you notice? (optional)",
+      "¿Qué has notado? (opcional)",
+      "O que você percebeu? (opcional)"
+    ],
+    "meldenHinweis": [
+      "Mit dem Melden darf unser Team genau dieses Hörspiel ansehen, um es zu prüfen.",
+      "By reporting, you allow our team to view this one story to review it.",
+      "Al informar, permites que nuestro equipo vea solo este cuento para revisarlo.",
+      "Ao denunciar, você permite que nossa equipe veja apenas esta história para analisá-la."
+    ],
+    "meldenSenden": [
+      "Meldung senden",
+      "Send report",
+      "Enviar",
+      "Enviar"
+    ],
+    "meldenDanke": [
+      "Danke! Wir sehen es uns an.",
+      "Thank you! We'll take a look.",
+      "¡Gracias! Lo revisaremos.",
+      "Obrigado! Vamos analisar."
+    ],
+    "gesperrtHs": [
+      "Dieses Hörspiel wurde nach einer Prüfung gesperrt.",
+      "This story was blocked after a review.",
+      "Este cuento se bloqueó tras una revisión.",
+      "Esta história foi bloqueada após uma análise."
+    ],
+    "kontoGesperrt": [
+      "Dein Konto ist gesperrt. Schreib uns, wenn du Fragen hast.",
+      "Your account is blocked. Write to us if you have questions.",
+      "Tu cuenta está bloqueada. Escríbenos si tienes preguntas.",
+      "Sua conta está bloqueada. Escreva para nós se tiver dúvidas."
+    ],
+    "alle": [
+      "Alle",
+      "All",
+      "Todos",
+      "Todos"
+    ],
+    "suche": [
+      "Suchen …",
+      "Search …",
+      "Buscar…",
+      "Buscar…"
+    ],
+    "keineTreffer": [
+      "Nichts gefunden.",
+      "Nothing found.",
+      "No hay resultados.",
+      "Nada encontrado."
+    ],
+    "teilN": [
+      "Teil {n}",
+      "Part {n}",
+      "Parte {n}",
+      "Parte {n}"
+    ],
+    "reiheN": [
+      "Reihe · {n} Teile",
+      "Series · {n} parts",
+      "Serie · {n} partes",
+      "Série · {n} partes"
+    ],
+    "fortsetzen": [
+      "Fortsetzung bestellen",
+      "Order a sequel",
+      "Pedir una continuación",
+      "Pedir uma continuação"
+    ],
+    "fortsetzungVon": [
+      "Fortsetzung von „{t}“",
+      "Sequel to “{t}”",
+      "Continuación de «{t}»",
+      "Continuação de “{t}”"
+    ],
+    "fortsetzungHint": [
+      "Die Figuren erinnern sich an ihr letztes Abenteuer. Erzähl in Schritt 2, was sich seitdem verändert hat.",
+      "The characters remember their last adventure. In step 2, tell us what has changed since then.",
+      "Los personajes recuerdan su última aventura. En el paso 2, cuéntanos qué ha cambiado desde entonces.",
+      "Os personagens se lembram da última aventura. No passo 2, conte o que mudou desde então."
+    ],
+    "fortsetzungAus": [
+      "keine Fortsetzung",
+      "not a sequel",
+      "sin continuación",
+      "sem continuação"
+    ],
+    "veraendertPh": [
+      "z. B. Sie geht jetzt in den Kindergarten und hat dort eine neue Freundin.",
+      "e.g. She now goes to nursery and has a new friend there.",
+      "p. ej. Ahora va a la guardería y tiene una amiga nueva.",
+      "ex.: Agora ela vai à creche e tem uma amiga nova lá."
+    ],
+    "fassungen": [
+      "Frühere Fassungen",
+      "Earlier versions",
+      "Versiones anteriores",
+      "Versões anteriores"
+    ],
+    "fassungN": [
+      "Fassung {n}",
+      "Version {n}",
+      "Versión {n}",
+      "Versão {n}"
+    ],
+    "anhoerenKurz": [
+      "Anhören",
+      "Listen",
+      "Escuchar",
+      "Ouvir"
+    ],
+    "zahlenTitel": [
+      "Eure Werkstatt in Zahlen",
+      "Your workshop in numbers",
+      "Vuestro taller en cifras",
+      "Sua oficina em números"
+    ],
+    "zMinuten": [
+      "Minuten zum Hören",
+      "minutes to listen",
+      "minutos para escuchar",
+      "minutos para ouvir"
+    ],
+    "zFortsetzungen": [
+      "Fortsetzungen",
+      "sequels",
+      "continuaciones",
+      "continuações"
+    ],
+    "zFiguren": [
+      "eigene Figuren",
+      "own characters",
+      "personajes propios",
+      "personagens próprios"
+    ],
+    "zLieblingsfigur": [
+      "Am häufigsten dabei",
+      "Most often featured",
+      "Aparece más a menudo",
+      "Aparece com mais frequência"
+    ],
+    "anhoerenJetzt": [
+      "Anhören",
+      "Listen",
+      "Escuchar",
+      "Ouvir"
+    ],
+    "schlafTimer": [
+      "Schlaf-Timer",
+      "Sleep timer",
+      "Temporizador",
+      "Timer para dormir"
+    ],
+    "timerAus": [
+      "aus",
+      "off",
+      "no",
+      "desligado"
+    ],
+    "minN": [
+      "{n} Min.",
+      "{n} min",
+      "{n} min",
+      "{n} min"
+    ],
+    "timerLaeuft": [
+      "Wird in {n} Min. leise und stoppt.",
+      "Fades out and stops in {n} min.",
+      "Se apaga suavemente en {n} min.",
+      "Abaixa e para em {n} min."
+    ],
+    "zurueck15": [
+      "15 Sekunden zurück",
+      "Back 15 seconds",
+      "Atrás 15 segundos",
+      "Voltar 15 segundos"
+    ],
+    "vor15": [
+      "15 Sekunden vor",
+      "Forward 15 seconds",
+      "Adelante 15 segundos",
+      "Avançar 15 segundos"
+    ],
+    "audioLaedt": [
+      "Hörspiel wird geladen …",
+      "Loading story …",
+      "Cargando el cuento…",
+      "Carregando a história…"
+    ],
+    "appAudioWartet": [
+      "Wird gerade vertont. Das dauert ein paar Minuten, die App sagt Bescheid.",
+      "Being recorded. This takes a few minutes.",
+      "Se está grabando. Tarda unos minutos.",
+      "Está sendo gravada. Leva alguns minutos."
+    ],
+    "nurPodcast": [
+      "Dieses ältere Hörspiel gibt es nur in der Podcast-App. Mit „Stimmen anpassen“ lässt es sich neu vertonen, dann spielt es auch hier.",
+      "This older story is only in the podcast app. Re-record it under “Change voices” to play it here.",
+      "Este cuento antiguo solo está en la app de pódcast. Vuelve a grabarlo en «Cambiar voces» para escucharlo aquí.",
+      "Esta história antiga só está no app de podcast. Grave de novo em “Mudar vozes” para ouvir aqui."
+    ],
+    "vorlesenNotfall": [
+      "Mit Gerätestimme vorlesen",
+      "Read aloud with device voice",
+      "Leer con la voz del dispositivo",
+      "Ler com a voz do aparelho"
+    ],
+    "passwort": [
+      "Passwort (mindestens 8 Zeichen)",
+      "Password (at least 8 characters)",
+      "Contraseña (mínimo 8 caracteres)",
+      "Senha (mínimo 8 caracteres)"
+    ],
+    "einloggen": [
+      "Anmelden",
+      "Sign in",
+      "Entrar",
+      "Entrar"
+    ],
+    "kontoAnlegen": [
+      "Neues Konto anlegen",
+      "Create account",
+      "Crear cuenta",
+      "Criar conta"
+    ],
+    "pwKurz": [
+      "Das Passwort braucht mindestens 8 Zeichen.",
+      "The password needs at least 8 characters.",
+      "La contraseña necesita al menos 8 caracteres.",
+      "A senha precisa de pelo menos 8 caracteres."
+    ],
+    "pwFalsch": [
+      "E-Mail oder Passwort stimmt nicht.",
+      "Email or password is wrong.",
+      "El correo o la contraseña no son correctos.",
+      "E-mail ou senha incorretos."
+    ],
+    "kontoDa": [
+      "Für diese E-Mail gibt es schon ein Konto. Bitte anmelden.",
+      "There is already an account for this email. Please sign in.",
+      "Ya existe una cuenta con este correo. Inicia sesión.",
+      "Já existe uma conta com este e-mail. Entre, por favor."
+    ],
+    "loginTextPw": [
+      "Melde dich mit E-Mail und Passwort an. Beim ersten Mal tippst du auf „Neues Konto anlegen“ und gibst danach deinen Einladungscode ein.",
+      "Sign in with email and password. The first time, tap “Create account” and then enter your invitation code.",
+      "Entra con tu correo y contraseña. La primera vez, pulsa «Crear cuenta» y luego introduce tu código de invitación.",
+      "Entre com e-mail e senha. Na primeira vez, toque em “Criar conta” e depois digite seu código de convite."
+    ]
+  },
+  "figuren": {
+    "LOTTA": {
+      "name": [
+        "Lotta Löwenmut",
+        "Lotta Lionheart",
+        "Lotta Corazón de León",
+        "Lotta Coração de Leão"
+      ],
+      "kurz": [
+        "Kleine Löwin, laut und mutig, die sich heimlich manchmal ganz klein fühlt.",
+        "A little lioness, loud and brave, who secretly sometimes feels very small.",
+        "Una leoncita ruidosa y valiente que, en secreto, a veces se siente muy pequeña.",
+        "Uma leoazinha barulhenta e corajosa que, em segredo, às vezes se sente bem pequena."
+      ],
+      "hallo": [
+        "Rooaar! Ich bin Lotta. Zusammen trauen wir uns was!",
+        "Rooaar! I'm Lotta. Together we can be brave!",
+        "¡Grrr! Soy Lotta. ¡Juntos nos atrevemos!",
+        "Rooaar! Eu sou a Lotta. Juntos a gente tem coragem!"
+      ]
+    },
+    "FINN": {
+      "name": [
+        "Finn Fuchs",
+        "Finn Fox",
+        "Finn el Zorro",
+        "Finn, a Raposa"
+      ],
+      "kurz": [
+        "Neugieriger Fuchs mit tausend Fragen, der gern weiß, was als Nächstes passiert.",
+        "A curious fox with a thousand questions who likes to know what happens next.",
+        "Un zorro curioso con mil preguntas al que le gusta saber qué pasará después.",
+        "Uma raposa curiosa com mil perguntas que gosta de saber o que vem depois."
+      ],
+      "hallo": [
+        "Hallo! Ich bin Finn. Was passiert als Nächstes? Finden wir's raus!",
+        "Hi! I'm Finn. What happens next? Let's find out!",
+        "¡Hola! Soy Finn. ¿Qué pasará ahora? ¡Vamos a descubrirlo!",
+        "Oi! Eu sou o Finn. O que vem agora? Vamos descobrir!"
+      ]
+    },
+    "PIP": {
+      "name": [
+        "Pip Pinguin",
+        "Pip Penguin",
+        "Pip Pingüino",
+        "Pip Pinguim"
+      ],
+      "kurz": [
+        "Kleiner Pinguin, schüchtern, schaut erst lange zu und traut sich dann Schritt für Schritt.",
+        "A shy little penguin who watches for a long time and then dares, step by step.",
+        "Un pingüino tímido que observa mucho y luego se atreve paso a paso.",
+        "Um pinguim tímido que observa bastante e depois se arrisca passo a passo."
+      ],
+      "hallo": [
+        "Hallo … ich bin Pip. Ganz langsam ist auch mutig.",
+        "Hello … I'm Pip. Going slowly is brave too.",
+        "Hola … soy Pip. Ir despacito también es ser valiente.",
+        "Oi … eu sou o Pip. Ir devagar também é coragem."
+      ]
+    },
+    "BRUNO": {
+      "name": [
+        "Bruno Bär",
+        "Bruno Bear",
+        "Bruno Oso",
+        "Bruno Urso"
+      ],
+      "kurz": [
+        "Gemütlicher Bär, der Kuscheln und feste Rituale liebt und für Neues etwas Zeit braucht.",
+        "A cosy bear who loves cuddles and routines and needs a little time for new things.",
+        "Un oso tranquilo al que le encantan los abrazos y las rutinas y necesita tiempo para lo nuevo.",
+        "Um urso tranquilo que adora abraços e rotinas e precisa de tempo para coisas novas."
+      ],
+      "hallo": [
+        "Hallo, ich bin Bruno. Erst mal kuscheln, dann schaffen wir das.",
+        "Hi, I'm Bruno. First a cuddle, then we can do it.",
+        "Hola, soy Bruno. Primero un abrazo y luego lo conseguimos.",
+        "Oi, eu sou o Bruno. Primeiro um abraço, depois a gente consegue."
+      ]
+    },
+    "MIRA": {
+      "name": [
+        "Prinzessin Mira",
+        "Princess Mira",
+        "Princesa Mira",
+        "Princesa Mira"
+      ],
+      "kurz": [
+        "Kleine Prinzessin und Zauberin. Ihr Sternenzauber funkelt am hellsten, wenn sie an sich glaubt.",
+        "A little princess and sorceress. Her star magic shines brightest when she believes in herself.",
+        "Una pequeña princesa y hechicera. Su magia de estrellas brilla más cuando cree en sí misma.",
+        "Uma pequena princesa e feiticeira. Sua magia de estrelas brilha mais quando ela acredita em si."
+      ],
+      "hallo": [
+        "Hallo, ich bin Mira! Mein Sternenzauber funkelt, wenn wir an uns glauben.",
+        "Hello, I'm Mira! My star magic sparkles when we believe in ourselves.",
+        "¡Hola, soy Mira! Mi magia de estrellas brilla cuando creemos en nosotros.",
+        "Oi, eu sou a Mira! Minha magia de estrelas brilha quando acreditamos em nós."
+      ]
+    }
+  },
+  "gruppen": {
+    "Neuanfänge": [
+      "Neuanfänge",
+      "New beginnings",
+      "Nuevos comienzos",
+      "Recomeços"
+    ],
+    "Wasser und Bewegung": [
+      "Wasser und Bewegung",
+      "Water and movement",
+      "Agua y movimiento",
+      "Água e movimento"
+    ],
+    "Große Gefühle": [
+      "Große Gefühle",
+      "Big feelings",
+      "Grandes emociones",
+      "Grandes sentimentos"
+    ],
+    "Abschied und Familie": [
+      "Abschied und Familie",
+      "Goodbyes and family",
+      "Despedidas y familia",
+      "Despedidas e família"
+    ],
+    "Körper und Gesundheit": [
+      "Körper und Gesundheit",
+      "Body and health",
+      "Cuerpo y salud",
+      "Corpo e saúde"
+    ],
+    "Miteinander": [
+      "Miteinander",
+      "Getting along",
+      "Convivir",
+      "Convivência"
+    ]
+  },
+  "themen": {
+    "Kita-Eingewöhnung": [
+      "Kita-Eingewöhnung",
+      "Starting nursery",
+      "Adaptación a la guardería",
+      "Adaptação na creche"
+    ],
+    "Wechsel in den Kindergarten": [
+      "Wechsel in den Kindergarten",
+      "Moving to kindergarten",
+      "Pasar al jardín de infancia",
+      "Ida para o jardim de infância"
+    ],
+    "Einschulung": [
+      "Einschulung",
+      "Starting school",
+      "Empezar el colegio",
+      "Começar a escola"
+    ],
+    "Neue Tagesmutter oder Babysitter": [
+      "Neue Tagesmutter oder Babysitter",
+      "New childminder or babysitter",
+      "Nueva cuidadora o canguro",
+      "Nova babá"
+    ],
+    "Umzug": [
+      "Umzug",
+      "Moving house",
+      "Mudanza",
+      "Mudança de casa"
+    ],
+    "Ein Geschwisterchen kommt": [
+      "Ein Geschwisterchen kommt",
+      "A new baby sibling",
+      "Llega un hermanito",
+      "Chegada de um irmãozinho"
+    ],
+    "Erstes Mal ins Freibad": [
+      "Erstes Mal ins Freibad",
+      "First trip to the pool",
+      "Primera vez en la piscina",
+      "Primeira vez na piscina"
+    ],
+    "Schwimmkurs": [
+      "Schwimmkurs",
+      "Swimming lessons",
+      "Clases de natación",
+      "Aula de natação"
+    ],
+    "Seepferdchen-Prüfung": [
+      "Seepferdchen-Prüfung",
+      "First swimming badge",
+      "Primera insignia de natación",
+      "Primeiro certificado de natação"
+    ],
+    "Fahrradfahren lernen": [
+      "Fahrradfahren lernen",
+      "Learning to ride a bike",
+      "Aprender a ir en bici",
+      "Aprender a andar de bicicleta"
+    ],
+    "Turnverein oder Sportgruppe": [
+      "Turnverein oder Sportgruppe",
+      "Sports club",
+      "Club deportivo",
+      "Clube esportivo"
+    ],
+    "Verlustängste": [
+      "Verlustängste",
+      "Separation anxiety",
+      "Ansiedad por separación",
+      "Ansiedade de separação"
+    ],
+    "Wut": [
+      "Wut",
+      "Anger",
+      "Rabia",
+      "Raiva"
+    ],
+    "Eifersucht": [
+      "Eifersucht",
+      "Jealousy",
+      "Celos",
+      "Ciúmes"
+    ],
+    "Schüchternheit": [
+      "Schüchternheit",
+      "Shyness",
+      "Timidez",
+      "Timidez"
+    ],
+    "Angst im Dunkeln": [
+      "Angst im Dunkeln",
+      "Fear of the dark",
+      "Miedo a la oscuridad",
+      "Medo do escuro"
+    ],
+    "Alleine einschlafen": [
+      "Alleine einschlafen",
+      "Falling asleep alone",
+      "Dormirse solo",
+      "Dormir sozinho"
+    ],
+    "Albträume": [
+      "Albträume",
+      "Nightmares",
+      "Pesadillas",
+      "Pesadelos"
+    ],
+    "Trennung der Eltern": [
+      "Trennung der Eltern",
+      "Parents separating",
+      "Separación de los padres",
+      "Separação dos pais"
+    ],
+    "Ein Elternteil ist oft weg": [
+      "Ein Elternteil ist oft weg",
+      "A parent is often away",
+      "Mamá o papá viaja a menudo",
+      "Mãe ou pai viaja muito"
+    ],
+    "Tod eines Haustiers": [
+      "Tod eines Haustiers",
+      "Death of a pet",
+      "Muerte de una mascota",
+      "Morte de um animal de estimação"
+    ],
+    "Abschied von Oma oder Opa": [
+      "Abschied von Oma oder Opa",
+      "Saying goodbye to a grandparent",
+      "Despedida de un abuelo",
+      "Despedida de um avô ou avó"
+    ],
+    "Jemand aus der Familie ist krank": [
+      "Jemand aus der Familie ist krank",
+      "Someone in the family is ill",
+      "Alguien de la familia está enfermo",
+      "Alguém da família está doente"
+    ],
+    "Arztbesuch und Impfung": [
+      "Arztbesuch und Impfung",
+      "Doctor visit and vaccination",
+      "Visita al médico y vacuna",
+      "Consulta médica e vacina"
+    ],
+    "Zahnarzt": [
+      "Zahnarzt",
+      "Dentist",
+      "Dentista",
+      "Dentista"
+    ],
+    "Krankenhaus": [
+      "Krankenhaus",
+      "Hospital",
+      "Hospital",
+      "Hospital"
+    ],
+    "Friseur": [
+      "Friseur",
+      "Haircut",
+      "Peluquería",
+      "Cabeleireiro"
+    ],
+    "Trocken werden": [
+      "Trocken werden",
+      "Potty training",
+      "Dejar el pañal",
+      "Desfralde"
+    ],
+    "Schnuller abgeben": [
+      "Schnuller abgeben",
+      "Giving up the dummy",
+      "Dejar el chupete",
+      "Largar a chupeta"
+    ],
+    "Freunde finden": [
+      "Freunde finden",
+      "Making friends",
+      "Hacer amigos",
+      "Fazer amigos"
+    ],
+    "Teilen und Streiten": [
+      "Teilen und Streiten",
+      "Sharing and squabbles",
+      "Compartir y discutir",
+      "Dividir e brigar"
+    ],
+    "Nein sagen": [
+      "Nein sagen",
+      "Saying no",
+      "Decir que no",
+      "Dizer não"
+    ],
+    "Anderssein und Vielfalt": [
+      "Anderssein und Vielfalt",
+      "Being different and diversity",
+      "Ser diferente y diversidad",
+      "Ser diferente e diversidade"
+    ]
+  },
+  "personen": {
+    "Mama": [
+      "Mama",
+      "Mum",
+      "Mamá",
+      "Mamãe"
+    ],
+    "Papa": [
+      "Papa",
+      "Dad",
+      "Papá",
+      "Papai"
+    ],
+    "Oma": [
+      "Oma",
+      "Grandma",
+      "Abuela",
+      "Vovó"
+    ],
+    "Opa": [
+      "Opa",
+      "Grandpa",
+      "Abuelo",
+      "Vovô"
+    ],
+    "Geschwister": [
+      "Geschwister",
+      "Siblings",
+      "Hermanos",
+      "Irmãos"
+    ],
+    "Erzieherin oder Lehrerin": [
+      "Erzieherin oder Lehrerin",
+      "Teacher",
+      "Educadora o maestra",
+      "Educadora ou professora"
+    ],
+    "Freundin oder Freund": [
+      "Freundin oder Freund",
+      "A friend",
+      "Un amigo o amiga",
+      "Um amigo ou amiga"
+    ]
+  },
+  "konzepte": {
+    "Bindungs- und bedürfnisorientiert": {
+      "name": [
+        "Bindungs- und bedürfnisorientiert",
+        "Attachment-focused",
+        "Basado en el apego",
+        "Baseado no apego"
+      ],
+      "kurz": [
+        "Gefühle werden ernst genommen, verlässliche Bezugspersonen geben Halt.",
+        "Feelings are taken seriously; reliable caregivers give security.",
+        "Los sentimientos se toman en serio; las personas de referencia dan seguridad.",
+        "Os sentimentos são levados a sério; pessoas de confiança dão segurança."
+      ]
+    },
+    "Resilienzförderung": {
+      "name": [
+        "Resilienzförderung",
+        "Building resilience",
+        "Fomentar la resiliencia",
+        "Promover a resiliência"
+      ],
+      "kurz": [
+        "Die Figur entdeckt eigene Stärken und erlebt: Ich schaffe das.",
+        "The character discovers their strengths and learns: I can do it.",
+        "El personaje descubre sus fuerzas y vive: ¡puedo hacerlo!",
+        "O personagem descobre suas forças e sente: eu consigo."
+      ]
+    },
+    "Therapeutisches Erzählen": {
+      "name": [
+        "Erzählen mit Bildern und Metaphern",
+        "Storytelling with images and metaphors",
+        "Narrar con imágenes y metáforas",
+        "Narrar com imagens e metáforas"
+      ],
+      "kurz": [
+        "Das Thema wird mit etwas Abstand verarbeitet, mit einem hoffnungsvollen Bild am Ende.",
+        "The topic is explored at a gentle distance, with a hopeful image at the end.",
+        "El tema se trabaja con cierta distancia y una imagen esperanzadora al final.",
+        "O tema é trabalhado com certa distância e uma imagem de esperança no final."
+      ]
+    },
+    "Montessori": {
+      "name": [
+        "Montessori",
+        "Montessori",
+        "Montessori",
+        "Montessori"
+      ],
+      "kurz": [
+        "„Hilf mir, es selbst zu tun“: kleine, eigene Schritte und echtes Zutrauen.",
+        "“Help me do it myself”: small steps of their own and real trust.",
+        "«Ayúdame a hacerlo solo»: pequeños pasos propios y confianza real.",
+        "“Ajude-me a fazer sozinho”: pequenos passos próprios e confiança real."
+      ]
+    },
+    "Waldorf": {
+      "name": [
+        "Waldorf",
+        "Waldorf",
+        "Waldorf",
+        "Waldorf"
+      ],
+      "kurz": [
+        "Rhythmus, Natur und eine ruhige, bildhafte Sprache.",
+        "Rhythm, nature and calm, vivid language.",
+        "Ritmo, naturaleza y un lenguaje tranquilo y lleno de imágenes.",
+        "Ritmo, natureza e uma linguagem calma e cheia de imagens."
+      ]
+    },
+    "Reggio-Pädagogik": {
+      "name": [
+        "Reggio-Pädagogik",
+        "Reggio Emilia",
+        "Reggio Emilia",
+        "Reggio Emilia"
+      ],
+      "kurz": [
+        "Ausprobieren, staunen, mit allen Sinnen entdecken.",
+        "Trying things out, wondering, discovering with all the senses.",
+        "Probar, asombrarse y descubrir con todos los sentidos.",
+        "Experimentar, se encantar e descobrir com todos os sentidos."
+      ]
+    },
+    "Situationsansatz": {
+      "name": [
+        "Situationsansatz",
+        "Real-life approach",
+        "Enfoque situacional",
+        "Abordagem situacional"
+      ],
+      "kurz": [
+        "Die Geschichte greift eure echte Alltagssituation möglichst genau auf.",
+        "The story mirrors your real everyday situation as closely as possible.",
+        "La historia refleja vuestra situación real lo más fielmente posible.",
+        "A história reflete a situação real de vocês o mais fielmente possível."
+      ]
+    },
+    "Gewaltfreie Kommunikation": {
+      "name": [
+        "Gewaltfreie Kommunikation",
+        "Nonviolent communication",
+        "Comunicación no violenta",
+        "Comunicação não violenta"
+      ],
+      "kurz": [
+        "Gefühle und Bedürfnisse werden benannt, Streit wird fair gelöst.",
+        "Feelings and needs are named, conflicts are solved fairly.",
+        "Se nombran sentimientos y necesidades, y los conflictos se resuelven con justicia.",
+        "Sentimentos e necessidades são nomeados e os conflitos resolvidos com justiça."
+      ]
+    },
+    "Achtsamkeit und Entspannung": {
+      "name": [
+        "Achtsamkeit und Entspannung",
+        "Mindfulness and relaxation",
+        "Atención plena y relajación",
+        "Atenção plena e relaxamento"
+      ],
+      "kurz": [
+        "Atmen, in den Körper spüren, zur Ruhe kommen.",
+        "Breathing, feeling the body, calming down.",
+        "Respirar, sentir el cuerpo, calmarse.",
+        "Respirar, sentir o corpo, acalmar-se."
+      ]
+    },
+    "Spielpädagogik nach Fröbel": {
+      "name": [
+        "Spielpädagogik nach Fröbel",
+        "Play-based (Froebel)",
+        "Pedagogía del juego (Fröbel)",
+        "Pedagogia do brincar (Fröbel)"
+      ],
+      "kurz": [
+        "Spiel und Fantasie als Weg, Neues zu begreifen.",
+        "Play and imagination as a way to understand new things.",
+        "El juego y la fantasía como camino para entender lo nuevo.",
+        "Brincadeira e imaginação como caminho para entender o novo."
+      ]
+    }
+  },
+  "laengen": {
+    "kurz": [
+      [
+        "kurz",
+        "short",
+        "corto",
+        "curta"
+      ],
+      [
+        "ca. 5 Min.",
+        "about 5 min",
+        "unos 5 min",
+        "cerca de 5 min"
+      ]
+    ],
+    "mittel": [
+      [
+        "mittel",
+        "medium",
+        "medio",
+        "média"
+      ],
+      [
+        "ca. 8 Min.",
+        "about 8 min",
+        "unos 8 min",
+        "cerca de 8 min"
+      ]
+    ],
+    "lang": [
+      [
+        "lang",
+        "long",
+        "largo",
+        "longa"
+      ],
+      [
+        "ca. 12 Min.",
+        "about 12 min",
+        "unos 12 min",
+        "cerca de 12 min"
+      ]
+    ]
+  },
+  "stimmungen": {
+    "abenteuerlich": [
+      [
+        "abenteuerlich",
+        "adventurous",
+        "de aventura",
+        "aventura"
+      ],
+      [
+        "mit Spannung",
+        "exciting",
+        "con emoción",
+        "com emoção"
+      ]
+    ],
+    "lustig": [
+      [
+        "lustig",
+        "funny",
+        "divertido",
+        "divertida"
+      ],
+      [
+        "zum Lachen",
+        "to laugh",
+        "para reír",
+        "para rir"
+      ]
+    ],
+    "ruhig": [
+      [
+        "ruhig",
+        "calm",
+        "tranquilo",
+        "calma"
+      ],
+      [
+        "warm und sanft",
+        "warm and gentle",
+        "cálido y suave",
+        "suave e acolhedora"
+      ]
+    ]
+  },
+  "intro": [
+    {
+      "t": [
+        "Willkommen in der Hörspielwerkstatt!",
+        "Welcome to the Story Workshop!",
+        "¡Bienvenido al Taller de Audiocuentos!",
+        "Bem-vindo à Oficina de Audiohistórias!"
+      ],
+      "p": [
+        "Hier entstehen Hörspiele, die genau zu deinem Kind passen. Sie machen Mut für Kita, Schwimmkurs, Abschiede und große Gefühle.",
+        "Here we create audio stories made for your child. They build courage for nursery, swimming lessons, goodbyes and big feelings.",
+        "Aquí creamos audiocuentos hechos para tu hijo. Dan valor para la guardería, la natación, las despedidas y las grandes emociones.",
+        "Aqui criamos audiohistórias feitas para seu filho. Elas dão coragem para creche, natação, despedidas e grandes sentimentos."
+      ]
+    },
+    {
+      "t": [
+        "So einfach geht's",
+        "It's this easy",
+        "Así de fácil",
+        "É simples assim"
+      ],
+      "p": [
+        "In fünf kurzen Schritten bestellst du ein Hörspiel:",
+        "Order a story in five short steps:",
+        "Pide un cuento en cinco pasos:",
+        "Peça uma história em cinco passos:"
+      ],
+      "schritte": [
+        [
+          "Erzähl von deinem Kind",
+          "Tell us about your child",
+          "Háblanos de tu hijo",
+          "Fale sobre seu filho"
+        ],
+        [
+          "Wähle die aktuelle Situation",
+          "Choose the current situation",
+          "Elige la situación actual",
+          "Escolha a situação atual"
+        ],
+        [
+          "Such eine Figur aus",
+          "Pick a character",
+          "Elige un personaje",
+          "Escolha um personagem"
+        ],
+        [
+          "Nimm unsere Empfehlung zum Ansatz",
+          "Take our suggested approach",
+          "Usa nuestro enfoque recomendado",
+          "Use nossa abordagem recomendada"
+        ],
+        [
+          "Sprache, Länge, Stimmung, fertig",
+          "Language, length, mood, done",
+          "Idioma, duración, ambiente, listo",
+          "Idioma, duração, clima, pronto"
+        ]
+      ]
+    },
+    {
+      "t": [
+        "Wir schreiben und sprechen",
+        "We write and record",
+        "Escribimos y grabamos",
+        "Nós escrevemos e gravamos"
+      ],
+      "p": [
+        "Nach wenigen Minuten steht die Geschichte in deiner Bibliothek, kurz danach mit eigenen Stimmen und Geräuschen vertont. Text und Stimmen entstehen mit künstlicher Intelligenz, auf Deutsch, Englisch, Spanisch oder Portugiesisch.",
+        "Within minutes the story is in your library, then voiced with its own voices and sounds. Text and voices are made with AI, in German, English, Spanish or Portuguese.",
+        "En minutos la historia está en tu biblioteca y luego con voces y sonidos propios. Texto y voces se crean con IA, en alemán, inglés, español o portugués.",
+        "Em minutos a história está na sua biblioteca e depois com vozes e sons próprios. Texto e vozes são criados com IA, em alemão, inglês, espanhol ou português."
+      ]
+    },
+    {
+      "t": [
+        "Anhören direkt in der App",
+        "Listen right in the app",
+        "Escuchad directamente en la app",
+        "Ouçam direto no app"
+      ],
+      "p": [
+        "Fertige Hörspiele spielen hier in der App, mit Schlaf-Timer zum Einschlafen. Ihr bekommt Bescheid, sobald eins fertig ist.",
+        "Finished stories play right here in the app, with a sleep timer. You get notified when one is ready.",
+        "Los cuentos terminados suenan aquí en la app, con temporizador para dormir. Os avisamos cuando uno está listo.",
+        "As histórias prontas tocam aqui no app, com timer para dormir. Vocês são avisados quando uma fica pronta."
+      ]
+    },
+    {
+      "t": [
+        "Danach gemeinsam reden",
+        "Talk together afterwards",
+        "Después, hablad juntos",
+        "Depois, conversem juntos"
+      ],
+      "p": [
+        "Zu jedem Hörspiel bekommst du Fragen für das Gespräch und ein kleines Mutmach-Ritual für den Alltag. Lies das Skript vor dem Vorspielen kurz durch.",
+        "Each story comes with questions to talk about and a small courage ritual for everyday life. Please read the script before playing it.",
+        "Cada cuento trae preguntas para conversar y un pequeño ritual de valor para el día a día. Lee el guion antes de ponerlo.",
+        "Cada história vem com perguntas para conversar e um pequeno ritual de coragem para o dia a dia. Leia o roteiro antes de mostrar."
+      ]
+    }
+  ],
+  "faq": [
+    [
+      [
+        "Wie lange dauert ein Hörspiel?",
+        "How long does a story take?",
+        "¿Cuánto tarda un cuento?",
+        "Quanto tempo leva uma história?"
+      ],
+      [
+        "Das Skript ist nach etwa zwei bis fünf Minuten fertig, die vertonte Folge fünf bis zehn Minuten später.",
+        "The script is ready in about two to five minutes, the audio five to ten minutes later.",
+        "El guion está listo en unos dos a cinco minutos y el audio de cinco a diez minutos después.",
+        "O roteiro fica pronto em dois a cinco minutos e o áudio de cinco a dez minutos depois."
+      ]
+    ],
+    [
+      [
+        "Was passiert mit den Angaben über mein Kind?",
+        "What happens to the details about my child?",
+        "¿Qué pasa con los datos de mi hijo?",
+        "O que acontece com os dados do meu filho?"
+      ],
+      [
+        "Sie dienen nur dazu, die Geschichte zu schreiben. Ins Hörspiel kommen weder Vorname noch Orte oder echte Namen, außer du erlaubst den Vornamen ausdrücklich.",
+        "They are only used to write the story. No first name, places or real names go into the story unless you explicitly allow the first name.",
+        "Solo sirven para escribir la historia. No aparecen el nombre, lugares ni nombres reales, salvo que permitas expresamente el nombre.",
+        "Eles só servem para escrever a história. Nome, lugares ou nomes reais não aparecem, a não ser que você permita o nome expressamente."
+      ]
+    ],
+    [
+      [
+        "In welcher Sprache wird das Hörspiel erzählt?",
+        "Which language is the story told in?",
+        "¿En qué idioma se cuenta el cuento?",
+        "Em que idioma a história é contada?"
+      ],
+      [
+        "Im letzten Schritt wählst du Deutsch, Englisch, Spanisch oder Portugiesisch. Standard ist Deutsch. Die Sprache der App stellst du oben ein.",
+        "In the last step you choose German, English, Spanish or Portuguese. The default is German. The app language is set at the top.",
+        "En el último paso eliges alemán, inglés, español o portugués. Por defecto es alemán. El idioma de la app se elige arriba.",
+        "No último passo você escolhe alemão, inglês, espanhol ou português. O padrão é alemão. O idioma do app fica no topo."
+      ]
+    ],
+    [
+      [
+        "Wie finde ich den richtigen Ansatz?",
+        "How do I choose the right approach?",
+        "¿Cómo elijo el enfoque adecuado?",
+        "Como escolho a abordagem certa?"
+      ],
+      [
+        "Nach der Themenwahl schlagen wir passende Ansätze vor. Mit „Empfehlung übernehmen“ bist du immer gut beraten.",
+        "After you pick topics we suggest matching approaches. “Use suggestion” is always a good choice.",
+        "Tras elegir los temas proponemos enfoques adecuados. «Usar recomendación» siempre es buena opción.",
+        "Depois dos temas sugerimos abordagens. “Usar recomendação” é sempre uma boa escolha."
+      ]
+    ],
+    [
+      [
+        "Wie nutze ich das Hörspiel am besten?",
+        "How do I get the most out of a story?",
+        "¿Cómo aprovecho mejor el cuento?",
+        "Como aproveito melhor a história?"
+      ],
+      [
+        "Hört es gemeinsam an. Danach helfen die Fragen unter „Für Eltern“, ins Gespräch zu kommen.",
+        "Listen together. Afterwards the questions under “For parents” help you start talking.",
+        "Escuchadlo juntos. Después, las preguntas de «Para padres» ayudan a conversar.",
+        "Ouçam juntos. Depois, as perguntas em “Para os pais” ajudam a conversar."
+      ]
+    ],
+    [
+      [
+        "Warum sagt der Erzähler am Ende, dass KI beteiligt war?",
+        "Why does the narrator mention AI at the end?",
+        "¿Por qué el narrador menciona la IA al final?",
+        "Por que o narrador fala de IA no final?"
+      ],
+      [
+        "Text und Stimmen entstehen mit künstlicher Intelligenz. Das kennzeichnen wir offen, so verlangt es der europäische AI Act.",
+        "Text and voices are made with AI. We say so openly, as the European AI Act requires.",
+        "Texto y voces se crean con IA. Lo indicamos abiertamente, como exige la Ley de IA europea.",
+        "Texto e vozes são criados com IA. Informamos abertamente, como exige o AI Act europeu."
+      ]
+    ]
+  ],
+  "formen": {
+    "katze": [
+      "Katze",
+      "Cat",
+      "Gato",
+      "Gato"
+    ],
+    "baer": [
+      "Bär",
+      "Bear",
+      "Oso",
+      "Urso"
+    ],
+    "hase": [
+      "Hase",
+      "Bunny",
+      "Conejo",
+      "Coelho"
+    ],
+    "maus": [
+      "Maus",
+      "Mouse",
+      "Ratón",
+      "Rato"
+    ],
+    "drache": [
+      "Drache",
+      "Dragon",
+      "Dragón",
+      "Dragão"
+    ],
+    "vogel": [
+      "Vogel",
+      "Bird",
+      "Pájaro",
+      "Pássaro"
+    ],
+    "kind": [
+      "Kind",
+      "Child",
+      "Niño",
+      "Criança"
+    ],
+    "roboter": [
+      "Roboter",
+      "Robot",
+      "Robot",
+      "Robô"
+    ],
+    "monster": [
+      "Monsterchen",
+      "Little monster",
+      "Monstruito",
+      "Monstrinho"
+    ]
+  },
+  "extras": {
+    "keins": [
+      "ohne",
+      "none",
+      "nada",
+      "nada"
+    ],
+    "krone": [
+      "Krone",
+      "Crown",
+      "Corona",
+      "Coroa"
+    ],
+    "schleife": [
+      "Schleife",
+      "Bow",
+      "Lazo",
+      "Laço"
+    ],
+    "brille": [
+      "Brille",
+      "Glasses",
+      "Gafas",
+      "Óculos"
+    ],
+    "blume": [
+      "Blume",
+      "Flower",
+      "Flor",
+      "Flor"
+    ],
+    "stern": [
+      "Stern",
+      "Star",
+      "Estrella",
+      "Estrela"
+    ],
+    "muetze": [
+      "Mütze",
+      "Hat",
+      "Gorro",
+      "Gorro"
+    ]
+  },
+  "eigenschaften": {
+    "mutig": [
+      "mutig",
+      "brave",
+      "valiente",
+      "corajoso"
+    ],
+    "schuechtern": [
+      "schüchtern",
+      "shy",
+      "tímido",
+      "tímido"
+    ],
+    "lustig": [
+      "lustig",
+      "funny",
+      "divertido",
+      "engraçado"
+    ],
+    "neugierig": [
+      "neugierig",
+      "curious",
+      "curioso",
+      "curioso"
+    ],
+    "ruhig": [
+      "ruhig",
+      "calm",
+      "tranquilo",
+      "calmo"
+    ],
+    "frech": [
+      "frech",
+      "cheeky",
+      "pícaro",
+      "levado"
+    ],
+    "hilfsbereit": [
+      "hilfsbereit",
+      "helpful",
+      "servicial",
+      "prestativo"
+    ],
+    "vertraeumt": [
+      "verträumt",
+      "dreamy",
+      "soñador",
+      "sonhador"
+    ],
+    "stark": [
+      "stark",
+      "strong",
+      "fuerte",
+      "forte"
+    ],
+    "klug": [
+      "klug",
+      "clever",
+      "listo",
+      "esperto"
+    ],
+    "wild": [
+      "wild",
+      "wild",
+      "salvaje",
+      "agitado"
+    ],
+    "gemuetlich": [
+      "gemütlich",
+      "cosy",
+      "tranquilote",
+      "sossegado"
+    ]
+  },
+  "klang": {
+    "warm": [
+      "warm",
+      "warm",
+      "cálida",
+      "calorosa"
+    ],
+    "erzaehlend": [
+      "Erzählstimme",
+      "storyteller",
+      "narradora",
+      "narradora"
+    ],
+    "ruhig": [
+      "ruhig",
+      "calm",
+      "tranquila",
+      "calma"
+    ],
+    "tief": [
+      "tief",
+      "deep",
+      "grave",
+      "grave"
+    ],
+    "klar": [
+      "klar",
+      "clear",
+      "clara",
+      "clara"
+    ],
+    "sanft": [
+      "sanft",
+      "gentle",
+      "suave",
+      "suave"
+    ],
+    "froehlich": [
+      "fröhlich",
+      "cheerful",
+      "alegre",
+      "alegre"
+    ],
+    "locker": [
+      "locker",
+      "relaxed",
+      "relajada",
+      "descontraída"
+    ],
+    "gemuetlich": [
+      "gemütlich",
+      "cosy",
+      "acogedora",
+      "aconchegante"
+    ],
+    "geheimnisvoll": [
+      "geheimnisvoll",
+      "mysterious",
+      "misteriosa",
+      "misteriosa"
+    ],
+    "kraeftig": [
+      "kräftig",
+      "strong",
+      "potente",
+      "forte"
+    ],
+    "weise": [
+      "weise",
+      "wise",
+      "sabia",
+      "sábia"
+    ],
+    "brummig": [
+      "brummig",
+      "gruff",
+      "gruñona",
+      "rouca"
+    ],
+    "munter": [
+      "munter",
+      "lively",
+      "animada",
+      "animada"
+    ],
+    "quirlig": [
+      "quirlig",
+      "bubbly",
+      "chispeante",
+      "agitada"
+    ],
+    "verspielt": [
+      "verspielt",
+      "playful",
+      "juguetona",
+      "brincalhona"
+    ],
+    "hell": [
+      "hell",
+      "bright",
+      "aguda",
+      "aguda"
+    ]
+  }
+}

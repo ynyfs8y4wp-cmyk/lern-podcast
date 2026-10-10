@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Admin · Hörspielwerkstatt</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="style.css">
+<style>
+/* Admin: nüchterner als die Familienansicht – Kennzahlen oben, darunter Arbeitslisten */
+.wrap{max-width:1040px}
+.adm-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.adm-head h1{font-size:28px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.tile{background:var(--surface);border:2px solid var(--line);border-radius:18px;padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+.tile b{font-family:var(--f-display);font-size:28px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1}
+.tile span{font-size:13px;color:var(--muted)}
+.tile small{font-size:12px;color:var(--muted)}
+.tile.warn{border-color:var(--berry)}
+.charts{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.chart{background:var(--surface);border:2px solid var(--line);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.chart h3{font-size:16px}
+.bars{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:4px;align-items:end;height:140px;border-bottom:1px solid var(--line)}
+.bar{position:relative;height:100%;display:flex;align-items:flex-end}
+.bar i{display:block;width:100%;background:var(--c);border-radius:4px 4px 0 0;min-height:1px}
+.bar:hover i,.bar:focus i{filter:brightness(1.12)}
+.bar .tip{display:none;position:absolute;bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);font-size:12px;font-weight:700;padding:3px 8px;border-radius:8px;white-space:nowrap;z-index:2}
+.bar:hover .tip,.bar:focus .tip{display:block}
+.axis{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:4px;font-size:11px;color:var(--muted);text-align:center}
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+td input[type=number]{width:72px;padding:5px 8px;border-radius:10px}
+.st{font-size:12px;font-weight:800;border-radius:999px;padding:2px 9px;white-space:nowrap}
+.st.ok{background:var(--meadow-soft);color:var(--meadow)}.st.aus{background:var(--berry-soft);color:var(--berry)}.st.neu{background:var(--moon-soft)}
+.meld{border:2px solid var(--line);border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.meld pre{white-space:pre-wrap;font-family:var(--f-body);font-size:14px;max-height:260px;overflow:auto;background:var(--bg);border-radius:12px;padding:10px;margin:0}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.qr{background:#fff;border-radius:14px;padding:10px;width:200px;height:200px}
+.qr img{width:100%;height:100%}
+code.secret{word-break:break-all;font-size:13px}
+.privacy{font-size:13px;color:var(--muted);border-left:4px solid var(--meadow);padding:4px 0 4px 10px}
+</style>
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <header class="adm-head">
+    <div><span class="hint" style="font-weight:800">Hörspielwerkstatt</span><h1>Admin-Bereich</h1></div>
+    <div class="row"><a class="btn" href="./">Zur App</a><button type="button" id="logout" hidden>Abmelden</button></div>
+  </header>
+  <p class="err" id="err" hidden></p>
+
+  <!-- 1. Anmeldung -->
+  <section class="panel" id="s-login" hidden>
+    <h2>Anmelden</h2>
+    <p class="lead">Mit deiner Admin-E-Mail. Danach kommt der zweite Faktor aus deiner Authenticator-App.</p>
+    <form id="f-pw" class="row" hidden><input id="pw-mail" type="email" autocomplete="email" required placeholder="du@beispiel.de" style="max-width:260px"><input id="pw" type="password" autocomplete="current-password" required placeholder="Passwort" style="max-width:200px"><button class="cta" type="submit">Anmelden</button></form>
+    <form id="f-mail" class="row"><input id="mail" type="email" required placeholder="du@beispiel.de" style="max-width:320px"><button class="cta" type="submit">Code schicken</button></form>
+    <form id="f-code" class="row" hidden><input id="code" inputmode="numeric" required placeholder="Code aus der E-Mail" style="max-width:220px"><button class="cta" type="submit">Anmelden</button></form>
+    <span class="hint" id="login-msg" role="status"></span>
+  </section>
+
+  <!-- 2. Zweiter Faktor -->
+  <section class="panel" id="s-mfa" hidden>
+    <h2>Zweiter Faktor</h2>
+    <div id="mfa-enroll" hidden style="display:flex;flex-direction:column;gap:12px">
+      <p class="lead">Einmalig einrichten: Scanne den QR-Code mit einer Authenticator-App (z. B. Apple Passwörter, Google Authenticator, 1Password) und gib den sechsstelligen Code ein.</p>
+      <div class="qr" id="qr"></div>
+      <span class="hint">Oder den Schlüssel eintippen: <code class="secret" id="secret"></code></span>
+    </div>
+    <p class="lead" id="mfa-lead">Gib den sechsstelligen Code aus deiner Authenticator-App ein.</p>
+    <form id="f-mfa" class="row"><input id="totp" inputmode="numeric" autocomplete="one-time-code" maxlength="6" required placeholder="123456" style="max-width:160px"><button class="cta" type="submit">Bestätigen</button></form>
+    <span class="hint" id="mfa-msg" role="status"></span>
+  </section>
+
+  <!-- 3. Kein Admin -->
+  <section class="panel" id="s-nein" hidden>
+    <h2>Kein Zugang</h2>
+    <p class="lead">Dieses Konto ist kein Admin-Konto. Admins legst du im Supabase SQL Editor an (siehe README).</p>
+  </section>
+
+  <!-- 4. Übersicht -->
+  <main id="s-admin" hidden style="display:flex;flex-direction:column;gap:20px">
+    <p class="privacy">Du siehst Kennzahlen und Konten, aber keine Kinderprofile und keine Hörspielinhalte. Eine Ausnahme sind Hörspiele, die eine Familie selbst gemeldet hat. Jede Änderung landet im Protokoll.</p>
+    <div class="row" style="justify-content:space-between"><h2>Überblick</h2><span class="hint" id="stand"></span></div>
+    <div class="tiles" id="tiles"></div>
+    <div class="charts">
+      <div class="chart"><h3>Hörspiele pro Monat</h3><div class="bars" id="ch-hs" role="img"></div><div class="axis" id="ax-hs"></div></div>
+      <div class="chart"><h3>Neue Familien pro Monat</h3><div class="bars" id="ch-fam" role="img"></div><div class="axis" id="ax-fam"></div></div>
+    </div>
+    <div class="split">
+      <div class="chart"><h3>Nach Figur</h3><table id="t-figur"></table></div>
+      <div class="chart"><h3>Nach Sprache</h3><table id="t-sprache"></table></div>
+    </div>
+
+    <section class="panel">
+      <div class="row" style="justify-content:space-between"><h2>Meldungen</h2><label class="row hint"><input type="checkbox" id="meld-alle"> auch erledigte</label></div>
+      <div id="meldungen" style="display:flex;flex-direction:column;gap:10px"></div>
+    </section>
+
+    <section class="panel">
+      <div class="row" style="justify-content:space-between"><h2>Familien</h2><input id="suche" type="search" placeholder="E-Mail suchen" style="max-width:260px"></div>
+      <div class="scroll"><table id="familien"></table></div>
+    </section>
+
+    <section class="panel">
+      <h2>Einladungscodes</h2>
+      <form id="f-einl" class="row">
+        <label class="f" style="width:130px">Hörspiele/Monat<input id="e-kont" type="number" min="1" max="100" value="5"></label>
+        <label class="f" style="width:110px">Nutzungen<input id="e-max" type="number" min="1" max="500" value="5"></label>
+        <label class="f" style="width:110px">Gültig (Tage)<input id="e-tage" type="number" min="0" max="365" value="30"></label>
+        <label class="f" style="flex:1;min-width:180px">Notiz<input id="e-notiz" maxlength="200" placeholder="z. B. Kita-Eltern"></label>
+        <button class="cta" type="submit" style="align-self:flex-end">Code erzeugen</button>
+      </form>
+      <span class="hint" id="einl-msg" role="status"></span>
+      <div class="scroll"><table id="einladungen"></table></div>
+    </section>
+
+    <section class="panel">
+      <h2>Protokoll</h2>
+      <div class="scroll"><table id="protokoll"></table></div>
+    </section>
+  </main>
+</div>
+<script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,345 @@
+{
+  "version": 1,
+  "figuren": [
+    {
+      "key": "LOTTA",
+      "name": "Lotta Löwenmut",
+      "kurz": "Kleine Löwin, laut und mutig, die sich heimlich manchmal ganz klein fühlt.",
+      "passt": "Wut, Mut, Grenzen, Neues",
+      "autor": "Kleine Löwin, laut, mutig, stürmisch, fühlt sich heimlich manchmal ganz klein. Spricht schnell und begeistert.",
+      "svg": "<circle cx=\"32\" cy=\"32\" r=\"29\" fill=\"#D6782A\"/><circle cx=\"32\" cy=\"32\" r=\"21\" fill=\"#F2B246\"/><circle cx=\"25\" cy=\"29\" r=\"2.6\" fill=\"#1E1E28\"/><circle cx=\"39\" cy=\"29\" r=\"2.6\" fill=\"#1E1E28\"/><ellipse cx=\"32\" cy=\"37\" rx=\"4\" ry=\"3\" fill=\"#3C2828\"/>",
+      "hallo": "Rooaar! Ich bin Lotta. Zusammen trauen wir uns was!",
+      "kachel": "#FCE7C8",
+      "kachelDunkel": "#4A3A22"
+    },
+    {
+      "key": "FINN",
+      "name": "Finn Fuchs",
+      "kurz": "Neugieriger Fuchs mit tausend Fragen, der gern weiß, was als Nächstes passiert.",
+      "passt": "Neuanfänge, Arzt, Erklärungen",
+      "autor": "Neugieriger kleiner Fuchs, stellt viele Fragen, mag Pläne und will wissen, was als Nächstes passiert.",
+      "svg": "<polygon points=\"12,26 17,4 28,18\" fill=\"#DE6830\"/><polygon points=\"52,26 47,4 36,18\" fill=\"#DE6830\"/><circle cx=\"32\" cy=\"34\" r=\"22\" fill=\"#DE6830\"/><path d=\"M14 38 Q32 58 50 38 Q32 46 14 38Z\" fill=\"#FFF4E6\"/><circle cx=\"25\" cy=\"30\" r=\"2.6\" fill=\"#1E1E28\"/><circle cx=\"39\" cy=\"30\" r=\"2.6\" fill=\"#1E1E28\"/><ellipse cx=\"32\" cy=\"39\" rx=\"3.6\" ry=\"2.8\" fill=\"#3C2828\"/>",
+      "hallo": "Hallo! Ich bin Finn. Was passiert als Nächstes? Finden wir's raus!",
+      "kachel": "#FBDCCB",
+      "kachelDunkel": "#4A2E24"
+    },
+    {
+      "key": "PIP",
+      "name": "Pip Pinguin",
+      "kurz": "Kleiner Pinguin, schüchtern, schaut erst lange zu und traut sich dann Schritt für Schritt.",
+      "passt": "Wasser, Schwimmen, Schüchternheit",
+      "autor": "Kleiner, schüchterner Pinguin, beobachtet lange, flüstert manchmal, traut sich Schritt für Schritt.",
+      "svg": "<circle cx=\"32\" cy=\"32\" r=\"26\" fill=\"#282C3C\"/><ellipse cx=\"32\" cy=\"37\" rx=\"17\" ry=\"19\" fill=\"#FAF8F0\"/><circle cx=\"25\" cy=\"28\" r=\"2.6\" fill=\"#1E1E28\"/><circle cx=\"39\" cy=\"28\" r=\"2.6\" fill=\"#1E1E28\"/><polygon points=\"27,33 37,33 32,41\" fill=\"#F5AA28\"/>",
+      "hallo": "Hallo … ich bin Pip. Ganz langsam ist auch mutig.",
+      "kachel": "#DCE6F5",
+      "kachelDunkel": "#26344A"
+    },
+    {
+      "key": "BRUNO",
+      "name": "Bruno Bär",
+      "kurz": "Gemütlicher Bär, der Kuscheln und feste Rituale liebt und für Neues etwas Zeit braucht.",
+      "passt": "Einschlafen, Abschied, Trennung",
+      "autor": "Gemütlicher kleiner Bär, liebt Kuscheln, Honigbrot und feste Rituale, braucht für Neues Zeit.",
+      "svg": "<circle cx=\"14\" cy=\"14\" r=\"9\" fill=\"#96623E\"/><circle cx=\"50\" cy=\"14\" r=\"9\" fill=\"#96623E\"/><circle cx=\"32\" cy=\"34\" r=\"24\" fill=\"#96623E\"/><ellipse cx=\"32\" cy=\"41\" rx=\"10\" ry=\"8\" fill=\"#C99A72\"/><circle cx=\"24\" cy=\"30\" r=\"2.6\" fill=\"#1E1E28\"/><circle cx=\"40\" cy=\"30\" r=\"2.6\" fill=\"#1E1E28\"/><ellipse cx=\"32\" cy=\"38\" rx=\"3.6\" ry=\"2.8\" fill=\"#3C2828\"/>",
+      "hallo": "Hallo, ich bin Bruno. Erst mal kuscheln, dann schaffen wir das.",
+      "kachel": "#EBDDD0",
+      "kachelDunkel": "#3D3129"
+    },
+    {
+      "key": "MIRA",
+      "name": "Prinzessin Mira",
+      "kurz": "Kleine Prinzessin und Zauberin aus dem Mondschloss. Ihr Sternenzauber funkelt am hellsten, wenn sie an sich glaubt.",
+      "passt": "Gefühle, Mut, Geschwister, Freundschaft",
+      "autor": "Kleine Prinzessin und Zauberin aus dem Mondschloss am Rand des Wiesenwalds. Fröhlich, fantasievoll, herzlich, ein bisschen ungeduldig. Goldene Krone, Zauberstab mit Stern. Ihr Sternenzauber ist klein und sanft (Glitzerlicht, schwebende Funken, ein leuchtender Mutstern). Er funkelt am hellsten, wenn sie an sich glaubt, und gerät durcheinander, wenn große Gefühle kommen; wenn sie durchatmet und ihr Gefühl benennt, wird er ruhig. Der Zauber löst nie das eigentliche Problem: den echten Schritt schafft Mira selbst. Eigene Figur: keine Anspielungen auf bekannte Filmprinzessinnen, ihre Namen, Lieder oder Eiszauber. Ihre Eltern sind Königin und König, sprechen aber als MAMA und PAPA.",
+      "svg": "<circle cx=\"32\" cy=\"35\" r=\"25\" fill=\"#4E3127\"/><circle cx=\"11\" cy=\"45\" r=\"7\" fill=\"#4E3127\"/><circle cx=\"53\" cy=\"45\" r=\"7\" fill=\"#4E3127\"/><circle cx=\"32\" cy=\"37\" r=\"17\" fill=\"#F3CBA8\"/><path d=\"M15 33 Q18 18 32 18 Q46 18 49 33 Q42 26 32 27 Q22 26 15 33Z\" fill=\"#4E3127\"/><polygon points=\"19,19 22,7 27,14 32,4 37,14 42,7 45,19\" fill=\"#F2B93B\"/><circle cx=\"32\" cy=\"14\" r=\"2.6\" fill=\"#B66BD6\"/><circle cx=\"26\" cy=\"37\" r=\"2.4\" fill=\"#1E1E28\"/><circle cx=\"38\" cy=\"37\" r=\"2.4\" fill=\"#1E1E28\"/><circle cx=\"22\" cy=\"43\" r=\"2.6\" fill=\"#F0A0A8\" opacity=\".7\"/><circle cx=\"42\" cy=\"43\" r=\"2.6\" fill=\"#F0A0A8\" opacity=\".7\"/><path d=\"M28 45 Q32 48 36 45\" stroke=\"#7A3A3A\" stroke-width=\"1.8\" fill=\"none\" stroke-linecap=\"round\"/><path d=\"M56 6 L57.5 10.5 L62 12 L57.5 13.5 L56 18 L54.5 13.5 L50 12 L54.5 10.5Z\" fill=\"#FFD25A\"/>",
+      "hallo": "Hallo, ich bin Mira! Mein Sternenzauber funkelt, wenn wir an uns glauben.",
+      "kachel": "#EEDDF6",
+      "kachelDunkel": "#3B2B4A"
+    }
+  ],
+  "themen": [
+    {
+      "gruppe": "Neuanfänge",
+      "liste": [
+        "Kita-Eingewöhnung",
+        "Wechsel in den Kindergarten",
+        "Einschulung",
+        "Neue Tagesmutter oder Babysitter",
+        "Umzug",
+        "Ein Geschwisterchen kommt"
+      ],
+      "farbe": "#F2B53C",
+      "empfohleneFiguren": [
+        "FINN",
+        "BRUNO"
+      ],
+      "empfohleneKonzepte": [
+        "Bindungs- und bedürfnisorientiert",
+        "Situationsansatz"
+      ]
+    },
+    {
+      "gruppe": "Wasser und Bewegung",
+      "liste": [
+        "Erstes Mal ins Freibad",
+        "Schwimmkurs",
+        "Seepferdchen-Prüfung",
+        "Fahrradfahren lernen",
+        "Turnverein oder Sportgruppe"
+      ],
+      "farbe": "#5B8DD6",
+      "empfohleneFiguren": [
+        "PIP"
+      ],
+      "empfohleneKonzepte": [
+        "Resilienzförderung",
+        "Montessori"
+      ]
+    },
+    {
+      "gruppe": "Große Gefühle",
+      "liste": [
+        "Verlustängste",
+        "Wut",
+        "Eifersucht",
+        "Schüchternheit",
+        "Angst im Dunkeln",
+        "Alleine einschlafen",
+        "Albträume"
+      ],
+      "farbe": "#D9586F",
+      "empfohleneFiguren": [
+        "MIRA",
+        "LOTTA"
+      ],
+      "empfohleneKonzepte": [
+        "Gewaltfreie Kommunikation",
+        "Achtsamkeit und Entspannung"
+      ]
+    },
+    {
+      "gruppe": "Abschied und Familie",
+      "liste": [
+        "Trennung der Eltern",
+        "Ein Elternteil ist oft weg",
+        "Tod eines Haustiers",
+        "Abschied von Oma oder Opa",
+        "Jemand aus der Familie ist krank"
+      ],
+      "farbe": "#8E6CC7",
+      "empfohleneFiguren": [
+        "BRUNO"
+      ],
+      "empfohleneKonzepte": [
+        "Therapeutisches Erzählen",
+        "Bindungs- und bedürfnisorientiert"
+      ]
+    },
+    {
+      "gruppe": "Körper und Gesundheit",
+      "liste": [
+        "Arztbesuch und Impfung",
+        "Zahnarzt",
+        "Krankenhaus",
+        "Friseur",
+        "Trocken werden",
+        "Schnuller abgeben"
+      ],
+      "farbe": "#2F8063",
+      "empfohleneFiguren": [
+        "FINN"
+      ],
+      "empfohleneKonzepte": [
+        "Situationsansatz",
+        "Resilienzförderung"
+      ]
+    },
+    {
+      "gruppe": "Miteinander",
+      "liste": [
+        "Freunde finden",
+        "Teilen und Streiten",
+        "Nein sagen",
+        "Anderssein und Vielfalt"
+      ],
+      "farbe": "#E07A3C",
+      "empfohleneFiguren": [
+        "MIRA",
+        "LOTTA"
+      ],
+      "empfohleneKonzepte": [
+        "Gewaltfreie Kommunikation",
+        "Spielpädagogik nach Fröbel"
+      ]
+    }
+  ],
+  "personen": [
+    "Mama",
+    "Papa",
+    "Oma",
+    "Opa",
+    "Geschwister",
+    "Erzieherin oder Lehrerin",
+    "Freundin oder Freund"
+  ],
+  "konzepte": [
+    {
+      "name": "Bindungs- und bedürfnisorientiert",
+      "kurz": "Gefühle werden ernst genommen, verlässliche Bezugspersonen geben Halt.",
+      "autor": "Gefühle werden gespiegelt, nicht weggeredet; verlässliche Rituale (zum Beispiel ein Abschiedsritual mit fester Wiederkehr-Zusage)."
+    },
+    {
+      "name": "Resilienzförderung",
+      "kurz": "Die Figur entdeckt eigene Stärken, findet Lösungen und erlebt: Ich schaffe das.",
+      "autor": "Figur entdeckt eigene Stärke, probiert, scheitert kurz, findet eine Lösung; Selbstwirksamkeit."
+    },
+    {
+      "name": "Therapeutisches Erzählen",
+      "kurz": "Das Thema wird in einer Geschichte mit etwas Abstand verarbeitet, mit einem hoffnungsvollen Bild am Ende.",
+      "autor": "Thema mit Abstand in der Tierwelt oder im Märchenschloss, ein tragendes Bild oder eine Metapher, hoffnungsvolles Ende."
+    },
+    {
+      "name": "Montessori",
+      "kurz": "„Hilf mir, es selbst zu tun“: kleine, eigene Schritte und echtes Zutrauen.",
+      "autor": "Die Figur macht selbst, in eigenem Tempo; Erwachsene helfen nur so viel wie nötig."
+    },
+    {
+      "name": "Waldorf",
+      "kurz": "Rhythmus, Natur, wiederkehrende Bilder und eine ruhige, bildhafte Sprache.",
+      "autor": "Rhythmus, Natur, Jahreszeit, wiederkehrende Bilder, ruhige bildhafte Sprache."
+    },
+    {
+      "name": "Reggio-Pädagogik",
+      "kurz": "Das Kind als Forscher: ausprobieren, staunen, mit allen Sinnen entdecken.",
+      "autor": "Forschen, Staunen, mit allen Sinnen erkunden."
+    },
+    {
+      "name": "Situationsansatz",
+      "kurz": "Die Geschichte greift die echte Alltagssituation deines Kindes möglichst genau auf.",
+      "autor": "Die echte Situation aus der Beschreibung der Eltern möglichst genau, aber anonymisiert nachbilden."
+    },
+    {
+      "name": "Gewaltfreie Kommunikation",
+      "kurz": "Gefühle und Bedürfnisse werden benannt, Konflikte fair gelöst.",
+      "autor": "Beobachtung, Gefühl, Bedürfnis, Bitte; Konflikte fair lösen."
+    },
+    {
+      "name": "Achtsamkeit und Entspannung",
+      "kurz": "Atmen, in den Körper spüren, zur Ruhe kommen.",
+      "autor": "Eine kurze Atem- oder Körperübung, die das Kind mitmachen kann."
+    },
+    {
+      "name": "Spielpädagogik nach Fröbel",
+      "kurz": "Spiel und Fantasie als Weg, Neues zu begreifen.",
+      "autor": "Spiel und Fantasie als Weg, das Neue zu begreifen."
+    }
+  ],
+  "laengen": [
+    {
+      "key": "kurz",
+      "label": "kurz",
+      "woerter": [
+        600,
+        750
+      ],
+      "zusatz": "ca. 5 Min."
+    },
+    {
+      "key": "mittel",
+      "label": "mittel",
+      "woerter": [
+        950,
+        1150
+      ],
+      "zusatz": "ca. 8 Min."
+    },
+    {
+      "key": "lang",
+      "label": "lang",
+      "woerter": [
+        1400,
+        1650
+      ],
+      "zusatz": "ca. 12 Min."
+    }
+  ],
+  "stimmungen": [
+    {
+      "key": "abenteuerlich",
+      "label": "abenteuerlich",
+      "zusatz": "mit Spannung"
+    },
+    {
+      "key": "lustig",
+      "label": "lustig",
+      "zusatz": "zum Lachen"
+    },
+    {
+      "key": "ruhig",
+      "label": "ruhig",
+      "zusatz": "warm und sanft"
+    }
+  ],
+  "rollen": {
+    "ERZÄHLER": {
+      "label": "Erzähler",
+      "stimme": "JBFqnCBsd6RMkjVDRZzb"
+    },
+    "LOTTA": {
+      "label": "Lotta",
+      "stimme": "cgSgspJ2msm6clMCkdW9"
+    },
+    "FINN": {
+      "label": "Finn",
+      "stimme": "IKne3meq5aSn9XLyUdCD"
+    },
+    "PIP": {
+      "label": "Pip",
+      "stimme": "FGY2WhTYpPnrIDTdsKH5"
+    },
+    "BRUNO": {
+      "label": "Bruno",
+      "stimme": "bIHbv24MWmeRgasZH58o"
+    },
+    "MIRA": {
+      "label": "Mira",
+      "stimme": "EXAVITQu4vr4xnSDxMaL"
+    },
+    "MAMA": {
+      "label": "Mama",
+      "stimme": "21m00Tcm4TlvDq8ikWAM"
+    },
+    "PAPA": {
+      "label": "Papa",
+      "stimme": "iP95p4xoKVk53GoZ742B"
+    },
+    "OMA": {
+      "label": "Oma",
+      "stimme": "XrExE9yKIg1WjnnlVkGX"
+    },
+    "OPA": {
+      "label": "Opa",
+      "stimme": "pqHfZKP75CvOlQylNhV4"
+    },
+    "FRAU": {
+      "label": "Frau",
+      "stimme": "9BWtsMINqrJLrRacOk9x"
+    },
+    "MANN": {
+      "label": "Mann",
+      "stimme": "cjVigY5qzO86Huf0OWal"
+    },
+    "KIND": {
+      "label": "Kind",
+      "stimme": "TX3LPaxmHKxFdv7VOQHJ"
+    }
+  },
+  "grenzen": {
+    "themenMax": 3,
+    "konzepteMax": 3,
+    "freitextMax": 1500,
+    "infosMax": 1500,
+    "alterMin": 1,
+    "alterMax": 12
+  }
+}
