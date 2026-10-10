@@ -20,6 +20,7 @@ Geräusche erzeugt ElevenLabs als kurze Soundeffekte; steht dort
 
 from __future__ import annotations
 
+import hashlib
 import html
 import json
 import os
@@ -155,6 +156,7 @@ def parse_episode(path: Path, show: Show) -> dict:
     meta.setdefault("date", datetime.now(timezone.utc).isoformat())
     meta["id"] = path.stem
     meta["body"] = body.strip()
+    meta["hash"] = hashlib.sha256(meta["body"].encode("utf-8")).hexdigest()[:16]
     return meta
 
 
@@ -340,6 +342,7 @@ def produce(ep: dict, work: Path, show: Show) -> dict:
         "bytes": mp3.stat().st_size,
         "seconds": duration_seconds(mp3),
         "created": datetime.now(timezone.utc).isoformat(),
+        "hash": ep["hash"],
     }
     (show.src / f"{ep['id']}.json").write_text(json.dumps(info, indent=2), encoding="utf-8")
     return info
@@ -461,8 +464,12 @@ def run_show(show: Show, work: Path, redo: set[str]) -> int:
             continue
         ep = parse_episode(path, show)
         meta_path = show.src / f"{ep['id']}.json"
-        if meta_path.exists() and ep["id"] not in redo:
-            info = json.loads(meta_path.read_text(encoding="utf-8"))
+        info = json.loads(meta_path.read_text(encoding="utf-8")) if meta_path.exists() else None
+        changed = bool(info and info.get("hash") and info["hash"] != ep["hash"])
+        if changed:
+            print(f"[{show.key}] Text von {ep['id']} wurde geändert, spreche neu ein.")
+        if info and ep["id"] not in redo and not changed:
+            pass
         else:
             try:
                 info = produce(ep, work, show)
