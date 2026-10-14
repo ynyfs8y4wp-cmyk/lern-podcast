@@ -121,6 +121,9 @@ class Show:
     voice_settings: dict = field(default_factory=dict)
     pause: float = 0.25
     verschluesselt: bool = False   # Skripte und Audio nur verschlüsselt im Repository
+    dialog: bool = False           # Gespräch am Stück mit dem Dialog-Modell einsprechen (natürliche Sprecherwechsel)
+    tags: bool = False             # Audio-Tags wie [laughs] im Skript behalten
+    musik: str = "musik"           # Ordner mit intro/outro/bett.mp3; fehlt er, gibt es keine Musik
 
 
 SHOWS = [
@@ -138,6 +141,9 @@ SHOWS = [
         category='<itunes:category text="Technology"/>',
         voices=HOSTS,
         voice_settings={"stability": 0.4, "similarity_boost": 0.8, "style": 0.35, "use_speaker_boost": True},
+        dialog=True,
+        tags=True,
+        musik="musik-lern",
     ),
     Show(
         key="hoerspiele",
@@ -157,6 +163,8 @@ SHOWS = [
         voice_settings={"stability": 0.35, "similarity_boost": 0.75, "style": 0.5, "use_speaker_boost": True},
         pause=0.35,
         verschluesselt=True,
+        dialog=True,
+        tags=True,
     ),
 ]
 
@@ -258,7 +266,7 @@ def dialog_turns(ep: dict, show: Show) -> list[tuple[str, str]]:
             continue
         if role not in show.voices and role not in (ep.get("stimmen") or {}) and not show.roles_any:
             continue
-        text = hp.text_mit_tags(m.group(2)) if show.roles_any else clean_spoken(m.group(2))   # Hörspiele: Audio-Tags behalten
+        text = hp.text_mit_tags(m.group(2)) if show.tags else clean_spoken(m.group(2))   # Hörspiele: Audio-Tags behalten
         if text:
             turns.append((role, text))
     return turns
@@ -429,19 +437,19 @@ def produce(ep: dict, work: Path, show: Show) -> dict:
         turns.append(("ERZÄHLER", hinweis))        # hörbarer KI-Hinweis in der Sprache des Hörspiels, immer als letzte Zeile
     m4a = work / f"{ep['id']}.m4a"
     bericht = None
-    if turns and ELEVEN_KEY and show.roles_any:
-        # Hörspiele: Szenen am Stück mit dem Dialog-Modell, Musik und weiche Übergänge
+    if turns and ELEVEN_KEY and show.dialog:
+        # Szenen am Stück mit dem Dialog-Modell, weiche Übergänge, bei den Hörspielen mit Musik
         def stimme_fuer(wer: str) -> str:
-            return (ep.get("stimmen") or {}).get(wer) or show.voices.get(wer) or show.voices["ERZÄHLER"]
+            return (ep.get("stimmen") or {}).get(wer) or show.voices.get(wer) or show.voices.get("ERZÄHLER") or next(iter(show.voices.values()))
 
         def einzeln(text: str, stimme: str, vorher: str, nachher: str, ziel: Path) -> None:
             try:
                 eleven_tts(text, stimme, vorher, nachher, ziel, show)
             except Exception as exc:  # unbekannte Stimme: Erzähler springt ein
                 print(f"::warning::Stimme nicht nutzbar ({exc}), spricht der Erzähler.")
-                eleven_tts(text, show.voices["ERZÄHLER"], vorher, nachher, ziel, show)
+                eleven_tts(text, show.voices.get("ERZÄHLER") or next(iter(show.voices.values())), vorher, nachher, ziel, show)
 
-        prod = hp.Produktion(ELEVEN_KEY, work, ep["id"], str(ep.get("sprache", "de")).lower()[:2], einzeln, eleven_sfx, ROOT / "musik")
+        prod = hp.Produktion(ELEVEN_KEY, work, ep["id"], str(ep.get("sprache", "de")).lower()[:2], einzeln, eleven_sfx, ROOT / show.musik)
         bericht = prod.erzeugen(turns, stimme_fuer, SFX_ON, SFX_MAX, mp3, m4a, ki_metadaten(ep, show))
         print(f"[{show.key}] Produktion: {json.dumps(bericht)}")
     elif turns and ELEVEN_KEY:
