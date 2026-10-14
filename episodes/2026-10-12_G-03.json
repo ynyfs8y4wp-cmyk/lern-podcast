@@ -1,7 +1,14 @@
 {
   "url": "https://github.com/ynyfs8y4wp-cmyk/lern-podcast/releases/download/ep-2026-10-12_G-03/2026-10-12_G-03.mp3",
-  "bytes": 3425761,
-  "seconds": 285,
-  "created": "2026-10-12T18:54:11.636737+00:00",
-  "hash": "a8af2c0753bc2097"
+  "produktion": {
+    "dialog_bloecke": 3,
+    "einzeln_bloecke": 0,
+    "geraeusche": 0,
+    "modell": "eleven_v4",
+    "musik": false
+  },
+  "bytes": 5229985,
+  "seconds": 326,
+  "created": "2026-10-14T19:39:12.646534+00:00",
+  "hash": "47ae91ded9ebc4af"
 }
