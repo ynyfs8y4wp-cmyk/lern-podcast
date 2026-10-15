@@ -1,0 +1,16 @@
+{
+  "url": "https://github.com/ynyfs8y4wp-cmyk/lern-podcast/releases/download/hs-2026-10-15_1154_antonderfussballprofi-ojq6/2026-10-15_1154_antonderfussballprofi-ojq6.mp3.enc",
+  "app_audio": "2026-10-15_1154_antonderfussballprofi-ojq6.m4a.enc",
+  "produktion": {
+    "dialog_bloecke": 5,
+    "einzeln_bloecke": 0,
+    "geraeusche": 4,
+    "modell": "eleven_v4",
+    "musik": true
+  },
+  "bytes": 5356232,
+  "seconds": 334,
+  "created": "2026-10-15T09:59:55.791572+00:00",
+  "hash": "6d7555de0d5d6fa4",
+  "verschluesselt": true
+}
