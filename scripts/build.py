@@ -558,6 +558,18 @@ def summary(ep: dict, show: Show, limit: int = 600) -> str:
     return plain[:limit].rsplit(" ", 1)[0] + " …" if len(plain) > limit else plain
 
 
+SPRACH_TAGS = {"de": "de-de", "en": "en", "es": "es", "pt": "pt"}
+
+
+def feed_sprache(items: list[tuple[dict, dict]]) -> str:
+    """Sprache des Feeds: die der neuesten Folge (Kopfzeile sprache), sonst Deutsch."""
+    for ep, _ in items:
+        code = str(ep.get("sprache", "")).lower()[:2]
+        if code in SPRACH_TAGS:
+            return SPRACH_TAGS[code]
+    return "de-de"
+
+
 def build_site(show: Show, items: list[tuple[dict, dict]]) -> None:
     show.out.mkdir(parents=True, exist_ok=True)
     cover = Path(show.cover) if Path(show.cover).is_absolute() else ROOT / show.cover
@@ -582,7 +594,7 @@ def build_site(show: Show, items: list[tuple[dict, dict]]) -> None:
     <title>{e(show.title)}</title>
     <link>{e(show.base)}/</link>
     <atom:link href="{e(show.base)}/feed.xml" rel="self" type="application/rss+xml"/>
-    <language>de-de</language>
+    <language>{feed_sprache(items)}</language>
     <description>{e(show.description + " " + KI_NOTIZ)}</description>
     <itunes:author>{e(show.title)}</itunes:author>
     <itunes:summary>{e(show.description)}</itunes:summary>
