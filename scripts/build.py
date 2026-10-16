@@ -124,6 +124,8 @@ class Show:
     dialog: bool = False           # Gespräch am Stück mit dem Dialog-Modell einsprechen (natürliche Sprecherwechsel)
     tags: bool = False             # Audio-Tags wie [laughs] im Skript behalten
     musik: str = "musik"           # Ordner mit intro/outro/bett.mp3; fehlt er, gibt es keine Musik
+    audio_base: str = ""           # Basis-URL der MP3s, wenn sie nicht unter base liegen (Feeds einzelner Lernrouten)
+    routen: bool = False           # Lernrouten getrennt: Route "agent" und Radar in feed.xml, jede weitere Route in routen/<id>/feed.xml
 
 
 SHOWS = [
@@ -144,6 +146,7 @@ SHOWS = [
         dialog=True,
         tags=True,
         musik="musik-lern",
+        routen=True,
     ),
     Show(
         key="hoerspiele",
@@ -525,7 +528,7 @@ def publish_audio(ep: dict, work: Path, show: Show, info: dict | None = None) ->
 
 def audio_url(ep: dict, show: Show, info: dict | None = None) -> str:
     version = re.sub(r"\D", "", (info or {}).get("created", ""))[:14]
-    return f"{show.base}/episodes/{ep['id']}.mp3" + (f"?v={version}" if version else "")
+    return f"{show.audio_base or show.base}/episodes/{ep['id']}.mp3" + (f"?v={version}" if version else "")
 
 
 # ---------- Feed bauen ----------
@@ -557,8 +560,8 @@ def summary(ep: dict, show: Show, limit: int = 600) -> str:
 
 def build_site(show: Show, items: list[tuple[dict, dict]]) -> None:
     show.out.mkdir(parents=True, exist_ok=True)
-    cover = ROOT / show.cover
-    if cover.exists():
+    cover = Path(show.cover) if Path(show.cover).is_absolute() else ROOT / show.cover
+    if cover.exists() and cover.resolve() != (show.out / "cover.png").resolve():
         shutil.copy(cover, show.out / "cover.png")
     e = html.escape
     rss_items = []
@@ -610,6 +613,48 @@ h2{{font-size:17px;margin:2px 0 8px}}.m{{margin:0;color:#5B6B73;font-size:13px}}
     (show.out / "index.html").write_text(page, encoding="utf-8")
 
 
+def route_of(ep: dict) -> str:
+    """Lernroute einer Folge: Kopfzeile route, sonst Agentifizierung (Altbestand und Markt-Radar)."""
+    r = re.sub(r"[^a-z0-9-]", "", str(ep.get("route", "")).lower())
+    return r or "agent"
+
+
+def build_route_sites(show: Show, items: list[tuple[dict, dict]]) -> None:
+    """Ein Feed je Lernroute, damit sich die Routen in der Podcast-App nicht vermischen.
+
+    Route "agent" und der Markt-Radar bleiben im bisherigen feed.xml (bestehendes Abo).
+    Jede weitere Route bekommt routen/<id>/feed.xml mit eigenem Titel und Cover.
+    Die MP3s liegen für alle Routen gemeinsam unter episodes/.
+    """
+    import dataclasses
+    import route_cover
+
+    gruppen: dict[str, list[tuple[dict, dict]]] = {}
+    for ep, info in items:
+        gruppen.setdefault(route_of(ep), []).append((ep, info))
+    build_site(show, gruppen.pop("agent", []))
+    verzeichnis = [{"id": "agent", "title": "Agentifizierung", "feed": f"{show.base}/feed.xml"}]
+    for rid, liste in sorted(gruppen.items()):
+        name = next((ep.get("routeTitle") for ep, _ in liste if ep.get("routeTitle")), "") or rid.replace("-", " ").strip().title()
+        out = show.out / "routen" / rid
+        cover = out / "cover.png"
+        if not route_cover.make_cover(rid, name, cover):
+            cover = ROOT / show.cover
+        sub = dataclasses.replace(
+            show, out=out, base=f"{show.base}/routen/{rid}", audio_base=show.base, cover=str(cover.resolve()),
+            title=f"Lernroute {name}",
+            description=f"Private Lernfolgen der Lernroute {name}, einfach erklärt als Gespräch.",
+            routen=False,
+        )
+        for i, (ep, info) in enumerate(liste):   # Routenname steht schon im Feed-Titel
+            if ep["title"].startswith(name + ":"):
+                liste[i] = (dict(ep, title=ep["title"][len(name) + 1:].strip()), info)
+        build_site(sub, liste)
+        verzeichnis.append({"id": rid, "title": name, "feed": f"{sub.base}/feed.xml"})
+        print(f"[{show.key}] Route {rid}: {len(liste)} Folgen in {sub.base}/feed.xml")
+    (show.out / "routen.json").write_text(json.dumps(verzeichnis, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
 def run_show(show: Show, work: Path, redo: set[str]) -> int:
     show.src.mkdir(exist_ok=True)
     items: list[tuple[dict, dict]] = []
@@ -635,7 +680,10 @@ def run_show(show: Show, work: Path, redo: set[str]) -> int:
         items.append((ep, info))
     items.sort(key=lambda x: x[0]["date"], reverse=True)
     items = [(ep, info) for ep, info in items if publish_audio(ep, work, show, info)]
-    build_site(show, items)
+    if show.routen:
+        build_route_sites(show, items)
+    else:
+        build_site(show, items)
     print(f"[{show.key}] Feed mit {len(items)} Folgen gebaut" + ("" if show.verschluesselt else f": {show.base}/feed.xml"))
     if failed:
         print(f"[{show.key}] {failed} Folge(n) beim nächsten Lauf erneut versuchen.")
