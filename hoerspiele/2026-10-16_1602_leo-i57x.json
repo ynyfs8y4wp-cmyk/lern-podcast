@@ -1,0 +1,16 @@
+{
+  "url": "https://github.com/ynyfs8y4wp-cmyk/lern-podcast/releases/download/hs-2026-10-16_1602_leo-i57x/2026-10-16_1602_leo-i57x.mp3.enc",
+  "app_audio": "2026-10-16_1602_leo-i57x.m4a.enc",
+  "produktion": {
+    "dialog_bloecke": 5,
+    "einzeln_bloecke": 0,
+    "geraeusche": 4,
+    "modell": "eleven_v4",
+    "musik": true
+  },
+  "bytes": 5439836,
+  "seconds": 339,
+  "created": "2026-10-16T14:09:47.768265+00:00",
+  "hash": "ff2a685a9284d606",
+  "verschluesselt": true
+}
