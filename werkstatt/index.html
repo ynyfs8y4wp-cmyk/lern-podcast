@@ -239,6 +239,10 @@
       <button type="button" data-logout style="align-self:flex-start" data-t="abmelden"></button>
       <a class="btn" id="adminlink" href="admin.html" hidden style="align-self:flex-start">Admin-Bereich</a>
     </div>
+    <div class="panel" id="familie-box"><h3 data-t="eureFamilie"></h3><p class="hint" data-t="familieText"></p>
+      <div class="row" style="gap:8px;flex-wrap:wrap;align-items:flex-end"><label class="f" style="flex:1;min-width:180px" for="fam-name"><span data-t="familieName"></span><input id="fam-name" maxlength="60"></label>
+      <button type="button" class="soft" id="fam-speichern" data-t="speichern"></button></div>
+      <ul id="fam-mitglieder" style="margin:8px 0 0;padding-left:20px"></ul><p class="hint" id="fam-code"></p></div>
     <div class="panel"><h3 data-t="kinderprofile"></h3><div id="kidlist"></div></div>
     <div class="panel">
       <h3 data-t="kontoLoeschen"></h3>

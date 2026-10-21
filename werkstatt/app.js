@@ -418,6 +418,13 @@ function bestaetige(box, ausloeser, frage, fn) {
 function zeigeKonto() {
   if (!konto) return; $("adminlink").hidden = konto.rolle !== "admin";
   $("konto-info").textContent = (nutzer?.email || "") + " · " + t("genutzt", { v: konto.verbraucht, k: konto.kontingent });
+  const fam = konto.familie; $("familie-box").hidden = !fam;
+  if (fam) {
+    if (document.activeElement !== $("fam-name")) $("fam-name").value = fam.name || "";
+    const ul = $("fam-mitglieder"); ul.textContent = "";
+    (fam.mitglieder || []).forEach((m) => ul.appendChild(el("li", null, m.email + (m.ich ? " (" + t("duBist") + ")" : ""))));
+    $("fam-code").textContent = fam.einladung && fam.plaetze_frei > 0 ? t("familieCode", { c: fam.einladung, n: fam.plaetze_frei }) : t("familieVoll");
+  }
   const box = $("kidlist"); box.textContent = "";
   if (!kinder.length) box.appendChild(el("p", "hint", t("keineProfile")));
   kinder.forEach((k) => {
@@ -432,6 +439,11 @@ function zeigeKonto() {
   });
   del.appendChild(b);
 }
+
+$("fam-speichern").onclick = async () => {
+  const { error } = await sb.rpc("familie_umbenennen", { p_name: $("fam-name").value });
+  if (error) fehler(meldung(error)); else { fehler(""); $("fam-speichern").textContent = t("gespeichert"); setTimeout(() => ($("fam-speichern").textContent = t("speichern")), 1800); ladeAlles(); }
+};
 
 /* ---------- Hörspiel ---------- */
 function inlineMd(node, txt) { (txt || "").split(/(\*\*[^*]+\*\*)/g).forEach((p) => { if (!p) return; const m = p.match(/^\*\*([^*]+)\*\*$/); node.appendChild(m ? el("strong", null, m[1]) : document.createTextNode(p)); }); }
@@ -611,8 +623,11 @@ function abonnieren() {
   if (kanal) sb.removeChannel(kanal);
   let tm = null; const neu = () => { clearTimeout(tm); tm = setTimeout(ladeAlles, 400); };
   kanal = sb.channel("meine-daten")
-    .on("postgres_changes", { event: "*", schema: "public", table: "auftraege", filter: "user_id=eq." + nutzer.id }, neu)
-    .on("postgres_changes", { event: "*", schema: "public", table: "hoerspiele", filter: "user_id=eq." + nutzer.id }, neu)
+    // ohne Filter: die Datenbank schickt nur Änderungen der eigenen Familie (Row Level Security)
+    .on("postgres_changes", { event: "*", schema: "public", table: "auftraege" }, neu)
+    .on("postgres_changes", { event: "*", schema: "public", table: "hoerspiele" }, neu)
+    .on("postgres_changes", { event: "*", schema: "public", table: "kinder" }, neu)
+    .on("postgres_changes", { event: "*", schema: "public", table: "figuren" }, neu)
     .subscribe();
 }
 let startLaeuft = null;

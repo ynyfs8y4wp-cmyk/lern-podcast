@@ -114,12 +114,12 @@ code.secret{word-break:break-all;font-size:13px}
       <h2>Einladungscodes</h2>
       <form id="f-einl" class="row">
         <label class="f" style="width:130px">Hörspiele/Monat<input id="e-kont" type="number" inputmode="numeric" min="1" max="50" value="5"></label>
-        <label class="f" style="width:110px">Familien<input id="e-max" type="number" inputmode="numeric" min="1" max="50" value="1"></label>
+        <label class="f" style="width:110px">Personen<input id="e-max" type="number" inputmode="numeric" min="1" max="20" value="2"></label>
         <label class="f" style="width:110px">Gültig (Tage)<input id="e-tage" type="number" inputmode="numeric" min="0" max="365" value="30"></label>
-        <label class="f" style="flex:1;min-width:180px">Notiz<input id="e-notiz" maxlength="200" placeholder="z. B. Name des Freundes"></label>
+        <label class="f" style="flex:1;min-width:180px">Notiz<input id="e-notiz" maxlength="200" placeholder="z. B. Familie Müller"></label>
         <button class="cta" type="submit" style="align-self:flex-end">Code erzeugen</button>
       </form>
-      <p class="hint">Hörspiele/Monat: 1–50 je Familie. „Familien“: wie viele verschiedene Konten den Code einlösen dürfen – jedes bekommt sein eigenes Kontingent (empfohlen: 1 Code pro Familie). Gültig 0 = unbegrenzt.</p>
+      <p class="hint">Ein Code = eine Familie. Hörspiele/Monat (1–50) teilt sich die Familie. „Personen“: wie viele Familienmitglieder sich mit dem Code anmelden dürfen – alle sehen dieselbe Bibliothek, dieselben Kinderprofile und Figuren. Gültig 0 = unbegrenzt.</p>
       <span class="hint" id="einl-msg" role="status"></span>
       <div class="scroll"><table id="einladungen"></table></div>
     </section>

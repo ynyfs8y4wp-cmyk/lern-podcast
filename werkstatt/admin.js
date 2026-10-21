@@ -60,7 +60,7 @@ $("f-mfa").onsubmit = async (e) => {
 
 /* ---------- Übersicht ---------- */
 const KACHELN = [
-  ["familien", "Familien registriert", (u) => zahl(u.familien_aktiviert) + " freigeschaltet"],
+  ["familien", "Personen registriert", (u) => zahl(u.familien_aktiviert) + " freigeschaltet"],
   ["familien_neu_30", "Neu in 30 Tagen", (u) => zahl(u.familien_neu_7) + " in 7 Tagen"],
   ["familien_aktiv_30", "Aktiv in 30 Tagen", () => "mit Bestellung"],
   ["hoerspiele", "Hörspiele gesamt", (u) => zahl(u.hoerspiele_monat) + " diesen Monat"],
@@ -112,7 +112,7 @@ function einladungen(liste) {
     const kopieren = btn("ghost", "kopieren"); kopieren.onclick = () => navigator.clipboard?.writeText(e.code).then(() => (kopieren.textContent = "✓")); c.appendChild(kopieren);
     const abgelaufen = e.gueltig_bis && new Date(e.gueltig_bis) < new Date();
     if (!abgelaufen && e.nutzungen < e.max_nutzungen) {   // noch einlösbar: direkt per WhatsApp verschicken
-      const wa = el("a", "btn whatsapp", "WhatsApp"); wa.href = whatsappLink(e.code, e.kontingent); wa.target = "_blank"; wa.rel = "noopener";
+      const wa = el("a", "btn whatsapp", "WhatsApp"); wa.href = whatsappLink(e.code, e.kontingent, e.max_nutzungen); wa.target = "_blank"; wa.rel = "noopener";
       wa.style.cssText = "padding:4px 12px;font-size:13px;margin-left:4px"; c.appendChild(wa);
     }
     r.append(c, el("td", null, e.notiz || ""), el("td", "num", e.kontingent), el("td", "num", e.nutzungen + " / " + e.max_nutzungen), el("td", abgelaufen ? "hint" : null, e.gueltig_bis ? datum(e.gueltig_bis) + (abgelaufen ? " (abgelaufen)" : "") : "unbegrenzt"));
@@ -126,23 +126,38 @@ $("suche").oninput = () => { clearTimeout(sucheTimer); sucheTimer = setTimeout(f
 async function familien() {
   const { data, error } = await sb.rpc("admin_familien", { p_suche: $("suche").value.trim() }); if (error) { fehler(meldung(error)); return; }
   const t = $("familien"); t.textContent = "";
-  const kopf = el("tr"); ["E-Mail", "Seit", "Status", "Kontingent/Monat", "Bonus diesen Monat", "Diesen Monat", "Hörspiele", "Zuletzt aktiv", ""].forEach((x, i) => kopf.appendChild(el("th", [3, 4, 5, 6].includes(i) ? "num" : null, x))); t.appendChild(kopf);
+  const kopf = el("tr"); ["Familie", "Mitglieder", "Status", "Kontingent/Monat", "Bonus diesen Monat", "Diesen Monat", "Hörspiele", "Zuletzt aktiv", ""].forEach((x, i) => kopf.appendChild(el("th", [3, 4, 5, 6].includes(i) ? "num" : null, x))); t.appendChild(kopf);
+  const zahl = (wert, max, breite) => { const x = el("input"); x.type = "number"; x.inputMode = "numeric"; x.min = 0; x.max = max; x.value = wert || 0; x.style.width = breite; return x; };
   data.forEach((f) => {
     const r = el("tr");
-    const status = f.gesperrt ? ["aus", "gesperrt"] : !f.aktiviert ? ["neu", "ohne Code"] : !f.eingewilligt ? ["neu", "ohne Zustimmung"] : ["ok", f.rolle === "admin" ? "Admin" : "aktiv"];
-    const st = el("td"); st.appendChild(el("span", "st " + status[0], status[1])); if (f.gesperrt && f.gesperrt_grund) st.appendChild(el("div", "hint", f.gesperrt_grund));
-    const k = el("td", "num"); const inp = el("input"); inp.type = "number"; inp.inputMode = "numeric"; inp.min = 0; inp.max = f.rolle === "admin" ? 1000 : 50; inp.value = f.kontingent; inp.style.width = "72px"; k.appendChild(inp);
-    const bo = el("td", "num"); const binp = el("input"); binp.type = "number"; binp.inputMode = "numeric"; binp.min = 0; binp.max = 50; binp.value = f.bonus || 0; binp.style.width = "64px"; binp.title = "Zusätzliche Hörspiele nur für diesen Monat"; bo.appendChild(binp);
-    const akt = el("td"); const speichern = btn("soft", "Speichern");
-    speichern.onclick = () => setzen(f.id, { kontingent: +inp.value, bonus: +binp.value, aktiviert: f.aktiviert || +inp.value > 0 });
-    const sperre = btn("ghost", f.gesperrt ? "Entsperren" : "Sperren");
-    sperre.onclick = () => {
-      if (f.gesperrt) return setzen(f.id, { gesperrt: false });
-      const grund = prompt("Grund für die Sperre (sieht nur das Team):", ""); if (grund === null) return;
-      setzen(f.id, { gesperrt: true, grund });
-    };
-    akt.append(speichern, sperre);
-    r.append(el("td", null, f.email), el("td", null, datum(f.erstellt_am)), st, k, bo, el("td", "num", f.verbraucht + " / " + (f.kontingent_gilt ?? f.kontingent)), el("td", "num", f.hoerspiele), el("td", null, datum(f.zuletzt_aktiv_am)), akt);
+    const mit = el("td"); (f.mitglieder || []).forEach((m) => mit.appendChild(el("div", null, m.email + (m.rolle === "admin" ? " (Admin)" : "") + (m.eingewilligt ? "" : " · ohne Zustimmung"))));
+    const akt = el("td");
+    if (f.art === "ohne_code") {   // registriert, aber noch keinen Code eingelöst
+      const st = el("td"); st.appendChild(el("span", "st neu", "ohne Code"));
+      const k = el("td", "num"); const inp = zahl(5, 50, "72px"); k.appendChild(inp);
+      const frei = btn("soft", "Freischalten"); frei.title = "Legt eine eigene Familie mit diesem Kontingent an";
+      frei.onclick = () => setzen(f.id, { kontingent: +inp.value }); akt.appendChild(frei);
+      r.append(el("td", "hint", "–"), mit, st, k, el("td"), el("td"), el("td"), el("td", null, datum(f.erstellt_am)), akt);
+      t.appendChild(r); return;
+    }
+    const name = el("td"); const ninp = el("input"); ninp.value = f.name || ""; ninp.maxLength = 60; ninp.placeholder = "Name"; ninp.style.width = "140px"; name.appendChild(ninp);
+    const st = el("td"); const status = f.gesperrt ? ["aus", "gesperrt"] : ["ok", f.admin ? "Admin" : "aktiv"];
+    st.appendChild(el("span", "st " + status[0], status[1])); if (f.gesperrt && f.gesperrt_grund) st.appendChild(el("div", "hint", f.gesperrt_grund));
+    const k = el("td", "num"); const inp = zahl(f.kontingent, f.admin ? 1000 : 50, "72px"); k.appendChild(inp);
+    const bo = el("td", "num"); const binp = zahl(f.bonus, 50, "64px"); binp.title = "Zusätzliche Hörspiele nur für diesen Monat"; bo.appendChild(binp);
+    const speichern = btn("soft", "Speichern");
+    speichern.onclick = () => setzen(f.id, { name: ninp.value, kontingent: +inp.value, bonus: +binp.value });
+    akt.appendChild(speichern);
+    if (!f.admin) {
+      const sperre = btn("ghost", f.gesperrt ? "Entsperren" : "Sperren");
+      sperre.onclick = () => {
+        if (f.gesperrt) return setzen(f.id, { gesperrt: false });
+        const grund = prompt("Grund für die Sperre (sieht nur das Team):", ""); if (grund === null) return;
+        setzen(f.id, { gesperrt: true, grund });
+      };
+      akt.appendChild(sperre);
+    }
+    r.append(name, mit, st, k, bo, el("td", "num", f.verbraucht + " / " + (f.kontingent_gilt ?? f.kontingent)), el("td", "num", f.hoerspiele), el("td", null, datum(f.zuletzt_aktiv_am)), akt);
     t.appendChild(r);
   });
 }
@@ -182,7 +197,7 @@ $("f-einl").onsubmit = async (e) => {
   const { data, error } = await sb.rpc("admin_einladung_anlegen", { p_kontingent: +$("e-kont").value, p_max: +$("e-max").value, p_tage: +$("e-tage").value, p_notiz: $("e-notiz").value.trim() });
   if (error) { $("einl-msg").textContent = "Nicht erstellt: " + meldung(error); return; }
   $("einl-msg").textContent = "";
-  codeZeigen(data, +$("e-kont").value, $("e-notiz").value.trim());
+  codeZeigen(data, +$("e-kont").value, $("e-notiz").value.trim(), +$("e-max").value);
   $("e-notiz").value = ""; uebersicht(); protokoll();
 };
 
@@ -191,14 +206,15 @@ const APP_URL = new URL("./", location.href).href;
 function hinweis(text) {   // kurze Bestätigung unten am Bildschirm
   const h = el("div", "toast", text); document.body.appendChild(h); setTimeout(() => h.remove(), 2200);
 }
-function einladungsText(code, kontingent = 5) {
+function einladungsText(code, kontingent = 5, personen = 1) {
   return "Hallo! Magst du die Hörspielwerkstatt testen? Persönliche Mutmach-Hörspiele für dein Kind.\n\n"
     + "1. In Safari öffnen: " + APP_URL + "\n2. „Neues Konto anlegen“ (E-Mail und Passwort, mind. 8 Zeichen)\n"
     + "3. Einladungscode eingeben: " + code + "\n4. Bedingungen bestätigen\n\n"
+    + (personen > 1 ? "Mit demselben Code kann sich auch dein Partner oder deine Partnerin anmelden – ihr habt dann dieselbe Bibliothek und könnt zusammen bestellen.\n\n" : "")
     + "Du hast " + kontingent + " Hörspiele pro Monat. Bitte hör jedes zuerst selbst an, bevor du es deinem Kind vorspielst – es ist eine Testversion.";
 }
 // Öffnet WhatsApp mit der fertigen Nachricht; dort wählst du nur noch den Kontakt aus
-const whatsappLink = (code, kontingent) => "https://wa.me/?text=" + encodeURIComponent(einladungsText(code, kontingent));
+const whatsappLink = (code, kontingent, personen) => "https://wa.me/?text=" + encodeURIComponent(einladungsText(code, kontingent, personen));
 async function kopiere(text, ok) {
   try { await navigator.clipboard.writeText(text); $("cd-msg").textContent = ok; }
   catch (e) {   // ältere Browser: Text markieren, damit man ihn selbst kopieren kann
@@ -206,16 +222,16 @@ async function kopiere(text, ok) {
     $("cd-msg").textContent = "Kopieren nicht möglich – der Code ist markiert, bitte lange drücken und „Kopieren“ wählen.";
   }
 }
-function codeZeigen(code, kontingent, notiz) {
+function codeZeigen(code, kontingent, notiz, personen = 1) {
   const d = $("code-dialog");
   $("cd-code").textContent = code;
-  $("cd-info").textContent = (notiz ? "Für " + notiz + ": " : "") + kontingent + " Hörspiele pro Monat. Schick den Code zusammen mit dem Link.";
+  $("cd-info").textContent = (notiz ? "Für " + notiz + ": " : "") + kontingent + " Hörspiele pro Monat für die Familie, bis zu " + personen + (personen > 1 ? " Personen" : " Person") + ". Schick den Code zusammen mit dem Link.";
   $("cd-msg").textContent = "";
-  $("cd-whatsapp").href = whatsappLink(code, kontingent);
+  $("cd-whatsapp").href = whatsappLink(code, kontingent, personen);
   $("cd-kopieren").onclick = () => kopiere(code, "Code kopiert ✓");
-  $("cd-einladung").onclick = () => kopiere(einladungsText(code, kontingent), "Einladung mit Link und Code kopiert ✓ – jetzt in WhatsApp einfügen.");
+  $("cd-einladung").onclick = () => kopiere(einladungsText(code, kontingent, personen), "Einladung mit Link und Code kopiert ✓ – jetzt in WhatsApp einfügen.");
   $("cd-teilen").hidden = !navigator.share;
-  $("cd-teilen").onclick = () => navigator.share({ text: einladungsText(code, kontingent) }).catch(() => {});
+  $("cd-teilen").onclick = () => navigator.share({ text: einladungsText(code, kontingent, personen) }).catch(() => {});
   $("cd-zu").onclick = () => d.close();
   if (d.showModal) d.showModal(); else alert("Code erstellt: " + code);
 }

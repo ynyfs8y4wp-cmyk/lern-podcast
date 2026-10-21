@@ -517,10 +517,10 @@
       "Outra história"
     ],
     "gespeichert": [
-      "Bestellung gespeichert",
-      "Order saved",
-      "Pedido guardado",
-      "Pedido salvo"
+      "Gespeichert ✓",
+      "Saved ✓",
+      "Guardado ✓",
+      "Salvo ✓"
     ],
     "inWerkstatt": [
       "In der Werkstatt",
@@ -1021,10 +1021,10 @@
       "Excluir conta"
     ],
     "kontoLoeschenText": [
-      "Löscht dein Konto mit allen Kinderprofilen, Hörspielen und Audiodateien endgültig.",
-      "Permanently deletes your account with all child profiles, stories and audio files.",
-      "Elimina definitivamente tu cuenta con todos los perfiles, cuentos y audios.",
-      "Exclui definitivamente sua conta com todos os perfis, histórias e áudios."
+      "Löscht dein Konto mit allen Kinderprofilen, Hörspielen und Audiodateien endgültig. Gehören noch andere Personen zu eurer Familie, bleibt die gemeinsame Bibliothek für sie erhalten; bist du die letzte Person, wird alles gelöscht.",
+      "Permanently deletes your account with all child profiles, stories and audio files. If other people still belong to your family, the shared library stays for them; if you are the last one, everything is deleted.",
+      "Elimina definitivamente tu cuenta con todos los perfiles, cuentos y audios. Si quedan otras personas en vuestra familia, la biblioteca compartida se mantiene para ellas; si eres la última, se borra todo.",
+      "Exclui definitivamente sua conta com todos os perfis, histórias e áudios. Se ainda houver outras pessoas na sua família, a biblioteca compartilhada continua para elas; se você for a última, tudo é apagado."
     ],
     "kontoLoeschenKnopf": [
       "Konto endgültig löschen",
@@ -1805,6 +1805,48 @@
       "The connection is stuck. Please reload the page.",
       "La conexión no responde. Vuelve a cargar la página.",
       "A conexão travou. Recarregue a página."
+    ],
+    "eureFamilie": [
+      "Eure Familie",
+      "Your family",
+      "Vuestra familia",
+      "Sua família"
+    ],
+    "familieText": [
+      "Alle in eurer Familie sehen dieselben Kinderprofile, Figuren und Hörspiele und teilen sich das Kontingent. Änderungen erscheinen bei allen sofort.",
+      "Everyone in your family sees the same child profiles, characters and stories and shares the monthly allowance. Changes show up for everyone right away.",
+      "Todos en vuestra familia ven los mismos perfiles, personajes y audiocuentos y comparten el cupo. Los cambios aparecen al instante para todos.",
+      "Todos na sua família veem os mesmos perfis, personagens e audiohistórias e compartilham a cota. As mudanças aparecem na hora para todos."
+    ],
+    "duBist": [
+      "du",
+      "you",
+      "tú",
+      "você"
+    ],
+    "familieCode": [
+      "Weitere Familienmitglieder melden sich mit eurem Code an: {c} (noch {n} frei)",
+      "More family members can sign up with your code: {c} ({n} left)",
+      "Otros miembros de la familia pueden registrarse con vuestro código: {c} (quedan {n})",
+      "Outros membros da família podem se cadastrar com o seu código: {c} (restam {n})"
+    ],
+    "familieVoll": [
+      "Für weitere Familienmitglieder bitte beim Team einen neuen Platz anfragen.",
+      "For more family members, please ask the team for another seat.",
+      "Para más miembros de la familia, pide otra plaza al equipo.",
+      "Para mais membros da família, peça outra vaga à equipe."
+    ],
+    "familieName": [
+      "Name der Familie",
+      "Family name",
+      "Nombre de la familia",
+      "Nome da família"
+    ],
+    "speichern": [
+      "Speichern",
+      "Save",
+      "Guardar",
+      "Salvar"
     ]
   },
   "figuren": {
