@@ -112,7 +112,7 @@ function einladungen(liste) {
     const kopieren = btn("ghost", "kopieren"); kopieren.onclick = () => navigator.clipboard?.writeText(e.code).then(() => (kopieren.textContent = "✓")); c.appendChild(kopieren);
     const abgelaufen = e.gueltig_bis && new Date(e.gueltig_bis) < new Date();
     if (!abgelaufen && e.nutzungen < e.max_nutzungen) {   // noch einlösbar: direkt per WhatsApp verschicken
-      const wa = el("a", "btn whatsapp", "WhatsApp"); wa.href = whatsappLink(e.code, e.kontingent, e.max_nutzungen); wa.target = "_blank"; wa.rel = "noopener";
+      const wa = el("a", "btn whatsapp", "WhatsApp"); wa.href = whatsappLink(e.code, e.kontingent, e.max_nutzungen, (e.notiz || "").startsWith("Beitritt")); wa.target = "_blank"; wa.rel = "noopener";
       wa.style.cssText = "padding:4px 12px;font-size:13px;margin-left:4px"; c.appendChild(wa);
     }
     r.append(c, el("td", null, e.notiz || ""), el("td", "num", e.kontingent), el("td", "num", e.nutzungen + " / " + e.max_nutzungen), el("td", abgelaufen ? "hint" : null, e.gueltig_bis ? datum(e.gueltig_bis) + (abgelaufen ? " (abgelaufen)" : "") : "unbegrenzt"));
@@ -148,6 +148,13 @@ async function familien() {
     const speichern = btn("soft", "Speichern");
     speichern.onclick = () => setzen(f.id, { name: ninp.value, kontingent: +inp.value, bonus: +binp.value });
     akt.appendChild(speichern);
+    const beitritt = btn("ghost", "+ Person"); beitritt.title = "Code, mit dem eine weitere Person dieser Familie beitritt";
+    beitritt.onclick = async () => {
+      const { data: code, error } = await sb.rpc("admin_familien_code", { p_familie: f.id, p_personen: 1 });
+      if (error) { fehler("Nicht erstellt: " + meldung(error)); return; }
+      codeZeigen(code, f.kontingent_gilt ?? f.kontingent, (f.name || "die Familie") + " (Beitritt)", 1, true); familien(); uebersicht();
+    };
+    akt.appendChild(beitritt);
     if (!f.admin) {
       const sperre = btn("ghost", f.gesperrt ? "Entsperren" : "Sperren");
       sperre.onclick = () => {
@@ -206,7 +213,8 @@ const APP_URL = new URL("./", location.href).href;
 function hinweis(text) {   // kurze Bestätigung unten am Bildschirm
   const h = el("div", "toast", text); document.body.appendChild(h); setTimeout(() => h.remove(), 2200);
 }
-function einladungsText(code, kontingent = 5, personen = 1) {
+function einladungsText(code, kontingent = 5, personen = 1, beitritt = false) {
+  if (beitritt) return "Hallo! Damit du unserer Familie in der Hörspielwerkstatt beitrittst und dieselben Hörspiele siehst:\n\n1. In Safari öffnen: " + APP_URL + "\n2. „Neues Konto anlegen“ (E-Mail und Passwort, mind. 8 Zeichen)\n3. Diesen Code eingeben: " + code + "\n4. Bedingungen bestätigen";
   return "Hallo! Magst du die Hörspielwerkstatt testen? Persönliche Mutmach-Hörspiele für dein Kind.\n\n"
     + "1. In Safari öffnen: " + APP_URL + "\n2. „Neues Konto anlegen“ (E-Mail und Passwort, mind. 8 Zeichen)\n"
     + "3. Einladungscode eingeben: " + code + "\n4. Bedingungen bestätigen\n\n"
@@ -214,7 +222,7 @@ function einladungsText(code, kontingent = 5, personen = 1) {
     + "Du hast " + kontingent + " Hörspiele pro Monat. Bitte hör jedes zuerst selbst an, bevor du es deinem Kind vorspielst – es ist eine Testversion.";
 }
 // Öffnet WhatsApp mit der fertigen Nachricht; dort wählst du nur noch den Kontakt aus
-const whatsappLink = (code, kontingent, personen) => "https://wa.me/?text=" + encodeURIComponent(einladungsText(code, kontingent, personen));
+const whatsappLink = (code, kontingent, personen, beitritt) => "https://wa.me/?text=" + encodeURIComponent(einladungsText(code, kontingent, personen, beitritt));
 async function kopiere(text, ok) {
   try { await navigator.clipboard.writeText(text); $("cd-msg").textContent = ok; }
   catch (e) {   // ältere Browser: Text markieren, damit man ihn selbst kopieren kann
@@ -222,16 +230,16 @@ async function kopiere(text, ok) {
     $("cd-msg").textContent = "Kopieren nicht möglich – der Code ist markiert, bitte lange drücken und „Kopieren“ wählen.";
   }
 }
-function codeZeigen(code, kontingent, notiz, personen = 1) {
+function codeZeigen(code, kontingent, notiz, personen = 1, beitritt = false) {
   const d = $("code-dialog");
   $("cd-code").textContent = code;
   $("cd-info").textContent = (notiz ? "Für " + notiz + ": " : "") + kontingent + " Hörspiele pro Monat für die Familie, bis zu " + personen + (personen > 1 ? " Personen" : " Person") + ". Schick den Code zusammen mit dem Link.";
   $("cd-msg").textContent = "";
-  $("cd-whatsapp").href = whatsappLink(code, kontingent, personen);
+  $("cd-whatsapp").href = whatsappLink(code, kontingent, personen, beitritt);
   $("cd-kopieren").onclick = () => kopiere(code, "Code kopiert ✓");
-  $("cd-einladung").onclick = () => kopiere(einladungsText(code, kontingent, personen), "Einladung mit Link und Code kopiert ✓ – jetzt in WhatsApp einfügen.");
+  $("cd-einladung").onclick = () => kopiere(einladungsText(code, kontingent, personen, beitritt), "Einladung mit Link und Code kopiert ✓ – jetzt in WhatsApp einfügen.");
   $("cd-teilen").hidden = !navigator.share;
-  $("cd-teilen").onclick = () => navigator.share({ text: einladungsText(code, kontingent, personen) }).catch(() => {});
+  $("cd-teilen").onclick = () => navigator.share({ text: einladungsText(code, kontingent, personen, beitritt) }).catch(() => {});
   $("cd-zu").onclick = () => d.close();
   if (d.showModal) d.showModal(); else alert("Code erstellt: " + code);
 }
