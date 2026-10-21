@@ -113,12 +113,13 @@ code.secret{word-break:break-all;font-size:13px}
     <section class="panel">
       <h2>Einladungscodes</h2>
       <form id="f-einl" class="row">
-        <label class="f" style="width:130px">Hörspiele/Monat<input id="e-kont" type="number" min="1" max="100" value="5"></label>
-        <label class="f" style="width:110px">Nutzungen<input id="e-max" type="number" min="1" max="500" value="5"></label>
-        <label class="f" style="width:110px">Gültig (Tage)<input id="e-tage" type="number" min="0" max="365" value="30"></label>
-        <label class="f" style="flex:1;min-width:180px">Notiz<input id="e-notiz" maxlength="200" placeholder="z. B. Kita-Eltern"></label>
+        <label class="f" style="width:130px">Hörspiele/Monat<input id="e-kont" type="number" inputmode="numeric" min="1" max="5" value="5"></label>
+        <label class="f" style="width:110px">Familien<input id="e-max" type="number" inputmode="numeric" min="1" max="50" value="1"></label>
+        <label class="f" style="width:110px">Gültig (Tage)<input id="e-tage" type="number" inputmode="numeric" min="0" max="365" value="30"></label>
+        <label class="f" style="flex:1;min-width:180px">Notiz<input id="e-notiz" maxlength="200" placeholder="z. B. Name des Freundes"></label>
         <button class="cta" type="submit" style="align-self:flex-end">Code erzeugen</button>
       </form>
+      <p class="hint">Höchstens 5 Hörspiele pro Monat. „Familien“ = wie viele Konten den Code nutzen dürfen (empfohlen: 1 pro Familie). Gültig 0 = unbegrenzt.</p>
       <span class="hint" id="einl-msg" role="status"></span>
       <div class="scroll"><table id="einladungen"></table></div>
     </section>
@@ -129,6 +130,18 @@ code.secret{word-break:break-all;font-size:13px}
     </section>
   </main>
 </div>
+<dialog id="code-dialog" class="code-dialog" aria-labelledby="cd-titel">
+  <h2 id="cd-titel">Code erstellt</h2>
+  <p class="hint" id="cd-info"></p>
+  <p class="code-gross" id="cd-code"></p>
+  <div class="row" style="gap:8px;flex-wrap:wrap">
+    <button class="cta" type="button" id="cd-kopieren">Code kopieren</button>
+    <button type="button" id="cd-einladung">Einladung kopieren</button>
+    <button type="button" id="cd-teilen" hidden>Teilen …</button>
+  </div>
+  <p class="hint" id="cd-msg" role="status"></p>
+  <button class="ghost" type="button" id="cd-zu">Schließen</button>
+</dialog>
 <script src="admin.js"></script>
 </body>
 </html>

@@ -175,9 +175,39 @@ async function meldungen() {
 $("f-einl").onsubmit = async (e) => {
   e.preventDefault();
   const { data, error } = await sb.rpc("admin_einladung_anlegen", { p_kontingent: +$("e-kont").value, p_max: +$("e-max").value, p_tage: +$("e-tage").value, p_notiz: $("e-notiz").value.trim() });
-  if (error) { $("einl-msg").textContent = meldung(error); return; }
-  $("einl-msg").textContent = "Neuer Code: " + data; $("e-notiz").value = ""; uebersicht(); protokoll();
+  if (error) { $("einl-msg").textContent = "Nicht erstellt: " + meldung(error); return; }
+  $("einl-msg").textContent = "";
+  codeZeigen(data, +$("e-kont").value, $("e-notiz").value.trim());
+  $("e-notiz").value = ""; uebersicht(); protokoll();
 };
+
+/* Hinweisfenster: Code erstellt, direkt kopieren oder als fertige Einladung teilen */
+const APP_URL = new URL("./", location.href).href;
+function einladungsText(code) {
+  return "Hallo! Magst du die Hörspielwerkstatt testen? Persönliche Mutmach-Hörspiele für dein Kind.\n\n"
+    + "1. In Safari öffnen: " + APP_URL + "\n2. „Neues Konto anlegen“ (E-Mail und Passwort, mind. 8 Zeichen)\n"
+    + "3. Einladungscode eingeben: " + code + "\n4. Bedingungen bestätigen\n\n"
+    + "Du hast 5 Hörspiele pro Monat. Bitte hör jedes zuerst selbst an, bevor du es deinem Kind vorspielst – es ist eine Testversion.";
+}
+async function kopiere(text, ok) {
+  try { await navigator.clipboard.writeText(text); $("cd-msg").textContent = ok; }
+  catch (e) {   // ältere Browser: Text markieren, damit man ihn selbst kopieren kann
+    const r = document.createRange(); r.selectNodeContents($("cd-code")); const s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    $("cd-msg").textContent = "Kopieren nicht möglich – der Code ist markiert, bitte lange drücken und „Kopieren“ wählen.";
+  }
+}
+function codeZeigen(code, kontingent, notiz) {
+  const d = $("code-dialog");
+  $("cd-code").textContent = code;
+  $("cd-info").textContent = (notiz ? "Für " + notiz + ": " : "") + kontingent + " Hörspiele pro Monat. Schick den Code zusammen mit dem Link.";
+  $("cd-msg").textContent = "";
+  $("cd-kopieren").onclick = () => kopiere(code, "Code kopiert ✓");
+  $("cd-einladung").onclick = () => kopiere(einladungsText(code), "Einladung mit Link und Code kopiert ✓ – jetzt in WhatsApp einfügen.");
+  $("cd-teilen").hidden = !navigator.share;
+  $("cd-teilen").onclick = () => navigator.share({ text: einladungsText(code) }).catch(() => {});
+  $("cd-zu").onclick = () => d.close();
+  if (d.showModal) d.showModal(); else alert("Code erstellt: " + code);
+}
 const AKTIONEN = { konto_geaendert: "Konto geändert", einladung_angelegt: "Einladung angelegt", meldung_erledigt: "Meldung erledigt" };
 async function protokoll() {
   const { data, error } = await sb.rpc("admin_protokoll_lesen"); if (error) return;
