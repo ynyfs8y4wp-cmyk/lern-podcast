@@ -615,8 +615,14 @@ function abonnieren() {
     .on("postgres_changes", { event: "*", schema: "public", table: "hoerspiele", filter: "user_id=eq." + nutzer.id }, neu)
     .subscribe();
 }
-async function start() {
-  const { data } = await sb.auth.getSession(); nutzer = data.session?.user || null;
+let startLaeuft = null;
+function start() {   // nacheinander, nie doppelt gleichzeitig
+  startLaeuft = (startLaeuft || Promise.resolve()).then(starten, starten).catch((e) => { fehler(meldung(e)); zeige("login"); });
+  return startLaeuft;
+}
+const mitFrist = (p, ms) => Promise.race([p, new Promise((_, nein) => setTimeout(() => nein(new Error(t("verbindungHaengt"))), ms))]);
+async function starten() {
+  const { data } = await mitFrist(sb.auth.getSession(), 10000); nutzer = data.session?.user || null;
   if (!nutzer) { $("stats").textContent = ""; zeige("login"); return; }
   const { data: c, error } = await sb.rpc("mein_konto"); if (error) { fehler(meldung(error)); return; }
   konto = c; if (!konto?.aktiviert) { zeige("invite"); return; }
@@ -637,6 +643,7 @@ async function start() {
   [[40, 40, "LOTTA"], [112, 30, "FINN"], [200, 38, "MIRA"], [284, 36, "PIP"], [356, 32, "BRUNO"]].forEach(([x, y, k]) => { s += '<g transform="translate(' + (x - 20) + "," + (y - 20) + ') scale(.625)">' + FIG[k].svg + "</g>"; });
   $("hills").innerHTML = s; $("welcomeArt").innerHTML = ["PIP", "MIRA", "BRUNO"].map((k) => figSvg(k)).join("");
   baueUiSprache(); statisch(); baueAlles(); zeigeSchritt(); baueFaq();
-  sb.auth.onAuthStateChange((evt) => { if (["SIGNED_IN", "SIGNED_OUT"].includes(evt)) start(); });
+  // Nie direkt im Callback weiter auf Supabase zugreifen (sonst kann supabase-js sich selbst blockieren): erst danach starten
+  sb.auth.onAuthStateChange((evt) => { if (["SIGNED_IN", "SIGNED_OUT"].includes(evt)) setTimeout(start, 0); });
   await start();
 })();

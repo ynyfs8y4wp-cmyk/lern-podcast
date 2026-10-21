@@ -1799,6 +1799,12 @@
       "Sign in with email and password. The first time, tap “Create account” and then enter your invitation code.",
       "Entra con tu correo y contraseña. La primera vez, pulsa «Crear cuenta» y luego introduce tu código de invitación.",
       "Entre com e-mail e senha. Na primeira vez, toque em “Criar conta” e depois digite seu código de convite."
+    ],
+    "verbindungHaengt": [
+      "Die Verbindung hängt. Bitte lade die Seite neu.",
+      "The connection is stuck. Please reload the page.",
+      "La conexión no responde. Vuelve a cargar la página.",
+      "A conexão travou. Recarregue a página."
     ]
   },
   "figuren": {
