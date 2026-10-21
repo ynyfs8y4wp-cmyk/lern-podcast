@@ -77,7 +77,9 @@ $("f-code").addEventListener("submit", async (ev) => {
 const PASSWORT = CFG.anmeldung === "passwort";
 function loginArt() {
   $("f-pw").hidden = !PASSWORT; $("f-mail").hidden = PASSWORT; $("f-code").hidden = true;
-  const oauthAn = !!CFG.oauth; $("oauth").hidden = !oauthAn; $("oauth-oder").hidden = !oauthAn;
+  const anbieter = Array.isArray(CFG.oauth) ? CFG.oauth : CFG.oauth ? ["apple", "google"] : [];
+  $("b-apple").hidden = !anbieter.includes("apple"); $("b-google").hidden = !anbieter.includes("google");
+  $("oauth").hidden = !anbieter.length; $("oauth-oder").hidden = !anbieter.length;
   if (PASSWORT) $("login-text").dataset.t = "loginTextPw";
 }
 async function pwAnmelden(neu) {
@@ -425,8 +427,8 @@ function zeigeKonto() {
   });
   const del = $("delacc"); del.textContent = ""; const b = btn(null, t("kontoLoeschenKnopf")); b.style.borderColor = "var(--berry)"; b.style.color = "var(--berry)";
   b.onclick = () => bestaetige(del, b, t("wirklichAlles"), async () => {
-    const { error } = await sb.functions.invoke("delete-account", { method: "POST" });
-    if (error) { fehler(meldung(error)); return; } await sb.auth.signOut();
+    const { error } = await sb.rpc("konto_loeschen");   // löscht Konto und alle Daten; Audiodateien räumt die Fabrik weg
+    if (error) { fehler(meldung(error)); return; } await sb.auth.signOut({ scope: "local" });
   });
   del.appendChild(b);
 }

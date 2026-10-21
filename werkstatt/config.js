@@ -7,5 +7,5 @@ window.HW_CONFIG = {
   // "passwort": Anmeldung mit E-Mail und Passwort (ohne eigenen Mailversand, gut für die Freunde-Beta)
   // "code": Anmeldecode per E-Mail (braucht eigenen SMTP-Versand in Supabase)
   anmeldung: "passwort",
-  oauth: false,   // true, sobald "Mit Apple/Google anmelden" in Supabase eingerichtet ist
+  oauth: [],   // z. B. ["apple"], sobald "Mit Apple anmelden" für das Web in Supabase eingerichtet ist
 };

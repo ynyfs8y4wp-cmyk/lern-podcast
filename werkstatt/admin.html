@@ -2,10 +2,11 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; media-src 'self' blob: https://dukunyhkzqtvczyjmlot.supabase.co; connect-src 'self' https://dukunyhkzqtvczyjmlot.supabase.co wss://dukunyhkzqtvczyjmlot.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex">
 <title>Admin · Hörspielwerkstatt</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap">
 <link rel="stylesheet" href="style.css">
 <style>
 /* Admin: nüchterner als die Familienansicht – Kennzahlen oben, darunter Arbeitslisten */
@@ -46,7 +47,7 @@ code.secret{word-break:break-all;font-size:13px}
 .privacy{font-size:13px;color:var(--muted);border-left:4px solid var(--meadow);padding:4px 0 4px 10px}
 </style>
 <script src="config.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js"></script>
+<script src="vendor/supabase.js"></script>
 </head>
 <body>
 <div class="wrap">

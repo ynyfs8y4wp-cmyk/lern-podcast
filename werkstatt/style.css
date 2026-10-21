@@ -1,3 +1,11 @@
+/* Schriften liegen lokal (SIL Open Font License, siehe fonts/), damit keine Daten an Google gehen */
+@font-face{font-family:"Fredoka";font-style:normal;font-weight:500;font-display:swap;src:url("fonts/fredoka-latin-500-normal.woff2") format("woff2")}
+@font-face{font-family:"Fredoka";font-style:normal;font-weight:600;font-display:swap;src:url("fonts/fredoka-latin-600-normal.woff2") format("woff2")}
+@font-face{font-family:"Fredoka";font-style:normal;font-weight:700;font-display:swap;src:url("fonts/fredoka-latin-700-normal.woff2") format("woff2")}
+@font-face{font-family:"Nunito";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/nunito-latin-400-normal.woff2") format("woff2")}
+@font-face{font-family:"Nunito";font-style:normal;font-weight:600;font-display:swap;src:url("fonts/nunito-latin-600-normal.woff2") format("woff2")}
+@font-face{font-family:"Nunito";font-style:normal;font-weight:700;font-display:swap;src:url("fonts/nunito-latin-700-normal.woff2") format("woff2")}
+@font-face{font-family:"Nunito";font-style:normal;font-weight:800;font-display:swap;src:url("fonts/nunito-latin-800-normal.woff2") format("woff2")}
 
 /* Layout: Bilderbuch bei Nacht – Himmel mit den fünf Figuren und Sprachwahl oben, darunter Tabs; Bestellung als Weg in fünf antippbaren Schritten.
    Keine fest positionierten Leisten: In der Claude-App wird die Seite so hoch wie ihr Inhalt dargestellt. */
