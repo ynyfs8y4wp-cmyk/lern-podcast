@@ -47,6 +47,7 @@ code.secret{word-break:break-all;font-size:13px}
 .privacy{font-size:13px;color:var(--muted);border-left:4px solid var(--meadow);padding:4px 0 4px 10px}
 </style>
 <script src="config.js"></script>
+<script src="version.js"></script>
 <script src="vendor/supabase.js"></script>
 </head>
 <body>
@@ -104,6 +105,23 @@ code.secret{word-break:break-all;font-size:13px}
       <div class="row" style="justify-content:space-between"><h2>Dienste und Limits</h2><span class="hint" id="dienste-stand"></span></div>
       <p class="hint">Wird von der Hörspiel-Fabrik stündlich aktualisiert. Sofort neu abfragen: GitHub → hoerspielwerkstatt → Actions → „Hörspiel-Fabrik“ → Run workflow → status_jetzt = 1.</p>
       <div class="dienste" id="dienste"></div>
+    </section>
+
+    <section class="panel">
+      <div class="row" style="justify-content:space-between"><h2>Fehlerprotokoll</h2><label class="row hint"><input type="checkbox" id="fehler-alle"> auch erledigte</label></div>
+      <p class="hint">Unerwartete Fehler aus Web-App, iPhone-App und Hörspiel-Fabrik, gleiche Fehler zusammengefasst. Ohne Inhalte der Familien.</p>
+      <div class="scroll"><table id="fehlerliste"></table></div>
+    </section>
+
+    <section class="panel">
+      <h2>Funktions-Schalter</h2>
+      <p class="hint">Neue Funktionen gehen zuerst „aus“ online. Dann schaltest du sie für dich (Admin), für ausgewählte Familien und erst zum Schluss für alle frei. Zurückschalten wirkt sofort beim nächsten Laden.</p>
+      <div id="schalter"></div>
+      <form id="f-schalter" class="row" style="margin-top:10px">
+        <label class="f" style="width:170px">Schlüssel<input id="sw-key" pattern="[a-z0-9_]{2,40}" required placeholder="z. B. neuer_player"></label>
+        <label class="f" style="flex:1;min-width:180px">Beschreibung<input id="sw-text" maxlength="200" placeholder="Was die Funktion macht"></label>
+        <button class="soft" type="submit" style="align-self:flex-end">Schalter anlegen</button>
+      </form>
     </section>
 
     <section class="panel">

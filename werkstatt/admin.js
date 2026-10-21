@@ -311,6 +311,62 @@ async function dienste() {
   $("dienste-stand").textContent = "";
 }
 
+/* ---------- Fehlerprotokoll ---------- */
+const QUELLEN = { web: "Web-App", app: "iPhone-App", admin: "Admin-Seite", fabrik: "Hörspiel-Fabrik" };
+$("fehler-alle").onchange = fehlerliste;
+async function fehlerliste() {
+  const { data, error } = await sb.rpc("admin_fehler", { p_alle: $("fehler-alle").checked }); if (error) { fehler(meldung(error)); return; }
+  const t = $("fehlerliste"); t.textContent = "";
+  if (!data.length) { const r = el("tr"); r.appendChild(el("td", "hint", "Keine offenen Fehler. 🎉")); t.appendChild(r); return; }
+  const kopf = el("tr"); ["Zuletzt", "Wo", "Fehler", "Anzahl", "Personen", "Version", ""].forEach((x, i) => kopf.appendChild(el("th", i === 3 || i === 4 ? "num" : null, x))); t.appendChild(kopf);
+  data.forEach((f) => {
+    const r = el("tr"); const m = el("td"); m.appendChild(el("div", null, f.meldung)); if (f.ort) m.appendChild(el("div", "hint", f.ort));
+    if (f.stack) { const d = el("details"); d.append(el("summary", null, "Details"), el("pre", null, f.stack)); m.appendChild(d); }
+    const akt = el("td"); if (!f.erledigt) { const b = btn("ghost", "erledigt"); b.onclick = async () => { await sb.rpc("admin_fehler_erledigt", { p_id: f.id }); fehlerliste(); }; akt.appendChild(b); }
+    r.append(el("td", null, datum(f.zuletzt_am)), el("td", null, QUELLEN[f.quelle] || f.quelle), m, el("td", "num", f.anzahl), el("td", "num", f.nutzer), el("td", "hint", f.version), akt);
+    t.appendChild(r);
+  });
+}
+
+/* ---------- Funktions-Schalter ---------- */
+const STUFEN = { aus: "aus", admin: "nur Admin", auswahl: "ausgewählte Familien", alle: "alle" };
+let FAM_LISTE = [];
+async function schalter() {
+  const [{ data, error }, fam] = await Promise.all([sb.rpc("admin_funktionen"), sb.rpc("admin_familien", { p_suche: "" })]);
+  if (error) { fehler(meldung(error)); return; }
+  FAM_LISTE = (fam.data || []).filter((f) => f.art === "familie");
+  const box = $("schalter"); box.textContent = "";
+  if (!data.length) box.appendChild(el("p", "hint", "Noch keine Schalter. Claude legt beim Bauen einer neuen Funktion einen an."));
+  data.forEach((f) => {
+    const w = el("div", "meld"); const kopf = el("div", "row"); kopf.style.justifyContent = "space-between";
+    kopf.append(el("strong", null, f.key), el("span", "st " + (f.stufe === "alle" ? "ok" : f.stufe === "aus" ? "aus" : "neu"), STUFEN[f.stufe]));
+    w.appendChild(kopf); if (f.beschreibung) w.appendChild(el("p", "hint", f.beschreibung));
+    const reihe = el("div", "row"); reihe.style.flexWrap = "wrap"; reihe.style.gap = "8px";
+    const wahl = el("select"); Object.entries(STUFEN).forEach(([k, v]) => { const o = el("option", null, v); o.value = k; o.selected = k === f.stufe; wahl.appendChild(o); });
+    const auswahl = el("div"); auswahl.style.flexBasis = "100%";
+    const zeigeAuswahl = () => { auswahl.textContent = ""; if (wahl.value !== "auswahl") return;
+      FAM_LISTE.forEach((x) => { const l = el("label", "row hint"); const c = el("input"); c.type = "checkbox"; c.value = x.id; c.checked = (f.familien || []).includes(x.id);
+        l.append(c, document.createTextNode(" " + (x.name || (x.mitglieder || []).map((m) => m.email).join(", ")))); auswahl.appendChild(l); }); };
+    wahl.onchange = zeigeAuswahl; zeigeAuswahl();
+    const sp = btn("soft", "Speichern");
+    sp.onclick = async () => {
+      const familien = [...auswahl.querySelectorAll("input:checked")].map((c) => c.value);
+      const { error: e } = await sb.rpc("admin_funktion_setzen", { p_key: f.key, p_stufe: wahl.value, p_familien: familien, p_beschreibung: null });
+      if (e) fehler("Nicht gespeichert: " + meldung(e)); else { hinweis("Gespeichert ✓"); schalter(); protokoll(); }
+    };
+    reihe.append(wahl, sp, auswahl); w.appendChild(reihe); box.appendChild(w);
+  });
+}
+$("f-schalter").onsubmit = async (e) => {
+  e.preventDefault();
+  const { error } = await sb.rpc("admin_funktion_setzen", { p_key: $("sw-key").value.trim(), p_stufe: "aus", p_familien: [], p_beschreibung: $("sw-text").value.trim() });
+  if (error) { fehler("Nicht angelegt: " + meldung(error)); return; }
+  $("sw-key").value = ""; $("sw-text").value = ""; hinweis("Schalter angelegt ✓"); schalter();
+};
+
+/* Fehler der Admin-Seite selbst ebenfalls melden */
+window.addEventListener("error", (e) => sb.rpc("fehler_melden", { p: { quelle: "admin", version: window.HW_VERSION || "dev", meldung: String(e.message).slice(0, 500), ort: (e.filename || "").split("/").pop() + ":" + e.lineno } }).then(() => {}, () => {}));
+
 async function start() {
   fehler("");
   const { data } = await sb.auth.getSession();
@@ -321,6 +377,6 @@ async function start() {
   const { data: aal } = await sb.auth.mfa.getAuthenticatorAssuranceLevel();
   if (aal.currentLevel !== "aal2") { await mfa(); return; }
   zeige("s-admin");
-  await Promise.all([uebersicht(), dienste(), familien(), meldungen(), protokoll()]);
+  await Promise.all([uebersicht(), dienste(), fehlerliste(), schalter(), familien(), meldungen(), protokoll()]);
 }
 start();

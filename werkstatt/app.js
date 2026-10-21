@@ -9,6 +9,19 @@
 const $ = (id) => document.getElementById(id);
 function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
 function btn(cls, text) { const b = el("button", cls, text); b.type = "button"; return b; }
+/* Unerwartete Fehler melden (Fehlerprotokoll im Admin-Bereich; keine Inhalte, höchstens 10 pro Seitenaufruf) */
+let gemeldet = 0;
+function fehlerMelden(meldung, ort, stack) {
+  try {
+    if (gemeldet >= 10 || !nutzer) return; gemeldet++;
+    sb.rpc("fehler_melden", { p: { quelle: "web", version: window.HW_VERSION || "dev", meldung: String(meldung || "").slice(0, 500),
+      ort: String(ort || "").slice(0, 300), stack: String(stack || "").slice(0, 2000) } }).then(() => {}, () => {});
+  } catch (e) { /* noch nicht bereit – nicht melden */ }
+}
+window.addEventListener("error", (e) => fehlerMelden(e.message, (e.filename || "").split("/").pop() + ":" + e.lineno, e.error && e.error.stack));
+window.addEventListener("unhandledrejection", (e) => fehlerMelden((e.reason && e.reason.message) || e.reason, "promise", e.reason && e.reason.stack));
+/** Ist eine neue Funktion für dieses Konto freigeschaltet? (Funktions-Schalter im Admin-Bereich) */
+function funktionAn(key) { return !!(konto && Array.isArray(konto.funktionen) && konto.funktionen.includes(key)); }
 function fehler(m) { const e = $("err"); e.textContent = m || ""; e.hidden = !m; }
 function meldung(e) { return (e && (e.message || e.error_description)) || "?"; }
 const merk = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* egal */ } } };
@@ -612,7 +625,7 @@ async function ladeAlles() {
     sb.rpc("mein_konto"),
     sb.from("figuren").select("*").order("erstellt_am"),
   ]);
-  const e = k.error || a.error || h.error || c.error || f.error; if (e) { fehler(meldung(e)); return; }
+  const e = k.error || a.error || h.error || c.error || f.error; if (e) { fehler(meldung(e)); fehlerMelden(meldung(e), "ladeAlles"); return; }
   fehler(""); kinder = k.data; auftraege = a.data; hoerspiele = h.data; konto = c.data; figuren = f.data;
   if (st.step === 3 && !bearbeite && ansicht === "neu") { baueFiguren(); baueBegleiter(); }
   baueProfile(); zeigeAuftraege(); zeigeBibliothek(); zeigeStatistik(); zeigeKonto(); if (st.step === 5) bestellung();
@@ -632,7 +645,7 @@ function abonnieren() {
 }
 let startLaeuft = null;
 function start() {   // nacheinander, nie doppelt gleichzeitig
-  startLaeuft = (startLaeuft || Promise.resolve()).then(starten, starten).catch((e) => { fehler(meldung(e)); zeige("login"); });
+  startLaeuft = (startLaeuft || Promise.resolve()).then(starten, starten).catch((e) => { fehler(meldung(e)); fehlerMelden(meldung(e), "start", e && e.stack); zeige("login"); });
   return startLaeuft;
 }
 const mitFrist = (p, ms) => Promise.race([p, new Promise((_, nein) => setTimeout(() => nein(new Error(t("verbindungHaengt"))), ms))]);
