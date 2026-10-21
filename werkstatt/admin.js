@@ -111,6 +111,10 @@ function einladungen(liste) {
     const r = el("tr"); const c = el("td"); const code = el("code", null, e.code); c.appendChild(code);
     const kopieren = btn("ghost", "kopieren"); kopieren.onclick = () => navigator.clipboard?.writeText(e.code).then(() => (kopieren.textContent = "✓")); c.appendChild(kopieren);
     const abgelaufen = e.gueltig_bis && new Date(e.gueltig_bis) < new Date();
+    if (!abgelaufen && e.nutzungen < e.max_nutzungen) {   // noch einlösbar: direkt per WhatsApp verschicken
+      const wa = el("a", "btn whatsapp", "WhatsApp"); wa.href = whatsappLink(e.code); wa.target = "_blank"; wa.rel = "noopener";
+      wa.style.cssText = "padding:4px 12px;font-size:13px;margin-left:4px"; c.appendChild(wa);
+    }
     r.append(c, el("td", null, e.notiz || ""), el("td", "num", e.kontingent), el("td", "num", e.nutzungen + " / " + e.max_nutzungen), el("td", abgelaufen ? "hint" : null, e.gueltig_bis ? datum(e.gueltig_bis) + (abgelaufen ? " (abgelaufen)" : "") : "unbegrenzt"));
     t.appendChild(r);
   });
@@ -189,6 +193,8 @@ function einladungsText(code) {
     + "3. Einladungscode eingeben: " + code + "\n4. Bedingungen bestätigen\n\n"
     + "Du hast 5 Hörspiele pro Monat. Bitte hör jedes zuerst selbst an, bevor du es deinem Kind vorspielst – es ist eine Testversion.";
 }
+// Öffnet WhatsApp mit der fertigen Nachricht; dort wählst du nur noch den Kontakt aus
+const whatsappLink = (code) => "https://wa.me/?text=" + encodeURIComponent(einladungsText(code));
 async function kopiere(text, ok) {
   try { await navigator.clipboard.writeText(text); $("cd-msg").textContent = ok; }
   catch (e) {   // ältere Browser: Text markieren, damit man ihn selbst kopieren kann
@@ -201,6 +207,7 @@ function codeZeigen(code, kontingent, notiz) {
   $("cd-code").textContent = code;
   $("cd-info").textContent = (notiz ? "Für " + notiz + ": " : "") + kontingent + " Hörspiele pro Monat. Schick den Code zusammen mit dem Link.";
   $("cd-msg").textContent = "";
+  $("cd-whatsapp").href = whatsappLink(code);
   $("cd-kopieren").onclick = () => kopiere(code, "Code kopiert ✓");
   $("cd-einladung").onclick = () => kopiere(einladungsText(code), "Einladung mit Link und Code kopiert ✓ – jetzt in WhatsApp einfügen.");
   $("cd-teilen").hidden = !navigator.share;
