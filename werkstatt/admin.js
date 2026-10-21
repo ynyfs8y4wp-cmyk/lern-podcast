@@ -262,6 +262,55 @@ async function uebersicht() {
   einladungen(data.einladungen);
 }
 
+/* ---------- Dienste und Limits ---------- */
+const zahlFmt = (n) => (n == null ? "–" : Number(n).toLocaleString("de-DE"));
+const mb = (b) => (b == null ? "–" : (b / 1048576).toLocaleString("de-DE", { maximumFractionDigits: 1 }) + " MB");
+function dienstKarte(titel, gross, anteil, zeilen, link) {
+  const k = el("div", "dienst"); k.appendChild(el("h3", null, titel));
+  if (gross) k.appendChild(el("div", "gross", gross));
+  if (anteil != null && isFinite(anteil)) {
+    const l = el("div", "leiste" + (anteil >= 0.9 ? " voll" : anteil >= 0.7 ? " warn" : "")); const i = el("i"); i.style.width = Math.min(100, Math.round(anteil * 100)) + "%";
+    l.appendChild(i); l.setAttribute("role", "img"); l.setAttribute("aria-label", Math.round(anteil * 100) + " % verbraucht"); k.appendChild(l);
+  }
+  zeilen.filter(Boolean).forEach((z) => k.appendChild(el("div", "hint", z)));
+  if (link) { const a = el("a", null, link[0]); a.href = link[1]; a.target = "_blank"; a.rel = "noopener"; k.appendChild(a); }
+  return k;
+}
+async function dienste() {
+  const { data: d, error } = await sb.rpc("admin_dienste"); if (error) { $("dienste").textContent = meldung(error); return; }
+  const box = $("dienste"); box.textContent = ""; const st = d.status || {};
+  const alt = (x) => (x && x.aktualisiert_am ? "Stand " + new Date(x.aktualisiert_am).toLocaleString("de-DE", { dateStyle: "short", timeStyle: "short" }) : "noch keine Daten");
+  // ElevenLabs
+  const e = st.elevenlabs || {};
+  box.appendChild(e.fehler || e.limit == null
+    ? dienstKarte("ElevenLabs (Stimmen, Musik, Geräusche)", null, null, [e.fehler ? "Fehler: " + e.fehler : "Noch nicht abgefragt", alt(e)], ["Konto öffnen", "https://elevenlabs.io/app/subscription"])
+    : dienstKarte("ElevenLabs (Stimmen, Musik, Geräusche)", zahlFmt(e.limit - e.verbraucht) + " Zeichen frei", e.verbraucht / e.limit,
+        [zahlFmt(e.verbraucht) + " von " + zahlFmt(e.limit) + " verbraucht", "≈ " + zahlFmt(Math.floor((e.limit - e.verbraucht) / 6000)) + " Hörspiele (je ca. 6.000 Zeichen)",
+         "Tarif: " + (e.tarif || "–") + (e.zuruecksetzung ? " · neu ab " + new Date(e.zuruecksetzung).toLocaleDateString("de-DE") : ""), alt(e)],
+        ["Tarif und Guthaben", "https://elevenlabs.io/app/subscription"]));
+  // Anthropic
+  const a = d.anthropic_monat || {}, an = st.anthropic || {};
+  const zeilenA = [zahlFmt(a.input) + " Tokens Eingabe · " + zahlFmt(a.output) + " Tokens Ausgabe", zahlFmt(a.aufrufe) + " Aufrufe diesen Monat"];
+  Object.entries(a.pro_modell || {}).forEach(([m, v]) => zeilenA.push(m + ": " + zahlFmt(v.input) + " / " + zahlFmt(v.output)));
+  if (an.kosten_monat != null) zeilenA.unshift("Kosten diesen Monat: " + an.kosten_monat.toLocaleString("de-DE") + " " + (an.waehrung || "USD") + " (laut Anthropic)");
+  else zeilenA.push("Guthaben und Limit siehst du nur in der Anthropic Console.");
+  box.appendChild(dienstKarte("Anthropic (Texte und Prüfungen)", zahlFmt((a.input || 0) + (a.output || 0)) + " Tokens", null, zeilenA, ["Guthaben und Limits", "https://console.anthropic.com/settings/billing"]));
+  // GitHub
+  const g = st.github || {};
+  box.appendChild(g.fehler || g.minuten_monat == null
+    ? dienstKarte("GitHub Actions (Hörspiel-Fabrik)", null, null, [g.fehler ? "Fehler: " + g.fehler : "Noch nicht abgefragt", alt(g)], ["Abrechnung", "https://github.com/settings/billing"])
+    : dienstKarte("GitHub Actions (Hörspiel-Fabrik)", zahlFmt(Math.max(0, g.frei_minuten - g.minuten_monat)) + " Minuten frei", g.minuten_monat / g.frei_minuten,
+        ["≈ " + zahlFmt(g.minuten_monat) + " von " + zahlFmt(g.frei_minuten) + " Minuten diesen Monat (" + zahlFmt(g.laeufe_monat) + " Läufe)", "Schätzung; genaue Zahl unter GitHub → Settings → Billing", alt(g)],
+        ["Abrechnung", "https://github.com/settings/billing/usage"]));
+  // Supabase und Tagesgrenze
+  const sb_ = d.supabase || {};
+  box.appendChild(dienstKarte("Supabase (Datenbank und Speicher)", mb(sb_.speicher_bytes) + " von 1.024 MB", (sb_.speicher_bytes || 0) / (1024 * 1048576),
+    ["Datenbank: " + mb(sb_.datenbank_bytes) + " von 500 MB", zahlFmt(sb_.audiodateien) + " Audiodateien", "Grenzen des kostenlosen Tarifs"], ["Projekt öffnen", "https://supabase.com/dashboard/project/dukunyhkzqtvczyjmlot"]));
+  box.appendChild(dienstKarte("Hörspiele (Kostenschutz)", zahlFmt(d.hoerspiele_heute) + " von " + zahlFmt(d.hoerspiele_tag_grenze) + " in 24 Stunden", d.hoerspiele_heute / d.hoerspiele_tag_grenze,
+    [zahlFmt(d.hoerspiele_monat) + " Hörspiele diesen Monat (alle Familien)"], null));
+  $("dienste-stand").textContent = "";
+}
+
 async function start() {
   fehler("");
   const { data } = await sb.auth.getSession();
@@ -272,6 +321,6 @@ async function start() {
   const { data: aal } = await sb.auth.mfa.getAuthenticatorAssuranceLevel();
   if (aal.currentLevel !== "aal2") { await mfa(); return; }
   zeige("s-admin");
-  await Promise.all([uebersicht(), familien(), meldungen(), protokoll()]);
+  await Promise.all([uebersicht(), dienste(), familien(), meldungen(), protokoll()]);
 }
 start();
