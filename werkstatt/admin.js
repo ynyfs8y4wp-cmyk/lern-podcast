@@ -365,7 +365,7 @@ $("f-schalter").onsubmit = async (e) => {
 };
 
 /* Fehler der Admin-Seite selbst ebenfalls melden */
-window.addEventListener("error", (e) => sb.rpc("fehler_melden", { p: { quelle: "admin", version: window.HW_VERSION || "dev", meldung: String(e.message).slice(0, 500), ort: (e.filename || "").split("/").pop() + ":" + e.lineno } }).then(() => {}, () => {}));
+window.addEventListener("error", (e) => (e.message === "Script error." && !e.filename) || sb.rpc("fehler_melden", { p: { quelle: "admin", version: window.HW_VERSION || "dev", meldung: String(e.message).slice(0, 500), ort: (e.filename || "").split("/").pop() + ":" + e.lineno } }).then(() => {}, () => {}));
 
 async function start() {
   fehler("");

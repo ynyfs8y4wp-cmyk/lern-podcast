@@ -18,7 +18,8 @@ function fehlerMelden(meldung, ort, stack) {
       ort: String(ort || "").slice(0, 300), stack: String(stack || "").slice(0, 2000) } }).then(() => {}, () => {});
   } catch (e) { /* noch nicht bereit – nicht melden */ }
 }
-window.addEventListener("error", (e) => fehlerMelden(e.message, (e.filename || "").split("/").pop() + ":" + e.lineno, e.error && e.error.stack));
+// "Script error." ohne Ort stammt aus fremden Skripten oder Browser-Erweiterungen – nicht melden
+window.addEventListener("error", (e) => (e.message === "Script error." && !e.filename) || fehlerMelden(e.message, (e.filename || "").split("/").pop() + ":" + e.lineno, e.error && e.error.stack));
 window.addEventListener("unhandledrejection", (e) => fehlerMelden((e.reason && e.reason.message) || e.reason, "promise", e.reason && e.reason.stack));
 /** Ist eine neue Funktion für dieses Konto freigeschaltet? (Funktions-Schalter im Admin-Bereich) */
 function funktionAn(key) { return !!(konto && Array.isArray(konto.funktionen) && konto.funktionen.includes(key)); }
