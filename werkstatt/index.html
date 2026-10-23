@@ -194,6 +194,10 @@
   </section>
 
   <section id="v-lib" hidden style="display:flex;flex-direction:column;gap:14px">
+    <section id="libjobsec" hidden style="display:flex;flex-direction:column;gap:10px">
+      <h3 data-t="inWerkstatt"></h3>
+      <div class="jobs" id="libjobs"></div>
+    </section>
     <div class="libbar" id="libbar"><input id="libsuche" type="search" data-ph="suche" autocomplete="off"><div class="chips" id="libfilter"></div></div>
     <div id="lib"></div>
   </section>
@@ -253,6 +257,13 @@
     <p class="hint"><a href="agb.html" data-t="agb"></a> · <a href="datenschutz.html" data-t="datenschutz"></a> · <a href="impressum.html" data-t="impressum"></a></p>
   </section>
 </div>
+<dialog id="hinweis" class="hinweis-dialog" aria-labelledby="hw-titel">
+  <div class="hw-bild" id="hw-bild" aria-hidden="true"></div>
+  <h2 id="hw-titel"></h2>
+  <p id="hw-text"></p>
+  <p class="hint" id="hw-text2"></p>
+  <div class="actions" id="hw-knoepfe"></div>
+</dialog>
 <script src="figuren.js"></script>
 <script src="app.js"></script>
 </body>

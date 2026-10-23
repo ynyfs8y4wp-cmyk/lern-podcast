@@ -355,6 +355,7 @@ async function bestellen() {
       begleiter: st.comp, fortsetzung_von: st.fort, stimmen: Object.fromEntries(gewaehlteStimmen().map((r) => [r, st.voices[r]])) } });
     if (error) throw error;
     $("ordermsg").textContent = ""; erfolg(); ladeAlles();
+    if (funktionAn("fortschritt_anzeige")) bestelltHinweis(st.fig, st.len);
   } catch (e) { $("ordermsg").textContent = meldung(e); ob.disabled = false; }
 }
 function erfolg() {
@@ -368,17 +369,108 @@ function erfolg() {
 
 /* ---------- Listen ---------- */
 function zeigeAuftraege() {
-  const box = $("jobs"); box.textContent = "";
+  const mitFortschritt = funktionAn("fortschritt_anzeige");
   const offen = auftraege.filter((j) => ["wartet", "in_arbeit"].includes(j.status) || (["fehler", "abgelehnt"].includes(j.status) && Date.now() - new Date(j.erstellt_am) < 7 * 864e5));
   $("jobsec").hidden = !offen.length;
+  $("libjobsec").hidden = !mitFortschritt || !offen.length;
+  baueAuftraege($("jobs"), offen, mitFortschritt);
+  if (mitFortschritt) baueAuftraege($("libjobs"), offen, true); else $("libjobs").textContent = "";
+  fortschrittTakt(mitFortschritt && offen.some((j) => ["wartet", "in_arbeit"].includes(j.status)));
+}
+function baueAuftraege(box, offen, mitFortschritt) {
+  box.textContent = "";
   offen.forEach((j) => {
     const w = el("div", "job"); w.innerHTML = figSvg(j.figur, null, j.eigene_figuren); const tx = el("div"); tx.style.flex = "1"; tx.style.minWidth = "0";
     const lab = { wartet: ["wait pulse", t("wartet")], in_arbeit: ["wait pulse", t("schreibt")], fehler: ["bad", t("fehlgeschlagen")], abgelehnt: ["bad", t("nichtMoeglich")] }[j.status];
     const top = el("div"); top.appendChild(el("span", "pill " + lab[0], lab[1])); tx.appendChild(top);
     tx.appendChild(el("div", null, [...(j.themen || []).map(themaName), j.thema_frei ? t("eureBeschreibung") : ""].filter(Boolean).join(", ")));
     tx.appendChild(el("div", "s", ["fehler", "abgelehnt"].includes(j.status) ? (j.fehler || "") : t("bestelltAm", { d: fmt(j.erstellt_am) })));
+    if (mitFortschritt && ["wartet", "in_arbeit"].includes(j.status)) {
+      const bal = el("div", "balken"); bal.setAttribute("role", "progressbar"); bal.setAttribute("aria-valuemin", "0"); bal.setAttribute("aria-valuemax", "100");
+      bal.setAttribute("aria-label", t("fortschrittLabel")); bal.appendChild(el("i"));
+      const z = el("div", "zeile"); z.append(el("span", "phase"), el("span", "rest"));
+      bal.dataset.job = j.id; z.dataset.job = j.id; tx.append(bal, z);
+    }
     w.appendChild(tx); box.appendChild(w);
   });
+  fortschrittZeichnen();
+}
+
+/* ---------- Fortschritt mit Restzeit (Funktions-Schalter "fortschritt_anzeige") ---------- */
+const DAUER_STANDARD = { kurz: 300, mittel: 420, lang: 600 };   // Sekunden, bis echte Werte vorliegen
+let DAUER = { ...DAUER_STANDARD }, dauerGeladen = false, takt = null;
+async function dauerLaden() {
+  if (dauerGeladen) return; dauerGeladen = true;
+  try { const { data } = await sb.rpc("fabrik_dauer"); if (data && typeof data === "object") Object.entries(data).forEach(([k, v]) => { if (v > 60) DAUER[k] = v; }); } catch (e) { /* Standardwerte genügen */ }
+}
+// Bis zu welchem Anteil eine Phase höchstens fortschreiten darf, solange die Fabrik noch keinen neuen Stand meldet
+const PHASEN = { gestartet: [2, 8, "phasePruefen"], pruefen: [4, 10, "phasePruefen"], schreiben: [10, 38, "phaseSchreiben"], sicherheit: [40, 47, "phaseSicherheit"],
+  vertonen: [48, 92, "phaseVertonen"], speichern: [94, 99, "phaseSpeichern"] };
+function schaetzung(j) {
+  const T = DAUER[j.laenge] || DAUER.mittel, jetzt = Date.now();
+  if (j.status === "wartet") {
+    if (j.phase === "wartet_guthaben") return { p: 0, text: t("phaseGuthaben"), rest: null, pause: true };
+    const ab = j.naechster_versuch_am ? new Date(j.naechster_versuch_am).getTime() : jetzt;
+    const basis = j.fortschritt || 0;
+    return { p: basis, text: t(j.phase === "neuer_versuch" ? "phaseNeuerVersuch" : "phaseWartet"), rest: Math.max(0, ab - jetzt) / 1000 + T * (1 - basis / 100) + 30, pause: true };
+  }
+  const [von, bis, key] = PHASEN[j.phase] || PHASEN.gestartet;
+  const gemeldet = Math.max(von, j.fortschritt || 0);
+  const seit = (jetzt - new Date(j.phase_seit || j.gestartet_am || j.erstellt_am).getTime()) / 1000;
+  // zwischen zwei Meldungen sanft weiterlaufen, aber nie über das Ende der Phase hinaus
+  const p = Math.min(Math.max(gemeldet, bis - 1), gemeldet + (seit / T) * 100);
+  const lief = (jetzt - new Date(j.gestartet_am || j.erstellt_am).getTime()) / 1000;
+  return { p, text: t(key), rest: Math.max(T * (1 - p / 100), 0), laenger: lief > T * 1.6 };
+}
+function restText(s) {
+  if (s.rest == null) return "";
+  if (s.laenger) return t("restLaenger");
+  const min = Math.ceil(s.rest / 60);
+  return min <= 1 ? t("restGleich") : t("restMin", { n: min });
+}
+function fortschrittZeichnen() {
+  document.querySelectorAll(".balken[data-job]").forEach((bal) => {
+    const j = auftraege.find((x) => x.id === bal.dataset.job); if (!j) return;
+    const s = schaetzung(j), p = Math.round(Math.max(2, Math.min(99, s.p)));
+    bal.firstChild.style.width = p + "%"; bal.setAttribute("aria-valuenow", String(p)); bal.classList.toggle("pause", !!s.pause);
+    const z = bal.nextElementSibling; if (z) { z.querySelector(".phase").textContent = s.text; z.querySelector(".rest").textContent = restText(s); }
+  });
+}
+function fortschrittTakt(an) {
+  if (an && !takt) { dauerLaden(); takt = setInterval(fortschrittZeichnen, 5000); }
+  if (!an && takt) { clearInterval(takt); takt = null; }
+}
+
+/* ---------- Hinweisfenster ---------- */
+function hinweis({ fig, eigene, titel, text, text2, knoepfe }) {
+  const d = $("hinweis"); $("hw-bild").innerHTML = fig ? figSvg(fig, null, eigene) : "";
+  $("hw-titel").textContent = titel; $("hw-text").textContent = text || ""; $("hw-text2").textContent = text2 || ""; $("hw-text2").hidden = !text2;
+  const k = $("hw-knoepfe"); k.textContent = "";
+  knoepfe.forEach(([label, cls, fn]) => { const b = btn(cls, label); b.onclick = () => { d.close(); if (fn) fn(); }; k.appendChild(b); });
+  try { if (d.open) d.close(); d.showModal(); } catch (e) { d.setAttribute("open", ""); }
+  const erster = k.querySelector("button"); if (erster) erster.focus();
+}
+function bestelltHinweis(fig, laenge) {
+  const T = DAUER[laenge] || DAUER_STANDARD[laenge] || 420;
+  const m = Math.max(3, Math.round(T / 60)) + "–" + Math.max(5, Math.round((T * 1.6) / 60));
+  hinweis({ fig, titel: t("bestelltTitel"), text: t("bestelltText", { m }), text2: t("bestelltText2"),
+    knoepfe: [[t("verstanden"), "cta", null], [t("zurBib"), null, () => zeige("lib")]] });
+}
+// Fertig-Hinweis: einmal je Hörspiel, sobald es anhörbar ist (gemerkt im Browser)
+const GEMELDET = "hw-gemeldet";
+function fertigMelden() {
+  let gemeldet = null;
+  try { gemeldet = JSON.parse(localStorage.getItem(GEMELDET) || "null"); } catch (e) { gemeldet = null; }
+  const fertige = hoerspiele.filter((h) => h.audio_status === "fertig" && !h.gesperrt).map((h) => h.id);
+  const speichern = (ids) => { try { localStorage.setItem(GEMELDET, JSON.stringify(ids.slice(-300))); } catch (e) { /* ohne Speicher: dann eben nicht gemerkt */ } };
+  if (!Array.isArray(gemeldet)) { speichern(fertige); return; }   // erster Start: Bestehendes nicht melden
+  const neu = hoerspiele.filter((h) => fertige.includes(h.id) && !gemeldet.includes(h.id) && Date.now() - new Date(h.erstellt_am) < 3 * 864e5);
+  speichern([...new Set([...gemeldet, ...fertige])]);
+  if (!neu.length || !funktionAn("fortschritt_anzeige")) return;
+  const h = neu[0];
+  hinweis({ fig: h.figur, eigene: h.eigene_figuren, titel: t("fertigTitel"),
+    text: neu.length > 1 ? t("fertigMehrere", { n: neu.length }) : t("fertigText", { t: h.titel }),
+    knoepfe: [[t("anhoerenJetzt"), "cta", () => oeffne(h)], [t("spaeter"), null, null]] });
 }
 function audioZustand(h) { if (h.gesperrt) return ["bad", t("gesperrtHs").split(" ").slice(0, 3).join(" ")]; if (h.audio_status === "neu_vertonen") return ["wait", t("neuVertonenLaeuft")]; if (h.audio_status === "fertig") return ["ok", t("anhoeren")]; if (h.audio_status === "fehler") return ["bad", t("nurText")]; return ["wait", t("wirdVertont")]; }
 function baueFilter() {
@@ -621,7 +713,7 @@ function neuZeichnen() {
 async function ladeAlles() {
   const [k, a, h, c, f] = await Promise.all([
     sb.from("kinder").select("*").order("erstellt_am"),
-    sb.from("auftraege").select("id,figur,themen,thema_frei,status,fehler,erstellt_am,hoerspiel_id,sprache,eigene_figuren").order("erstellt_am", { ascending: false }).limit(30),
+    sb.from("auftraege").select("id,figur,themen,thema_frei,status,fehler,erstellt_am,hoerspiel_id,sprache,eigene_figuren,laenge,gestartet_am,versuche,phase,fortschritt,phase_seit,naechster_versuch_am").order("erstellt_am", { ascending: false }).limit(30),
     sb.from("hoerspiele").select("*").order("erstellt_am", { ascending: false }),
     sb.rpc("mein_konto"),
     sb.from("figuren").select("*").order("erstellt_am"),
@@ -630,6 +722,7 @@ async function ladeAlles() {
   fehler(""); kinder = k.data; auftraege = a.data; hoerspiele = h.data; konto = c.data; figuren = f.data;
   if (st.step === 3 && !bearbeite && ansicht === "neu") { baueFiguren(); baueBegleiter(); }
   baueProfile(); zeigeAuftraege(); zeigeBibliothek(); zeigeStatistik(); zeigeKonto(); if (st.step === 5) bestellung();
+  fertigMelden();
   if (aktuell) { const neu = hoerspiele.find((x) => x.id === aktuell.id);
     if (neu && ansicht === "read" && (neu.audio_status !== aktuell.audio_status || neu.audio_pfad !== aktuell.audio_pfad || neu.stimmen_fehler !== aktuell.stimmen_fehler)) oeffne(neu); else if (neu) aktuell = neu; }
 }

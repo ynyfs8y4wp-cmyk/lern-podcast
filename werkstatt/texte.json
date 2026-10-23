@@ -1847,6 +1847,126 @@
       "Save",
       "Guardar",
       "Salvar"
+    ],
+    "bestelltTitel": [
+      "Dein Hörspiel ist bestellt!",
+      "Your audio story is ordered!",
+      "¡Tu audiocuento está pedido!",
+      "Sua audiohistória foi pedida!"
+    ],
+    "bestelltText": [
+      "Jetzt wird die Geschichte geschrieben, geprüft und mit Stimmen, Musik und Geräuschen eingesprochen. Das dauert meist etwa {m} Minuten, manchmal etwas länger.",
+      "The story is now being written, checked and recorded with voices, music and sound effects. This usually takes about {m} minutes, sometimes a little longer.",
+      "Ahora se escribe la historia, se revisa y se graba con voces, música y efectos. Suele tardar unos {m} minutos, a veces algo más.",
+      "Agora a história está sendo escrita, revisada e gravada com vozes, música e efeitos. Costuma levar uns {m} minutos, às vezes um pouco mais."
+    ],
+    "bestelltText2": [
+      "Du kannst die App ruhig schließen. Den Fortschritt siehst du in der Bibliothek, und sobald alles fertig ist, sagen wir dir Bescheid.",
+      "You can close the app. You'll see the progress in the library, and we'll let you know as soon as it's ready.",
+      "Puedes cerrar la app. Verás el progreso en la biblioteca y te avisaremos en cuanto esté listo.",
+      "Pode fechar o app. Você vê o progresso na biblioteca e avisamos assim que estiver pronto."
+    ],
+    "verstanden": [
+      "Alles klar",
+      "Got it",
+      "Entendido",
+      "Entendi"
+    ],
+    "spaeter": [
+      "Später",
+      "Later",
+      "Más tarde",
+      "Mais tarde"
+    ],
+    "fertigTitel": [
+      "Dein Hörspiel ist fertig! 🎉",
+      "Your audio story is ready! 🎉",
+      "¡Tu audiocuento está listo! 🎉",
+      "Sua audiohistória está pronta! 🎉"
+    ],
+    "fertigText": [
+      "„{t}“ ist bereit zum Anhören. Am besten hörst du es zuerst einmal selbst.",
+      "“{t}” is ready to listen to. It's best to listen to it yourself first.",
+      "«{t}» ya se puede escuchar. Lo mejor es escucharlo tú primero.",
+      "“{t}” já pode ser ouvida. O ideal é ouvir primeiro você mesmo."
+    ],
+    "fertigMehrere": [
+      "Es sind {n} neue Hörspiele fertig.",
+      "{n} new audio stories are ready.",
+      "Hay {n} audiocuentos nuevos listos.",
+      "{n} novas audiohistórias estão prontas."
+    ],
+    "phaseWartet": [
+      "Wartet auf den Start",
+      "Waiting to start",
+      "Esperando para empezar",
+      "Aguardando o início"
+    ],
+    "phaseNeuerVersuch": [
+      "Kurze Störung – gleich geht es weiter",
+      "Short hiccup – continuing shortly",
+      "Pequeña interrupción: enseguida seguimos",
+      "Pequena falha – já continuamos"
+    ],
+    "phaseGuthaben": [
+      "Gerade ist viel los. Es startet automatisch, sobald wieder Stimmen frei sind.",
+      "It's busy right now. It will start automatically as soon as voices are free again.",
+      "Ahora hay mucho trabajo. Empezará automáticamente en cuanto haya voces libres.",
+      "Está movimentado agora. Começa automaticamente assim que houver vozes livres."
+    ],
+    "phasePruefen": [
+      "Bestellung wird geprüft",
+      "Checking your order",
+      "Revisando el pedido",
+      "Verificando o pedido"
+    ],
+    "phaseSchreiben": [
+      "Die Geschichte wird geschrieben",
+      "Writing the story",
+      "Escribiendo la historia",
+      "Escrevendo a história"
+    ],
+    "phaseSicherheit": [
+      "Die Geschichte wird geprüft",
+      "Checking the story",
+      "Revisando la historia",
+      "Verificando a história"
+    ],
+    "phaseVertonen": [
+      "Stimmen, Musik und Geräusche werden eingesprochen",
+      "Recording voices, music and sound effects",
+      "Grabando voces, música y efectos",
+      "Gravando vozes, música e efeitos"
+    ],
+    "phaseSpeichern": [
+      "Fast fertig – wird gespeichert",
+      "Almost done – saving",
+      "Casi listo: guardando",
+      "Quase pronto – salvando"
+    ],
+    "restMin": [
+      "noch etwa {n} Min.",
+      "about {n} min left",
+      "faltan unos {n} min",
+      "faltam uns {n} min"
+    ],
+    "restGleich": [
+      "gleich fertig",
+      "almost ready",
+      "casi listo",
+      "quase pronto"
+    ],
+    "restLaenger": [
+      "dauert heute etwas länger – es geht weiter",
+      "taking a bit longer today – still working",
+      "hoy tarda un poco más: seguimos",
+      "hoje está demorando um pouco mais – continua"
+    ],
+    "fortschrittLabel": [
+      "Fortschritt",
+      "Progress",
+      "Progreso",
+      "Progresso"
     ]
   },
   "figuren": {

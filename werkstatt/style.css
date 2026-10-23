@@ -288,3 +288,16 @@ a.btn.whatsapp{background:#25D366;border-color:#25D366;color:#0B2A17}
 .dienst .leiste.warn > i{background:#E0A030}
 .dienst .leiste.voll > i{background:#D64545}
 .dienst a{font-size:14px}
+
+/* Hinweisfenster (bestellt / fertig) und Fortschritt in der Werkstatt */
+.hinweis-dialog{border:2px solid var(--line);border-radius:28px;background:var(--surface);color:var(--ink);padding:24px 22px 20px;max-width:min(420px,calc(100vw - 32px));width:100%;text-align:center}
+.hinweis-dialog::backdrop{background:rgba(10,12,30,.62)}
+.hinweis-dialog h2{margin:6px 0 8px}
+.hinweis-dialog p{margin:0 0 10px}
+.hinweis-dialog .actions{justify-content:center;margin-top:8px}
+.hw-bild svg{width:84px;height:84px}
+.balken{height:10px;border-radius:999px;background:var(--line);overflow:hidden;margin:8px 0 4px}
+.balken > i{display:block;height:100%;width:0;border-radius:999px;background:var(--meadow);transition:width .8s ease}
+.balken.pause > i{background:var(--moon)}
+.job .zeile{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:13.5px;color:var(--muted)}
+@media (prefers-reduced-motion: reduce){.balken > i{transition:none}}
