@@ -25,6 +25,7 @@ concurrency:
 jobs:
   podcast:
     runs-on: ubuntu-latest   # WO: eine frische Linux-VM von GitHub
+    timeout-minutes: 90      # hängt etwas, bricht der Lauf ab, statt alle folgenden Läufe stundenlang zu blockieren
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
@@ -37,8 +38,24 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: ffmpeg installieren
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - name: ffmpeg (fertige Version, ohne Paketquellen)
+        id: ffmpeg
+        continue-on-error: true
+        timeout-minutes: 4
+        uses: FedericoCarboni/setup-ffmpeg@v3
+        with:
+          ffmpeg-version: release
+
+      - name: ffmpeg installieren (Ersatz, falls oben nicht geklappt)
+        timeout-minutes: 12
+        run: |
+          command -v ffmpeg >/dev/null && command -v ffprobe >/dev/null && { echo "ffmpeg vorhanden"; exit 0; }
+          for v in 1 2; do
+            timeout 120 sudo apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 update -qq \
+              && timeout 240 sudo apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 install -y -qq --no-install-recommends ffmpeg && exit 0
+            echo "::warning::Paketinstallation hing (Versuch $v)"; sleep 10
+          done
+          exit 1
 
       - name: Deutsche Stimme aus dem Zwischenspeicher holen
         uses: actions/cache@v4
