@@ -1,2 +1,2 @@
-// Ausgeliefert am 2026-10-27T13:40Z
-window.HW_VERSION = "5f80d9e";
+// Ausgeliefert am 2026-10-27T14:00Z
+window.HW_VERSION = "f8e13ce";

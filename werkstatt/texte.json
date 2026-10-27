@@ -1967,6 +1967,12 @@
       "Progress",
       "Progreso",
       "Progresso"
+    ],
+    "keineVerbindung": [
+      "Gerade keine Verbindung – wir versuchen es gleich automatisch noch einmal.",
+      "No connection right now – we'll try again automatically in a moment.",
+      "Ahora no hay conexión: lo intentaremos de nuevo automáticamente enseguida.",
+      "Sem conexão no momento – tentaremos de novo automaticamente em instantes."
     ]
   },
   "figuren": {

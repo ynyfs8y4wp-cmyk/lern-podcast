@@ -20,7 +20,7 @@ function fehlerMelden(meldung, ort, stack) {
 }
 // "Script error." ohne Ort stammt aus fremden Skripten oder Browser-Erweiterungen – nicht melden
 window.addEventListener("error", (e) => (e.message === "Script error." && !e.filename) || fehlerMelden(e.message, (e.filename || "").split("/").pop() + ":" + e.lineno, e.error && e.error.stack));
-window.addEventListener("unhandledrejection", (e) => fehlerMelden((e.reason && e.reason.message) || e.reason, "promise", e.reason && e.reason.stack));
+window.addEventListener("unhandledrejection", (e) => { if (!istNetzfehler(e.reason)) fehlerMelden((e.reason && e.reason.message) || e.reason, "promise", e.reason && e.reason.stack); });
 /** Ist eine neue Funktion für dieses Konto freigeschaltet? (Funktions-Schalter im Admin-Bereich) */
 function funktionAn(key) { return !!(konto && Array.isArray(konto.funktionen) && konto.funktionen.includes(key)); }
 function fehler(m) { const e = $("err"); e.textContent = m || ""; e.hidden = !m; }
@@ -710,7 +710,39 @@ function neuZeichnen() {
 }
 
 /* ---------- Laden ---------- */
-async function ladeAlles() {
+/* ---------- Laden mit Wiederholung: kurze Funklöcher (Safari "Load failed", "Failed to fetch") sind kein Fehler ---------- */
+const NETZ = /load failed|failed to fetch|networkerror|network request failed|network connection|the internet connection|timed? ?out|aborted|fetch/i;
+function istNetzfehler(e) {
+  const m = String((e && (e.message || e.details || e.hint)) || e || "");
+  return NETZ.test(m) || (e && (e.status === 0 || e.status === 429 || e.status >= 500));
+}
+const warte = (ms) => new Promise((ok) => setTimeout(ok, ms));
+let ladenLaeuft = null, ladenNochmal = false, zuletztGeladen = 0;
+function ladeAlles() {   // nie zweimal gleichzeitig; kommt währenddessen ein neuer Anstoß, wird danach einmal nachgeladen
+  if (ladenLaeuft) { ladenNochmal = true; return ladenLaeuft; }
+  ladenLaeuft = (async () => {
+    try { do { ladenNochmal = false; await ladenMitWiederholung(); } while (ladenNochmal); }
+    finally { ladenLaeuft = null; }
+  })();
+  return ladenLaeuft;
+}
+async function ladenMitWiederholung() {
+  for (let v = 0; v < 5; v++) {
+    let e = null;
+    try { e = await ladeEinmal(); } catch (x) { e = x; }
+    if (!e) { zuletztGeladen = Date.now(); return; }
+    if (!istNetzfehler(e)) { fehler(meldung(e)); fehlerMelden(meldung(e), "ladeAlles"); return; }
+    if (v >= 1) fehler(t("keineVerbindung"));   // erst nach dem zweiten Fehlversuch sichtbar
+    if (!navigator.onLine) return;               // offline: das Ereignis "online" lädt nach
+    await warte([1000, 2500, 5000, 10000][v] || 10000);
+  }
+  // auch nach mehreren Versuchen keine Verbindung: still weiter versuchen, sobald der Nutzer zurückkommt
+}
+window.addEventListener("online", () => { if (nutzer) { ladeAlles(); abonnieren(); } });
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible" && nutzer && Date.now() - zuletztGeladen > 20000) { ladeAlles(); abonnieren(); }
+});
+async function ladeEinmal() {
   const [k, a, h, c, f] = await Promise.all([
     sb.from("kinder").select("*").order("erstellt_am"),
     sb.from("auftraege").select("id,figur,themen,thema_frei,status,fehler,erstellt_am,hoerspiel_id,sprache,eigene_figuren,laenge,gestartet_am,versuche,phase,fortschritt,phase_seit,naechster_versuch_am").order("erstellt_am", { ascending: false }).limit(30),
@@ -718,7 +750,7 @@ async function ladeAlles() {
     sb.rpc("mein_konto"),
     sb.from("figuren").select("*").order("erstellt_am"),
   ]);
-  const e = k.error || a.error || h.error || c.error || f.error; if (e) { fehler(meldung(e)); fehlerMelden(meldung(e), "ladeAlles"); return; }
+  const e = k.error || a.error || h.error || c.error || f.error; if (e) return e;
   fehler(""); kinder = k.data; auftraege = a.data; hoerspiele = h.data; konto = c.data; figuren = f.data;
   if (st.step === 3 && !bearbeite && ansicht === "neu") { baueFiguren(); baueBegleiter(); }
   baueProfile(); zeigeAuftraege(); zeigeBibliothek(); zeigeStatistik(); zeigeKonto(); if (st.step === 5) bestellung();
@@ -729,13 +761,17 @@ async function ladeAlles() {
 function abonnieren() {
   if (kanal) sb.removeChannel(kanal);
   let tm = null; const neu = () => { clearTimeout(tm); tm = setTimeout(ladeAlles, 400); };
-  kanal = sb.channel("meine-daten")
+  const meinKanal = kanal = sb.channel("meine-daten")
     // ohne Filter: die Datenbank schickt nur Änderungen der eigenen Familie (Row Level Security)
     .on("postgres_changes", { event: "*", schema: "public", table: "auftraege" }, neu)
     .on("postgres_changes", { event: "*", schema: "public", table: "hoerspiele" }, neu)
     .on("postgres_changes", { event: "*", schema: "public", table: "kinder" }, neu)
     .on("postgres_changes", { event: "*", schema: "public", table: "figuren" }, neu)
-    .subscribe();
+    .subscribe((status) => {   // Verbindung verloren (z. B. Handy im Standby): nach kurzer Pause neu verbinden und nachladen
+      if (["CHANNEL_ERROR", "TIMED_OUT", "CLOSED"].includes(status) && nutzer && kanal === meinKanal) {   // nur der aktuelle Kanal
+        clearTimeout(abonnieren.tm); abonnieren.tm = setTimeout(() => { if (nutzer && navigator.onLine) { abonnieren(); ladeAlles(); } }, 5000);
+      }
+    });
 }
 let startLaeuft = null;
 function start() {   // nacheinander, nie doppelt gleichzeitig
