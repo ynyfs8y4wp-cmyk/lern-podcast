@@ -722,6 +722,9 @@ def main() -> int:
     werkstatt = ROOT / "werkstatt"   # Web-Testversion der Hörspielwerkstatt für Freunde (Kopie aus dem Produkt-Repo)
     if werkstatt.is_dir():
         shutil.copytree(werkstatt, SITE / "werkstatt", dirs_exist_ok=True)
+    lernroute = ROOT / "lernroute"   # Web-App der Lernroute (Kopie aus dem Repository lernroute, Workflow "Ausliefern")
+    if lernroute.is_dir():
+        shutil.copytree(lernroute, SITE / "lernroute", dirs_exist_ok=True)
     stimmen = ROOT / "stimmen"   # Katalog und Hörproben für die Stimmauswahl
     if stimmen.is_dir():
         shutil.copytree(stimmen, SITE / "stimmen", dirs_exist_ok=True)
