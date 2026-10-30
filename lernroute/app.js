@@ -59,6 +59,8 @@ const ICONS = {
   pause: '<path d="M8 5v14M16 5v14"/>',
   link: '<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>',
   kreis: '<circle cx="12" cy="12" r="9"/>',
+  welle: '<path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 10v4"/>',
+  stern: '<path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/>',
 };
 function icon(name, farbe, gross, text) {
   const s = el("span", "ic " + (farbe || "blau") + (gross ? " gross" : "")); s.setAttribute("aria-hidden", "true");
@@ -70,9 +72,9 @@ const CHEV = () => { const s = document.createElementNS("http://www.w3.org/2000/
 
 /** Zeile einer gruppierten Liste: {ic, titel, sub, wert, rechts, onClick, href, cls, chev} */
 function zeile(o) {
-  const z = el(o.href ? "a" : o.onClick ? "button" : "div", "zeile" + (o.ic ? " mit-ic" : "") + (o.cls ? " " + o.cls : ""));
+  const z = el(o.href ? "a" : o.onClick && !o.rechts ? "button" : "div", "zeile" + (o.ic ? " mit-ic" : "") + (o.cls ? " " + o.cls : ""));
   if (o.href) { z.href = o.href; if (/^https?:/.test(o.href)) { z.target = "_blank"; z.rel = "noopener"; } }
-  if (o.onClick) { if (!o.href) z.type = "button"; z.addEventListener("click", o.onClick); }
+  if (o.onClick) { if (!o.href && !o.rechts) z.type = "button"; else if (!o.href) { z.setAttribute("role", "button"); z.tabIndex = 0; z.style.cursor = "pointer"; z.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); o.onClick(e); } }); } z.addEventListener("click", o.onClick); }
   if (o.ic) z.appendChild(o.ic);
   const t = el("span", "txt"); t.appendChild(el("strong", null, o.titel)); if (o.sub) t.appendChild(el("span", null, o.sub)); z.appendChild(t);
   if (o.wert != null) z.appendChild(el("span", "wert", o.wert));
@@ -86,6 +88,14 @@ function gruppe(titel, inhalt, fuss, rechts) {
   (Array.isArray(inhalt) ? inhalt : [inhalt]).filter(Boolean).forEach((x) => g.appendChild(x)); if (fuss) g.appendChild(el("p", "fuss", fuss)); return g;
 }
 function kopf(titel, text, ueber) { const k = el("header", "kopf"); if (ueber) k.appendChild(el("span", "ueber", ueber)); k.appendChild(el("h1", null, titel)); if (text) k.appendChild(el("p", null, text)); return k; }
+/** Kopf einer Hauptseite: mit Sprach-Knopf oben rechts */
+function hauptKopf(titel, text) {
+  const k = kopf(titel, text); k.classList.add("mit-pill");
+  const b = el("button", "sprachpill"); b.type = "button"; b.id = "sprachpill"; b.setAttribute("aria-label", T("Sprache"));
+  b.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICONS.globus + "</svg>";
+  const pod = konto && konto.sprache_folgen && konto.sprache_folgen !== uiLang ? " · 🎧 " + konto.sprache_folgen.toUpperCase() : "";
+  b.appendChild(el("span", null, uiLang.toUpperCase() + pod)); b.onclick = openLang; k.appendChild(b); return k;
+}
 function navZurueck(text, onClick) {
   const n = el("div", "nav"); const b = el("button", "zurueck"); b.type = "button";
   b.innerHTML = '<svg viewBox="0 0 12 20" aria-hidden="true"><path d="M10 2 2 10l8 8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -112,11 +122,15 @@ const meldung = (e) => T((e && (e.message || e.error_description)) || "Das hat n
 function showErr(m) { $("err").textContent = m || ""; $("err").hidden = !m; }
 
 /* ---------- Zustand ---------- */
-let konto = null, routen = [], themen = [], fragen = [], folgen = [], auftraege = [], radare = [], ausgaben = [], kanal = null;
-const nav = { tab: "heute", route: null, routeTab: "folgen", radar: null, neu: null };
+let konto = null, routen = [], themen = [], fragen = [], folgen = [], auftraege = [], radare = [], ausgaben = [], lernprofile = [], kanal = null;
+let STIMMEN = { standard: { a: "sarah", b: "george" }, stimmen: [] };
+const nav = { tab: "routen", route: null, routeTab: "folgen", radar: null, neu: null, ich: null, rolle: "a" };
 try { Object.assign(nav, JSON.parse(merk.get("lr-nav") || "{}")); } catch (e) { /* egal */ }
 const routeById = (id) => routen.find((r) => r.id === id) || null;
 const radarById = (id) => radare.find((r) => r.id === id) || null;
+const profilById = (id) => lernprofile.find((p) => p.id === id) || null;
+const stimme = (key) => STIMMEN.stimmen.find((v) => v.key === key) || null;
+function stimmNamen() { const a = stimme(konto.stimme_a || STIMMEN.standard.a), b = stimme(konto.stimme_b || STIMMEN.standard.b); return [a ? a.name : "Anna", b ? b.name : "Ben"]; }
 const funktionAn = (k) => !!(konto && Array.isArray(konto.funktionen) && konto.funktionen.includes(k));
 const FARBEN = ["indigo", "gruen", "orange", "pink", "teal", "lila", "blau"];
 const initialen = (t) => (t || "?").replace(/[^A-Za-zÄÖÜäöü ]/g, "").split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0].toUpperCase()).join("") || "?";
@@ -134,7 +148,7 @@ function gehe(aenderung) {
   document.querySelectorAll(".tabbar [data-tab]").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.tab === nav.tab)));
   zeichnen(); window.scrollTo(0, 0);
 }
-document.querySelectorAll(".tabbar [data-tab]").forEach((b) => (b.onclick = () => gehe({ tab: b.dataset.tab, route: null, radar: null, neu: null })));
+document.querySelectorAll(".tabbar [data-tab]").forEach((b) => (b.onclick = () => gehe({ tab: b.dataset.tab, route: null, radar: null, neu: null, ich: null })));
 
 /* ---------- Anmeldung, Code, Einwilligung ---------- */
 async function anmelden(neu) {
@@ -169,7 +183,7 @@ $("f-einw").addEventListener("submit", async (e) => {
 
 /* ---------- Laden und live halten ---------- */
 async function ladeAlles() {
-  const [r, t, q, f, a, rd, ag] = await Promise.all([
+  const [r, t, q, f, a, rd, ag, lp] = await Promise.all([
     sb.from("routen").select("*").order("reihenfolge"),
     sb.from("themen").select("*").order("reihenfolge"),
     sb.from("fragen").select("*").order("erstellt_am", { ascending: false }),
@@ -177,10 +191,12 @@ async function ladeAlles() {
     sb.from("auftraege").select("id,art,status,route_id,thema_id,radar_id,fehler,ergebnis,eingabe,erstellt_am,folge_id").order("erstellt_am", { ascending: false }).limit(60),
     sb.from("radare").select("*").order("reihenfolge"),
     sb.from("radar_ausgaben").select("id,radar_id,jahr,woche,titel,highlights,audio_status,audio_pfad,erstellt_am").order("erstellt_am", { ascending: false }).limit(100),
+    sb.from("lernprofile").select("*").order("reihenfolge").order("erstellt_am"),
   ]);
   for (const x of [r, t, q, f, a]) if (x.error) throw x.error;
   routen = r.data; themen = t.data; fragen = q.data; folgen = f.data; auftraege = a.data;
   radare = rd.error ? [] : rd.data; ausgaben = ag.error ? [] : ag.data;   // vor der Radar-Migration fehlen die Tabellen
+  lernprofile = lp.error ? [] : lp.data;
   if (nav.route && !routeById(nav.route)) nav.route = null;
   if (nav.radar && !radarById(nav.radar)) nav.radar = null;
 }
@@ -189,7 +205,7 @@ function neuLaden() { clearTimeout(ladeTimer); ladeTimer = setTimeout(async () =
 function abonnieren() {
   if (kanal) return;
   kanal = sb.channel("lernroute");
-  ["routen", "themen", "fragen", "folgen", "auftraege", "radare", "radar_ausgaben"].forEach((tab) => kanal.on("postgres_changes", { event: "*", schema: "public", table: tab }, neuLaden));
+  ["routen", "themen", "fragen", "folgen", "auftraege", "radare", "radar_ausgaben", "lernprofile"].forEach((tab) => kanal.on("postgres_changes", { event: "*", schema: "public", table: tab }, neuLaden));
   kanal.subscribe();
 }
 async function kontoLaden() { const { data, error } = await sb.rpc("mein_konto"); if (error) throw error; konto = data; return data; }
@@ -209,10 +225,9 @@ function zeichnen(nurAktualisieren) {
   if (nurAktualisieren && MERKE_FOKUS()) return;   // nicht in ein Formular hinein neu zeichnen, während getippt wird
   const v = $("view"); v.textContent = "";
   const seite = el("div", "view");
-  if (nav.tab === "routen") (nav.neu === "route" ? neueRoute : nav.route ? routeAnsicht : routenListe)(seite);
-  else if (nav.tab === "radar") (nav.neu === "radar" ? neuesRadar : nav.radar ? radarAnsicht : radarListe)(seite);
-  else if (nav.tab === "ich") ich(seite);
-  else heute(seite);
+  if (nav.tab === "radar") (nav.neu === "radar" ? neuesRadar : nav.radar ? radarAnsicht : radarListe)(seite);
+  else if (nav.tab === "ich") (nav.ich === "stimmen" ? stimmenSeite : nav.ich && nav.ich.startsWith("profil:") ? profilSeite : ich)(seite);
+  else (nav.neu === "route" ? neueRoute : nav.route ? routeAnsicht : routenListe)(seite);
   v.appendChild(seite);
 }
 
@@ -237,57 +252,56 @@ function laufendListe() {
     return zeile({ ic: el("span", "spinner"), titel: text, sub: a.status === "wartet" ? T("Wartet auf die Fabrik") : T("Wird geschrieben und vertont") });
   })));
 }
-function heute(s) {
-  const h = new Date().getHours();
-  s.appendChild(kopf(h < 11 ? T("Guten Morgen") : h < 18 ? T("Hallo") : T("Guten Abend"), null,
-    new Date().toLocaleDateString(LOC[uiLang], { weekday: "long", day: "numeric", month: "long" })));
-  const alle = alleBeitraege(), weiter = alle.find((b) => b.x.audio_status === "fertig");
-  if (weiter) {
-    const k = el("button", "karte blau weiter"); k.type = "button"; k.onclick = () => oeffneLeser(weiter.art, weiter.x, true);
-    const c = el("span", "cover" + (weiter.art === "radar" ? " radar" : "")); c.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + ICONS[weiter.art === "radar" ? "radar" : "kopfhoerer"] + "</svg>";
-    const t = el("span", "txt"); t.append(el("small", null, T("Weiterhören") + " · " + weiter.von), el("strong", null, weiter.titel));
-    const p = el("span", "play"); p.innerHTML = '<svg viewBox="0 0 24 24">' + ICONS.play + "</svg>"; p.setAttribute("aria-label", T("▶︎ Abspielen"));
-    k.append(c, t, p); s.appendChild(k);
-  }
-  const lauf = laufendListe(); if (lauf) s.appendChild(lauf);
-  // Schnellaktionen
-  const msg = meldungsFeld();
-  const akt = el("div", "aktionen");
-  const a = (ic, farbe, text, fn) => { const b = el("button", "aktion"); b.type = "button"; b.append(icon(ic, farbe), el("strong", null, text)); b.onclick = fn; return b; };
-  akt.append(
-    a("kopfhoerer", "indigo", T("Nächste Folge"), (e) => routen.length ? auftrag({ art: "folge" }, msg, e.currentTarget, OK_FOLGE()) : gehe({ tab: "routen", neu: "route" })),
-    a("frage", "teal", T("Frage an deinen Coach"), () => frageOeffnen()),
-    a("kompass", "gruen", T("Neue Lernroute"), () => gehe({ tab: "routen", route: null, neu: "route" })),
-    funktionAn("eigene_radare") ? a("radar", "orange", T("Neues Radar"), () => gehe({ tab: "radar", radar: null, neu: "radar" })) : a("globus", "grau", T("Sprache"), openLang));
-  s.appendChild(gruppe(null, [akt, msg]));
-  const neu = alle.slice(0, 6);
-  s.appendChild(gruppe(T("Neu für dich"), liste(neu.map(beitragZeile), T("Noch keine Folgen. Starte oben deine erste."))));
+function weiterKarte(s) {
+  const weiter = alleBeitraege().find((b) => b.x.audio_status === "fertig");
+  if (!weiter) return;
+  const k = el("button", "karte blau weiter"); k.type = "button"; k.onclick = () => oeffneLeser(weiter.art, weiter.x, true);
+  const c = el("span", "cover" + (weiter.art === "radar" ? " radar" : "")); c.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + ICONS[weiter.art === "radar" ? "radar" : "kopfhoerer"] + "</svg>";
+  const t = el("span", "txt"); t.append(el("small", null, T("Weiterhören") + " · " + weiter.von), el("strong", null, weiter.titel));
+  const p = el("span", "play"); p.innerHTML = '<svg viewBox="0 0 24 24">' + ICONS.play + "</svg>"; p.setAttribute("aria-label", T("▶︎ Abspielen"));
+  k.append(c, t, p); s.appendChild(k);
+}
+function profilAuswahl(wert, leerText) {
+  const sel = el("select", "txt");
+  lernprofile.forEach((p) => { const o = el("option", null, p.name); o.value = p.id; sel.appendChild(o); });
+  const o = el("option", null, leerText || T("Ohne Profil")); o.value = ""; sel.appendChild(o);
+  sel.value = wert && profilById(wert) ? wert : ""; return sel;
 }
 
 /* ---- Lernrouten ---- */
 function routenListe(s) {
-  s.appendChild(kopf(T("Lernrouten"), T("Jede Lernroute ist eine eigene Sendung in deiner Podcast-App.")));
-  s.appendChild(gruppe(null, liste(routen.map((r, i) => {
+  s.appendChild(hauptKopf(T("Lernrouten"), null));
+  weiterKarte(s);
+  const lauf = laufendListe(); if (lauf) s.appendChild(lauf);
+  s.appendChild(gruppe(T("Deine Lernrouten"), liste(routen.map((r, i) => {
     const ts = themen.filter((t) => t.route_id === r.id), np = folgen.filter((f) => f.route_id === r.id && f.audio_status === "fertig").length;
-    const nv = ts.filter((t) => t.status === "verstanden").length;
+    const nv = ts.filter((t) => t.status === "verstanden").length, pr = profilById(r.lernprofil_id);
     return zeile({ ic: icon(null, FARBEN[i % FARBEN.length], true, initialen(r.titel)), titel: r.titel + (r.aktiv ? "" : T(" · pausiert")),
-      sub: np + " " + T("Folgen") + " · " + nv + T(" von ") + ts.length + T(" verstanden"), onClick: () => gehe({ route: r.id, routeTab: "folgen" }) });
+      sub: [pr ? pr.name : null, np + " " + T("Folgen"), nv + T(" von ") + ts.length + T(" verstanden")].filter(Boolean).join(" · "), onClick: () => gehe({ route: r.id, routeTab: "folgen" }) });
   }), T("Noch keine Lernroute. Lass dir unten eine vorschlagen."))));
   s.appendChild(gruppe(null, liste([zeile({ ic: icon("plus", "gruen"), titel: T("Neue Lernroute"), sub: T("Claude schlägt dir eine Route in drei Stufen vor"), onClick: () => gehe({ neu: "route" }) })])));
   const v = vorschlaegeKarten(); if (v.length) s.appendChild(gruppe(T("Vorschläge für dich"), v));
-  const lauf = laufendListe(); if (lauf) s.appendChild(lauf);
+  const neu = alleBeitraege().slice(0, 5);
+  if (neu.length) s.appendChild(gruppe(T("Neu für dich"), liste(neu.map(beitragZeile))));
 }
 function neueRoute(s) {
   s.appendChild(navZurueck(T("Lernrouten"), () => gehe({ neu: null })));
-  s.appendChild(kopf(T("Neue Lernroute"), T("Claude macht einen Vorschlag mit drei Stufen, passend zu deinem Profil. Du entscheidest, ob du ihn übernimmst.")));
+  s.appendChild(kopf(T("Neue Lernroute"), T("Claude macht einen Vorschlag mit drei Stufen, passend zum gewählten Profil. Du entscheidest, ob du ihn übernimmst.")));
   const k = el("div", "karte"), thema = eingabe("input", "", 140, T("z. B. Ein kleiner werdendes Team führen")), ziel = eingabe("textarea", "", 500, T("z. B. Einen Business Case für Agenten vorlegen können."));
   const m = meldungsFeld();
+  const pw = profilAuswahl(merk.get("lr-profil") || (lernprofile[0] || {}).id); pw.id = "rprofil";
+  pw.onchange = () => merk.set("lr-profil", pw.value);
   const gen = knopf(T("Lernroute vorschlagen"), "primary block", async () => {
     if (!thema.value.trim()) { m.textContent = T("Gib zuerst ein Themengebiet ein."); thema.focus(); return; }
-    if (await auftrag({ art: "route", thema: thema.value.trim(), ziel: ziel.value.trim() }, m, gen, T("Claude erstellt deine Lernroute. Das dauert etwa eine Minute …"))) { thema.value = ""; ziel.value = ""; }
+    const p = { art: "route", thema: thema.value.trim(), ziel: ziel.value.trim() }; if (pw.value) p.lernprofil_id = pw.value;
+    if (await auftrag(p, m, gen, T("Claude erstellt deine Lernroute. Das dauert etwa eine Minute …"))) { thema.value = ""; ziel.value = ""; }
   });
   const ideen = knopf(T("Ideen für mich"), "block", () => auftrag({ art: "ideen" }, m, ideen, T("Claude sammelt Ideen …")));
-  k.append(feld(T("Welches Themengebiet willst du lernen?"), thema), feld(T("Was willst du am Ende können? (optional)"), ziel), gen, ideen, m);
+  const pf = feld(T("Für welches Profil?"), pw);
+  const neuP = el("button", "hint"); neuP.type = "button"; neuP.style.color = "var(--tint)"; neuP.style.textAlign = "left"; neuP.style.padding = "0 4px";
+  neuP.textContent = lernprofile.length ? T("Neues Profil anlegen") : T("Noch kein Profil? Jetzt anlegen"); neuP.onclick = () => gehe({ tab: "ich", ich: "profil:neu", zurueck: "route" });
+  pf.appendChild(neuP);
+  k.append(feld(T("Welches Themengebiet willst du lernen?"), thema), feld(T("Was willst du am Ende können? (optional)"), ziel), pf, gen, ideen, m);
   s.appendChild(k);
   const v = vorschlaegeKarten(); if (v.length) s.appendChild(gruppe(T("Vorschläge für dich"), v));
 }
@@ -328,6 +342,11 @@ function routeAnsicht(s) {
   const m = meldungsFeld(); m.textContent = T("Nach etwa zehn Minuten ist sie hier und in deiner Podcast-App.");
   const fire = knopf(T("Nächste Folge dieser Route starten"), "primary block", () => auftrag({ art: "folge", route_id: r.id }, m, fire, OK_FOLGE()));
   fire.id = "fire"; k.append(st, fire, m); s.appendChild(k);
+  const pw = profilAuswahl(r.lernprofil_id); pw.id = "routeprofil"; const pm = meldungsFeld();
+  pw.onchange = async () => { const { error } = await sb.from("routen").update({ lernprofil_id: pw.value || null }).eq("id", r.id);
+    if (error) { pm.textContent = meldung(error); pw.value = r.lernprofil_id || ""; return; } r.lernprofil_id = pw.value || null; pm.textContent = T("Gespeichert."); };
+  const pk = el("div", "karte"); pk.append(feld(T("Profil dieser Lernroute"), pw), pm);
+  s.appendChild(gruppe(null, pk, T("Die nächsten Folgen richten sich nach diesem Profil. Profile verwaltest du unter „Ich“.")));
   // Unterbereiche
   const seg = el("div", "seg"); seg.setAttribute("role", "tablist");
   [["folgen", T("Folgen")], ["themen", T("Themen")], ["fragen", T("Fragen")]].forEach(([key, l]) => { const b = knopf(l, "", () => gehe({ routeTab: key })); b.className = ""; b.dataset.v = key; b.setAttribute("aria-pressed", String(nav.routeTab === key)); seg.appendChild(b); });
@@ -409,7 +428,7 @@ function radarWoche(rd) {
   return ausgaben.some((x) => x.radar_id === rd.id && x.jahr === j && x.woche === w) || auftraege.some((a) => a.art === "radar" && a.radar_id === rd.id && !["fehler", "abgelehnt"].includes(a.status) && isoWoche(new Date(a.erstellt_am)).join() === [j, w].join());
 }
 function radarListe(s) {
-  s.appendChild(kopf(T("Radar"), T("Jede Woche eine Zusammenfassung zu Bereichen, die du selbst festlegst – als Text und als Podcast.")));
+  s.appendChild(hauptKopf(T("Radar"), T("Jede Woche eine Zusammenfassung zu Bereichen, die du selbst festlegst – als Text und als Podcast.")));
   if (!funktionAn("eigene_radare")) { const k = el("div", "karte"); k.append(el("h3", null, T("Bald für dich verfügbar")), el("p", "hint", T("Eigene Radare werden gerade getestet und bald für dein Konto freigeschaltet."))); s.appendChild(k); return; }
   s.appendChild(gruppe(T("Deine Radare"), liste(radare.map((rd) => {
     const letzte = ausgaben.find((x) => x.radar_id === rd.id);
@@ -479,13 +498,17 @@ function radarAnsicht(s) {
 
 /* ---- Ich ---- */
 function ich(s) {
-  s.appendChild(kopf(T("Ich"), nutzer ? nutzer.email : ""));
-  const k = el("div", "karte"), pt = eingabe("textarea", konto.profil_text || "", 4000); pt.id = "ptext"; pt.style.minHeight = "140px";
-  const pm = meldungsFeld();
-  k.append(pt, knopf(T("Profil speichern"), "primary block", async () => { const f = await einstellung({ profil_text: pt.value.trim() }, pm); if (!f) pm.textContent = T("Gespeichert."); }), pm);
-  s.appendChild(gruppe(T("Dein Profil"), k, T("Rolle, Situation, Ziele, Vorwissen. Daraus leitet der Coach ab, was für dich zählt. Bitte keine vertraulichen Firmendaten und keine Namen anderer Personen.")));
+  s.appendChild(hauptKopf(T("Ich"), nutzer ? nutzer.email : ""));
+  // Profile
+  const pz = lernprofile.map((p) => { const n = routen.filter((r) => r.lernprofil_id === p.id).length;
+    return zeile({ ic: icon("person", "indigo"), titel: p.name, sub: n === 1 ? T("1 Lernroute") : n + " " + T("Lernrouten"), onClick: () => gehe({ ich: "profil:" + p.id }) }); });
+  pz.push(lernprofile.length < 8 ? zeile({ ic: icon("plus", "gruen"), titel: T("Neues Profil"), onClick: () => gehe({ ich: "profil:neu", zurueck: null }) }) : null);
+  s.appendChild(gruppe(T("Deine Profile"), liste(pz), T("Zum Beispiel „Gruppenleiter“ oder „Vater“. Jede Lernroute nutzt eines davon, damit die Folgen zu deiner Rolle passen.")));
   // Einstellungen
-  const em = meldungsFeld(), ein = [zeile({ ic: icon("globus", "blau"), titel: T("Sprache"), wert: LNAME[uiLang] + " · 🎧 " + LNAME[konto.sprache_folgen], onClick: openLang })];
+  const em = meldungsFeld(), [na, nb] = stimmNamen();
+  const ein = [zeile({ ic: icon("globus", "blau"), titel: T("Sprache"), wert: LNAME[uiLang] + " · 🎧 " + LNAME[konto.sprache_folgen], onClick: openLang }),
+    funktionAn("stimmenwahl") ? zeile({ ic: icon("welle", "pink"), titel: T("Stimmen"), wert: na + " & " + nb, onClick: () => gehe({ ich: "stimmen" }) }) : null,
+    zeile({ ic: icon("stern", "orange"), titel: T("Einführung ansehen"), onClick: () => tourStarten() })];
   s.appendChild(gruppe(T("Einstellungen"), liste(ein)));
   if (funktionAn("automatik")) {
     const pk = el("div", "karte"), chips = el("div", "chips"), tage = konto.plan_tage || [];
@@ -518,6 +541,74 @@ function ich(s) {
   ]), liste([weg]), km]));
   const links = el("div", "links"); [["impressum.html", "Impressum"], ["datenschutz.html", "Datenschutz"], ["agb.html", "Nutzungsbedingungen"]].forEach(([h, l]) => { const a = el("a", null, T(l)); a.href = h; links.appendChild(a); });
   s.appendChild(links);
+}
+function profilSeite(s) {
+  const id = nav.ich.slice(7), p = id === "neu" ? null : profilById(id);
+  if (id !== "neu" && !p) { gehe({ ich: null }); return; }
+  const zurueckZurRoute = !p && nav.zurueck === "route";
+  s.appendChild(zurueckZurRoute ? navZurueck(T("Neue Lernroute"), () => gehe({ tab: "routen", neu: "route", ich: null, zurueck: null })) : navZurueck(T("Ich"), () => gehe({ ich: null })));
+  s.appendChild(kopf(p ? p.name : T("Neues Profil"), T("Beschreibe Rolle, Situation, Ziele und Vorwissen. Daraus leitet der Coach ab, was für dich zählt.")));
+  const k = el("div", "karte"), name = eingabe("input", p ? p.name : "", 40, T("z. B. Gruppenleiter")), text = eingabe("textarea", p ? p.text : "", 4000,
+    T("z. B. Ich leite ein Team von acht Leuten im Einkauf. Wir führen gerade KI-Werkzeuge ein. Technisches Vorwissen: wenig."));
+  name.id = "pname"; text.id = "ptext"; text.style.minHeight = "160px";
+  const m = meldungsFeld();
+  const speichern = knopf(p ? T("Speichern") : T("Profil anlegen"), "primary block", async () => {
+    const d = { name: name.value.trim(), text: text.value.trim() };
+    if (!d.name) { m.textContent = T("Gib dem Profil einen Namen."); name.focus(); return; }
+    speichern.disabled = true;
+    const res = p ? await sb.from("lernprofile").update(d).eq("id", p.id) : await sb.from("lernprofile").insert(d).select("id").single();
+    speichern.disabled = false;
+    if (res.error) { m.textContent = meldung(res.error); return; }
+    await ladeAlles();
+    if (zurueckZurRoute) { merk.set("lr-profil", res.data.id); gehe({ tab: "routen", neu: "route", ich: null, zurueck: null }); return; }
+    if (!p) { gehe({ ich: "profil:" + res.data.id }); return; }
+    m.textContent = T("Gespeichert."); zeichnen();
+  });
+  k.append(feld(T("Name"), name), feld(T("Beschreibung"), text), speichern, m);
+  s.appendChild(k);
+  s.appendChild(el("p", "hint", T("Bitte keine vertraulichen Firmendaten und keine Namen anderer Personen.")));
+  if (!p) return;
+  const rs = routen.filter((r) => r.lernprofil_id === p.id);
+  if (rs.length) s.appendChild(gruppe(T("Genutzt von"), liste(rs.map((r) => zeile({ ic: icon("kompass", "gruen"), titel: r.titel, onClick: () => gehe({ tab: "routen", route: r.id, ich: null }) })))));
+  const lm = meldungsFeld(); let lh = null; const loesch = zeile({ titel: T("Profil löschen"), cls: "gefahr", onClick: () => lh() });
+  lh = bestaetigen(loesch.querySelector("strong"), T("Wirklich löschen?"), async () => { const { error } = await sb.from("lernprofile").delete().eq("id", p.id); if (error) lm.textContent = meldung(error); else { await ladeAlles(); gehe({ ich: null }); } });
+  s.appendChild(gruppe(null, [liste([loesch]), lm], rs.length ? T("Die Lernrouten bleiben erhalten, nur ohne Profil.") : null));
+}
+
+let probeAudio = null, probeKnopf = null, proben = null;
+async function probeSpielen(key, b, m) {
+  if (probeAudio) { probeAudio.pause(); if (probeKnopf) probeKnopf.classList.remove("spielt"); }
+  if (probeKnopf === b) { probeKnopf = null; return; }
+  probeKnopf = b;
+  if (!proben) { const { data } = await sb.from("stimmproben").select("stimme,sprache,audio_pfad"); proben = data || []; }
+  const sp = konto.sprache_folgen || "de", x = proben.find((p) => p.stimme === key && p.sprache === sp) || proben.find((p) => p.stimme === key);
+  if (!x) { m.textContent = T("Die Hörprobe dieser Stimme ist bald da."); probeKnopf = null; return; }
+  const { data: u } = await sb.storage.from("audio").createSignedUrl(x.audio_pfad, 3600);
+  if (!u || !u.signedUrl) { m.textContent = T("Das hat nicht geklappt. Versuch es noch einmal."); probeKnopf = null; return; }
+  probeAudio = probeAudio || new Audio(); probeAudio.src = u.signedUrl; b.classList.add("spielt"); m.textContent = "";
+  probeAudio.onended = () => { b.classList.remove("spielt"); if (probeKnopf === b) probeKnopf = null; };
+  probeAudio.play().catch(() => { b.classList.remove("spielt"); });
+}
+function stimmenSeite(s) {
+  if (!funktionAn("stimmenwahl")) { gehe({ ich: null }); return; }
+  s.appendChild(navZurueck(T("Ich"), () => { if (probeAudio) probeAudio.pause(); gehe({ ich: null }); }));
+  s.appendChild(kopf(T("Stimmen"), T("Wähle die zwei Stimmen deiner Folgen. Gilt für alle neuen Folgen und Radare.")));
+  const rolle = nav.rolle === "b" ? "b" : "a", seg = el("div", "seg"); seg.setAttribute("role", "group");
+  [["a", T("Stimme 1 · moderiert")], ["b", T("Stimme 2 · erklärt")]].forEach(([k, l]) => { const b = el("button", null, l); b.type = "button"; b.dataset.v = k; b.setAttribute("aria-pressed", String(rolle === k)); b.onclick = () => gehe({ rolle: k }); seg.appendChild(b); });
+  s.appendChild(seg);
+  const gewaehlt = konto["stimme_" + rolle] || STIMMEN.standard[rolle], andere = konto["stimme_" + (rolle === "a" ? "b" : "a")] || STIMMEN.standard[rolle === "a" ? "b" : "a"];
+  const m = meldungsFeld();
+  const zeilen = STIMMEN.stimmen.map((v) => {
+    const play = el("button", "probe"); play.type = "button"; play.setAttribute("aria-label", T("Hörprobe") + " " + v.name);
+    play.innerHTML = '<svg viewBox="0 0 24 24">' + ICONS.play + "</svg>";
+    play.onclick = (e) => { e.stopPropagation(); probeSpielen(v.key, play, m); };
+    const r = el("span", "row"); r.style.gap = "12px"; r.style.flexWrap = "nowrap"; r.append(play, el("span", "haken", v.key === gewaehlt ? "✓" : ""));
+    const belegt = v.key === andere;
+    return zeile({ ic: icon(null, v.g === "w" ? "pink" : v.g === "m" ? "blau" : "teal", false, v.name[0]), titel: v.name,
+      sub: belegt ? T("schon die andere Stimme") : v.klang.map((w) => T(w)).join(", "), rechts: r, cls: belegt ? "belegt" : "", chev: false,
+      onClick: belegt ? null : async () => { const f = await einstellung({ ["stimme_" + rolle]: v.key }, m); if (!f) m.textContent = T("Gespeichert. Gilt ab der nächsten Folge."); } });
+  });
+  s.appendChild(gruppe(rolle === "a" ? T("Moderiert und fragt nach") : T("Erklärt ausführlich"), [liste(zeilen), m], T("▶︎ spielt eine kurze Hörprobe in der Sprache deiner Folgen.")));
 }
 async function einstellung(p, m) { const { data, error } = await sb.rpc("einstellungen_setzen", { p }); if (error) { if (m) m.textContent = meldung(error); return error; } konto = data; zeichnen(); return null; }
 function kopieren(u, m) { navigator.clipboard.writeText(u).then(() => (m.textContent = T("Kopiert. Jetzt in der Podcast-App unter Mediathek › … › Sendung per URL folgen einfügen.")), () => (m.textContent = u)); }
@@ -557,7 +648,7 @@ async function oeffneLeser(art, item, abspielen) {
   if (x.audio_status === "fertig" && x.audio_pfad) {
     const { data: u } = await sb.storage.from("audio").createSignedUrl(x.audio_pfad, 6 * 3600);
     if (u && u.signedUrl) { au.src = u.signedUrl; $("rpod").hidden = false;
-      try { if ("mediaSession" in navigator) navigator.mediaSession.metadata = new MediaMetadata({ title: x.titel, artist: "Anna & Ben", album: "Lernroute", artwork: [{ src: "icons/icon-512.png", sizes: "512x512", type: "image/png" }] }); } catch (e) { /* egal */ }
+      try { if ("mediaSession" in navigator) navigator.mediaSession.metadata = new MediaMetadata({ title: x.titel, artist: "Lernroute", album: "Lernroute", artwork: [{ src: "icons/icon-512.png", sizes: "512x512", type: "image/png" }] }); } catch (e) { /* egal */ }
       if (abspielen) au.play().catch(() => {}); }
   } else $("rhinweis").textContent = x.audio_status === "fehler" ? T("Die Vertonung hat nicht geklappt. Den Text kannst du lesen.") : T("Die vertonte Folge ist noch in Arbeit.");
   $("rex").hidden = !(art === "folge" && x.uebung);
@@ -585,7 +676,43 @@ function openLang() { $("langmsg").textContent = ""; renderLang(); $("langsheet"
 function closeLang() { $("langsheet").hidden = true; merk.set("lr-lang-gefragt", "1"); }
 $("langdone").onclick = closeLang;
 $("langsheet").addEventListener("click", (e) => { if (e.target === $("langsheet")) closeLang(); });
-document.addEventListener("keydown", (e) => { if (e.key === "Escape") { if (!$("langsheet").hidden) closeLang(); $("fragesheet").hidden = true; } });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") { if (!$("langsheet").hidden) closeLang(); $("fragesheet").hidden = true; if (!$("tour").hidden) tourEnde(); } });
+
+/* ---------- Einführung (wie bei Teams: ein paar Karten nach dem Start und nach größeren Updates) ---------- */
+const TOUR_VERSION = 1;
+let tourSchritt = 0, tourKarten = [];
+function tourInhalt() {
+  return [
+    { titel: T("Willkommen bei der Lernroute"), text: T("Dein persönlicher Lern-Coach: kurze Folgen zum Lesen und als Podcast. In einer Minute zeigen wir dir, wo du was findest."), sprache: true },
+    { bild: 1, titel: T("Alles beginnt mit einer Lernroute"), text: T("Unter „Lernrouten“ siehst du alle deine Routen, hörst weiter, wo du aufgehört hast, und findest neue Folgen.") },
+    { bild: 2, titel: T("Neue Lernroute mit Profil"), text: T("Nenne ein Thema und wähle ein Profil, zum Beispiel „Gruppenleiter“ oder „Vater“. Claude schlägt dir drei Stufen vor, passend zu diesem Profil.") },
+    { bild: 3, titel: T("Folgen, Themen und Fragen"), text: T("In jeder Lernroute startest du die nächste Folge, wünschst dir Themen und stellst deinem Coach Fragen. Jede Lernroute ist auch eine eigene Sendung in deiner Podcast-App.") },
+    funktionAn("eigene_radare") ? { bild: 4, titel: T("Dein Radar"), text: T("Lege bis zu drei Bereiche fest. Claude beobachtet sie jede Woche im Internet und fasst das Wichtigste für dich zusammen.") } : null,
+    { bild: 5, titel: T("Alles Persönliche unter „Ich“"), text: T("Hier verwaltest du Profile, Sprache, Stimmen und Podcast-Abos. Die Sprache änderst du auch oben rechts auf jeder Hauptseite. Diese Einführung findest du unter „Ich“ wieder.") },
+  ].filter(Boolean);
+}
+function tourMalen() {
+  const k = tourKarten[tourSchritt], bild = $("tour-bild"), extra = $("tour-extra"); bild.textContent = ""; extra.textContent = "";
+  bild.classList.toggle("nur-logo", !k.bild);
+  if (k.bild) { const img = el("img"); img.alt = ""; img.src = "tour/" + uiLang + "/" + k.bild + ".jpg"; img.onerror = () => { if (!img.dataset.de) { img.dataset.de = "1"; img.src = "tour/de/" + k.bild + ".jpg"; } else img.remove(); }; bild.appendChild(img); }
+  else { const l = el("img", "logo"); l.src = "icons/icon-192.png"; l.alt = ""; bild.appendChild(l); }
+  $("tour-titel").textContent = k.titel; $("tour-satz").textContent = k.text;
+  if (k.sprache) { const seg = el("div", "seg"); seg.setAttribute("role", "group"); seg.setAttribute("aria-label", T("Sprache"));
+    langButtons(seg, uiLang, async (l) => { await setLang({ sprache_ui: l, sprache_folgen: l }); tourKarten = tourInhalt(); tourMalen(); }); extra.appendChild(seg); }
+  const pk = $("tour-punkte"); pk.textContent = ""; tourKarten.forEach((_, i) => pk.appendChild(el("i", i === tourSchritt ? "an" : "")));
+  $("tour-zurueck").style.visibility = tourSchritt ? "visible" : "hidden";
+  $("tour-weiter").textContent = tourSchritt === tourKarten.length - 1 ? T("Los geht’s") : T("Weiter");
+  $("tour-skip").style.visibility = tourSchritt === tourKarten.length - 1 ? "hidden" : "visible";
+}
+function tourStarten() { tourSchritt = 0; tourKarten = tourInhalt(); tourMalen(); $("tour").hidden = false; setTimeout(() => $("tour-weiter").focus(), 50); }
+function tourEnde() {
+  $("tour").hidden = true; merk.set("lr-tour", String(TOUR_VERSION)); merk.set("lr-lang-gefragt", "1");
+  if ((konto.tour_gesehen || 0) < TOUR_VERSION) sb.rpc("einstellungen_setzen", { p: { tour_gesehen: TOUR_VERSION } }).then(({ data }) => { if (data) konto = data; }, () => {});
+}
+$("tour-weiter").onclick = () => { if (tourSchritt < tourKarten.length - 1) { tourSchritt++; tourMalen(); } else tourEnde(); };
+$("tour-zurueck").onclick = () => { if (tourSchritt > 0) { tourSchritt--; tourMalen(); } };
+$("tour-skip").onclick = tourEnde;
+const tourFaellig = () => (konto.tour_gesehen || 0) < TOUR_VERSION && Number(merk.get("lr-tour") || 0) < TOUR_VERSION;
 
 /* ---------- Start ---------- */
 let startLaeuft = null;
@@ -599,12 +726,14 @@ async function starten() {
   if (!konto.eingewilligt) { gate("v-einw"); return; }
   if (konto.sprache_ui && konto.sprache_ui !== uiLang && !merk.get("lr-lang")) { uiLang = konto.sprache_ui; merk.set("lr-lang", uiLang); statisch(); }
   await ladeAlles(); abonnieren();
-  if (!["heute", "routen", "radar", "ich"].includes(nav.tab)) nav.tab = "heute";
+  if (!["routen", "radar", "ich"].includes(nav.tab)) nav.tab = "routen";
   gehe({}); showErr("");
-  if (!merk.get("lr-lang-gefragt")) setTimeout(openLang, 500);
+  if (tourFaellig()) setTimeout(tourStarten, 300);
+  else if (!merk.get("lr-lang-gefragt")) setTimeout(openLang, 500);
 }
 (async () => {
   try { TX = await fetch("texte.json").then((r) => r.json()); } catch (e) { TX = {}; }
+  try { STIMMEN = await fetch("stimmen.json").then((r) => r.json()); } catch (e) { /* Stimmenwahl bleibt leer */ }
   sammleStatisch(); statisch();
   sb.auth.onAuthStateChange((evt) => { if (["SIGNED_IN", "SIGNED_OUT"].includes(evt)) setTimeout(start, 0); });
   await start();

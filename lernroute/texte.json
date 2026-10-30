@@ -40,9 +40,9 @@
 "Pausa"
 ],
 "Weiter": [
-"Resume",
-"Continuar",
-"Continuar"
+"Next",
+"Siguiente",
+"Seguinte"
 ],
 "Stopp": [
 "Stop",
@@ -1828,5 +1828,310 @@
 "Sunday",
 "domingo",
 "domingo"
+],
+"1 Lernroute": [
+"1 learning route",
+"1 ruta",
+"1 rota"
+],
+"Alles Persönliche unter „Ich“": [
+"Everything personal under “Me”",
+"Todo lo personal en «Yo»",
+"Tudo o que é pessoal em «Eu»"
+],
+"Alles beginnt mit einer Lernroute": [
+"It all starts with a learning route",
+"Todo empieza con una ruta de aprendizaje",
+"Tudo começa com uma rota de aprendizagem"
+],
+"Beschreibe Rolle, Situation, Ziele und Vorwissen. Daraus leitet der Coach ab, was für dich zählt.": [
+"Describe your role, situation, goals and prior knowledge. Your coach uses this to work out what matters to you.",
+"Describe tu rol, situación, objetivos y conocimientos previos. Con ello tu coach deduce lo que te importa.",
+"Descreva o seu papel, situação, objetivos e conhecimentos prévios. O seu coach usa isto para perceber o que importa para si."
+],
+"Beschreibung": [
+"Description",
+"Descripción",
+"Descrição"
+],
+"Claude macht einen Vorschlag mit drei Stufen, passend zum gewählten Profil. Du entscheidest, ob du ihn übernimmst.": [
+"Claude suggests a route in three stages that fits the chosen profile. You decide whether to adopt it.",
+"Claude propone una ruta en tres etapas adaptada al perfil elegido. Tú decides si la adoptas.",
+"O Claude sugere uma rota em três etapas adequada ao perfil escolhido. Você decide se a adota."
+],
+"Dein Radar": [
+"Your radar",
+"Tu radar",
+"O seu radar"
+],
+"Dein persönlicher Lern-Coach: kurze Folgen zum Lesen und als Podcast. In einer Minute zeigen wir dir, wo du was findest.": [
+"Your personal learning coach: short episodes to read and as a podcast. In one minute we'll show you where to find everything.",
+"Tu coach de aprendizaje personal: episodios breves para leer y como pódcast. En un minuto te mostramos dónde está cada cosa.",
+"O seu coach de aprendizagem pessoal: episódios curtos para ler e em podcast. Num minuto mostramos onde encontra cada coisa."
+],
+"Deine Profile": [
+"Your profiles",
+"Tus perfiles",
+"Os seus perfis"
+],
+"Die Hörprobe dieser Stimme ist bald da.": [
+"The sample for this voice will be ready soon.",
+"La muestra de esta voz estará lista pronto.",
+"A amostra desta voz estará pronta em breve."
+],
+"Die Lernrouten bleiben erhalten, nur ohne Profil.": [
+"The learning routes stay, just without a profile.",
+"Las rutas se conservan, solo que sin perfil.",
+"As rotas mantêm-se, apenas sem perfil."
+],
+"Die nächsten Folgen richten sich nach diesem Profil. Profile verwaltest du unter „Ich“.": [
+"Upcoming episodes are tailored to this profile. Manage profiles under “Me”.",
+"Los próximos episodios se adaptan a este perfil. Gestiona los perfiles en «Yo».",
+"Os próximos episódios adaptam-se a este perfil. Gira os perfis em «Eu»."
+],
+"Einführung ansehen": [
+"Show introduction",
+"Ver introducción",
+"Ver introdução"
+],
+"Erklärt ausführlich": [
+"Explains in depth",
+"Explica a fondo",
+"Explica em detalhe"
+],
+"Folgen, Themen und Fragen": [
+"Episodes, topics and questions",
+"Episodios, temas y preguntas",
+"Episódios, temas e perguntas"
+],
+"Für welches Profil?": [
+"For which profile?",
+"¿Para qué perfil?",
+"Para que perfil?"
+],
+"Genutzt von": [
+"Used by",
+"Usado por",
+"Usado por"
+],
+"Gespeichert. Gilt ab der nächsten Folge.": [
+"Saved. Applies from the next episode.",
+"Guardado. Se aplica desde el próximo episodio.",
+"Guardado. Aplica-se a partir do próximo episódio."
+],
+"Gib dem Profil einen Namen.": [
+"Give the profile a name.",
+"Ponle un nombre al perfil.",
+"Dê um nome ao perfil."
+],
+"Hier verwaltest du Profile, Sprache, Stimmen und Podcast-Abos. Die Sprache änderst du auch oben rechts auf jeder Hauptseite. Diese Einführung findest du unter „Ich“ wieder.": [
+"Manage profiles, language, voices and podcast subscriptions here. You can also change the language at the top right of every main page. You'll find this introduction again under “Me”.",
+"Aquí gestionas perfiles, idioma, voces y suscripciones de pódcast. El idioma también lo cambias arriba a la derecha en cada página principal. Esta introducción la encontrarás de nuevo en «Yo».",
+"Aqui gere perfis, idioma, vozes e subscrições de podcast. Também pode mudar o idioma no canto superior direito de cada página principal. Encontra esta introdução de novo em «Eu»."
+],
+"Hörprobe": [
+"Sample",
+"Muestra",
+"Amostra"
+],
+"In jeder Lernroute startest du die nächste Folge, wünschst dir Themen und stellst deinem Coach Fragen. Jede Lernroute ist auch eine eigene Sendung in deiner Podcast-App.": [
+"In each learning route you start the next episode, request topics and ask your coach questions. Every route is also its own show in your podcast app.",
+"En cada ruta inicias el siguiente episodio, pides temas y haces preguntas a tu coach. Cada ruta es además un programa propio en tu app de pódcast.",
+"Em cada rota inicia o próximo episódio, pede temas e faz perguntas ao seu coach. Cada rota é também um programa próprio na sua app de podcasts."
+],
+"Lege bis zu drei Bereiche fest. Claude beobachtet sie jede Woche im Internet und fasst das Wichtigste für dich zusammen.": [
+"Choose up to three areas. Claude watches them on the web every week and sums up what matters for you.",
+"Define hasta tres áreas. Claude las sigue cada semana en internet y te resume lo más importante.",
+"Defina até três áreas. O Claude acompanha-as todas as semanas na internet e resume o essencial para si."
+],
+"Los geht’s": [
+"Let's go",
+"¡Vamos!",
+"Vamos lá"
+],
+"Moderiert und fragt nach": [
+"Hosts and asks questions",
+"Presenta y pregunta",
+"Apresenta e pergunta"
+],
+"Nenne ein Thema und wähle ein Profil, zum Beispiel „Gruppenleiter“ oder „Vater“. Claude schlägt dir drei Stufen vor, passend zu diesem Profil.": [
+"Name a topic and choose a profile, for example “Team lead” or “Father”. Claude suggests three stages that fit this profile.",
+"Indica un tema y elige un perfil, por ejemplo «Jefe de equipo» o «Padre». Claude te propone tres etapas adaptadas a ese perfil.",
+"Indique um tema e escolha um perfil, por exemplo «Chefe de equipa» ou «Pai». O Claude sugere três etapas adequadas a esse perfil."
+],
+"Neue Lernroute mit Profil": [
+"New learning route with a profile",
+"Nueva ruta con perfil",
+"Nova rota com perfil"
+],
+"Neues Profil": [
+"New profile",
+"Nuevo perfil",
+"Novo perfil"
+],
+"Neues Profil anlegen": [
+"Create new profile",
+"Crear perfil nuevo",
+"Criar novo perfil"
+],
+"Noch kein Profil? Jetzt anlegen": [
+"No profile yet? Create one now",
+"¿Aún sin perfil? Créalo ahora",
+"Ainda sem perfil? Crie agora"
+],
+"Ohne Profil": [
+"No profile",
+"Sin perfil",
+"Sem perfil"
+],
+"Profil anlegen": [
+"Create profile",
+"Crear perfil",
+"Criar perfil"
+],
+"Profil dieser Lernroute": [
+"Profile for this route",
+"Perfil de esta ruta",
+"Perfil desta rota"
+],
+"Profil löschen": [
+"Delete profile",
+"Eliminar perfil",
+"Eliminar perfil"
+],
+"Stimme 1 · moderiert": [
+"Voice 1 · hosts",
+"Voz 1 · presenta",
+"Voz 1 · apresenta"
+],
+"Stimme 2 · erklärt": [
+"Voice 2 · explains",
+"Voz 2 · explica",
+"Voz 2 · explica"
+],
+"Stimmen": [
+"Voices",
+"Voces",
+"Vozes"
+],
+"Unter „Lernrouten“ siehst du alle deine Routen, hörst weiter, wo du aufgehört hast, und findest neue Folgen.": [
+"Under “Learning routes” you see all your routes, pick up where you left off and find new episodes.",
+"En «Rutas» ves todas tus rutas, sigues escuchando donde lo dejaste y encuentras episodios nuevos.",
+"Em «Rotas» vê todas as suas rotas, continua a ouvir onde parou e encontra episódios novos."
+],
+"Vertont mit ElevenLabs": [
+"Voiced with ElevenLabs",
+"Con voces de ElevenLabs",
+"Vozes da ElevenLabs"
+],
+"Willkommen bei der Lernroute": [
+"Welcome to Lernroute",
+"Bienvenido a Lernroute",
+"Bem-vindo à Lernroute"
+],
+"Wähle die zwei Stimmen deiner Folgen. Gilt für alle neuen Folgen und Radare.": [
+"Choose the two voices for your episodes. Applies to all new episodes and radars.",
+"Elige las dos voces de tus episodios. Se aplica a todos los episodios y radares nuevos.",
+"Escolha as duas vozes dos seus episódios. Aplica-se a todos os novos episódios e radares."
+],
+"Zum Beispiel „Gruppenleiter“ oder „Vater“. Jede Lernroute nutzt eines davon, damit die Folgen zu deiner Rolle passen.": [
+"For example “Team lead” or “Father”. Each learning route uses one of them so the episodes fit your role.",
+"Por ejemplo «Jefe de equipo» o «Padre». Cada ruta usa uno de ellos para que los episodios encajen con tu rol.",
+"Por exemplo «Chefe de equipa» ou «Pai». Cada rota usa um deles para que os episódios se ajustem ao seu papel."
+],
+"schon die andere Stimme": [
+"already the other voice",
+"ya es la otra voz",
+"já é a outra voz"
+],
+"z. B. Gruppenleiter": [
+"e.g. Team lead",
+"p. ej. Jefe de equipo",
+"p. ex. Chefe de equipa"
+],
+"z. B. Ich leite ein Team von acht Leuten im Einkauf. Wir führen gerade KI-Werkzeuge ein. Technisches Vorwissen: wenig.": [
+"e.g. I lead a team of eight in procurement. We're introducing AI tools. Technical background: little.",
+"p. ej. Dirijo un equipo de ocho personas en compras. Estamos introduciendo herramientas de IA. Conocimientos técnicos: pocos.",
+"p. ex. Lidero uma equipa de oito pessoas nas compras. Estamos a introduzir ferramentas de IA. Conhecimentos técnicos: poucos."
+],
+"Überspringen": [
+"Skip",
+"Omitir",
+"Saltar"
+],
+"▶︎ spielt eine kurze Hörprobe in der Sprache deiner Folgen.": [
+"▶︎ plays a short sample in the language of your episodes.",
+"▶︎ reproduce una breve muestra en el idioma de tus episodios.",
+"▶︎ reproduz uma breve amostra no idioma dos seus episódios."
+],
+"erzählend": [
+"narrative",
+"narrativa",
+"narrativa"
+],
+"fröhlich": [
+"cheerful",
+"alegre",
+"alegre"
+],
+"gemütlich": [
+"relaxed",
+"relajada",
+"descontraída"
+],
+"hell": [
+"bright",
+"clara",
+"clara"
+],
+"klar": [
+"clear",
+"nítida",
+"nítida"
+],
+"kräftig": [
+"strong",
+"potente",
+"forte"
+],
+"lebhaft": [
+"lively",
+"animada",
+"animada"
+],
+"locker": [
+"casual",
+"desenfadada",
+"descontraída"
+],
+"munter": [
+"upbeat",
+"vivaz",
+"viva"
+],
+"ruhig": [
+"calm",
+"tranquila",
+"calma"
+],
+"sanft": [
+"gentle",
+"suave",
+"suave"
+],
+"tief": [
+"deep",
+"grave",
+"grave"
+],
+"verspielt": [
+"playful",
+"juguetona",
+"brincalhona"
+],
+"warm": [
+"warm",
+"cálida",
+"quente"
 ]
 }

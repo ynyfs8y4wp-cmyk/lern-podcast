@@ -1,2 +1,2 @@
-// Ausgeliefert am 2026-10-30T20:22Z
-window.LR_VERSION = "f3a5860";
+// Ausgeliefert am 2026-10-30T20:56Z
+window.LR_VERSION = "31c3135";

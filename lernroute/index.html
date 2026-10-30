@@ -72,7 +72,7 @@
     <div class="meta-line" id="rmeta"></div>
     <h1 id="rtitle"></h1>
     <div class="player" id="rpod" hidden>
-      <div class="hint">Anna und Ben · vertont mit ElevenLabs</div>
+      <div class="hint" id="rstimmen">Vertont mit ElevenLabs</div>
       <audio id="raudio" controls preload="metadata" playsinline></audio>
     </div>
     <p class="hint" id="rhinweis" role="status"></p>
@@ -113,9 +113,23 @@
   </div>
 </div>
 
+<!-- Einführung (erscheint einmal nach dem Start und nach größeren Updates; unter „Ich“ jederzeit wieder) -->
+<div class="tour-bg" id="tour" hidden>
+  <div class="tour" role="dialog" aria-modal="true" aria-labelledby="tour-titel">
+    <button class="btn ghost sm tour-skip" type="button" id="tour-skip">Überspringen</button>
+    <div class="tour-bild" id="tour-bild"></div>
+    <div class="tour-text">
+      <h2 id="tour-titel"></h2>
+      <p id="tour-satz"></p>
+      <div id="tour-extra"></div>
+    </div>
+    <div class="tour-punkte" id="tour-punkte" aria-hidden="true"></div>
+    <div class="tour-knoepfe"><button class="btn" type="button" id="tour-zurueck">Zurück</button><button class="btn primary" type="button" id="tour-weiter">Weiter</button></div>
+  </div>
+</div>
+
 <div class="tabbar" id="tabbar" hidden><nav role="tablist" aria-label="Bereiche">
-  <button role="tab" data-tab="heute" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9.5h13V10"/><path d="M10 19.5v-5h4v5"/></svg>Heute</button>
-  <button role="tab" data-tab="routen" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg>Lernrouten</button>
+  <button role="tab" data-tab="routen" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg>Lernrouten</button>
   <button role="tab" data-tab="radar" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12 19 5"/><path d="M20.5 12A8.5 8.5 0 1 1 12 3.5"/><path d="M16 12a4 4 0 1 1-4-4"/><circle cx="12" cy="12" r=".8" fill="currentColor"/></svg>Radar</button>
   <button role="tab" data-tab="ich" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20.5c1-4 4-6 7.5-6s6.5 2 7.5 6"/></svg>Ich</button>
 </nav></div>

@@ -23,7 +23,11 @@ a{color:var(--tint)}
 
 /* Seitenaufbau */
 .view{display:flex;flex-direction:column;gap:26px;padding-top:4px}
-.kopf{display:flex;flex-direction:column;gap:4px;padding-top:6px}
+.kopf{display:flex;flex-direction:column;gap:4px;padding-top:6px;position:relative}
+.kopf.mit-pill h1{padding-right:96px}
+.sprachpill{position:absolute;top:10px;right:0;display:inline-flex;align-items:center;gap:5px;height:32px;padding:0 12px;border-radius:999px;background:var(--surface);
+  color:var(--ink);font-size:14px;font-weight:600;box-shadow:var(--shadow)}
+.sprachpill svg{width:17px;height:17px;color:var(--tint)}
 .kopf .ueber{font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.02em}
 .kopf h1{font-size:34px;font-weight:700;letter-spacing:-.022em;line-height:1.12}
 .kopf p{color:var(--muted);font-size:15px;max-width:60ch}
@@ -176,6 +180,32 @@ body.reading .tabbar{display:none}
 .sheet .grab{width:36px;height:5px;border-radius:3px;background:#C7C7CC;align-self:center}
 .sheet h2{font-size:22px;font-weight:700}
 
+/* Stimmen */
+.probe{flex:none;width:36px;height:36px;border-radius:50%;background:var(--tint-soft);color:var(--tint);display:grid;place-items:center}
+.probe svg{width:14px;height:14px;margin-left:2px}
+.probe.spielt{background:var(--tint);color:#fff}.probe.spielt svg{margin-left:0}
+.zeile .haken{color:var(--tint);font-weight:700;font-size:19px;width:20px;text-align:center}
+.zeile.belegt{opacity:.45}
+
+/* Einführung */
+.tour-bg{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.42);display:flex;align-items:center;justify-content:center;padding:16px}
+.tour{position:relative;background:var(--surface);width:100%;max-width:420px;max-height:calc(100vh - 32px);overflow:auto;border-radius:22px;
+  padding:16px 18px 18px;display:flex;flex-direction:column;gap:14px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.tour-skip{align-self:flex-end;margin:-4px -6px -6px 0}
+.tour-bild{border-radius:16px;background:linear-gradient(160deg,#EAF3FF,#F2F2F7);display:flex;justify-content:center;align-items:flex-start;overflow:hidden;height:min(46vh,360px)}
+.tour-bild img{width:78%;max-width:300px;margin-top:18px;border-radius:14px 14px 0 0;box-shadow:0 6px 24px rgba(0,0,0,.14);display:block}
+.tour-bild.nur-logo{height:150px;align-items:center}
+.tour-bild .logo{width:96px;height:96px;border-radius:22px;margin:auto;box-shadow:var(--shadow)}
+.tour-text{display:flex;flex-direction:column;gap:6px}
+.tour-text h2{font-size:22px;font-weight:700;letter-spacing:-.015em;line-height:1.2}
+.tour-text p{color:var(--muted);font-size:16px}
+.tour-text .seg{margin-top:6px}
+.tour-punkte{display:flex;gap:6px;justify-content:center}
+.tour-punkte i{width:7px;height:7px;border-radius:50%;background:var(--fill2)}
+.tour-punkte i.an{background:var(--tint)}
+.tour-knoepfe{display:grid;grid-template-columns:1fr 2fr;gap:10px}
+.tour-knoepfe .btn{width:100%}
+
 /* Anmeldung */
 .gate{max-width:440px;margin:6vh auto 0;display:flex;flex-direction:column;gap:18px}
 .gate .logo{width:76px;height:76px;border-radius:18px;box-shadow:var(--shadow)}
@@ -188,7 +218,7 @@ body.reading .tabbar{display:none}
 
 @media (prefers-reduced-motion:no-preference){
   .view,.reader{animation:rein .22s ease-out}@keyframes rein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-  .sheet{animation:hoch .25s ease-out}@keyframes hoch{from{transform:translateY(30px);opacity:.5}to{transform:none;opacity:1}}
+  .sheet{animation:hoch .25s ease-out}.tour{animation:rein .25s ease-out}@keyframes hoch{from{transform:translateY(30px);opacity:.5}to{transform:none;opacity:1}}
   .spinner{animation:dreh 1s linear infinite}@keyframes dreh{to{transform:rotate(360deg)}}
   .ring circle{transition:stroke-dashoffset .6s ease}}
 @media (min-width:700px){body{padding-left:24px;padding-right:24px}}

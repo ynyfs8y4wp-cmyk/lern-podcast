@@ -1,0 +1,178 @@
+{
+ "_info": "Stimmen der Lernroute (ElevenLabs-Standardstimmen, mehrsprachig). Quelle für Web, App und Fabrik; scripts/texte/bauen.py verteilt die Datei. Die Datenbank prüft die Schlüssel (Funktion stimme_erlaubt).",
+ "standard": {
+  "a": "sarah",
+  "b": "george"
+ },
+ "probe": {
+  "de": "Hallo, ich bin {n}. Gemeinsam machen wir aus deinem Lernthema ein kurzes, lebendiges Gespräch.",
+  "en": "Hi, I'm {n}. Together we'll turn your learning topic into a short, lively conversation.",
+  "es": "Hola, soy {n}. Juntos convertimos tu tema de aprendizaje en una conversación breve y animada.",
+  "pt": "Olá, eu sou {n}. Juntos transformamos o seu tema de aprendizagem numa conversa curta e animada."
+ },
+ "stimmen": [
+  {
+   "key": "george",
+   "id": "JBFqnCBsd6RMkjVDRZzb",
+   "name": "George",
+   "g": "m",
+   "klang": [
+    "warm",
+    "erzählend",
+    "ruhig"
+   ]
+  },
+  {
+   "key": "brian",
+   "id": "nPczCjzI2devNBz1zQrb",
+   "name": "Brian",
+   "g": "m",
+   "klang": [
+    "tief",
+    "ruhig",
+    "erzählend"
+   ]
+  },
+  {
+   "key": "daniel",
+   "id": "onwK4e9ZLuTAKqWW03F9",
+   "name": "Daniel",
+   "g": "m",
+   "klang": [
+    "klar",
+    "ruhig"
+   ]
+  },
+  {
+   "key": "eric",
+   "id": "cjVigY5qzO86Huf0OWal",
+   "name": "Eric",
+   "g": "m",
+   "klang": [
+    "sanft",
+    "warm"
+   ]
+  },
+  {
+   "key": "chris",
+   "id": "iP95p4xoKVk53GoZ742B",
+   "name": "Chris",
+   "g": "m",
+   "klang": [
+    "fröhlich",
+    "locker"
+   ]
+  },
+  {
+   "key": "roger",
+   "id": "CwhRBWXzGAHq8TQ4Fs17",
+   "name": "Roger",
+   "g": "m",
+   "klang": [
+    "gemütlich",
+    "locker"
+   ]
+  },
+  {
+   "key": "will",
+   "id": "bIHbv24MWmeRgasZH58o",
+   "name": "Will",
+   "g": "m",
+   "klang": [
+    "gemütlich",
+    "fröhlich"
+   ]
+  },
+  {
+   "key": "liam",
+   "id": "TX3LPaxmHKxFdv7VOQHJ",
+   "name": "Liam",
+   "g": "m",
+   "klang": [
+    "klar",
+    "munter"
+   ]
+  },
+  {
+   "key": "river",
+   "id": "SAz9YHcvj6GT2YYXdXww",
+   "name": "River",
+   "g": "n",
+   "klang": [
+    "ruhig",
+    "klar"
+   ]
+  },
+  {
+   "key": "jessica",
+   "id": "cgSgspJ2msm6clMCkdW9",
+   "name": "Jessica",
+   "g": "w",
+   "klang": [
+    "verspielt",
+    "hell"
+   ]
+  },
+  {
+   "key": "laura",
+   "id": "FGY2WhTYpPnrIDTdsKH5",
+   "name": "Laura",
+   "g": "w",
+   "klang": [
+    "munter",
+    "hell",
+    "lebhaft"
+   ]
+  },
+  {
+   "key": "sarah",
+   "id": "EXAVITQu4vr4xnSDxMaL",
+   "name": "Sarah",
+   "g": "w",
+   "klang": [
+    "sanft",
+    "ruhig"
+   ]
+  },
+  {
+   "key": "matilda",
+   "id": "XrExE9yKIg1WjnnlVkGX",
+   "name": "Matilda",
+   "g": "w",
+   "klang": [
+    "warm",
+    "fröhlich"
+   ]
+  },
+  {
+   "key": "aria",
+   "id": "9BWtsMINqrJLrRacOk9x",
+   "name": "Aria",
+   "g": "w",
+   "klang": [
+    "kräftig",
+    "klar"
+   ]
+  },
+  {
+   "key": "alice",
+   "id": "Xb7hH8MSUJpSbSDYk0k2",
+   "name": "Alice",
+   "g": "w",
+   "klang": [
+    "klar",
+    "fröhlich"
+   ]
+  },
+  {
+   "key": "rachel",
+   "id": "21m00Tcm4TlvDq8ikWAM",
+   "name": "Rachel",
+   "g": "w",
+   "klang": [
+    "ruhig",
+    "sanft"
+   ]
+  }
+ ]
+}
