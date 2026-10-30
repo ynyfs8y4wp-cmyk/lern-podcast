@@ -1,0 +1,1477 @@
+{
+"‹ Zurück": [
+"‹ Back",
+"‹ Atrás",
+"‹ Voltar"
+],
+"▶︎ Anhören": [
+"▶︎ Listen",
+"▶︎ Escuchar",
+"▶︎ Ouvir"
+],
+"Text kopieren": [
+"Copy text",
+"Copiar texto",
+"Copiar texto"
+],
+"Zum Hören mit gesperrtem Bildschirm ist die Podcast-App am bequemsten.": [
+"To listen with the screen locked, the Podcasts app works best.",
+"Para escuchar con la pantalla bloqueada, lo más cómodo es la app de Podcasts.",
+"Para ouvir com o ecrã bloqueado, o mais prático é a app Podcasts."
+],
+"Mini-Übung": [
+"Mini exercise",
+"Mini ejercicio",
+"Mini exercício"
+],
+"‹ Zurück zur Übersicht": [
+"‹ Back to overview",
+"‹ Volver al resumen",
+"‹ Voltar à visão geral"
+],
+"Wird vorgelesen": [
+"Reading aloud",
+"Leyendo en voz alta",
+"A ler em voz alta"
+],
+"Pause": [
+"Pause",
+"Pausa",
+"Pausa"
+],
+"Weiter": [
+"Resume",
+"Continuar",
+"Continuar"
+],
+"Stopp": [
+"Stop",
+"Detener",
+"Parar"
+],
+"Tempo": [
+"Speed",
+"Velocidad",
+"Velocidade"
+],
+"Vorlesen wird in dieser Ansicht nicht unterstützt. Öffne die Seite im Browser oder in der Claude-App.": [
+"Read-aloud isn't supported in this view. Open the page in your browser or in the Claude app.",
+"La lectura en voz alta no funciona en esta vista. Abre la página en el navegador o en la app de Claude.",
+"A leitura em voz alta não funciona nesta vista. Abra a página no navegador ou na app Claude."
+],
+"Kopiert. Jetzt in deiner Vorlese-App einfügen.": [
+"Copied. Now paste it into your read-aloud app.",
+"Copiado. Pégalo ahora en tu app de lectura.",
+"Copiado. Cole agora na sua app de leitura."
+],
+"Text ist markiert. Tippe auf Kopieren.": [
+"Text is selected. Tap Copy.",
+"El texto está seleccionado. Toca Copiar.",
+"O texto está selecionado. Toque em Copiar."
+],
+"Für diesen Eintrag liegt kein Volltext auf der Seite vor. Du findest ihn in der Nachricht, die du dazu bekommen hast.": [
+"There's no full text for this entry on the page. You'll find it in the message you received.",
+"No hay texto completo de esta entrada en la página. Lo encontrarás en el mensaje que recibiste.",
+"Não há texto completo desta entrada na página. Encontra-o na mensagem que recebeu."
+],
+"Übung konnte nicht gespeichert werden.": [
+"Couldn't save the exercise.",
+"No se pudo guardar el ejercicio.",
+"Não foi possível guardar o exercício."
+],
+"✓ Mini-Übung erledigt": [
+"✓ Mini exercise done",
+"✓ Mini ejercicio hecho",
+"✓ Mini exercício feito"
+],
+"Mini-Übung offen": [
+"Mini exercise open",
+"Mini ejercicio pendiente",
+"Mini exercício por fazer"
+],
+" · Wiederholung": [
+" · Review",
+" · Repaso",
+" · Revisão"
+],
+"Lernschnipsel": [
+"Learning snippet",
+"Lección",
+"Lição"
+],
+"Hallo!": [
+"Hello!",
+"¡Hola!",
+"Olá!"
+],
+"Hallo": [
+"Hello",
+"Hola",
+"Olá"
+],
+"Guten Morgen": [
+"Good morning",
+"Buenos días",
+"Bom dia"
+],
+"Guten Abend": [
+"Good evening",
+"Buenas tardes",
+"Boa noite"
+],
+"Wähle eine Lernroute. Darin siehst du, was schon im Podcast ist und was noch kommt.": [
+"Pick a learning path. Inside you'll see what's already in the podcast and what's coming next.",
+"Elige una ruta de aprendizaje. Dentro verás qué está ya en el pódcast y qué viene después.",
+"Escolha uma rota de aprendizagem. Lá dentro vê o que já está no podcast e o que vem a seguir."
+],
+"Deine Lernrouten": [
+"Your learning paths",
+"Tus rutas de aprendizaje",
+"As suas rotas de aprendizagem"
+],
+"Lade deine Lernrouten …": [
+"Loading your learning paths …",
+"Cargando tus rutas …",
+"A carregar as suas rotas …"
+],
+"+ Neue Lernroute": [
+"+ New learning path",
+"+ Nueva ruta",
+"+ Nova rota"
+],
+"Markt-Radar": [
+"Market radar",
+"Radar de mercado",
+"Radar de mercado"
+],
+"samstags": [
+"Saturdays",
+"los sábados",
+"aos sábados"
+],
+"Der erste Markt-Radar erscheint hier am Samstag.": [
+"The first market radar will appear here on Saturday.",
+"El primer radar de mercado aparecerá aquí el sábado.",
+"O primeiro radar de mercado aparece aqui no sábado."
+],
+"Markt-Radar KW ": [
+"Market radar week ",
+"Radar de mercado semana ",
+"Radar de mercado semana "
+],
+"KW ": [
+"Week ",
+"Sem. ",
+"Sem. "
+],
+" im Podcast": [
+" in the podcast",
+" en el pódcast",
+" no podcast"
+],
+" in Arbeit": [
+" in progress",
+" en curso",
+" em curso"
+],
+" von ": [
+" of ",
+" de ",
+" de "
+],
+" verstanden": [
+" understood",
+" entendidos",
+" compreendidos"
+],
+" · pausiert": [
+" · paused",
+" · en pausa",
+" · em pausa"
+],
+"‹ Lernrouten": [
+"‹ Learning paths",
+"‹ Rutas",
+"‹ Rotas"
+],
+"Lernroute": [
+"Learning path",
+"Ruta",
+"Rota"
+],
+"Lade deinen Stand …": [
+"Loading your progress …",
+"Cargando tu progreso …",
+"A carregar o seu progresso …"
+],
+"Nächste Folge dieser Route starten": [
+"Start the next episode of this path",
+"Iniciar el próximo episodio de esta ruta",
+"Iniciar o próximo episódio desta rota"
+],
+"Nach etwa zehn Minuten ist sie in deiner Podcast-App, in der Sendung dieser Route.": [
+"After about ten minutes it will be in your Podcasts app, in this path's show.",
+"En unos diez minutos estará en tu app de pódcast, en el programa de esta ruta.",
+"Em cerca de dez minutos estará na sua app de podcasts, no programa desta rota."
+],
+"Eigene Sendung in der Podcast-App": [
+"Its own show in the Podcasts app",
+"Programa propio en la app de pódcast",
+"Programa próprio na app de podcasts"
+],
+"Jede Lernroute ist eine eigene Sendung. So mischen sich die Routen nicht.": [
+"Each learning path is its own show, so paths don't get mixed.",
+"Cada ruta es un programa propio, así no se mezclan.",
+"Cada rota é um programa próprio, assim não se misturam."
+],
+"In Apple Podcasts abonnieren": [
+"Follow in Apple Podcasts",
+"Seguir en Apple Podcasts",
+"Seguir no Apple Podcasts"
+],
+"Adresse kopieren": [
+"Copy address",
+"Copiar dirección",
+"Copiar endereço"
+],
+"Klappt der Knopf nicht? So geht es von Hand": [
+"Button not working? Here's how to do it by hand",
+"¿No funciona el botón? Así se hace a mano",
+"O botão não funciona? Veja como fazer à mão"
+],
+"Tippe auf „Adresse kopieren“.": [
+"Tap “Copy address”.",
+"Toca «Copiar dirección».",
+"Toque em «Copiar endereço»."
+],
+"Öffne die App Podcasts und tippe unten auf „Mediathek“.": [
+"Open the Podcasts app and tap “Library” at the bottom.",
+"Abre la app Podcasts y toca «Biblioteca» abajo.",
+"Abra a app Podcasts e toque em «Biblioteca» em baixo."
+],
+"Tippe oben rechts auf „…“ und dann auf „Sendung per URL folgen“.": [
+"Tap “…” at the top right, then “Follow a Show by URL”.",
+"Toca «…» arriba a la derecha y luego «Seguir un programa por URL».",
+"Toque em «…» no canto superior direito e depois em «Seguir um programa por URL»."
+],
+"Füge die Adresse ein und tippe auf „Folgen“.": [
+"Paste the address and tap “Follow”.",
+"Pega la dirección y toca «Seguir».",
+"Cole o endereço e toque em «Seguir»."
+],
+"Folgen filtern": [
+"Filter episodes",
+"Filtrar episodios",
+"Filtrar episódios"
+],
+"Im Podcast": [
+"In podcast",
+"En pódcast",
+"No podcast"
+],
+"Noch nicht": [
+"Not yet",
+"Aún no",
+"Ainda não"
+],
+"Noch offen": [
+"Still open",
+"Pendientes",
+"Por fazer"
+],
+"Im Podcast · ": [
+"In podcast · ",
+"En pódcast · ",
+"No podcast · "
+],
+"Noch nicht · ": [
+"Not yet · ",
+"Aún no · ",
+"Ainda não · "
+],
+"Noch offen · ": [
+"Open · ",
+"Pendientes · ",
+"Por fazer · "
+],
+"Lade deine Folgen …": [
+"Loading your episodes …",
+"Cargando tus episodios …",
+"A carregar os seus episódios …"
+],
+"Sendung „Lernroute ": [
+"Show “Learning path ",
+"Programa «Ruta ",
+"Programa «Rota "
+],
+"“": [
+"”",
+"»",
+"»"
+],
+"Jede Lernroute ist eine eigene Sendung. Hier sind ": [
+"Each learning path is its own show. It contains ",
+"Cada ruta es un programa propio. Aquí hay ",
+"Cada rota é um programa próprio. Aqui estão "
+],
+" Folgen drin.": [
+" episodes.",
+" episodios.",
+" episódios."
+],
+"Jede Lernroute ist eine eigene Sendung. Sie erscheint in der App, sobald die erste Folge fertig ist.": [
+"Each learning path is its own show. It appears in the app as soon as the first episode is ready.",
+"Cada ruta es un programa propio. Aparece en la app en cuanto esté listo el primer episodio.",
+"Cada rota é um programa próprio. Aparece na app assim que o primeiro episódio estiver pronto."
+],
+"Diese Folgen kannst du in der Podcast-App hören oder hier lesen.": [
+"Listen to these in the Podcasts app or read them here.",
+"Puedes escucharlos en la app de pódcast o leerlos aquí.",
+"Pode ouvi-los na app de podcasts ou lê-los aqui."
+],
+"Schon geschrieben, aber noch nicht im Podcast. Sie werden gerade vertont oder du startest es hier.": [
+"Already written but not in the podcast yet. They're being voiced now, or you can start it here.",
+"Ya escritos, pero aún no en el pódcast. Se están grabando o puedes iniciarlo aquí.",
+"Já escritos, mas ainda não no podcast. Estão a ser gravados ou pode iniciar aqui."
+],
+"Themen dieser Route, zu denen es noch keine Folge gibt.": [
+"Topics of this path that don't have an episode yet.",
+"Temas de esta ruta que aún no tienen episodio.",
+"Temas desta rota que ainda não têm episódio."
+],
+"Zu allen Themen gibt es schon eine Folge.": [
+"Every topic already has an episode.",
+"Todos los temas ya tienen episodio.",
+"Todos os temas já têm episódio."
+],
+"Noch keine Folge dieser Route im Podcast. Starte oben die erste.": [
+"No episode of this path in the podcast yet. Start the first one above.",
+"Aún no hay episodios de esta ruta en el pódcast. Inicia el primero arriba.",
+"Ainda não há episódios desta rota no podcast. Inicie o primeiro acima."
+],
+"Alles, was geschrieben ist, ist schon im Podcast.": [
+"Everything written is already in the podcast.",
+"Todo lo escrito ya está en el pódcast.",
+"Tudo o que foi escrito já está no podcast."
+],
+"🎧 Im Podcast": [
+"🎧 In podcast",
+"🎧 En pódcast",
+"🎧 No podcast"
+],
+"⏳ Wird gerade vertont": [
+"⏳ Being voiced",
+"⏳ Grabándose",
+"⏳ A ser gravado"
+],
+"✍️ Gesprächsfassung entsteht": [
+"✍️ Writing the conversation",
+"✍️ Escribiendo la conversación",
+"✍️ A escrever a conversa"
+],
+"⚠️ Fehlgeschlagen": [
+"⚠️ Failed",
+"⚠️ Falló",
+"⚠️ Falhou"
+],
+"Noch nicht vertont": [
+"Not voiced yet",
+"Aún sin grabar",
+"Ainda não gravado"
+],
+"▶︎ Jetzt in den Podcast": [
+"▶︎ Add to podcast now",
+"▶︎ Al pódcast ahora",
+"▶︎ Para o podcast agora"
+],
+"Kopiert. Jetzt in der Podcast-App unter Mediathek › … › Sendung per URL folgen einfügen.": [
+"Copied. Now paste it in the Podcasts app under Library › … › Follow a Show by URL.",
+"Copiado. Pégalo en la app Podcasts en Biblioteca › … › Seguir un programa por URL.",
+"Copiado. Cole na app Podcasts em Biblioteca › … › Seguir um programa por URL."
+],
+"Kopieren ging nicht. Halte den Finger auf die Adresse unter „Klappt der Knopf nicht?“.": [
+"Copying didn't work. Press and hold the address under “Button not working?”.",
+"No se pudo copiar. Mantén pulsada la dirección en «¿No funciona el botón?».",
+"Não foi possível copiar. Mantenha o dedo no endereço em «O botão não funciona?»."
+],
+"Starten geht nur in der Claude-App oder auf claude.ai.": [
+"Starting only works in the Claude app or on claude.ai.",
+"Solo se puede iniciar en la app de Claude o en claude.ai.",
+"Só é possível iniciar na app Claude ou em claude.ai."
+],
+"Gestartet. In etwa zehn Minuten im Podcast.": [
+"Started. In the podcast in about ten minutes.",
+"Iniciado. En el pódcast en unos diez minutos.",
+"Iniciado. No podcast em cerca de dez minutos."
+],
+"Start nicht möglich (": [
+"Couldn't start (",
+"No se pudo iniciar (",
+"Não foi possível iniciar ("
+],
+"). Der Kontroll-Lauf um 12:47 oder 19:47 Uhr holt es nach.": [
+"). The check run at 12:47 or 19:47 will catch up.",
+"). La revisión de las 12:47 o 19:47 lo recuperará.",
+"). A verificação das 12:47 ou 19:47 trata disso."
+],
+"Noch keine Themen geladen.": [
+"No topics loaded yet.",
+"Aún no hay temas cargados.",
+"Ainda não há temas carregados."
+],
+"verstanden": [
+"understood",
+"entendidos",
+"compreendidos"
+],
+"unsicher": [
+"unsure",
+"inseguros",
+"inseguros"
+],
+"behandelt": [
+"covered",
+"tratados",
+"tratados"
+],
+" Thema": [
+" topic",
+" tema",
+" tema"
+],
+" Themen": [
+" topics",
+" temas",
+" temas"
+],
+"Vom ersten Begriff bis zum Experten, in drei Stufen.": [
+"From the first term to expert, in three stages.",
+"Del primer concepto a experto, en tres etapas.",
+"Do primeiro conceito a especialista, em três etapas."
+],
+"Deine eigene Lernroute.": [
+"Your own learning path.",
+"Tu propia ruta de aprendizaje.",
+"A sua própria rota de aprendizagem."
+],
+"Gestartet. Erst kommt der Text als Nachricht, nach etwa zehn Minuten die Folge in deiner Podcast-App unter „Lernroute ": [
+"Started. First the text arrives as a message, then after about ten minutes the episode in your Podcasts app under “Learning path ",
+"Iniciado. Primero llega el texto como mensaje y, en unos diez minutos, el episodio en tu app de pódcast en «Ruta ",
+"Iniciado. Primeiro chega o texto como mensagem e, em cerca de dez minutos, o episódio na sua app de podcasts em «Rota "
+],
+"“.": [
+"”.",
+"».",
+"»."
+],
+"Starte …": [
+"Starting …",
+"Iniciando …",
+"A iniciar …"
+],
+"Starten geht in dieser Ansicht nicht. Öffne die Seite angemeldet auf claude.ai oder in der Claude-App, oder schreib im Chat „nächster Schnipsel“.": [
+"Starting doesn't work in this view. Open the page signed in on claude.ai or in the Claude app, or type “next snippet” in the chat.",
+"No se puede iniciar en esta vista. Abre la página con sesión iniciada en claude.ai o en la app de Claude, o escribe «siguiente lección» en el chat.",
+"Não é possível iniciar nesta vista. Abra a página com sessão iniciada em claude.ai ou na app Claude, ou escreva «próxima lição» no chat."
+],
+"Dafür braucht die Seite die Verbindung „Claude Code Remote“. Erlaube sie, wenn die App danach fragt, oder schreib im Chat „nächster Schnipsel“.": [
+"The page needs the “Claude Code Remote” connection for this. Allow it when the app asks, or type “next snippet” in the chat.",
+"La página necesita la conexión «Claude Code Remote». Permítela cuando la app lo pida, o escribe «siguiente lección» en el chat.",
+"A página precisa da ligação «Claude Code Remote». Permita-a quando a app pedir, ou escreva «próxima lição» no chat."
+],
+"Die Verbindung „Claude Code Remote“ muss in den claude.ai-Einstellungen unter Connectors neu verbunden werden.": [
+"The “Claude Code Remote” connection needs to be reconnected in claude.ai settings under Connectors.",
+"Hay que volver a conectar «Claude Code Remote» en los ajustes de claude.ai, en Connectors.",
+"É preciso voltar a ligar «Claude Code Remote» nas definições do claude.ai, em Connectors."
+],
+"Du hast den Start nicht freigegeben. Tippe noch einmal und erlaube die Verbindung, wenn gefragt.": [
+"You didn't approve the start. Tap again and allow the connection when asked.",
+"No aprobaste el inicio. Toca de nuevo y permite la conexión cuando se pida.",
+"Não aprovou o início. Toque novamente e permita a ligação quando pedido."
+],
+"Keine eindeutige Antwort. Prüfe in ein paar Minuten, ob die Nachricht kam, bevor du erneut startest.": [
+"No clear response. Check in a few minutes whether the message arrived before starting again.",
+"Sin respuesta clara. Comprueba en unos minutos si llegó el mensaje antes de volver a iniciar.",
+"Sem resposta clara. Verifique dentro de alguns minutos se a mensagem chegou antes de iniciar de novo."
+],
+"Start abgelehnt: ": [
+"Start refused: ",
+"Inicio rechazado: ",
+"Início recusado: "
+],
+"unbekannter Grund": [
+"unknown reason",
+"motivo desconocido",
+"motivo desconhecido"
+],
+"). Schreib im Chat „nächster Schnipsel“.": [
+"). Type “next snippet” in the chat.",
+"). Escribe «siguiente lección» en el chat.",
+"). Escreva «próxima lição» no chat."
+],
+"Fehler": [
+"error",
+"error",
+"erro"
+],
+"Themen": [
+"Topics",
+"Temas",
+"Temas"
+],
+"Lernroute wählen": [
+"Choose learning path",
+"Elegir ruta",
+"Escolher rota"
+],
+"Tippe an, wie gut du ein Thema kannst. Unsicheres kommt wieder. Mit „Als Folge“ machst du aus jedem Thema sofort eine Podcast-Folge.": [
+"Mark how well you know each topic. Unsure ones come back. “As episode” turns any topic into a podcast episode right away.",
+"Marca cuánto dominas cada tema. Lo inseguro vuelve. Con «Como episodio» conviertes cualquier tema en un episodio al momento.",
+"Marque quão bem domina cada tema. O que é inseguro volta. Com «Como episódio» transforma qualquer tema num episódio de imediato."
+],
+"Die Themen erscheinen hier, sobald dein Stand geladen ist.": [
+"Topics will appear here once your progress has loaded.",
+"Los temas aparecerán aquí en cuanto se cargue tu progreso.",
+"Os temas aparecem aqui assim que o seu progresso carregar."
+],
+"Die Themen dieser Lernroute erscheinen hier, sobald dein Stand geladen ist.": [
+"This path's topics will appear here once your progress has loaded.",
+"Los temas de esta ruta aparecerán aquí en cuanto se cargue tu progreso.",
+"Os temas desta rota aparecem aqui assim que o seu progresso carregar."
+],
+"Gehört am ": [
+"Heard on ",
+"Escuchado el ",
+"Ouvido a "
+],
+"Noch nicht dran gewesen": [
+"Not covered yet",
+"Aún no tratado",
+"Ainda não tratado"
+],
+"Status für ": [
+"Status for ",
+"Estado de ",
+"Estado de "
+],
+"Offen": [
+"Open",
+"Abierto",
+"Aberto"
+],
+"Unsicher": [
+"Unsure",
+"Inseguro",
+"Inseguro"
+],
+"Kann ich": [
+"Got it",
+"Lo sé",
+"Já sei"
+],
+"↻ Neue Folge": [
+"↻ New episode",
+"↻ Nuevo episodio",
+"↻ Novo episódio"
+],
+"▶︎ Als Folge": [
+"▶︎ As episode",
+"▶︎ Como episodio",
+"▶︎ Como episódio"
+],
+"Tippen zum Bestätigen": [
+"Tap to confirm",
+"Toca para confirmar",
+"Toque para confirmar"
+],
+"Gestartet. Erst kommt der Text, nach etwa zehn Minuten die Folge im Podcast dieser Route.": [
+"Started. First the text, then after about ten minutes the episode in this path's podcast.",
+"Iniciado. Primero el texto y, en unos diez minutos, el episodio en el pódcast de esta ruta.",
+"Iniciado. Primeiro o texto e, em cerca de dez minutos, o episódio no podcast desta rota."
+],
+"Status konnte nicht gespeichert werden (": [
+"Couldn't save status (",
+"No se pudo guardar el estado (",
+"Não foi possível guardar o estado ("
+],
+"). Bitte erneut versuchen.": [
+"). Please try again.",
+"). Inténtalo de nuevo.",
+"). Tente novamente."
+],
+"Deine Wunschthemen": [
+"Your requested topics",
+"Tus temas deseados",
+"Os seus temas pedidos"
+],
+"Grundbegriffe": [
+"Basic concepts",
+"Conceptos básicos",
+"Conceitos básicos"
+],
+"Werkzeuge der Entwickler": [
+"Developer tools",
+"Herramientas de desarrollo",
+"Ferramentas de desenvolvimento"
+],
+"Wo Agenten laufen": [
+"Where agents run",
+"Dónde se ejecutan los agentes",
+"Onde os agentes correm"
+],
+"Agenten-Technik": [
+"Agent technology",
+"Tecnología de agentes",
+"Tecnologia de agentes"
+],
+"Plattform und Betrieb": [
+"Platform and operations",
+"Plataforma y operación",
+"Plataforma e operação"
+],
+"Agenten im Unternehmen und Führung": [
+"Agents in the company and leadership",
+"Agentes en la empresa y liderazgo",
+"Agentes na empresa e liderança"
+],
+"Eigene Themen": [
+"Own topics",
+"Temas propios",
+"Temas próprios"
+],
+"Stufe 1 · Grundlagen": [
+"Stage 1 · Basics",
+"Etapa 1 · Fundamentos",
+"Etapa 1 · Fundamentos"
+],
+"Stufe 2 · Kenner": [
+"Stage 2 · Practitioner",
+"Etapa 2 · Conocedor",
+"Etapa 2 · Conhecedor"
+],
+"Stufe 3 · Experte": [
+"Stage 3 · Expert",
+"Etapa 3 · Experto",
+"Etapa 3 · Especialista"
+],
+"Stufe ": [
+"Stage ",
+"Etapa ",
+"Etapa "
+],
+"Fragen": [
+"Questions",
+"Preguntas",
+"Perguntas"
+],
+"Alles, was dir unklar ist oder was du lernen möchtest. Dein Coach greift es auf.": [
+"Anything unclear or anything you'd like to learn. Your coach will pick it up.",
+"Todo lo que no te queda claro o quieres aprender. Tu coach lo retomará.",
+"Tudo o que não é claro ou que quer aprender. O seu coach vai retomá-lo."
+],
+"Wunschthema": [
+"Requested topic",
+"Tema deseado",
+"Tema pedido"
+],
+"Begriff oder Thema für eine eigene Folge": [
+"Term or topic for your own episode",
+"Concepto o tema para un episodio propio",
+"Conceito ou tema para um episódio próprio"
+],
+"Worauf soll der Coach eingehen? (optional)": [
+"What should the coach focus on? (optional)",
+"¿En qué debe centrarse el coach? (opcional)",
+"Em que deve o coach focar-se? (opcional)"
+],
+"Jetzt Folge erstellen": [
+"Create episode now",
+"Crear episodio ahora",
+"Criar episódio agora"
+],
+"Für später vormerken": [
+"Save for later",
+"Guardar para después",
+"Guardar para depois"
+],
+"„Vormerken“ setzt das Thema an die Spitze der gewählten Lernroute, es kommt in der nächsten Folge dran.": [
+"“Save for later” puts the topic at the top of the selected path; it comes up in the next episode.",
+"«Guardar para después» pone el tema al principio de la ruta elegida; saldrá en el próximo episodio.",
+"«Guardar para depois» coloca o tema no topo da rota escolhida; surge no próximo episódio."
+],
+"Frage an deinen Coach": [
+"Question for your coach",
+"Pregunta a tu coach",
+"Pergunta ao seu coach"
+],
+"Begriff unklar, Situation aus dem Team?": [
+"Unclear term, situation from your team?",
+"¿Concepto poco claro, situación del equipo?",
+"Conceito pouco claro, situação da equipa?"
+],
+"Frage speichern": [
+"Save question",
+"Guardar pregunta",
+"Guardar pergunta"
+],
+"z. B. Was ist eine Vektor-Datenbank?": [
+"e.g. What is a vector database?",
+"p. ej. ¿Qué es una base de datos vectorial?",
+"p. ex. O que é uma base de dados vetorial?"
+],
+"z. B. Mein Team spricht ständig davon, ich weiß nicht, wofür wir das brauchen.": [
+"e.g. My team keeps talking about it and I don't know what we need it for.",
+"p. ej. Mi equipo habla de ello todo el rato y no sé para qué lo necesitamos.",
+"p. ex. A minha equipa fala nisso a toda a hora e não sei para que precisamos."
+],
+"z. B. Was ist der Unterschied zwischen Ontologie und Knowledge Graph?": [
+"e.g. What's the difference between an ontology and a knowledge graph?",
+"p. ej. ¿Qué diferencia hay entre ontología y grafo de conocimiento?",
+"p. ex. Qual é a diferença entre ontologia e grafo de conhecimento?"
+],
+"Gib zuerst ein Thema oder einen Begriff ein.": [
+"Enter a topic or term first.",
+"Escribe primero un tema o concepto.",
+"Escreva primeiro um tema ou conceito."
+],
+"Speichern geht gerade nicht. Öffne die Seite angemeldet in der Claude-App.": [
+"Saving doesn't work right now. Open the page signed in in the Claude app.",
+"Ahora no se puede guardar. Abre la página con sesión iniciada en la app de Claude.",
+"Agora não é possível guardar. Abra a página com sessão iniciada na app Claude."
+],
+"Nicht gespeichert (": [
+"Not saved (",
+"No guardado (",
+"Não guardado ("
+],
+"Gespeichert als ": [
+"Saved as ",
+"Guardado como ",
+"Guardado como "
+],
+". Es kommt in der nächsten Folge dran.": [
+". It comes up in the next episode.",
+". Saldrá en el próximo episodio.",
+". Surge no próximo episódio."
+],
+" und gestartet. Die Folge kommt in wenigen Minuten als Nachricht und kurz danach im Podcast.": [
+" and started. The episode arrives in a few minutes as a message and shortly after in the podcast.",
+" e iniciado. El episodio llega en unos minutos como mensaje y poco después al pódcast.",
+" e iniciado. O episódio chega em poucos minutos como mensagem e pouco depois ao podcast."
+],
+"Schreib zuerst deine Frage.": [
+"Write your question first.",
+"Escribe primero tu pregunta.",
+"Escreva primeiro a sua pergunta."
+],
+"Gespeichert. Dein Coach greift sie in der nächsten Folge auf.": [
+"Saved. Your coach will pick it up in the next episode.",
+"Guardado. Tu coach la retomará en el próximo episodio.",
+"Guardado. O seu coach retoma-a no próximo episódio."
+],
+"Frage konnte nicht entfernt werden.": [
+"Couldn't remove the question.",
+"No se pudo eliminar la pregunta.",
+"Não foi possível remover a pergunta."
+],
+"entfernen": [
+"remove",
+"eliminar",
+"remover"
+],
+"offen": [
+"open",
+"abierta",
+"aberta"
+],
+"beantwortet": [
+"answered",
+"respondida",
+"respondida"
+],
+"Mehr": [
+"More",
+"Más",
+"Mais"
+],
+"Lernen": [
+"Learn",
+"Aprender",
+"Aprender"
+],
+"Bereiche": [
+"Sections",
+"Secciones",
+"Secções"
+],
+"Routen & Profil": [
+"Paths & profile",
+"Rutas y perfil",
+"Rotas e perfil"
+],
+"Dein Coach wechselt zwischen allen aktiven Routen.": [
+"Your coach rotates between all active paths.",
+"Tu coach alterna entre todas las rutas activas.",
+"O seu coach alterna entre todas as rotas ativas."
+],
+"Neue Lernroute": [
+"New learning path",
+"Nueva ruta",
+"Nova rota"
+],
+"Welches Themengebiet willst du lernen?": [
+"Which subject do you want to learn?",
+"¿Qué área quieres aprender?",
+"Que área quer aprender?"
+],
+"Was willst du am Ende können? (optional)": [
+"What do you want to be able to do at the end? (optional)",
+"¿Qué quieres saber hacer al final? (opcional)",
+"O que quer saber fazer no fim? (opcional)"
+],
+"Lernroute vorschlagen": [
+"Suggest a learning path",
+"Proponer ruta",
+"Sugerir rota"
+],
+"Ideen für mich": [
+"Ideas for me",
+"Ideas para mí",
+"Ideias para mim"
+],
+"Claude macht einen Vorschlag mit drei Stufen, passend zu deinem Profil. Du entscheidest, ob du ihn übernimmst.": [
+"Claude suggests a path with three stages based on your profile. You decide whether to keep it.",
+"Claude propone una ruta en tres etapas según tu perfil. Tú decides si la aceptas.",
+"O Claude sugere uma rota em três etapas com base no seu perfil. Decide se a aceita."
+],
+"z. B. Ein kleiner werdendes Team führen": [
+"e.g. Leading a shrinking team",
+"p. ej. Liderar un equipo que se reduce",
+"p. ex. Liderar uma equipa que diminui"
+],
+"z. B. Einen Business Case für Agenten vorlegen können.": [
+"e.g. Being able to present a business case for agents.",
+"p. ej. Poder presentar un business case para agentes.",
+"p. ex. Conseguir apresentar um business case para agentes."
+],
+"Dein Profil": [
+"Your profile",
+"Tu perfil",
+"O seu perfil"
+],
+"Rolle, Situation, Ziele, Vorwissen. Daraus leitet der Coach ab, was für dich zählt.": [
+"Role, situation, goals, prior knowledge. Your coach uses this to decide what matters for you.",
+"Rol, situación, objetivos, conocimientos previos. Con ello el coach decide qué te importa.",
+"Função, situação, objetivos, conhecimentos prévios. O coach usa isto para decidir o que importa para si."
+],
+"Profil speichern": [
+"Save profile",
+"Guardar perfil",
+"Guardar perfil"
+],
+"Gespeichert.": [
+"Saved.",
+"Guardado.",
+"Guardado."
+],
+"Speichern geht gerade nicht.": [
+"Saving doesn't work right now.",
+"Ahora no se puede guardar.",
+"Agora não é possível guardar."
+],
+"fortsetzen": [
+"resume",
+"reanudar",
+"retomar"
+],
+"pausieren": [
+"pause",
+"pausar",
+"pausar"
+],
+"Konnte die Route nicht ändern (": [
+"Couldn't change the path (",
+"No se pudo cambiar la ruta (",
+"Não foi possível alterar a rota ("
+],
+").": [
+").",
+").",
+")."
+],
+"+ Neue Route": [
+"+ New path",
+"+ Nueva ruta",
+"+ Nova rota"
+],
+"Du hast den Zugriff auf Claude nicht erlaubt. Lade die Seite neu, um erneut gefragt zu werden.": [
+"You didn't allow access to Claude. Reload the page to be asked again.",
+"No permitiste el acceso a Claude. Recarga la página para que se te vuelva a preguntar.",
+"Não permitiu o acesso ao Claude. Recarregue a página para ser questionado de novo."
+],
+"Gerade zu viele Anfragen. Versuch es in ein paar Minuten noch einmal.": [
+"Too many requests right now. Try again in a few minutes.",
+"Demasiadas solicitudes ahora. Inténtalo en unos minutos.",
+"Demasiados pedidos agora. Tente dentro de alguns minutos."
+],
+"Bitte melde dich bei Claude neu an.": [
+"Please sign in to Claude again.",
+"Vuelve a iniciar sesión en Claude.",
+"Inicie sessão novamente no Claude."
+],
+"Der Vorschlag kam unvollständig an. Tippe noch einmal.": [
+"The suggestion arrived incomplete. Tap again.",
+"La propuesta llegó incompleta. Toca de nuevo.",
+"A sugestão chegou incompleta. Toque novamente."
+],
+"Dazu kann Claude keinen Vorschlag machen. Formuliere das Thema anders.": [
+"Claude can't make a suggestion for this. Try phrasing the topic differently.",
+"Claude no puede proponer nada para esto. Formula el tema de otra forma.",
+"O Claude não consegue sugerir nada para isto. Formule o tema de outra forma."
+],
+"Das hat nicht geklappt (": [
+"That didn't work (",
+"No funcionó (",
+"Não funcionou ("
+],
+"). Versuch es noch einmal.": [
+"). Try again.",
+"). Inténtalo de nuevo.",
+"). Tente novamente."
+],
+"Vorschläge gehen nur in der Claude-App oder auf claude.ai.": [
+"Suggestions only work in the Claude app or on claude.ai.",
+"Las propuestas solo funcionan en la app de Claude o en claude.ai.",
+"As sugestões só funcionam na app Claude ou em claude.ai."
+],
+"Claude überlegt …": [
+"Claude is thinking …",
+"Claude está pensando …",
+"O Claude está a pensar …"
+],
+"Tippe auf eine Idee, um sie zu übernehmen.": [
+"Tap an idea to use it.",
+"Toca una idea para usarla.",
+"Toque numa ideia para a usar."
+],
+"Gib zuerst ein Themengebiet ein.": [
+"Enter a subject first.",
+"Escribe primero un área.",
+"Escreva primeiro uma área."
+],
+"Claude erstellt deine Lernroute. Das dauert etwa eine halbe Minute …": [
+"Claude is building your learning path. This takes about half a minute …",
+"Claude está creando tu ruta. Tarda unos treinta segundos …",
+"O Claude está a criar a sua rota. Demora cerca de meio minuto …"
+],
+"Hier ist der Vorschlag.": [
+"Here's the suggestion.",
+"Aquí está la propuesta.",
+"Aqui está a sugestão."
+],
+"Übernehmen": [
+"Use it",
+"Aceptar",
+"Aceitar"
+],
+"Neu vorschlagen": [
+"Suggest again",
+"Proponer otra",
+"Sugerir outra"
+],
+"Verwerfen": [
+"Discard",
+"Descartar",
+"Descartar"
+],
+"Speichere …": [
+"Saving …",
+"Guardando …",
+"A guardar …"
+],
+"Übernommen. Der Coach wechselt ab jetzt zwischen deinen aktiven Lernrouten.": [
+"Done. Your coach now rotates between your active paths.",
+"Hecho. El coach alternará ahora entre tus rutas activas.",
+"Feito. O coach passa a alternar entre as suas rotas ativas."
+],
+"Nicht vollständig gespeichert (": [
+"Not fully saved (",
+"No se guardó por completo (",
+"Não foi totalmente guardado ("
+],
+"). Tippe noch einmal auf Übernehmen.": [
+"). Tap “Use it” again.",
+"). Toca de nuevo «Aceptar».",
+"). Toque novamente em «Aceitar»."
+],
+"Dein Lernstand kann hier nicht geladen werden. Öffne die Seite angemeldet in der Claude-App oder auf claude.ai.": [
+"Your progress can't be loaded here. Open the page signed in in the Claude app or on claude.ai.",
+"Tu progreso no se puede cargar aquí. Abre la página con sesión iniciada en la app de Claude o en claude.ai.",
+"O seu progresso não pode ser carregado aqui. Abra a página com sessão iniciada na app Claude ou em claude.ai."
+],
+"Verbindung zum Lernstand unterbrochen (": [
+"Connection to your progress lost (",
+"Se perdió la conexión con tu progreso (",
+"Perdeu-se a ligação ao seu progresso ("
+],
+"). Lade die Seite neu.": [
+"). Reload the page.",
+"). Recarga la página.",
+"). Recarregue a página."
+],
+"Sprache": [
+"Language",
+"Idioma",
+"Idioma"
+],
+"Sprache der Lernseite": [
+"Language of this page",
+"Idioma de la página",
+"Idioma da página"
+],
+"Sprache deiner Folgen": [
+"Language of your episodes",
+"Idioma de tus episodios",
+"Idioma dos seus episódios"
+],
+"Gilt für neue Lernschnipsel und Podcast-Folgen. Bisherige Folgen bleiben in ihrer Sprache.": [
+"Applies to new snippets and podcast episodes. Earlier episodes keep their language.",
+"Se aplica a nuevas lecciones y episodios. Los anteriores conservan su idioma.",
+"Aplica-se a novas lições e episódios. Os anteriores mantêm o seu idioma."
+],
+"Fertig": [
+"Done",
+"Listo",
+"Concluído"
+],
+"Gespeichert. Neue Folgen kommen auf ": [
+"Saved. New episodes will be in ",
+"Guardado. Los nuevos episodios serán en ",
+"Guardado. Os novos episódios serão em "
+],
+"Sprache wählen": [
+"Choose language",
+"Elegir idioma",
+"Escolher idioma"
+],
+"Wie gleich wie die Seite": [
+"Same as page",
+"Igual que la página",
+"Igual à página"
+],
+"Ab dieser Uhrzeit": [
+"From this time",
+"A partir de esta hora",
+"A partir desta hora"
+],
+"Abmelden": [
+"Sign out",
+"Cerrar sesión",
+"Terminar sessão"
+],
+"Abonnieren": [
+"Subscribe",
+"Suscribirse",
+"Subscrever"
+],
+"Admin-Bereich": [
+"Admin area",
+"Área de administración",
+"Área de administração"
+],
+"Alle bisherigen Feed-Adressen hören auf zu funktionieren. Fortfahren?": [
+"All previous feed addresses will stop working. Continue?",
+"Todas las direcciones de feed anteriores dejarán de funcionar. ¿Continuar?",
+"Todos os endereços de feed anteriores deixarão de funcionar. Continuar?"
+],
+"Alles, was geschrieben ist, ist schon vertont.": [
+"Everything written has already been voiced.",
+"Todo lo escrito ya tiene audio.",
+"Tudo o que foi escrito já tem áudio."
+],
+"An diesen Tagen kommt automatisch eine neue Folge": [
+"A new episode arrives automatically on these days",
+"Estos días llega automáticamente un nuevo episodio",
+"Nestes dias chega automaticamente um novo episódio"
+],
+"Anmelden": [
+"Sign in",
+"Iniciar sesión",
+"Entrar"
+],
+"Anna und Ben · vertont mit ElevenLabs": [
+"Anna and Ben · voiced with ElevenLabs",
+"Anna y Ben · con voces de ElevenLabs",
+"Anna e Ben · vozes da ElevenLabs"
+],
+"Ausblenden": [
+"Hide",
+"Ocultar",
+"Ocultar"
+],
+"Automatische Folgen": [
+"Automatic episodes",
+"Episodios automáticos",
+"Episódios automáticos"
+],
+"Bevor es losgeht": [
+"Before we start",
+"Antes de empezar",
+"Antes de começar"
+],
+"Bitte lies und bestätige diese drei Punkte.": [
+"Please read and confirm these three points.",
+"Lee y confirma estos tres puntos.",
+"Leia e confirme estes três pontos."
+],
+"Claude erstellt deine Lernroute. Das dauert etwa eine Minute …": [
+"Claude is creating your learning route. This takes about a minute …",
+"Claude está creando tu ruta de aprendizaje. Tarda alrededor de un minuto …",
+"O Claude está a criar a sua rota de aprendizagem. Demora cerca de um minuto …"
+],
+"Claude sammelt Ideen …": [
+"Claude is gathering ideas …",
+"Claude está reuniendo ideas …",
+"O Claude está a reunir ideias …"
+],
+"Das Passwort braucht mindestens 10 Zeichen.": [
+"The password needs at least 10 characters.",
+"La contraseña necesita al menos 10 caracteres.",
+"A palavra-passe precisa de pelo menos 10 caracteres."
+],
+"Das hat nicht geklappt. Versuch es noch einmal.": [
+"That didn't work. Please try again.",
+"No ha funcionado. Inténtalo de nuevo.",
+"Não funcionou. Tente novamente."
+],
+"Datenschutz": [
+"Privacy",
+"Privacidad",
+"Privacidade"
+],
+"Datenschutzerklärung": [
+"privacy policy",
+"política de privacidad",
+"política de privacidade"
+],
+"Dein Konto ist gesperrt.": [
+"Your account is blocked.",
+"Tu cuenta está bloqueada.",
+"A sua conta está bloqueada."
+],
+"Dein Konto, alle Lernrouten, Folgen und Audiodateien werden endgültig gelöscht. Das lässt sich nicht rückgängig machen. Fortfahren?": [
+"Your account, all learning routes, episodes and audio files will be deleted permanently. This cannot be undone. Continue?",
+"Tu cuenta, todas las rutas, episodios y audios se borrarán definitivamente. No se puede deshacer. ¿Continuar?",
+"A sua conta, todas as rotas, episódios e áudios serão apagados definitivamente. Não é possível desfazer. Continuar?"
+],
+"Dein persönlicher Lern-Coach. Jede Folge auch als Podcast.": [
+"Your personal learning coach. Every episode also as a podcast.",
+"Tu coach de aprendizaje personal. Cada episodio también como pódcast.",
+"O seu coach de aprendizagem pessoal. Cada episódio também como podcast."
+],
+"Mo": [
+"Mon",
+"Lun",
+"Seg"
+],
+"Di": [
+"Tue",
+"Mar",
+"Ter"
+],
+"Mi": [
+"Wed",
+"Mié",
+"Qua"
+],
+"Do": [
+"Thu",
+"Jue",
+"Qui"
+],
+"Fr": [
+"Fri",
+"Vie",
+"Sex"
+],
+"Sa": [
+"Sat",
+"Sáb",
+"Sáb"
+],
+"So": [
+"Sun",
+"Dom",
+"Dom"
+],
+"Die Lernroute ist gerade in einer geschlossenen Testphase. Gib deinen Einladungscode ein.": [
+"Lernroute is currently in a closed beta. Enter your invite code.",
+"Lernroute está en una beta cerrada. Introduce tu código de invitación.",
+"A Lernroute está numa fase de testes fechada. Introduza o seu código de convite."
+],
+"Die Vertonung hat nicht geklappt. Den Text kannst du lesen.": [
+"The audio didn't work. You can read the text.",
+"El audio no ha funcionado. Puedes leer el texto.",
+"O áudio não funcionou. Pode ler o texto."
+],
+"Die vertonte Folge ist noch in Arbeit.": [
+"The audio episode is still being made.",
+"El episodio en audio aún se está preparando.",
+"O episódio em áudio ainda está a ser feito."
+],
+"Diese Folgen entstehen gerade oder werden noch vertont.": [
+"These episodes are being written or voiced.",
+"Estos episodios se están escribiendo o grabando.",
+"Estes episódios estão a ser escritos ou gravados."
+],
+"Diese Folgen kannst du hier oder in der Podcast-App hören.": [
+"You can listen to these here or in the Podcasts app.",
+"Puedes escucharlos aquí o en la app de Podcasts.",
+"Pode ouvi-los aqui ou na app Podcasts."
+],
+"E-Mail": [
+"Email",
+"Correo electrónico",
+"E-mail"
+],
+"E-Mail oder Passwort stimmt nicht.": [
+"Email or password is incorrect.",
+"El correo o la contraseña no son correctos.",
+"O e-mail ou a palavra-passe estão incorretos."
+],
+"Einladungscode": [
+"Invite code",
+"Código de invitación",
+"Código de convite"
+],
+"Fast geschafft: Bestätige deine E-Mail-Adresse über den Link in deinem Postfach.": [
+"Almost done: confirm your email address via the link in your inbox.",
+"Casi listo: confirma tu correo con el enlace de tu bandeja de entrada.",
+"Quase pronto: confirme o seu e-mail através do link na sua caixa de entrada."
+],
+"Folge entsteht": [
+"Episode in progress",
+"Episodio en preparación",
+"Episódio em preparação"
+],
+"Folgen diesen Monat: ": [
+"Episodes this month: ",
+"Episodios este mes: ",
+"Episódios este mês: "
+],
+"Freischalten": [
+"Unlock",
+"Activar",
+"Ativar"
+],
+"Für diese E-Mail gibt es schon ein Konto. Melde dich an.": [
+"There is already an account for this email. Please sign in.",
+"Ya existe una cuenta con este correo. Inicia sesión.",
+"Já existe uma conta com este e-mail. Entre."
+],
+"Gestartet. In etwa zehn Minuten ist die Folge hier und im Podcast.": [
+"Started. In about ten minutes the episode will be here and in your podcast.",
+"Iniciado. En unos diez minutos el episodio estará aquí y en tu pódcast.",
+"Iniciado. Daqui a cerca de dez minutos o episódio estará aqui e no seu podcast."
+],
+"Ich akzeptiere die": [
+"I accept the",
+"Acepto las",
+"Aceito os"
+],
+"Ich habe die": [
+"I have read the",
+"He leído la",
+"Li a"
+],
+"gelesen.": [
+".",
+".",
+"."
+],
+"Ideen für dich": [
+"Ideas for you",
+"Ideas para ti",
+"Ideias para si"
+],
+"Ideen werden gesammelt": [
+"Gathering ideas",
+"Reuniendo ideas",
+"A reunir ideias"
+],
+"Impressum": [
+"Legal notice",
+"Aviso legal",
+"Informação legal"
+],
+"Jede Lernroute und der Markt-Radar sind eigene, private Sendungen. Die Adressen sind geheim: teile sie nicht.": [
+"Each learning route and the market radar are separate private shows. The addresses are secret: don't share them.",
+"Cada ruta y el radar de mercado son programas privados independientes. Las direcciones son secretas: no las compartas.",
+"Cada rota e o radar de mercado são programas privados separados. Os endereços são secretos: não os partilhe."
+],
+"KI-generiert: Text von Claude (Anthropic), Stimmen von ElevenLabs. Bitte prüfe wichtige Angaben selbst.": [
+"AI-generated: text by Claude (Anthropic), voices by ElevenLabs. Please check important facts yourself.",
+"Generado por IA: texto de Claude (Anthropic), voces de ElevenLabs. Comprueba tú mismo los datos importantes.",
+"Gerado por IA: texto do Claude (Anthropic), vozes da ElevenLabs. Verifique os dados importantes."
+],
+"Konto": [
+"Account",
+"Cuenta",
+"Conta"
+],
+"Konto und alle Daten löschen": [
+"Delete account and all data",
+"Borrar cuenta y todos los datos",
+"Apagar conta e todos os dados"
+],
+"Kopieren ging nicht. Halte den Finger auf die Adresse.": [
+"Copying didn't work. Press and hold the address.",
+"No se pudo copiar. Mantén pulsada la dirección.",
+"Não foi possível copiar. Mantenha premido o endereço."
+],
+"Lege zuerst eine Lernroute an.": [
+"Create a learning route first.",
+"Crea primero una ruta de aprendizaje.",
+"Crie primeiro uma rota de aprendizagem."
+],
+"Lernroute wird vorgeschlagen": [
+"Suggesting a learning route",
+"Proponiendo una ruta",
+"A propor uma rota"
+],
+"Meine Eingaben (Profil, Fragen, Themen) werden zur Erstellung der Folgen an Anthropic (Claude) und ElevenLabs übermittelt. Ich gebe dort keine vertraulichen Firmendaten und keine Daten anderer Personen ein.": [
+"My inputs (profile, questions, topics) are sent to Anthropic (Claude) and ElevenLabs to create the episodes. I won't enter confidential company data or other people's data.",
+"Mis datos (perfil, preguntas, temas) se envían a Anthropic (Claude) y ElevenLabs para crear los episodios. No introduciré datos confidenciales de empresa ni datos de otras personas.",
+"Os meus dados (perfil, perguntas, temas) são enviados à Anthropic (Claude) e à ElevenLabs para criar os episódios. Não introduzo dados confidenciais da empresa nem dados de outras pessoas."
+],
+"Merksatz": [
+"Key takeaway",
+"Idea clave",
+"Ideia-chave"
+],
+"Nach etwa zehn Minuten ist sie hier und in deiner Podcast-App.": [
+"After about ten minutes it's here and in your Podcasts app.",
+"En unos diez minutos estará aquí y en tu app de Podcasts.",
+"Daqui a cerca de dez minutos estará aqui e na sua app Podcasts."
+],
+"Neue Adressen erzeugen": [
+"Create new addresses",
+"Generar nuevas direcciones",
+"Gerar novos endereços"
+],
+"Neue Adressen erzeugt. Abonniere die Sendungen neu.": [
+"New addresses created. Subscribe to the shows again.",
+"Nuevas direcciones generadas. Vuelve a suscribirte.",
+"Novos endereços gerados. Volte a subscrever."
+],
+"Neues Konto anlegen": [
+"Create new account",
+"Crear cuenta nueva",
+"Criar nova conta"
+],
+"Noch keine Folge dieser Route. Starte oben die erste.": [
+"No episode in this route yet. Start the first one above.",
+"Aún no hay episodios en esta ruta. Inicia el primero arriba.",
+"Ainda não há episódios nesta rota. Inicie o primeiro acima."
+],
+"Noch keine Lernroute.": [
+"No learning route yet.",
+"Aún no hay ruta.",
+"Ainda não há rota."
+],
+"Noch keine Lernroute. Lass dir unten eine vorschlagen.": [
+"No learning route yet. Get one suggested below.",
+"Aún no hay ruta. Pide una propuesta abajo.",
+"Ainda não há rota. Peça uma sugestão abaixo."
+],
+"Noch keine Lernroute. Lass dir unter „Mehr“ eine vorschlagen.": [
+"No learning route yet. Get one suggested under “More”.",
+"Aún no hay ruta. Pide una propuesta en «Más».",
+"Ainda não há rota. Peça uma sugestão em «Mais»."
+],
+"Nutzungsbedingungen": [
+"terms of use",
+"condiciones de uso",
+"termos de utilização"
+],
+"Passwort (mindestens 10 Zeichen)": [
+"Password (at least 10 characters)",
+"Contraseña (mínimo 10 caracteres)",
+"Palavra-passe (mínimo 10 caracteres)"
+],
+"Podcast-Feeds": [
+"Podcast feeds",
+"Feeds de pódcast",
+"Feeds de podcast"
+],
+"Podcast-Folge": [
+"Podcast episode",
+"Episodio de pódcast",
+"Episódio de podcast"
+],
+"Quellen": [
+"Sources",
+"Fuentes",
+"Fontes"
+],
+"Rolle, Situation, Ziele, Vorwissen. Daraus leitet der Coach ab, was für dich zählt. Bitte keine vertraulichen Firmendaten und keine Namen anderer Personen.": [
+"Role, situation, goals, prior knowledge. The coach uses this to work out what matters to you. Please no confidential company data and no names of other people.",
+"Rol, situación, objetivos, conocimientos previos. El coach deduce de ello lo que te importa. Sin datos confidenciales de empresa ni nombres de otras personas.",
+"Função, situação, objetivos, conhecimentos prévios. O coach deduz daí o que lhe importa. Sem dados confidenciais da empresa nem nomes de outras pessoas."
+],
+"Vorgemerkt. Es kommt in der nächsten Folge dran.": [
+"Noted. It'll come up in the next episode.",
+"Anotado. Saldrá en el próximo episodio.",
+"Anotado. Vai surgir no próximo episódio."
+],
+"Wartet auf die Fabrik": [
+"Waiting in the queue",
+"En cola",
+"Em fila"
+],
+"Wiederholung": [
+"Review",
+"Repaso",
+"Revisão"
+],
+"Willkommen": [
+"Welcome",
+"Bienvenido",
+"Bem-vindo"
+],
+"Wird geschrieben und vertont": [
+"Being written and voiced",
+"Escribiéndose y grabándose",
+"A ser escrito e gravado"
+],
+"Wirklich löschen?": [
+"Really delete?",
+"¿Borrar de verdad?",
+"Apagar mesmo?"
+],
+"Wochentage": [
+"Weekdays",
+"Días de la semana",
+"Dias da semana"
+],
+"Zustimmen und starten": [
+"Agree and start",
+"Aceptar y empezar",
+"Aceitar e começar"
+],
+"löschen": [
+"delete",
+"borrar",
+"apagar"
+],
+"▶︎ Abspielen": [
+"▶︎ Play",
+"▶︎ Reproducir",
+"▶︎ Reproduzir"
+],
+"⚠️ Vertonung fehlgeschlagen, Text lesbar": [
+"⚠️ Audio failed, text readable",
+"⚠️ Falló el audio, texto disponible",
+"⚠️ Áudio falhou, texto disponível"
+]
+}
