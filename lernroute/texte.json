@@ -195,7 +195,7 @@
 "‹ Rotas"
 ],
 "Lernroute": [
-"Learning path",
+"Learning route",
 "Ruta",
 "Rota"
 ],
@@ -1473,5 +1473,360 @@
 "⚠️ Audio failed, text readable",
 "⚠️ Falló el audio, texto disponible",
 "⚠️ Áudio falhou, texto disponível"
+],
+" ab 7 Uhr.": [
+" from 7 a.m.",
+" a partir de las 7.",
+" a partir das 7h."
+],
+"Ausgaben": [
+"Issues",
+"Ediciones",
+"Edições"
+],
+"Bald für dich verfügbar": [
+"Coming soon for you",
+"Pronto disponible para ti",
+"Em breve disponível para si"
+],
+"Bereich festlegen, Wochentag wählen": [
+"Choose a topic and a weekday",
+"Elige un ámbito y un día",
+"Escolha um tema e um dia"
+],
+"Beschreibe einen Bereich. Claude recherchiert jede Woche im Internet und fasst das Wichtigste zusammen.": [
+"Describe a topic. Every week Claude researches the web and sums up what matters.",
+"Describe un ámbito. Cada semana Claude investiga en internet y resume lo importante.",
+"Descreva um tema. Todas as semanas o Claude pesquisa na internet e resume o essencial."
+],
+"Beschreibe kurz, was das Radar beobachten soll.": [
+"Briefly describe what the radar should watch.",
+"Describe brevemente qué debe vigilar el radar.",
+"Descreva brevemente o que o radar deve acompanhar."
+],
+"Bitte keine vertraulichen Firmendaten und keine Namen anderer Personen.": [
+"Please no confidential company data and no names of other people.",
+"Sin datos confidenciales de empresa ni nombres de otras personas.",
+"Sem dados confidenciais da empresa nem nomes de outras pessoas."
+],
+"Claude schlägt dir eine Route in drei Stufen vor": [
+"Claude suggests a route in three stages",
+"Claude te propone una ruta en tres etapas",
+"O Claude sugere uma rota em três etapas"
+],
+"Dein Coach greift sie in der nächsten Folge auf.": [
+"Your coach will pick it up in the next episode.",
+"Tu coach la tratará en el próximo episodio.",
+"O seu coach vai abordá-la no próximo episódio."
+],
+"Deine Fragen": [
+"Your questions",
+"Tus preguntas",
+"As suas perguntas"
+],
+"Deine Radare": [
+"Your radars",
+"Tus radares",
+"Os seus radares"
+],
+"Die erste Ausgabe erscheint am gewählten Wochentag.": [
+"The first issue appears on the chosen weekday.",
+"La primera edición aparece el día elegido.",
+"A primeira edição aparece no dia escolhido."
+],
+"Diese Woche schon erstellt": [
+"Already created this week",
+"Ya creado esta semana",
+"Já criado esta semana"
+],
+"Du hast schon 3 Radare. Lösche zuerst eines.": [
+"You already have 3 radars. Delete one first.",
+"Ya tienes 3 radares. Borra uno primero.",
+"Já tem 3 radares. Apague um primeiro."
+],
+"Eigene Radare werden gerade getestet und bald für dein Konto freigeschaltet.": [
+"Personal radars are being tested and will be enabled for your account soon.",
+"Los radares propios están en pruebas y pronto se activarán para tu cuenta.",
+"Os radares próprios estão em teste e serão ativados em breve para a sua conta."
+],
+"Einstellungen": [
+"Settings",
+"Ajustes",
+"Definições"
+],
+"Erledigt": [
+"Done",
+"Hecho",
+"Feito"
+],
+"Erscheint jeden": [
+"Appears every",
+"Aparece cada",
+"Aparece todas as semanas à/ao"
+],
+"Folgen": [
+"Episodes",
+"Episodios",
+"Episódios"
+],
+"Folgen diesen Monat": [
+"Episodes this month",
+"Episodios este mes",
+"Episódios este mês"
+],
+"Fortsetzen": [
+"Resume",
+"Reanudar",
+"Retomar"
+],
+"Gestartet. In etwa zehn Minuten ist dein Radar hier und im Podcast.": [
+"Started. In about ten minutes your radar will be here and in your podcast.",
+"Iniciado. En unos diez minutos tu radar estará aquí y en tu pódcast.",
+"Iniciado. Daqui a cerca de dez minutos o seu radar estará aqui e no podcast."
+],
+"Gib dem Radar einen Namen.": [
+"Give the radar a name.",
+"Ponle un nombre al radar.",
+"Dê um nome ao radar."
+],
+"Heute": [
+"Today",
+"Hoy",
+"Hoje"
+],
+"Ich": [
+"Me",
+"Yo",
+"Eu"
+],
+"In Arbeit": [
+"In progress",
+"En preparación",
+"Em preparação"
+],
+"Jede Lernroute ist eine eigene Sendung in deiner Podcast-App.": [
+"Each learning route is its own show in your Podcasts app.",
+"Cada ruta es un programa propio en tu app de pódcast.",
+"Cada rota é um programa próprio na sua app de podcasts."
+],
+"Jede Lernroute und jedes Radar ist eine eigene, private Sendung. Tippe darauf, um sie in Apple Podcasts zu abonnieren. Die Adressen sind geheim: teile sie nicht.": [
+"Each learning route and each radar is its own private show. Tap to subscribe in Apple Podcasts. The addresses are secret: don't share them.",
+"Cada ruta y cada radar es un programa privado. Tócalo para suscribirte en Apple Podcasts. Las direcciones son secretas: no las compartas.",
+"Cada rota e cada radar é um programa privado. Toque para subscrever no Apple Podcasts. Os endereços são secretos: não os partilhe."
+],
+"Jede Woche eine Zusammenfassung zu Bereichen, die du selbst festlegst – als Text und als Podcast.": [
+"A weekly summary of topics you choose yourself – as text and as a podcast.",
+"Cada semana un resumen de los ámbitos que tú eliges, en texto y en pódcast.",
+"Todas as semanas um resumo dos temas que escolher, em texto e em podcast."
+],
+"Jeden ": [
+"Every ",
+"Cada ",
+"Todas as semanas, "
+],
+"Jetzt erstellen": [
+"Create now",
+"Crear ahora",
+"Criar agora"
+],
+"Lernroute löschen": [
+"Delete learning route",
+"Borrar ruta",
+"Apagar rota"
+],
+"Lernrouten": [
+"Learning routes",
+"Rutas",
+"Rotas"
+],
+"Läuft gerade": [
+"In progress",
+"En curso",
+"Em curso"
+],
+"Name": [
+"Name",
+"Nombre",
+"Nome"
+],
+"Neu für dich": [
+"New for you",
+"Nuevo para ti",
+"Novo para si"
+],
+"Neue Ausgabe jeden ": [
+"New issue every ",
+"Nueva edición cada ",
+"Nova edição todas as semanas, "
+],
+"Neues Radar": [
+"New radar",
+"Nuevo radar",
+"Novo radar"
+],
+"Neueste Ausgaben": [
+"Latest issues",
+"Últimas ediciones",
+"Últimas edições"
+],
+"Noch kein Radar. Lege unten dein erstes an.": [
+"No radar yet. Create your first one below.",
+"Aún no hay radar. Crea el primero abajo.",
+"Ainda não há radar. Crie o primeiro abaixo."
+],
+"Noch keine Folgen. Starte oben deine erste.": [
+"No episodes yet. Start your first one above.",
+"Aún no hay episodios. Inicia el primero arriba.",
+"Ainda não há episódios. Inicie o primeiro acima."
+],
+"Noch keine Fragen.": [
+"No questions yet.",
+"Aún no hay preguntas.",
+"Ainda não há perguntas."
+],
+"Noch keine Themen.": [
+"No topics yet.",
+"Aún no hay temas.",
+"Ainda não há temas."
+],
+"Nächste Folge": [
+"Next episode",
+"Siguiente episodio",
+"Próximo episódio"
+],
+"Pausieren": [
+"Pause",
+"Pausar",
+"Pausar"
+],
+"Pausiert: Es kommen keine neuen Ausgaben.": [
+"Paused: no new issues will come.",
+"En pausa: no llegarán nuevas ediciones.",
+"Em pausa: não chegam novas edições."
+],
+"Podcast-App": [
+"Podcasts app",
+"App de pódcast",
+"App de podcasts"
+],
+"Radar": [
+"Radar",
+"Radar",
+"Radar"
+],
+"Radar anlegen": [
+"Create radar",
+"Crear radar",
+"Criar radar"
+],
+"Radar entsteht": [
+"Radar in progress",
+"Radar en preparación",
+"Radar em preparação"
+],
+"Radar löschen": [
+"Delete radar",
+"Borrar radar",
+"Apagar radar"
+],
+"Schließen": [
+"Close",
+"Cerrar",
+"Fechar"
+],
+"Schwerpunkte oder Quellen (optional)": [
+"Focus or sources (optional)",
+"Enfoque o fuentes (opcional)",
+"Foco ou fontes (opcional)"
+],
+"Speichern": [
+"Save",
+"Guardar",
+"Guardar"
+],
+"Vorschläge für dich": [
+"Suggestions for you",
+"Propuestas para ti",
+"Sugestões para si"
+],
+"Was soll das Radar beobachten?": [
+"What should the radar watch?",
+"¿Qué debe vigilar el radar?",
+"O que deve o radar acompanhar?"
+],
+"Weiterhören": [
+"Keep listening",
+"Seguir escuchando",
+"Continuar a ouvir"
+],
+"Zurück": [
+"Back",
+"Atrás",
+"Voltar"
+],
+"ohne Audio": [
+"no audio",
+"sin audio",
+"sem áudio"
+],
+"wird vertont": [
+"being voiced",
+"grabándose",
+"a ser gravado"
+],
+"z. B. Einkauf & Lieferketten": [
+"e.g. Procurement & supply chains",
+"p. ej. Compras y cadenas de suministro",
+"p. ex. Compras e cadeias de abastecimento"
+],
+"z. B. Neue Entwicklungen im strategischen Einkauf: KI-Werkzeuge, Lieferketten-Risiken, Gesetze.": [
+"e.g. New developments in strategic procurement: AI tools, supply chain risks, laws.",
+"p. ej. Novedades en compras estratégicas: herramientas de IA, riesgos de suministro, leyes.",
+"p. ex. Novidades em compras estratégicas: ferramentas de IA, riscos nas cadeias, leis."
+],
+"z. B. Schwerpunkt Mittelstand, gern Fachmedien wie …": [
+"e.g. focus on mid-sized companies, trade media like …",
+"p. ej. enfoque en pymes, medios especializados como …",
+"p. ex. foco em PME, imprensa especializada como …"
+],
+"zuletzt ": [
+"last ",
+"último ",
+"último "
+],
+"Montag": [
+"Monday",
+"lunes",
+"segunda-feira"
+],
+"Dienstag": [
+"Tuesday",
+"martes",
+"terça-feira"
+],
+"Mittwoch": [
+"Wednesday",
+"miércoles",
+"quarta-feira"
+],
+"Donnerstag": [
+"Thursday",
+"jueves",
+"quinta-feira"
+],
+"Freitag": [
+"Friday",
+"viernes",
+"sexta-feira"
+],
+"Samstag": [
+"Saturday",
+"sábado",
+"sábado"
+],
+"Sonntag": [
+"Sunday",
+"domingo",
+"domingo"
 ]
 }

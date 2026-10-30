@@ -5,6 +5,8 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob: https://hikftcmfdshvjpqovdaq.supabase.co; connect-src 'self' https://hikftcmfdshvjpqovdaq.supabase.co wss://hikftcmfdshvjpqovdaq.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F2F2F7">
 <title>Lernroute</title>
 <meta name="description" content="Dein persönlicher Lern-Coach mit Podcast.">
 <meta name="apple-mobile-web-app-title" content="Lernroute">
@@ -26,12 +28,10 @@
   <!-- Anmeldung -->
   <section class="gate" id="v-login" hidden aria-labelledby="t-login">
     <img class="logo" src="icons/icon-192.png" alt="">
-    <div><h1 class="big" id="t-login">Lernroute</h1><p class="lead">Dein persönlicher Lern-Coach. Jede Folge auch als Podcast.</p></div>
-    <form class="card field" id="f-login">
-      <label for="l-mail">E-Mail</label>
-      <input id="l-mail" class="txt" type="email" autocomplete="email" required>
-      <label for="l-pw">Passwort (mindestens 10 Zeichen)</label>
-      <input id="l-pw" class="txt" type="password" autocomplete="current-password" minlength="10" required>
+    <div><h1 id="t-login">Lernroute</h1><p class="hint" style="font-size:15px">Dein persönlicher Lern-Coach. Jede Folge auch als Podcast.</p></div>
+    <form class="karte" id="f-login">
+      <div class="feld"><label for="l-mail">E-Mail</label><input id="l-mail" class="txt" type="email" autocomplete="email" required></div>
+      <div class="feld"><label for="l-pw">Passwort (mindestens 10 Zeichen)</label><input id="l-pw" class="txt" type="password" autocomplete="current-password" minlength="10" required></div>
       <button class="btn primary block" type="submit" id="b-login">Anmelden</button>
       <button class="btn block" type="button" id="b-registrieren">Neues Konto anlegen</button>
       <span class="hint" id="login-msg" role="status"></span>
@@ -41,10 +41,9 @@
 
   <!-- Einladungscode -->
   <section class="gate" id="v-code" hidden aria-labelledby="t-code">
-    <div><h1 class="big" id="t-code">Willkommen</h1><p class="lead">Die Lernroute ist gerade in einer geschlossenen Testphase. Gib deinen Einladungscode ein.</p></div>
-    <form class="card field" id="f-code">
-      <label for="c-code">Einladungscode</label>
-      <input id="c-code" class="txt" autocomplete="off" autocapitalize="characters" required placeholder="LERNEN-XXXX-XXXX-XXXX">
+    <div><h1 id="t-code">Willkommen</h1><p class="hint" style="font-size:15px">Die Lernroute ist gerade in einer geschlossenen Testphase. Gib deinen Einladungscode ein.</p></div>
+    <form class="karte" id="f-code">
+      <div class="feld"><label for="c-code">Einladungscode</label><input id="c-code" class="txt" autocomplete="off" autocapitalize="characters" required placeholder="LERNEN-XXXX-XXXX-XXXX"></div>
       <button class="btn primary block" type="submit">Freischalten</button>
       <span class="hint" id="code-msg" role="status"></span>
     </form>
@@ -53,8 +52,8 @@
 
   <!-- Einwilligung -->
   <section class="gate" id="v-einw" hidden aria-labelledby="t-einw">
-    <div><h1 class="big" id="t-einw">Bevor es losgeht</h1><p class="lead" id="einw-lead">Bitte lies und bestätige diese drei Punkte.</p></div>
-    <form class="card field" id="f-einw">
+    <div><h1 id="t-einw">Bevor es losgeht</h1><p class="hint" style="font-size:15px">Bitte lies und bestätige diese drei Punkte.</p></div>
+    <form class="karte" id="f-einw">
       <label class="check"><input type="checkbox" required><span>Ich akzeptiere die <a href="agb.html" target="_blank" rel="noopener">Nutzungsbedingungen</a>.</span></label>
       <label class="check"><input type="checkbox" required><span>Ich habe die <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen.</span></label>
       <label class="check"><input type="checkbox" required><span>Meine Eingaben (Profil, Fragen, Themen) werden zur Erstellung der Folgen an Anthropic (Claude) und ElevenLabs übermittelt. Ich gebe dort keine vertraulichen Firmendaten und keine Daten anderer Personen ein.</span></label>
@@ -64,218 +63,62 @@
     <button class="btn ghost" type="button" data-abmelden>Abmelden</button>
   </section>
 
-  <!-- Leseansicht -->
+  <!-- App: der Inhalt jeder Ansicht wird in #view gezeichnet -->
+  <main id="main" hidden><div id="view"></div></main>
+
+  <!-- Leseansicht einer Folge oder Radar-Ausgabe -->
   <article class="reader" id="reader" hidden>
-    <div class="nav"><button class="back" id="rback">‹ Zurück</button></div>
+    <div class="nav"><button class="zurueck" id="rback"><svg viewBox="0 0 12 20" aria-hidden="true"><path d="M10 2 2 10l8 8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Zurück</span></button></div>
     <div class="meta-line" id="rmeta"></div>
-    <h2 id="rtitle"></h2>
-    <div class="podplayer" id="rpod" hidden>
-      <div class="pp-top"><span class="pp-ic" aria-hidden="true">🎧</span><div><strong>Podcast-Folge</strong><span class="hint">Anna und Ben · vertont mit ElevenLabs</span></div></div>
+    <h1 id="rtitle"></h1>
+    <div class="player" id="rpod" hidden>
+      <div class="hint">Anna und Ben · vertont mit ElevenLabs</div>
       <audio id="raudio" controls preload="metadata" playsinline></audio>
     </div>
-    <span class="hint" id="rhinweis" role="status"></span>
+    <p class="hint" id="rhinweis" role="status"></p>
     <div class="art" id="rbody"></div>
-    <div class="exbox" id="rex" hidden>
-      <span class="lbl">Mini-Übung</span>
-      <label for="rexcb"><input type="checkbox" id="rexcb"><span id="rextext"></span></label>
+    <div class="box uebung" id="rex" hidden>
+      <span class="lbl">Mini-Übung</span><p id="rextext"></p>
+      <label><input type="checkbox" id="rexcb"> <span>Erledigt</span></label>
     </div>
-    <div class="exbox" id="rmerk" hidden><span class="lbl">Merksatz</span><span id="rmerktext"></span></div>
-    <div id="rquellen"></div>
-    <p class="foot">KI-generiert: Text von Claude (Anthropic), Stimmen von ElevenLabs. Bitte prüfe wichtige Angaben selbst.</p>
-    <div><button class="back" id="rback2">‹ Zurück zur Übersicht</button></div>
+    <div class="box merk" id="rmerk" hidden><span class="lbl">Merksatz</span><p id="rmerktext"></p></div>
+    <div class="gruppe" id="rquellen"></div>
+    <p class="hint">KI-generiert: Text von Claude (Anthropic), Stimmen von ElevenLabs. Bitte prüfe wichtige Angaben selbst.</p>
   </article>
-
-  <div id="main" hidden>
-    <!-- Ebene 1: Lernrouten -->
-    <section class="tab" id="tab-heute" aria-labelledby="t-heute">
-      <div>
-        <div class="toprow"><div class="date" id="today"></div><button class="langpill" id="langbtn" aria-haspopup="dialog">🌐 Deutsch</button></div>
-        <h1 class="big" id="t-heute">Hallo!</h1>
-        <p class="lead">Wähle eine Lernroute. Darin siehst du, was schon im Podcast ist und was noch kommt.</p>
-      </div>
-      <div class="list" id="laeuft" hidden></div>
-      <div class="sec">
-        <h2 class="group-title">Deine Lernrouten</h2>
-        <div class="list" id="homeroutes"><p class="empty">Lade deine Lernrouten …</p></div>
-        <button class="btn block" id="homeadd">+ Neue Lernroute</button>
-      </div>
-      <div class="sec">
-        <h2 class="group-title" id="h-radar">Markt-Radar <small>samstags</small></h2>
-        <div class="list" id="radar"><p class="empty">Der erste Markt-Radar erscheint hier am Samstag.</p></div>
-      </div>
-    </section>
-
-    <!-- Ebene 2: eine Lernroute -->
-    <section class="tab" id="tab-route" aria-labelledby="htitle" hidden>
-      <div class="nav"><button class="back" id="rvback">‹ Lernrouten</button></div>
-      <div class="card hero">
-        <div class="hero-top">
-          <div class="ring" aria-hidden="true"><svg viewBox="0 0 76 76"><circle cx="38" cy="38" r="32" fill="none" stroke="var(--fill)" stroke-width="9"/><circle id="ringc" cx="38" cy="38" r="32" fill="none" stroke="var(--green-fill)" stroke-width="9" stroke-linecap="round" stroke-dasharray="201.06" stroke-dashoffset="201.06"/></svg><span class="pct" id="ringp">0%</span></div>
-          <div style="min-width:0"><h2 id="htitle">Lernroute</h2><p class="lead" id="hlead"></p></div>
-        </div>
-        <div class="route" id="route" aria-hidden="true"></div>
-        <div class="stats" id="stats"></div>
-        <div class="go">
-          <button class="btn primary block" id="fire">Nächste Folge dieser Route starten</button>
-          <span class="hint" id="firemsg" role="status">Nach etwa zehn Minuten ist sie hier und in deiner Podcast-App.</span>
-        </div>
-      </div>
-      <div class="card podcard" id="podcard" hidden>
-        <div class="pod-top"><span class="pod-ic" aria-hidden="true">🎧</span><div><strong id="podtitle">Eigene Sendung in der Podcast-App</strong><p class="hint" style="margin:2px 0 0">Jede Lernroute ist eine eigene Sendung. So mischen sich die Routen nicht.</p></div></div>
-        <div class="row"><a class="btn primary" id="podopen" target="_blank" rel="noopener">In Apple Podcasts abonnieren</a><button class="btn" id="podcopy">Adresse kopieren</button></div>
-        <span class="hint" id="podmsg" role="status"></span>
-        <details class="how"><summary>Klappt der Knopf nicht? So geht es von Hand</summary>
-          <ol><li>Tippe auf „Adresse kopieren“.</li><li>Öffne die App Podcasts und tippe unten auf „Mediathek“.</li><li>Tippe oben rechts auf „…“ und dann auf „Sendung per URL folgen“.</li><li>Füge die Adresse ein und tippe auf „Folgen“.</li></ol>
-          <code id="podurl"></code></details>
-      </div>
-      <div class="seg wide" id="rvseg" role="tablist" aria-label="Folgen filtern">
-        <button role="tab" data-v="pod" aria-pressed="true">Im Podcast</button>
-        <button role="tab" data-v="wait" aria-pressed="false">Noch nicht</button>
-        <button role="tab" data-v="open" aria-pressed="false">Noch offen</button>
-      </div>
-      <p class="foot" id="rvhint"></p>
-      <div class="list" id="folgenliste"></div>
-    </section>
-
-    <!-- Themen -->
-    <section class="tab" id="tab-themen" aria-labelledby="h-route" hidden>
-      <div>
-        <div class="date" id="routecount"></div>
-        <h1 class="big" id="h-route">Themen</h1>
-        <div class="rchips" id="rchips" role="group" aria-label="Lernroute wählen" style="margin-top:12px"></div>
-        <p class="lead">Tippe an, wie gut du ein Thema kannst. Unsicheres kommt wieder. Mit „Als Folge“ machst du aus jedem Thema sofort eine Podcast-Folge.</p>
-      </div>
-      <div id="phases"><p class="empty">Die Themen erscheinen hier, sobald dein Stand geladen ist.</p></div>
-    </section>
-
-    <!-- Fragen und Wünsche -->
-    <section class="tab" id="tab-fragen" aria-labelledby="t-fragen" hidden>
-      <div>
-        <h1 class="big" id="t-fragen">Fragen</h1>
-        <p class="lead">Alles, was dir unklar ist oder was du lernen möchtest. Dein Coach greift es auf.</p>
-      </div>
-      <div class="sec">
-        <h2 class="group-title">Wunschthema</h2>
-        <div class="card field">
-          <label for="wroute">Lernroute</label>
-          <select id="wroute" class="txt"></select>
-          <label for="wtitle">Begriff oder Thema für eine eigene Folge</label>
-          <input id="wtitle" class="txt" type="text" maxlength="120" placeholder="z. B. Was ist eine Vektor-Datenbank?">
-          <label for="wnote">Worauf soll der Coach eingehen? (optional)</label>
-          <textarea id="wnote" maxlength="500" placeholder="z. B. Mein Team spricht ständig davon, ich weiß nicht, wofür wir das brauchen."></textarea>
-          <button class="btn primary block" id="wnow">Jetzt Folge erstellen</button>
-          <button class="btn block" id="wsave">Für später vormerken</button>
-          <span class="hint" id="wmsg" role="status"></span>
-        </div>
-        <p class="foot">„Vormerken“ setzt das Thema an die Spitze der gewählten Lernroute, es kommt in der nächsten Folge dran.</p>
-      </div>
-      <div class="sec">
-        <h2 class="group-title">Frage an deinen Coach</h2>
-        <div class="card field">
-          <label for="qtext">Begriff unklar, Situation aus dem Team?</label>
-          <textarea id="qtext" maxlength="1000" placeholder="z. B. Was ist der Unterschied zwischen Ontologie und Knowledge Graph?"></textarea>
-          <button class="btn primary block" id="qsend">Frage speichern</button>
-          <span class="hint" id="qmsg" role="status"></span>
-        </div>
-        <ul class="qlist list" id="qlist" hidden></ul>
-      </div>
-    </section>
-
-    <!-- Mehr: Routen, Profil, Plan, Sprache, Konto -->
-    <section class="tab" id="tab-mehr" aria-labelledby="t-mehr" hidden>
-      <div>
-        <h1 class="big" id="t-mehr">Mehr</h1>
-        <p class="kontingent" id="kontingent"></p>
-      </div>
-      <div class="sec">
-        <h2 class="group-title">Deine Lernrouten</h2>
-        <p class="foot">Dein Coach wechselt zwischen allen aktiven Routen.</p>
-        <div class="list rlist" id="rlist"></div>
-      </div>
-      <div class="sec" id="sec-new">
-        <h2 class="group-title">Neue Lernroute</h2>
-        <div class="card field">
-          <label for="ntopic">Welches Themengebiet willst du lernen?</label>
-          <input id="ntopic" class="txt" type="text" maxlength="140" placeholder="z. B. Ein kleiner werdendes Team führen">
-          <label for="ngoal">Was willst du am Ende können? (optional)</label>
-          <textarea id="ngoal" maxlength="500" placeholder="z. B. Einen Business Case für Agenten vorlegen können."></textarea>
-          <button class="btn primary block" id="ngen">Lernroute vorschlagen</button>
-          <button class="btn block" id="nsugg">Ideen für mich</button>
-          <span class="hint" id="nmsg" role="status"></span>
-          <div id="vorschlaege" style="display:flex;flex-direction:column;gap:14px"></div>
-        </div>
-        <p class="foot">Claude macht einen Vorschlag mit drei Stufen, passend zu deinem Profil. Du entscheidest, ob du ihn übernimmst.</p>
-      </div>
-      <div class="sec">
-        <h2 class="group-title">Dein Profil</h2>
-        <div class="card field">
-          <label for="ptext">Rolle, Situation, Ziele, Vorwissen. Daraus leitet der Coach ab, was für dich zählt. Bitte keine vertraulichen Firmendaten und keine Namen anderer Personen.</label>
-          <textarea id="ptext" maxlength="4000" style="min-height:160px"></textarea>
-          <button class="btn primary block" id="psave">Profil speichern</button>
-          <span class="hint" id="pmsg" role="status"></span>
-        </div>
-      </div>
-      <div class="sec" id="sec-plan">
-        <h2 class="group-title">Automatische Folgen</h2>
-        <div class="card field">
-          <label>An diesen Tagen kommt automatisch eine neue Folge</label>
-          <div class="tage" id="plantage" role="group" aria-label="Wochentage"></div>
-          <label for="planstunde">Ab dieser Uhrzeit</label>
-          <select id="planstunde" class="txt"></select>
-          <span class="hint" id="planmsg" role="status"></span>
-        </div>
-      </div>
-      <div class="sec">
-        <h2 class="group-title">Sprache</h2>
-        <button class="btn block" id="langbtn2" aria-haspopup="dialog">🌐 Deutsch</button>
-      </div>
-      <div class="sec" id="sec-feeds" hidden>
-        <h2 class="group-title">Podcast-Feeds</h2>
-        <div class="card field">
-          <p class="hint" style="margin:0">Jede Lernroute und der Markt-Radar sind eigene, private Sendungen. Die Adressen sind geheim: teile sie nicht.</p>
-          <div class="feeds" id="feeds"></div>
-          <button class="btn block" id="feederneuern">Neue Adressen erzeugen</button>
-          <span class="hint" id="feedmsg" role="status"></span>
-        </div>
-      </div>
-      <div class="sec">
-        <h2 class="group-title">Konto</h2>
-        <div class="card field">
-          <span class="hint" id="kontomail"></span>
-          <a class="btn block" id="adminlink" href="admin.html" hidden>Admin-Bereich</a>
-          <button class="btn block" type="button" data-abmelden>Abmelden</button>
-          <button class="btn danger block" type="button" id="kontoweg">Konto und alle Daten löschen</button>
-          <span class="hint" id="kontomsg" role="status"></span>
-        </div>
-        <div class="links"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">Nutzungsbedingungen</a></div>
-      </div>
-    </section>
-  </div>
 </div>
 
+<!-- Sprache -->
 <div class="sheet-bg" id="langsheet" hidden>
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="lsh">
     <div class="grab" aria-hidden="true"></div>
     <h2 id="lsh">Sprache</h2>
-    <div class="field">
-      <label>Sprache der Lernseite</label>
-      <div class="seg wide" id="uiseg" role="group" aria-label="Sprache der Lernseite"></div>
-      <label>Sprache deiner Folgen</label>
-      <div class="seg wide" id="podseg" role="group" aria-label="Sprache deiner Folgen"></div>
-      <p class="foot" style="padding:0">Gilt für neue Lernschnipsel und Podcast-Folgen. Bisherige Folgen bleiben in ihrer Sprache.</p>
-      <span class="hint" id="langmsg" role="status"></span>
-      <button class="btn primary block" id="langdone">Fertig</button>
-    </div>
+    <div class="feld"><label>Sprache der Lernseite</label><div class="seg" id="uiseg" role="group" aria-label="Sprache der Lernseite"></div></div>
+    <div class="feld"><label>Sprache deiner Folgen</label><div class="seg" id="podseg" role="group" aria-label="Sprache deiner Folgen"></div></div>
+    <p class="hint">Gilt für neue Lernschnipsel und Podcast-Folgen. Bisherige Folgen bleiben in ihrer Sprache.</p>
+    <span class="hint" id="langmsg" role="status"></span>
+    <button class="btn primary block" id="langdone">Fertig</button>
+  </div>
+</div>
+
+<!-- Frage an den Coach -->
+<div class="sheet-bg" id="fragesheet" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="fsh">
+    <div class="grab" aria-hidden="true"></div>
+    <h2 id="fsh">Frage an deinen Coach</h2>
+    <div class="feld"><label for="qtext">Begriff unklar, Situation aus dem Team?</label>
+      <textarea id="qtext" maxlength="1000" placeholder="z. B. Was ist der Unterschied zwischen Ontologie und Knowledge Graph?"></textarea></div>
+    <button class="btn primary block" id="qsend">Frage speichern</button>
+    <span class="hint" id="qmsg" role="status"></span>
+    <button class="btn ghost" id="qzu">Schließen</button>
   </div>
 </div>
 
 <div class="tabbar" id="tabbar" hidden><nav role="tablist" aria-label="Bereiche">
-  <button role="tab" data-tab="heute" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="3" y="13" width="4" height="7" rx="1.5"/><rect x="17" y="13" width="4" height="7" rx="1.5"/></svg>Lernen</button>
-  <button role="tab" data-tab="themen" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="6" r="1.4"/><circle cx="5" cy="12" r="1.4"/><circle cx="5" cy="18" r="1.4"/><path d="M10 6h10M10 12h10M10 18h10"/></svg>Themen</button>
-  <button role="tab" data-tab="fragen" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.2A8 8 0 1 1 20 12z"/><path d="M10 10a2 2 0 1 1 2.8 1.8c-.5.3-.8.7-.8 1.2M12 15.5v.01"/></svg>Fragen</button>
-  <button role="tab" data-tab="mehr" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>Mehr</button>
+  <button role="tab" data-tab="heute" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9.5h13V10"/><path d="M10 19.5v-5h4v5"/></svg>Heute</button>
+  <button role="tab" data-tab="routen" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg>Lernrouten</button>
+  <button role="tab" data-tab="radar" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12 19 5"/><path d="M20.5 12A8.5 8.5 0 1 1 12 3.5"/><path d="M16 12a4 4 0 1 1-4-4"/><circle cx="12" cy="12" r=".8" fill="currentColor"/></svg>Radar</button>
+  <button role="tab" data-tab="ich" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20.5c1-4 4-6 7.5-6s6.5 2 7.5 6"/></svg>Ich</button>
 </nav></div>
-
 <script src="app.js"></script>
 </body>
 </html>
